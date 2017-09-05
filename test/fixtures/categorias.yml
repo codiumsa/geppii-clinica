@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+cervezas:
+  nombre: cervezas
+  #productos: miller, heineken
+
+vinos:
+  nombre: vinos
+
+whiskies:
+  nombre: whiskies

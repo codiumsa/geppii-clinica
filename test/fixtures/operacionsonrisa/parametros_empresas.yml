@@ -1,0 +1,26 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+operacionsonrisa:
+   empresa_id: 1
+   imei_en_venta_detalle: false
+   soporta_sucursales: true
+   sucursal_default_id: 1
+   soporta_multiempresa: true
+   vendedor_en_venta: true
+   tarjeta_credito_en_venta: true
+   soporta_caja_impresion: false
+   soporta_ajuste_inventario: true
+   soporta_uso_interno: false
+   retencioniva: 0
+   soporta_multimoneda: true
+   moneda: dolares
+   moneda_base: guaranies
+   ctrl_inventario_set_existencia: true
+   ctrl_inventario_cantidad: 2
+   imprimir_remision: true
+   recargo_precio_venta: false
+   default_empresa: true
+   sequences_por_empresa: true
+   soporta_cajas: false
+   soporta_medicamentos: true
+   monto_alivio: 1000000
+   permite_promociones: false

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+generica_credito:
+  banco: .
+  marca: .
+  afinidad: Credito
+  medio_pago_id: 3
+  activo: true
+generica_debito:
+  banco: .
+  marca: .
+  afinidad: Debito
+  medio_pago_id: 2
+  activo: true

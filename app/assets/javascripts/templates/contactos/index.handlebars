@@ -1,0 +1,56 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Contactos con Patricinadores
+  {{#isAuthorized 'FE_post_contactos'}}
+    {{#link-to 'contactos.new'}}
+      <button class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="margin-top: -5px; margin-left: 5px;"></button>
+    {{/link-to}}
+  {{/isAuthorized}}
+
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView}}
+    <div class="table-responsive content-panel" style="padding: 0px;">
+      <table class="table table-bordered table-striped table-condensed">
+          <thead>
+              <tr>
+                  <th>Patrocinador</th>
+                  <th>Campaña</th>
+                  <th>CI/RU</th>
+                  <th>Oportunidad</th>
+                  <th>Fecha</th>
+                  <th>Entregado/Comprometido</th>
+                  <th>Tiene Detalle In Kind</th>
+                  <th style="width:11%;"></th>
+              </tr>
+          </thead>
+          <tbody>
+          {{#each}}
+              <tr>
+                  <td>{{sponsor.razonSocial}}</td>
+                  <td>{{campanha.nombre}}</td>
+                  <td>{{sponsor.ciRuc}}</td>
+                  <td>{{tipoContacto.codigo}}</td>
+                  <td>{{dateformat fecha}}</td>
+                  <td>{{{compromisoPagado}}}</td>
+                  <td>{{yesno tieneDetalleInKind}}</td>
+                  <td class="center">
+                      {{#link-to 'contacto.edit' this classNames='table-action'}}
+                        <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil"></button>
+                      {{/link-to}}
+                      {{#link-to 'contacto.delete' this classNames='table-action'}}
+                        {{#isAuthorized 'FE_delete_contactos'}}
+                          <button class="btn btn-theme btn-sm glyphicon glyphicon-remove"
+                                data-toggle="modal" data-target="#contactoDelete"></button>
+                        {{/isAuthorized}}
+                      {{/link-to}}
+                  </td>
+              </tr>
+          {{/each}}
+          </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

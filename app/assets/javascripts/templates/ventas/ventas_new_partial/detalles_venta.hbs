@@ -1,0 +1,182 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h5>
+      <i class="fa fa-angle-right"></i>Detalles de la Venta</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-horizontal form-detalles">
+      {{#if detalles}}
+        <div class="form-group">
+          <div class="col-lg-1 first-cell">
+            <label class="form-label">Código</label>
+          </div>
+          <div class="col-lg-2">
+            <label class="form-label">Descripción</label>
+          </div>
+          <div class="col-lg-1">
+            <label class="form-label">Cantidad</label>
+          </div>
+          {{!-- <div class="col-lg-1" >
+              <label class="form-label">Código Lote</label>
+            </div> --}}
+          {{#if parametros.soportaParametroCaliente}}
+            <div class="col-lg-1">
+              <label class="form-label">Caliente</label>
+            </div>
+          {{/if}}
+          <div class="col-lg-1">
+            <label class="form-label">Precio</label>
+          </div>
+          <div class="col-lg-1">
+            {{#if soportaMultimoneda}}
+              <label class="form-label">Descuento ({{monedaSeleccionada.simbolo}})</label>
+            {{else}}
+              <label class="form-label">Descuento</label>
+            {{/if}}
+          </div>
+          {{#if mostrarImei}}
+            <div class="col-lg-1">
+              <label class="form-label">IMEI</label>
+            </div>
+          {{/if}}
+          <div class="col-lg-1">
+            <label class="form-label">IVA %</label>
+          </div>
+          <div class="col-lg-2 last-cell">
+            <label class="form-label">Subtotal
+              {{#if soportaMultimoneda}} ({{monedaSeleccionada.simbolo}}) {{/if}}
+            </label>
+          </div>
+        </div>
+      {{else}}
+        <div class="form-group">
+          <div class="col-lg-12 first-cell">
+            <label class="form-label">Debe agregar detalles para guardar la venta</label>
+          </div>
+        </div>
+      {{/if}}
+      {{#each det in detalles}}
+        <div {{bind-attr class="det:form-group det.promocion:no-margin-bottom"}}>
+          <div class="col-lg-1 first-cell">
+            {{input type="text" readonly="true" value=det.producto.codigoBarra class="form-control" placeholder="Código de Barras" }}
+          </div>
+          <div class="col-lg-2">
+            {{input type="text" readonly="true" value=det.producto.descripcion class="form-control" placeholder="Descripción del producto" }}
+          </div>
+          <div class="col-lg-1">
+            {{input type="text" readonly="true" value=det.cantidad class="form-control" placeholder=numeral }}
+          </div>
+          {{!-- {{#if id}}
+          {{input type="text" readonly="true" value=det.lote.codigoLote class="form-control" placeholder="Descripción del producto" }}
+          {{else}}
+            {{input type="text" readonly="true" value=det.codigoLote class="form-control" placeholder="Descripción del producto" }}
+            {{/if}} --}}
+            {{#if parametros.soportaParametroCaliente}}
+              <div class="col-lg-1">
+                {{input type="checkbox" disabled="true" checked=det.caliente class="checkbox"}}
+              </div>
+            {{/if}}
+            <div class="col-lg-1">
+              {{input type="text" readonly="true" value=det.precio class="form-control" placeholder="Precio" }}
+              {{#if soportaMultimoneda}}
+                <span class="help-block help-block-promo"> Moneda: {{det.producto.moneda.simbolo}}</span>
+              {{/if}}
+            </div>
+            <div class="col-lg-1">
+              {{input type="text" readonly="true" value=det.descuento class="form-control" placeholder="Descuento" }}
+              {{#if det.promocion}}
+                <span class="help-block help-block-promo"> Promo aplicada: {{det.promocion.descripcion}}</span>
+              {{/if}}
+            </div>
+            {{#if mostrarImei}}
+              <div class="col-lg-1">
+                {{input type="text" readonly="true" value=det.imei class="form-control" placeholder="IMEI" }}
+              </div>
+            {{/if}}
+            {{#if editando}}
+              <div class="col-lg-1">
+                {{input type="text" readonly="true" value=det.producto.iva class="form-control"}}
+              </div>
+              {{#if soportaMultimoneda}}
+                <div class="col-lg-2 last-cell">
+                  {{input type="text" readonly="true" value=det.subtotalCotizado class="form-control" placeholder="Sub Total" }}
+                </div>
+              {{else}}
+                <div class="col-lg-2 last-cell">
+                  {{input type="text" readonly="true" value=det.subtotal class="form-control" placeholder="Sub Total" }}
+                </div>
+              {{/if}}
+            {{else}}
+              <div class="col-lg-3 last-cell">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    {{#if det.producto}}
+                      {{det.producto.iva}}
+                    {{else}}
+                      00
+                    {{/if}}
+                  </span>
+                  {{#if soportaMultimoneda}}
+                    {{input type="text" readonly="true" value=det.subtotalCotizado class="form-control" placeholder="Sub Total" }}
+                  {{else}}
+                    {{input type="text" readonly="true" value=det.subtotal class="form-control" placeholder="Sub Total" }}
+                  {{/if}}
+                  {{#if borraDetalle}}
+                    <span class="input-group-btn">
+                      <button type="button" {{action borrarDetalle det}} class="btn btn-theme">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    </span>
+                  {{else}}
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-theme" data-toggle="modal" data-target="#loginBorrarDetalleVenta">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    </span>
+                  {{/if}}
+                </div>
+              </div>
+            {{/if}}
+        </div>
+      {{/each}}
+      <div class="modal fade" id="loginBorrarDetalleVenta" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Autenticación</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form" autocomplete="on" style="margin:0px;" {{action "checkCredenciales" on=" submit"}} onkeydown="Bodega.keydownFormHandler('controller:ventas.new','checkCredencialesVentaDetalle');">
+                <div class="login-wrap">
+                  <div class="form-group" {{bind-attr class="errorMessage:has-error errorMessage:has-feedback"}}>
+                    <label class="form-label">Usuario</label>
+                    {{input type="text" id="usernameBorrarDetalle" value=identificationBorrarDetalle class="form-control" placeholder="Usuario" }}
+                    <span class="help-block">{{errorMessage}}</span>
+                    {{#if errorMessage}}
+                      <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    {{/if}}
+                  </div>
+                  <div class="form-group" {{bind-attr class="errorMessage:has-error errorMessage:has-feedback"}}>
+                    <label class="form-label">Contraseña</label>
+                    {{input type="password" id="passwordUsuarioBorrarDetalle" value=passwordBorrarDetalle class="form-control" placeholder="Contraseña" }}
+                    <span class="help-block">{{errorMessage}}</span>
+                    {{#if errorMessage}}
+                      <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    {{/if}}
+                  </div>
+                  <br>
+                  <div class="form-group">
+                    <button type="submit" {{action checkCredencialesVentaDetalle det}} class="btn btn-theme">{{!-- <i class="fa fa-lock"></i>  --}}
+                      Aceptar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

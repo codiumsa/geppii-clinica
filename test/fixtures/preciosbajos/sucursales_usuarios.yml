@@ -1,0 +1,18 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   usuario_id: 
+#   sucursal_id: 
+
+# two:
+#   usuario_id: 
+#   sucursal_id: 
+uno:
+  usuario_id: 1
+  sucursal_id: 1
+  id: 1
+
+dos:
+  usuario_id: 2
+  sucursal_id: 1
+  id: 2

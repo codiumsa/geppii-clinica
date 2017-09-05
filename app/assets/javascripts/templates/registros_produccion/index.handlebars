@@ -1,0 +1,60 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Registros de producción
+  {{#link-to 'registrosProduccion.new'}}
+    <button class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="margin-top: -5px; margin-left: 5px;" ></button>
+  {{/link-to}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView}}
+    <div class="content-panel table-responsive" style="padding: 0px;">
+      <table class="table table-bordered table-striped table-condensed">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Proceso</th>
+                <th>Deposito</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Observacion</th>
+                <th>Estado</th>
+                <th  style="width:13%;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{#each}}
+            <tr>
+                <td>{{dateformat fecha}}</td>
+                <td>{{proceso.descripcion}}</td>
+                <td>{{deposito.descripcion}}</td>
+                <td>{{proceso.producto.descripcion}}</td>
+                <td>{{cantidad}}</td>
+                <td>{{observacion}}</td>
+                <td>{{estado}}</td>
+                <td>
+                  {{#if isRegistrado}}
+                    <button {{action 'iniciar' this}} class="btn btn-theme btn-sm glyphicon glyphicon-play" 
+                    title="INICIAR"></button>
+                  {{/if}}
+                  {{#if isIniciado}}
+                    <button {{action 'terminar' this}} class="btn btn-theme btn-sm glyphicon glyphicon-stop" 
+                    title="TERMINAR"></button>
+                  {{/if}}
+                  {{#link-to 'registroProduccion.edit' this classNames='table-action'}}
+                    <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil"></button>
+                  {{/link-to}}
+                  {{#link-to 'registroProduccion.delete' this classNames='table-action'}}
+                    <button class="btn btn-theme btn-sm glyphicon glyphicon-remove" 
+                            data-toggle="modal" data-target="#registroProduccionDelete" ></button>
+                  {{/link-to}}
+
+                </td>
+            </tr>
+        {{/each}}
+         </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

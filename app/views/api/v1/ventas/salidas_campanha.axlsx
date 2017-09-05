@@ -1,0 +1,100 @@
+ventas = @ventas
+params = @params
+tipo_salida = @tipo_salida
+
+puts "Parametros #{ventas} #{params} #{tipo_salida}"
+
+despues_de = params[:by_fecha_registro_after]
+antes_de = params[:by_fecha_registro_before]
+en_fecha = params[:by_fecha_registro_on]
+incluyeDetalle = params[:incluye_detalle] == "true"
+puts "incluyeDetalle"
+puts incluyeDetalle
+
+
+
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  title = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  content = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+
+
+  wb.add_worksheet(name: "salidas_campanha") do |sheet|
+    time = Time.now.strftime("%d/%m/%Y")
+
+    if despues_de and antes_de
+      fecha_str = "Salidas realizadas entre #{despues_de.to_date}" + " y " + "#{antes_de.to_date}"
+    elsif despues_de
+      fecha_str = "Salidas realizadas después de: #{despues_de.to_date}"
+    elsif antes_de
+      fecha_str = "Salidas realizadas antes de:" + "#{antes_de.to_date}"
+    elsif en_fecha
+      fecha_str =  "Salidas del día: #{en_fecha.to_date}"
+    else
+      fecha_str =  "Ventas realizadas hasta #{Time.now.to_date}"
+    end
+
+    sheet.add_row ["Geppii","Tipo Salida: #{@tipo_salida}","Fecha de generacion del Reporte: #{time}", fecha_str], style: [wrap_text,wrap_text,wrap_text,wrap_text]
+
+    sheet.add_row []
+
+
+    if ventas.length > 0
+        total = 0
+        if(!incluyeDetalle)
+        sheet.add_row ["Fecha de Salida","#{@tipo_salida}","Total Salida"], style: [title,title,title]
+
+          ventas.map do |venta|
+            puts "#{venta.to_yaml}"
+            #if(venta.campanha)
+              total = total + venta.total
+              sheet.add_row [venta.fecha_registro.strftime("%d/%m/%Y"),venta.concepto_by_tipo,venta.total], style: [content,content,content]
+            #end
+          end
+          sheet.add_row []
+          sheet.add_row ["","TOTAL:",total], style: [nil,content,content]
+        else
+          sheet.add_row ["ID salida","Fecha de Salida","Concepto","Cantidad","Producto","Precio Unitario","Total Salida"], style: [title,title,title,title,title,title,title]
+          ventas.map do |venta|
+            puts "#{venta.to_yaml}"
+            total = total + venta.total
+            venta.venta_detalles.map do |ventaDetalle|
+              sheet.add_row [venta.id,venta.fecha_registro.strftime("%d/%m/%Y"),venta.concepto_by_tipo,ventaDetalle.cantidad,ventaDetalle.producto.descripcion,ventaDetalle.precio,venta.total], style: [content,content,content,content,content,content,content]
+            end
+          end
+          sheet.add_row []
+          sheet.add_row ["","","","","","TOTAL:",total], style: [nil,nil,nil,nil,nil,content,content]
+        end
+
+
+    else
+      sheet.add_row ["No se registraron salidas en el rango de fechas seleccionado"], style: [title]
+    end
+  end
+end

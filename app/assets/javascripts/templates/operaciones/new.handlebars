@@ -1,0 +1,174 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt" onkeydown="Bodega.ignoreEnter();">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <div class="form-horizontal">
+                <form class="style-form" role="form" {{!-- {{action"save" on="submit" }} onkeydown="Bodega.keydownFormHandler('controller:operaciones.new', 'save'); --}}>
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <label class="form-label" for="tipoOperacion">Tipo de Operación</label>
+                            {{view Ember.Select
+                            content=tiposOperacion
+                            optionLabelPath="content.descripcion"
+                            selection=tipoOperacionSeleccionada
+                            value=tipoOperacionSeleccionada
+                            classNames="form-control"}}
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="form-label" for="caja">Caja Origen{{#if muestraSaldo}}: <b>{{formatNumber saldoCajaSeleccionada}} {{#if soportaMultimoneda}}{{monedaSeleccionada.simbolo}}{{else}}Gs.{{/if}}</b> {{/if}}
+                            </label>
+                            {{view Ember.Select
+                            content=cajas
+                            optionLabelPath="content.descripcion"
+                            selection=cajaSeleccionada
+                            value=cajaSeleccionada
+                            classNames="form-control"}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{#if tipoOperacionSeleccionada.tieneCajaDestino}}
+                            <div class="col-lg-4">
+                                <label class="form-label" for="cajaDestino">Caja Destino{{#if muestraSaldo}}: <b>{{formatNumber saldoCajaDestinoSeleccionada}} {{#if soportaMultimoneda}}{{monedaSeleccionada.simbolo}}{{else}}Gs.{{/if}}</b> {{/if}}
+                                </label>
+                                {{view Ember.Select
+                                content=cajasDestino
+                                optionLabelPath="content.descripcion"
+                                selection=cajaDestinoSeleccionada
+                                value=cajaDestinoSeleccionada
+                                classNames="form-control"}}
+                            </div>
+                        {{/if}}
+
+                        <div class="col-lg-4" {{bind-attr class="errors.monto:has-error errors.monto:has-feedback" }}>
+                            <label class="form-label" for="monto">Monto</label>
+                            {{number-input min="0" value=monto class="form-control" placeholder="Monto"}}
+                            <span class="help-block">{{error errors.monto}}</span> {{#if errors.monto}}
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span> {{/if}}
+                        </div>
+                        {{#if tipoOperacionSeleccionada.categorizable}}
+                          <div class="col-lg-6" {{bind-attr class="errors.categoria_operacion:has-error errors.categoria_operacion:has-feedback"}}>
+                            <label class="form-label">Categoría</label>
+                            {{view Ember.Select
+                              content=categoriaOperaciones
+                              optionLabelPath="content.nombre"
+                              selection=categoriaOperacionSeleccionada
+                              value=categoriaOperacionSeleccionada
+                              classNames="form-control"}}
+                            {{#if errors.categoria_operacion}}
+                                <span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+                            {{/if}}
+                          </div>
+                        {{/if}}
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            {{#if tipoOperacionSeleccionada.tieneCajaDestino}} {{!--
+                                        <button class="btn btn-theme" data-toggle="modal" data-target="#loginOperacion" {{!-- {{action 'showModal' 'operaciones.login'}}>Guardar</button>
+                                        --}}
+
+
+                            {{#if cajadestinoPrincipal}}
+                                        <button type="button" class="btn btn-theme" data-toggle="modal" data-target="#loginOperacionPrincipal">Guardar</button>
+                            {{/if}}
+                            {{#if cajadestinoUsuario}}
+                                        <button type="button" class="btn btn-theme" data-toggle="modal" data-target="#loginOperacionUsuario">Guardar</button>
+                            {{/if}}
+
+                                        <div class="modal fade" id="loginOperacionUsuario" role="dialog">
+                                                    <div class="modal-dialog">
+
+                                                        <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Autenticación</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form role="form" autocomplete="on" style="margin:0px; {{!-- {{action 'checkCredenciales' on=" submit"}} onkeydown="Bodega.keydownFormHandler( 'controller:operaciones.new', 'checkCredenciales'); --}}">
+                                           <div class="login-wrap">
+                                             <div class="form-group" {{bind-attr class="errorMessage:has-error errorMessage:has-feedback"}}>
+                                                    <label class="form-label">Usuario</label>
+                                                  {{input type="text" enter='agregarDetalle' readonly="true" value=cajaDestinoSeleccionada.usuario.username class="form-control" placeholder="Nombre del Usuario" action="checkCredenciales"}}
+                                                    {{!-- {{focus-input type="text" id="username" value=identification class="form-control" placeholder="Usuario o Email" action="checkCredenciales"}} --}}
+                                                    {{#if errorMessage}}
+                                                      <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                                    {{/if}}
+                                                </div>
+
+                                            <div class="form-group" {{bind-attr class="errorMessage:has-error errorMessage:has-feedback"}}>
+                                                <label class="form-label">Contraseña</label>
+                                                {{input type="password" id="passwordUsuario" value=passwordUsuario class="form-control" placeholder="Contraseña" action="checkCredenciales"}}
+                                                <span class="help-block">{{errorMessage}}</span>
+                                                {{#if errorMessage}}
+                                                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                                {{/if}}
+                                            </div>
+                                          <br>
+
+                                          <div class="form-group">
+                                              <button {{!-- type="submit" --}} {{action 'checkCredenciales'}} class="btn btn-theme">{{!-- <i class="fa fa-lock"></i>  --}}Aceptar</button>
+                                          </div>
+                                          </div>
+                                        </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                   </div>
+
+
+                            <div class="modal fade" id="loginOperacionPrincipal" role="dialog">
+                                                    <div class="modal-dialog">
+
+                                                        <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Autenticación</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form role="form" autocomplete="on" style="margin:0px;">
+                                           <div class="login-wrap">
+
+                                             <div class="form-group" {{bind-attr class="errorMessage:has-error errorMessage:has-feedback"}}>
+                                                    <label class="form-label">Usuario</label>
+                                                    {{focus-input type="text" id="username" value=identification class="form-control" placeholder="Usuario o Email" action="checkCredenciales"}}
+                                                    {{#if errorMessage}}
+                                                      <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                                    {{/if}}
+                                                </div>
+                                            <div class="form-group" {{bind-attr class="errorMessage:has-error errorMessage:has-feedback"}}>
+                                                <label class="form-label">Contraseña</label>
+                                                {{input type="password" id="passwordPrincipal" value=passwordPrincipal class="form-control" placeholder="Contraseña" action="checkCredenciales"}}
+                                                <span class="help-block">{{errorMessage}}</span>
+                                                {{#if errorMessage}}
+                                                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                                {{/if}}
+                                            </div>
+                                          <br>
+
+                                          <div class="form-group">
+                                              <button {{!-- type="submit" --}} {{action 'checkCredenciales'}} class="btn btn-theme">{{!-- <i class="fa fa-lock"></i>  --}}Aceptar</button>
+                                          </div>
+                                          </div>
+                                        </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                   </div>
+
+
+                          {{else}}
+                               <button {{action 'save'}} class="btn btn-theme">Guardar</button>
+
+                          {{/if}}
+                          <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+        </div>
+  </div>
+</div>
+</div>

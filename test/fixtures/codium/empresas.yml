@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+codium:
+  nombre: Codium S.A.
+  id: 1
+  activo: true
+  ruc: 80087453-6
+  codigo: codium

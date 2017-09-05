@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+caja1:
+  codigo: caja_princ_suc_01_matriz
+  descripcion: Caja Principal de Sucursal Matriz
+  sucursal: sucursal_1
+  tipo_caja: P
+  moneda: guaranies
+  usuario: 
+  saldo: 0
+
+caja2:
+  codigo: caja_usuario_administrador
+  descripcion: Caja Administrador
+  sucursal_id: 
+  tipo_caja: U
+  moneda: guaranies
+  usuario: administrador
+  saldo: 0
+
+caja3:
+  codigo: caja_usuario_vendedor
+  descripcion: Caja Vendedor 01
+  sucursal_id: 
+  tipo_caja: U
+  moneda: guaranies
+  usuario: vendedor
+  saldo: 0

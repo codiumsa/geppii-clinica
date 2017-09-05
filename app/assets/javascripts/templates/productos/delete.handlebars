@@ -1,0 +1,17 @@
+<div class="modal fade" id="productoDelete">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" {{action "cancel"}}  data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Eliminar Producto</h4>
+      </div>
+      <div class="modal-body">
+        <p>Desea eliminar el producto?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" {{action "deleteRecord"}} onkeydown="Bodega.ignoreEscapeDeleteModalWindow('controller:producto.delete', 'productos');" class="btn btn-theme" data-dismiss="modal" autofocus>Sí</button>
+        <button type="button" {{action "cancel"}} class="btn btn-default" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

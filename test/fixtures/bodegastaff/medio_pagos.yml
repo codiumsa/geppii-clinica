@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+efectivo:
+  nombre: Efectivo
+  codigo: EF
+  activo: true
+  registra_pago: false
+  dias_hasta_pago: 0
+
+debito:
+  nombre: Tarjeta de Débito
+  codigo: TD
+  registra_pago: false
+  activo: true
+  dias_hasta_pago: 0
+
+credito:
+  nombre: Tarjeta de Crédito
+  codigo: TC
+  registra_pago: true
+  activo: true
+  dias_hasta_pago: 30
+
+cheque:
+  nombre: Cheque
+  codigo: CH
+  registra_pago: true
+  activo: true
+  dias_hasta_pago: 1

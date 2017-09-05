@@ -1,0 +1,62 @@
+ajustes = @ajustes
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  loteTitle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  loteContent = style.add_style :fg_color=> "3E4D4A",
+                            
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :left,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  loteContentCentered = style.add_style :fg_color=> "3E4D4A",
+                            
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+
+  wb.add_worksheet(name: "ajuste_inventarios") do |sheet|
+    time = Time.now.strftime("%d/%m/%Y")
+    sheet.add_row ["Geppii","Reporte de Ajuste de Inventarios"," Fecha: #{time}"], style: [wrap_text,wrap_text,wrap_text]
+    sheet.add_row []
+
+    if ajustes.empty?
+      sheet.add_row ["No existen Ajustes"], style: [wrap_text,]
+    else      
+      ajustes.map do |ajuste|
+        puts ajuste.to_yaml
+        sheet.add_row ["Fecha registro: #{ajuste.fecha}", "Observacion: #{ajuste.observacion}", ""], style: [loteTitle,loteTitle, loteTitle]
+
+        sheet.add_row ["Producto","Cantidad", "Motivo"], style: [loteTitle,loteTitle,loteTitle]
+        ajuste.detalles.map do |ajusteDetalle|
+          sheet.add_row ["#{ajusteDetalle.producto.descripcion}","#{ajusteDetalle.cantidad}", "#{ajusteDetalle.motivos_inventario.descripcion}"], style: [loteContent,loteContentCentered,loteContent], :widths=>[50, 80, 30]
+        end
+      
+      end
+    end
+  end
+end

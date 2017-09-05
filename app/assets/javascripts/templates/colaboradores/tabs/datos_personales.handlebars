@@ -1,0 +1,354 @@
+<div role="tabpanel" class="tab-pane active" id="datospersonales">
+  <div class="col-lg-12">
+    <div class="form-horizontal">
+      <form class="style-form" role="form" {{action "save" on="submit" }} onkeydown="Bodega.keydownFormHandler('controller:clientes.new', 'save');">
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Informaci&oacute;n B&aacute;sica</h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div {{bind-attr class="id:col-lg-3:col-lg-6 feedback.personaId:has-error feedback.personaId:has-feedback" }}>
+                <label class="form-label" for="ruc">RUC/CI</label>
+                {{focus-input type="text" value=persona.ciRuc class="form-control" placeholder="RUC/CI" autofocus="autofocus" focus-out='loadColaborador'}}
+                <span class="help-block">{{error feedback.personaId}}</span>
+                {{#if feedback.personaId}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div {{bind-attr class="id:col-lg-3:col-lg-6 feedback.personaCorreo:has-error feedback.personaCorreo:has-feedback" }}>
+                <label class="form-label" for="ruc">Correo Electrónico</label>
+                {{focus-input type="text" value=persona.correo class="form-control" placeholder="example@example.com" autofocus="autofocus"}}
+                <span class="help-block">{{error feedback.personaCorreo}}</span>
+                {{#if feedback.personaCorreo}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            {{#if habilitaTipoPersona}}
+              <div class="form-group">
+                <div class="col-lg-3">
+                  <label class="form-label" for="sexo">Tipo de Persona</label>
+                  {{view Ember.Select content=tipoPersonas selection=persona.tipoPersona value=persona.tipoPersona classNames="form-control"}}
+                </div>
+              </div>
+            {{/if}}
+            <div class="form-group">
+              {{#if persona.esTipoPersonaJuridica}}
+              <div class="col-lg-6" {{bind-attr class="feedback.personaRazonSocial:has-error feedback.personaRazonSocial:has-feedback" }}>
+                <label class="form-label" for="razonSocial">Raz&oacute;n Social</label>
+                {{input type="text" value=persona.razonSocial class="form-control" placeholder="Razón Social"}}
+                <span class="help-block">{{error feedback.personaRazonSocial}}</span>
+                {{#if feedback.personaRazonSocial}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              {{else}}
+              <div class="col-lg-3" {{bind-attr class="feedback.personaNombre:has-error feedback.personaNombre:has-feedback" }}>
+                <label class="form-label" for="nombre">Nombre</label>
+                {{input type="text" value=persona.nombre class="form-control" placeholder="Nombre"}}
+                <span class="help-block">{{error feedback.personaNombre}}</span>
+                {{#if feedback.personaNombre}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-3" {{bind-attr class="feedback.personaApellido:has-error feedback.personaApellido:has-feedback" }}>
+                <label class="form-label" for="apellido">Apellido</label>
+                {{input type="text" value=persona.apellido class="form-control" placeholder="Apellido"}}
+                <span class="help-block">{{error feedback.personaApellido}}</span>
+                {{#if feedback.personaApellido}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              {{/if}}
+              <div class="col-lg-6" {{bind-attr class="feedback.personaSexo:has-error feedback.personaSexo:has-feedback" }}>
+                <label class="form-label" for="sexo">Sexo</label>
+                {{view Ember.Select content=sexos selection=persona.sexo prompt="Seleccione un valor..." value=persona.sexo classNames="form-control"}}
+                <span class="help-block">{{error feedback.personaSexo}}</span>
+                {{#if feedback.personaSexo}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-4" {{bind-attr class="feedback.personaFechaNacimiento:has-error feedback.personaFechaNacimiento:has-feedback" }}>
+                <label class="form-label" for="fechaNacimiento">Fecha Nacimiento</label>
+                {{view Bodega.views.DatePickerView value=persona.fechaNacimiento}}
+                <span class="help-block">{{error feedback.personaFechaNacimiento}}</span>
+                {{#if feedback.personaFechaNacimiento}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="feedback.personaEstadoCivil:has-error feedback.personaEstadoCivil:has-feedback" }}>
+                <label class="form-label" for="estadoCivil">Estado Civil</label>
+                {{view Ember.Select content=estadoCivilOpts selection=persona.estadoCivil prompt="Seleccione un valor..." value=persona.estadoCivil classNames="form-control"}}
+                <span class="help-block">{{error feedback.personaEstadoCivil}}</span>
+                {{#if feedback.personaEstadoCivil}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="feedback.personaNacionalidad:has-error feedback.personaNacionalidad:has-feedback" }}>
+                <label class="form-label" for="nacionalidad">Nacionalidad</label>
+                {{input type="text" value=persona.nacionalidad class="form-control" placeholder="Nacionalidad"}}
+                <span class="help-block">{{error feedback.personaNacionalidad}}</span>
+                {{#if feedback.personaNacionalidad}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+              <div class="form-group">
+                <div class="col-lg-3">
+                  <label for="tipoColaborador">Tipo de Voluntario</label>
+                  {{view Ember.Select
+                  content=tipoColaboradores
+                  optionLabelPath="content.nombreClub"
+                  selection=tipoColaboradorSeleccionado
+                  value=tipoColaboradorSeleccionado
+                  classNames="form-control" }}
+                </div>
+                {{#if tipoColaboradorSeleccionado.tieneLicencia}}
+                  <div class="col-lg-3">
+                    <label for="solicitud">N° Reg. Prof.</label>
+                    {{input type="text" value=licencia class="form-control" placeholder="Nro. de Licencia"}}
+                    <span class="help-block">{{error feedback.licencia}}</span>
+                    {{#if feedback.licencia}}
+                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    {{/if}}
+                  </div>
+
+                  <div class="col-lg-3">
+                    <label for="solicitud">Especialidad Médica</label>
+                    {{view Ember.Select
+                    content=especialidades
+                    optionLabelPath="content.descripcion"
+                    selection=especialidadSeleccionada
+                    value=especialidadSeleccionada
+                    classNames="form-control"}}
+                  </div>
+                {{/if}}
+              </div>
+              {{#if tipoColaboradorSeleccionado.tieneLicencia}}
+                <div class="form-group">
+                  <div class="col-lg-2">
+                    <label for="acreditado">Comisionamiento</label>
+                    {{input type="checkbox" checked=comisionamiento class="checkbox"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Institución</label>
+                    {{input type="text" value=institucion class="form-control" placeholder="Institución"}}
+                  </div>
+                  <div class="col-lg-1">
+                    <label for="acreditado">Acreditado</label>
+                    {{input type="checkbox" checked=acreditado class="checkbox"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Tipo</label>
+                    {{input type="text" value=tipo class="form-control" placeholder="Tipo"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Vencimiento Reg. Prof.</label>
+                    {{input type="text" value=vencimientoRegistroMedico class="form-control" placeholder="Vencimiento Registro Médico"}}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-lg-3">
+                    <label for="solicitud">Título</label>
+                    {{input type="text" value=titulo class="form-control" placeholder="Título"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Vencimiento BLS</label>
+                    {{input type="text" value=vencimientoBls class="form-control" placeholder="Vencimiento BLS"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Vencimiento PALS</label>
+                    {{input type="text" value=vencimientoPals class="form-control" placeholder="Vencimiento PALS"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Otros</label>
+                    {{input type="text" value=otros class="form-control" placeholder="Otros"}}
+                  </div>
+                </div>
+              <div class="form-group">
+                <div class="col-lg-3">
+                  <label for="solicitud">Lugar de Trabajo 1</label>
+                  {{input type="text" value=lugarTrabajo_1 class="form-control" placeholder="Lugar de Trabajo 1"}}
+                </div>
+                <div class="col-lg-3">
+                  <label for="solicitud">Lugar de Trabajo 2</label>
+                  {{input type="text" value=lugarTrabajo_2 class="form-control" placeholder="Lugar de Trabajo 2"}}
+                </div>
+                <div class="col-lg-3">
+                  <label for="solicitud">Lugar de Trabajo 3</label>
+                  {{input type="text" value=lugarTrabajo_3 class="form-control" placeholder="Lugar de Trabajo 3"}}
+                </div>
+                <div class="col-lg-3">
+                  <label for="solicitud">Talle de Remera</label>
+                  {{input type="text" value=talleRemera class="form-control" placeholder="Talle de Remera"}}
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-lg-3">
+                  <label for="solicitud">Horario de Trabajo 1</label>
+                  {{input type="text" value=horarioTrabajo_1 class="form-control" placeholder="Horario de Trabajo 1"}}
+                </div>
+                <div class="col-lg-3">
+                  <label for="solicitud">Horario de Trabajo 2</label>
+                  {{input type="text" value=horarioTrabajo_2 class="form-control" placeholder="Horario de Trabajo 2"}}
+                </div>
+                <div class="col-lg-3">
+                  <label for="solicitud">Horario de Trabajo 3</label>
+                  {{input type="text" value=horarioTrabajo_3 class="form-control" placeholder="Horario de Trabajo 3"}}
+                </div>
+              </div>
+              {{else}}
+              {{#unless esClub}}
+                <div class="form-group">
+                  <div class="col-lg-1">
+                    <label for="acreditado">Acreditado</label>
+                    {{input type="checkbox" checked=acreditado class="checkbox"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Tipo</label>
+                    {{input type="text" value=tipo class="form-control" placeholder="Tipo"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Otros</label>
+                    {{input type="text" value=otros class="form-control" placeholder="Otros"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Talle de Remera</label>
+                    {{input type="text" value=talleRemera class="form-control" placeholder="Talle de Remera"}}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-lg-3">
+                    <label for="solicitud">BLS</label>
+                    {{input type="text" value=bls class="form-control" placeholder="BLS"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">PALS</label>
+                    {{input type="text" value=pals class="form-control" placeholder="PALS"}}
+                  </div>
+                </div>
+              {{/unless}}
+              {{/if}}
+              {{#if esClub}}
+                <div class="form-group">
+                  <div class="col-lg-3">
+                    <label for="solicitud">Nombre del Club</label>
+                    {{input type="text" value=nombreClub class="form-control" placeholder="Nombre del Club"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Nombre del Sponsor</label>
+                    {{input type="text" value=nombreContactoClub class="form-control" placeholder="Nombre del Contacto"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Celular del Sponsor</label>
+                    {{input type="text" value=celularContactoClub class="form-control" placeholder="Celular del Contacto"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Correo del Sponsor</label>
+                    {{input type="text" value=emailContactoClub class="form-control" placeholder="Correo del Contacto"}}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-lg-3">
+                    <label for="solicitud">Presidente del Club</label>
+                    {{input type="text" value=nombrePresidenteClub class="form-control" placeholder="Nombre del Presidente"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Celular del Presidente</label>
+                    {{input type="text" value=celularPresidenteClub class="form-control" placeholder="Celular del Presidente"}}
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="solicitud">Correo del Presidente</label>
+                    {{input type="text" value=correoPresidenteClub class="form-control" placeholder="Correo del Presidente"}}
+                  </div>
+                </div>
+              {{/if}}
+            </div>
+        </div>
+        <!-- fin panel informacion basica -->
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Dirección</h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-lg-6" {{bind-attr class="feedback.personaDireccion:has-error feedback.personaDireccion:has-feedback" }}>
+                <label class="form-label" for="direccion">Calle y Número</label>
+                {{input type="text" value=persona.direccion class="form-control" placeholder="Calle y Número"}}
+                <span class="help-block">{{error feedback.personaDireccion}}</span>
+                {{#if feedback.personaDireccion}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-6" {{bind-attr class="feedback.personaTipoDomicilio:has-error feedback.personaTipoDomicilio:has-feedback" }}>
+                <label class="form-label" for="tipoDomicilio">Tipo de Domicilio</label>
+                {{view Ember.Select content=tiposDomicilios selection=persona.tipoDomicilio prompt="Seleccione un valor..." value=persona.tipoDomicilio classNames="form-control"}}
+                <span class="help-block">{{error feedback.personaTipoDomicilio}}</span>
+                {{#if feedback.personaTipoDomicilio}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-6" {{bind-attr class="feedback.personaCiudad:has-error feedback.personaCiudad:has-feedback" }}>
+                <label class="form-label" for="ciudad">Ciudad</label>
+                {{view Ember.Select
+                content=ciudades
+                optionLabelPath="content.nombre"
+                prompt="Seleccione un valor..."
+                value=ciudadDefault
+                selection=ciudadDefault
+                classNames="form-control"}}
+
+                <span class="help-block">{{error feedback.personaCiudad}}</span>
+                {{#if feedback.personaCiudad}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-6" {{bind-attr class="feedback.personaBarrio:has-error feedback.personaBarrio:has-feedback" }}>
+                <label class="form-label" for="barrio">Barrio</label>
+                {{input type="text" value=persona.barrio class="form-control" placeholder="Barrio"}}
+                <span class="help-block">{{error feedback.personaBarrio}}</span>
+                {{#if feedback.personaBarrio}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-4" {{bind-attr class="feedback.personaTelefono:has-error feedback.personaTelefono:has-feedback" }}>
+                <label class="form-label" for="telefono">Tel&eacute;fono</label>
+                {{input type="text" value=persona.telefono class="form-control" placeholder="Teléfono"}}
+                <span class="help-block">{{error feedback.personaTelefono}}</span>
+                {{#if feedback.personaTelefono}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="feedback.personaCelular:has-error feedback.personaCelular:has-feedback" }}>
+                <label class="form-label" for="celular">Celular</label>
+                {{input type="text" value=persona.celular class="form-control" placeholder="Celular"}}
+                <span class="help-block">{{error feedback.personaCelular}}</span>
+                {{#if feedback.personaCelular}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- fin panel de domicilio -->
+        <div class="form-group">
+          <div class="col-lg-12">
+            {{#isAuthorized 'FE_post_colaboradores, FE_put_colaboradores'}}
+            <button type="submit" class="btn btn-theme">Guardar</button>
+            {{/isAuthorized}}
+            <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+caja-uno:
+  nombre: Caja Uno
+
+caja-dos:
+  nombre: Caja Dos
+
+#tres:
+#  nombre: Caja Tres
+
+mesa-uno:
+  nombre: Mesa Uno
+  
+mesa-dos:
+  nombre: Mesa Dos

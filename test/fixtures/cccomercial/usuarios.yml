@@ -1,0 +1,21 @@
+administrador:
+  nombre: Administrador User
+  username: administrador
+  email: administrador@example.com
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: Administrador
+  sucursales: sucursal_comercial_abasto
+vendedor:
+  nombre: Vendedor User
+  username: vendedor
+  email: vendedor@example.com
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: Vendedor
+  sucursales: sucursal_comercial_abasto
+depositero:
+  nombre: depositero
+  username: depositero
+  email: deposito@casanancy.com.py
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: Depositero
+  sucursales: sucursal_comercial_abasto

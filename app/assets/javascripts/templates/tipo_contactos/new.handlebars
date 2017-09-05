@@ -1,0 +1,50 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit" }} onkeydown="Bodega.keydownFormHandler('controller:tipoContactos.new', 'save');">
+          <div class="form-group" {{bind-attr class="errors.codigo:has-error errors.codigo:has-feedback" }}>
+            <div class="col-lg-9">
+              <label class="form-label" for="codigo">Código</label>
+              {{focus-input type="text" value=codigo class="form-control" placeholder="Código de la oportunidad. Se muestra en el combo de selección"}}
+              <span class="help-block">{{error errors.codigo}}</span>
+              {{#if errors.codigo}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-1" {{bind-attr class="errors.conCampanha:has-error errors.conCampanha:has-feedback" }}>
+              <label for="conCampanha">Ref. a Campaña</label>
+              {{input type="checkbox" checked=conCampanha class="checkbox"}}
+            </div>
+            <div class="col-lg-1" {{bind-attr class="errors.conMision:has-error errors.conMision:has-feedback" }}>
+              <label for="conMision">Ref. a Misión</label>
+              {{input type="checkbox" checked=conMision class="checkbox"}}
+            </div>
+          </div>
+          <div class="form-group" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback" }}>
+            <div class="col-lg-12">
+              <label class="form-label" for="descripcion">Descripción</label>
+              {{input type="text" value=descripcion class="form-control" placeholder="Descripción de la oportunidad"}}
+              <span class="help-block">{{error errors.descripcion}}</span>
+              {{#if errors.descripcion}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              {{#isAuthorized 'FE_post_tipo_contactos'}}
+                <button type="submit" class="btn btn-theme">Guardar</button>
+              {{/isAuthorized}}
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

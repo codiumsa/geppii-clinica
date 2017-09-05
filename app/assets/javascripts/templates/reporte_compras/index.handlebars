@@ -1,0 +1,138 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+  {{formSub}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "search" on="submit"}}>
+          <div class="form-group">
+            <div class="col-lg-6">
+               <label class="form-label" for="proveedores">Proveedor</label>
+                {{view Bodega.FocusSelect content=proveedores
+                optionValuePath="content.id"
+                selection=selectedProveedor
+                optionLabelPath="content.razonSocial"
+                classNames="form-control"
+                prompt="Seleccione un Proveedor"}}
+            </div>
+						<div class="col-lg-6">
+               <label class="form-label" for="depositos">Deposito</label>
+                {{view Ember.Select content=depositos
+                optionValuePath="content.id"
+                selection=selectedDeposito
+                optionLabelPath="content.nombre"
+                classNames="form-control"
+                prompt="Seleccione un Deposito"}}
+            </div>
+          </div>
+          <div class="form-group">
+						<div class="col-lg-6">
+               <label class="form-label" for="empresas">Empresa</label>
+                {{view Ember.Select content=empresas
+                optionValuePath="content.id"
+                selection=selectedEmpresa
+                optionLabelPath="content.nombre"
+                classNames="form-control"
+                prompt="Seleccione una Empresa"}}
+           </div>
+            <div class="col-lg-6">
+               <label class="form-label" for="sucursales">Sucursal</label>
+                {{view Ember.Select content=sucursales
+                optionValuePath="content.id"
+                selection=selectedSucusal
+                optionLabelPath="content.descripcion"
+                classNames="form-control"
+                prompt="Seleccione una Sucursal"}}
+            </div>
+          </div>
+          <div class="form-group">
+						<div class="col-lg-6">
+              <label class="form-label" for="codigoBarra">C&oacute;digo de Barras</label>
+              {{input type="text" value=codigoBarra class="form-control" placeholder="Código de Barras"}}
+            </div>
+            <div class="col-lg-6">
+                <label class="form-label"  for="nro_factura">Número de factura</label>
+                {{input type="text" value=nro_factura class="form-control" placeholder="Número de factura"}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-6">
+               <label class="form-label" for="tipoPago">Tipo de Pago</label>
+                {{view Ember.Select content=tipoPago
+                selection=selectedTipoPago
+                classNames="form-control"
+               prompt="Seleccione el Tipo de Pago"}}
+            </div>
+
+						<div class="col-lg-6">
+               <label class="form-label" for="tipoCreditos">Tipo de Crédito</label>
+                {{view Ember.Select content=tipoCreditos
+                optionValuePath="content.id"
+                selection=selectedTipoCredito
+                optionLabelPath="content.descripcion"
+                classNames="form-control"
+                prompt="Seleccione el Tipo de Crédito"}}
+            </div>
+          </div>
+
+          <label class="form-label"  for="total">Total</label>
+          <div class="form-group">
+            <div class="col-md-4"}>
+              {{number-input value=total_menor class="form-control" placeholder="Menor que"}}
+            </div>
+            <div class="col-md-4">
+              {{number-input value=total_igual class="form-control" placeholder="Igual a"}}
+            </div>
+            <div class="col-md-4">
+              {{number-input value=total_mayor class="form-control" placeholder="Mayor que"}}
+            </div>
+          </div>
+
+          <label class="form-label" for="fecha">Fecha de ingreso</label>
+          <div class="form-group">
+            <div class="col-md-4">
+              {{view Bodega.views.DatePickerView value=fecha_despues nullable=true placeholder="Después de"}}
+            </div>
+            <div class="col-md-4">
+              {{view Bodega.views.DatePickerView value=fecha_dia nullable=true placeholder="Día"}}
+            </div>
+            <div class="col-md-4"}>
+              {{view Bodega.views.DatePickerView value=fecha_antes nullable=true placeholder="Antes de" }}
+            </div>
+
+          </div>
+          <div class="form-group">
+            <div class="col-lg-2">
+              <label for="changePass">Incluir ingresos pagados</label>
+              {{input type="checkbox" checked=muestraPagado class="checkbox"}}
+            </div>
+            <div class="col-lg-2">
+              <label for="changePass">Donación</label>
+              {{input type="checkbox" checked=donacion class="checkbox"}}
+            </div>
+            <div class="col-lg-4" >
+               <label class="form-label">Campaña</label>
+               <div class="search-input-width">
+               {{search-input
+                 type="text"  value=descripcion selectedItem=misionSeleccionada
+                 class="form-control" placeholder="Descripción de la Campaña"
+                 property="nombre" session=session service="campanhas" queryScope="by_descripcion"
+                 modelType="campanha" jsonRoot="campanhas" store=store
+                 ignoredProperties="persona,tipoCampanha,campanhasColaboradores,misionesVinculo"}}
+               </div>
+             </div>
+
+          </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Generar Reporte</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="modal fade" id="ventaMedio" class="modal-dialog login-venta">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" {{action "cancel"}} data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Medio de pago</h4>
+      </div>
+      <div class="modal-body">
+            <div class="form-group">
+                {{!-- <div class="panel panel-default">
+                  <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Nuevo Detalle</h5>
+                  </div>
+              </div> --}}
+
+              <div {{bind-attr class="errors.medioPago:has-error errors.medioPago:has-feedback"}}>
+                  <label class="form-label">Medio de Pago</label>
+                    {{view Ember.Select
+                      content=controllers.ventasNew.mediosPagos
+                      optionLabelPath="content.nombre"
+                      selection=controllers.ventasNew.medioPagoSeleccionado
+                      value=controllers.ventasNew.medioPagoSeleccionado
+                      classNames="form-control"}}
+                    {{#if errors.medioPago}}
+                        <span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+                    {{/if}}
+                </div>
+            </div>
+            <label class="form-label">Monto</label>
+            {{number-input min="0" value=detNuevo.precio class="form-control" placeholder="Precio" enter='agregarDetalle'}}
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" {{action "deleteRecord"}} onkeydown="Bodega.ignoreEscapeDeleteModalWindow('controller:venta.delete', 'ventas');" class="btn btn-theme" data-dismiss="modal" autofocus>Si</button>
+        <button type="button" {{action "cancel"}} class="btn btn-default" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

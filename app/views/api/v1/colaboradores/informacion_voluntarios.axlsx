@@ -1,0 +1,106 @@
+colaboradores = @colaboradores
+
+by_fecha_posible_on = @by_fecha_posible_on
+by_fecha_posible_before = @by_fecha_posible_before
+by_fecha_posible_after = @by_fecha_posible_after
+
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  loteTitle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  loteContent = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  wb.add_worksheet(name: "informacion_voluntarios") do |sheet|
+    time = Time.now.strftime("%d/%m/%Y")
+    if by_fecha_posible_after and by_fecha_posible_before
+      fecha_str = "Cursos, viajes, y/o campañas posibles posibles por Voluntarios entre #{by_fecha_posible_after.to_date}" + " y " + "#{by_fecha_posible_before.to_date}"
+    elsif by_fecha_posible_after
+      fecha_str = "Cursos, viajes, y/o campañas posibles posibles por Voluntarios después de: #{by_fecha_posible_after.to_date}"
+    elsif by_fecha_posible_before
+      fecha_str = "Cursos, viajes, y/o campañas posibles posibles por Voluntarios antes de:" + "#{by_fecha_posible_before.to_date}"
+    elsif by_fecha_posible_on
+      fecha_str =  "Cursos, viajes, y/o campañas posibles posibles por Voluntarios del día: #{by_fecha_posible_on.to_date}"
+    else
+      fecha_str =  "Cursos, viajes, y/o campañas posibles posibles por Voluntarios hasta #{Time.now.to_date}"
+    end
+    existeRegistros = false
+    sheet.add_row ["Geppii","Reporte de Información de Voluntarios","#{fecha_str}"," Fecha: #{time}"], style: [wrap_text,wrap_text,wrap_text,wrap_text]
+    if !colaboradores.empty?
+      colaboradores.map do |colaborador|
+        if (by_fecha_posible_after and by_fecha_posible_before)
+          viajes = Viaje.by_colaborador_id(colaborador.id).where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_posible_after.to_date}','#{by_fecha_posible_before.to_date}', '[]')")
+          cursos = Curso.by_colaborador_id(colaborador.id).where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_posible_after.to_date}','#{by_fecha_posible_before.to_date}', '[]')")
+          campanhas = Campanha.by_colaborador_id(colaborador.id).where("tsrange(fecha_incio, fecha_fin, '[]') && tsrange('#{by_fecha_posible_after.to_date}','#{by_fecha_posible_before.to_date}', '[]')")
+        elsif by_fecha_posible_after
+          viajes = Viaje.by_colaborador_id(colaborador.id).where("fecha_inicio > '#{by_fecha_posible_after.to_date}'")
+          cursos = Curso.by_colaborador_id(colaborador.id).where("fecha_inicio > '#{by_fecha_posible_after.to_date}'")
+          campanhas = Campanha.by_colaborador_id(colaborador.id).where("fecha_incio > '#{by_fecha_posible_after.to_date}'")
+        elsif by_fecha_posible_before
+          viajes = Viaje.by_colaborador_id(colaborador.id).where("fecha_fin < '#{by_fecha_posible_before.to_date}'")
+          cursos = Curso.by_colaborador_id(colaborador.id).where("fecha_fin < '#{by_fecha_posible_before.to_date}'")
+          campanhas = Campanha.by_colaborador_id(colaborador.id).where("fecha_fin < '#{by_fecha_posible_before.to_date}'")
+        elsif by_fecha_posible_on
+          viajes = Viaje.by_colaborador_id(colaborador.id).where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_on.to_date}','#{by_fecha_on.to_date}', '[]')")
+          cursos = Curso.by_colaborador_id(colaborador.id).where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_on.to_date}','#{by_fecha_on.to_date}', '[]')")
+          campanhas = Campanha.by_colaborador_id(colaborador.id).where("tsrange(fecha_incio, fecha_fin, '[]') && tsrange('#{by_fecha_on.to_date}','#{by_fecha_on.to_date}', '[]')")
+        else
+          viajes = Viaje.by_colaborador_id(colaborador.id)
+          cursos = Curso.by_colaborador_id(colaborador.id)
+          campanhas = Campanha.by_colaborador_id(colaborador.id)
+        end
+        if (!viajes.empty? || !cursos.empty? || !campanhas.empty?)
+          existeRegistros = true
+          sheet.add_row ["Voluntario: ","#{colaborador.persona.razon_social}"], style: [loteTitle,loteTitle]
+          if !viajes.empty?
+            sheet.add_row ["Viajes"], style: [loteTitle]
+            viajes.map do |viaje|
+              sheet.add_row ["Descripcion: ","#{viaje.descripcion}"], style: [loteContent,loteContent]
+            end
+            sheet.add_row []
+          end
+          if !cursos.empty?
+            sheet.add_row ["Cursos"], style: [loteTitle]
+            cursos.map do |curso|
+              sheet.add_row ["Descripcion: ","#{curso.descripcion}"], style: [loteContent,loteContent]
+            end
+            sheet.add_row []
+          end
+          if !campanhas.empty?
+            sheet.add_row ["Campañas"], style: [loteTitle]
+            campanhas.map do |campanha|
+              sheet.add_row ["Nombre: ","#{campanha.nombre}"], style: [loteContent,loteContent]
+            end
+            sheet.add_row []
+          end
+        end
+      end
+    end
+    if !existeRegistros
+      sheet.add_row ["No existen voluntarios con cursos, viajes, y/o campañas con los filtros establecidos"], style: [wrap_text]
+    end
+  end
+end

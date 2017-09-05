@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+itau:
+  banco: Itaú
+  marca: Visa
+  afinidad: Sin afinidad
+  medio_pago: credito
+  activo: true
+
+continental:
+  banco: Continental
+  marca: Visa
+  afinidad: Sin Afinidad
+  medio_pago: credito
+  activo: true
+
+bbva_shopping_sol:
+  banco: BBVA
+  marca: Visa
+  afinidad: Shopping del Sol
+  medio_pago: credito
+  activo: true
+
+atlas_mariscal:
+  banco: Atlas
+  marca: Visa
+  afinidad: Mariscal López
+  medio_pago: credito
+  activo: true
+
+debito_generica:
+  banco: Genérico
+  marca: Genérico
+  afinidad: Sin Afinidad
+  medio_pago: debito
+  activo: true

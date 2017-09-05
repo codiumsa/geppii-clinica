@@ -1,0 +1,14 @@
+sesion_cajas
+cajas
+categorias
+clientes
+compras
+precios
+productos
+promocion_productos
+promociones
+proveedores
+sucursales
+tipo_creditos
+usuarios
+ventas

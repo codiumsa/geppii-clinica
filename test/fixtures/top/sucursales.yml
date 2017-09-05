@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+sucursal_top:
+  codigo: 01_top_1
+  descripcion: Matriz - Top
+  activo: true
+  empresa: top
+  deposito: deposito_top
+  color: '#96D1CF'

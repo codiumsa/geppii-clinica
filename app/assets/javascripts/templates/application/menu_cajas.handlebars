@@ -1,0 +1,27 @@
+<li class="sub-menu  dcjq-parent-li" {{bind-attr class="noSoportaCajas:hidden" }}>
+  <a href="javascript:;" class="dcjq-parent">
+    <i class="fa fa-money"></i>
+    <span>Cajas</span>
+  </a>
+  <ul class="sub" style="overflow: hidden; display: block;">
+    {{#isAuthorized 'FE_index_cajas'}}
+    <li>
+      {{#link-to "cajas"}}
+      <span>Cajas</span>
+      {{/link-to}}
+    </li>
+    {{/isAuthorized}} {{#isAuthorized 'FE_index_movimientos'}}
+    <li>
+      {{#link-to "movimientos"}}
+      <span>Movimientos</span>
+      {{/link-to}}
+    </li>
+    {{/isAuthorized}} {{#if parametros.soportaCajaImpresion}} {{#isAuthorized 'FE_index_cajas'}}
+    <li>
+      {{#link-to "monitoreo_cajas"}}
+      <span>Monitoreo de Cajas</span>
+      {{/link-to}}
+    </li>
+    {{/isAuthorized}} {{/if}}
+  </ul>
+</li>

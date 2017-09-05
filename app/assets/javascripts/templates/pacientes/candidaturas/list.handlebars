@@ -1,0 +1,40 @@
+<div role="tabpanel" class="tab-pane" id="datoscandidaturas">
+  <h3>
+    <i class="fa fa-angle-right"></i>
+        <button {{action 'activarNuevaCandidatura'}} class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="margin-top: -5px; margin-left: 5px;"></button>
+  </h3>
+  {{ partial "pacientes/candidaturas/new" }}
+	<div class="row mt">
+		<div class="col-lg-12">
+			<div class="content-panel table-responsive" style="padding: 0px;">
+				<table class="table table-bordered table-striped table-condensed">
+					<thead>
+						<tr>
+							<th>Propuesto Por</th>
+							<th>Especialidad</th>
+              <th>Campaña</th>
+							<th>Mediante Clinica</th>
+							<th>Fecha posible</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each candidatura in candidaturas}}
+						<tr>
+							<td>{{candidatura.colaborador.persona.razonSocial}}</td>
+							<td>{{candidatura.especialidad.descripcion}}</td>
+              <td>{{candidatura.campanha.nombre}}</td>
+							<td>{{yesno candidatura.clinica}}</td>
+							<td>{{dateformat candidatura.fechaPosible}}</td>
+							<td class="center">
+                  <button {{action eliminarCandidatura candidatura}} class="btn btn-theme btn-sm glyphicon glyphicon-remove" data-toggle="modal"></button>
+							</td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+			{{partial "pacientes/guardar_cancelar"}}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,75 @@
+{{#if nuevaCandidatura}}
+	<div class="col-lg-12">
+		<div class="form-panel">
+			<div class="form-horizontal">
+				<form class="style-form" role="form" {{action "save" on="submit" }}>
+					<div class="form-group">
+            <div class="col-lg-6">
+							<label class="form-label">Candidato a ser Operado en:</label>
+							{{view Ember.Select
+                content=medianteOptions
+                optionValuePath="content.id"
+                optionLabelPath="content.descripcion"
+                selection=medianteSeleccionado
+                value=medianteDefault.id
+                classNames="form-control"}}
+						</div>
+
+
+            {{#if medianteMision}}
+              <div class="col-lg-6">
+                <label class="form-label">En qué misión</label>
+                {{view Ember.Select
+                  content=campanhas
+                  optionValuePath="content.id"
+                  optionLabelPath="content.nombre"
+                  selection=campanhaSeleccionada
+                  value=campanhaDefault.id
+                  classNames="form-control"}}
+              </div>
+            {{/if}}
+            {{#if medianteClinica}}
+              <div class="col-lg-6" {{bind-attr class="feedback.fechaPosible:has-error feedback.fechaPosible:has-feedback" }}>
+                <label class="form-label" for="fechaPosible">Fecha</label>
+                {{view Bodega.views.DatePickerView value=fechaPosible}}
+                <span class="help-block">{{error feedback.fechaPosible}}</span>
+                {{#if feedback.fechaPosible}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            {{/if}}
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-6">
+							<label class="form-label">Especialidad</label>
+              {{view Ember.Select
+                content=especialidades
+                optionValuePath="content.id"
+                optionLabelPath="content.descripcion"
+                selection=especialidadSeleccionada
+                value=especialidadDefault.id
+                classNames="form-control"}}
+						</div>
+						<div class="col-lg-6">
+							<label class="form-label">Propuesto por:</label>
+							{{view Ember.Select
+								content=colaboradores
+								optionValuePath="content.id"
+								optionLabelPath="content.persona.razonSocial"
+								selection=colaboradorSeleccionado
+								value=colaboradorDefault.id
+								classNames="form-control"}}
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-12">
+							<button {{action 'agregarCandidatura'}} class="btn btn-theme">Agregar candidatura</button>
+							<button {{action 'cancelarCandidatura'}} class="btn btn-default">Cancelar candidatura</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{{/if}}

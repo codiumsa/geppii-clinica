@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+guaranies:
+  nombre: Guaraníes
+  simbolo: Gs.
+  anulado: false
+  redondeo: true
+
+dolares:
+  nombre: Dólares
+  simbolo: US$
+  anulado: false
+  redondeo: false

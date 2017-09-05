@@ -1,0 +1,35 @@
+<div class="form-group">
+  <!--Inicio Sección Datos Generales de la venta -->
+  <!-- Pagado/No Pagado -->
+
+  <div class="col-lg-3" {{bind-attr class="errors.cliente:has-error errors.cliente:has-feedback feedback.clienteRequerido:has-error feedback.clienteRequerido:has-feedback"}}>
+   {{#if editando}}
+     <label class="form-label">Razon Social</label>
+
+     {{input type="text" value=cliente.razonSocialCliente class="form-control" placeholder="Nombre" readonly=true}}
+   {{else}}
+     <label class="form-label">Nombre, Apellido o RUC</label>
+     <div class="search-input-width">
+     {{search-input type="text"
+     value=clienteLabel
+     selectedItem=clienteSeleccionado
+     class="form-control"
+     placeholder="Nombre, Apellido o RUC"
+     property="infoCliente"
+     session=session service="clientes"
+     modelType="cliente"
+     jsonRoot="clientes"
+     store=store
+     ignoredProperties="persona,referencias,documentos,ingresoFamiliares,calificacion,ciudad,especialidad"
+     queryScope="by_search_input"}}
+     </div>
+   {{/if}}
+
+
+   <span class="help-block">{{feedback.clienteRequerido}}</span>
+   {{#if feedback.clienteRequerido}}
+     <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+   {{/if}}
+ </div>
+
+</div>

@@ -1,0 +1,120 @@
+<div class="form-group">
+  <div class="col-lg-9">
+    <div {{bind-attr class=":panel :panel-default edicionCredito:hidden"}}>
+      <div class="panel-heading">
+        <h5>
+          <i class="fa fa-angle-right"></i>{{detalleTitle}}</h5>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <div class="col-lg-3">
+            <label class="form-label">Código</label>
+            {{input type="text" enter='cargarProducto' id="codigoBarra" value=codigoBarra class="form-control" placeholder="Código de Barras" }}
+            <!--{{search-input
+                    type="text"  value=productoSeleccionado.codigoBarra selectedItem=productoSeleccionado
+                    class="form-control" placeholder="CÃ³digo de Barras" autofocus="true"
+                    property="codigoBarra" session=session service="productos"
+                    modelType="producto" jsonRoot="productos" store=store
+                    ignoredProperties="categorias,promocionProducto"}}-->
+          </div>
+          <div class="col-lg-5">
+            <label class="form-label">Descripción</label>
+            {{!--input type="text" readonly="true" value=productoSeleccionado.descripcion class="form-control" placeholder="DescripciÃ³n del producto" enter='agregarDetalle'--}}
+            <div class="search-input-width">
+              {{search-input type="text" value=descripcionSW selectedItem=productoSeleccionadoSW class="form-control" placeholder="Descripción del producto" property="descripcion" session=session service="productos" modelType="producto" jsonRoot="productos" store=store ignoredProperties="categorias,productoDetalles,promocionProducto,producto,moneda,tipoProducto,lotes,loteDeposito,especialidad" enter='contarEnters'}}
+            </div>
+          </div>
+          {{#if habilitaLote}}
+            <div class="col-lg-4">
+              <label class="form-label">Lote</label>
+              {{view Ember.Select content=lotesDeposito optionLabelPath="content.descripcion" selection=loteSeleccionadoModal value=loteSeleccionadoModal classNames="form-control"}}
+            </div>
+          {{/if}}
+        </div>
+        <div class="form-group">
+          <div {{bind-attr class=":col-lg-2 feedback.existencia:has-error feedback.existencia:has-feedback"}}>
+            <label for="cantidadDetalle" class="form-label" title="Total de productos disponibles en todos los depositos">Cantidad
+              {{#if existencia}}
+                <span class="obs-label">({{existencia}})</span>
+              {{/if}}
+            </label>
+            {{number-input min="1" integer=true value=detNuevo.cantidad id="cantidadDetalle" class="form-control" placeholder=numeral enter='agregarDetalle'}}
+            <span class="help-block">{{feedback.existencia}}</span>
+            {{#if feedback.existencia}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+          </div>
+          <div class="col-lg-3">
+            {{#if soportaMultimoneda}}
+              {{#if productoSeleccionado}}
+                <label class="form-label">Precio ({{productoSeleccionado.moneda.simbolo}})</label>
+              {{else}}
+                <label class="form-label">Precio</label>
+              {{/if}}
+            {{else}}
+              <label class="form-label">Precio</label>
+            {{/if}}
+            {{number-input disabled=disablePrecio min="0" value=detNuevo.precio class="form-control" placeholder="Precio" enter='agregarDetalle'}}
+          </div>
+          {{#if parametros.soportaParametroCaliente}}
+            <div class="col-lg-1">
+              <label class="form-label">Caliente</label>
+              {{input type="checkbox" checked=detNuevo.caliente class="checkbox" enter='agregarDetalle' disabled=detNuevo.producto.tipoProducto.servicio}}
+            </div>
+          {{/if}}
+          <div class="col-lg-3" {{bind-attr class="feedback.promocion:has-success feedback.promocion:has-feedback"}}>
+            {{#if soportaMultimoneda}}
+              <label class="form-label">Descuento ({{monedaSeleccionada.simbolo}})</label>
+            {{else}}
+              <label class="form-label">Descuento</label>
+            {{/if}}
+            {{number-input disabled=disablePrecio min="0" value=detNuevo.descuento class="form-control" placeholder=numeral enter='agregarDetalle'}}
+            <span class="help-block">{{feedback.promocion}}</span>
+            {{#if feedback.promocion}}
+              <span class="glyphicon glyphicon-sort-by-order-alt form-control-feedback"></span>
+            {{/if}}
+          </div>
+          <div class="col-lg-3">
+            {{#if soportaMultimoneda}}
+              <label class="form-label">Subtotal ({{monedaSeleccionada.simbolo}})</label>
+              {{input type="text" readonly="true" value=detNuevo.subtotalCotizado class="form-control" placeholder="Sub Total" enter='agregarDetalle'}}
+            {{else}}
+              <label class="form-label">Subtotal</label>
+              {{input type="text" readonly="true" value=detNuevo.subtotal class="form-control" placeholder="Sub Total" enter='agregarDetalle'}}
+            {{/if}}
+          </div>
+          <div class="col-lg-1">
+            <button type="button" {{action 'agregarDetalle'}} class="btn btn-theme float-right" {{bind-attr disabled=feedback.existencia}} style="margin-top: 22px;" onkeydown="Bodega.enterFormHandler('controller:ventas.new', 'agregarDetalle');">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </div>
+        </div>
+        {{#if soportaMultimoneda}}
+          <div class="form-group">
+            <div class="col-lg-3">
+              {{#if productoSeleccionado}}
+                <label class="form-label">Cotización ({{productoSeleccionado.moneda.simbolo}} a {{monedaSeleccionada.simbolo}})</label>
+              {{else}}
+                <label class="form-label">Cotización</label>
+              {{/if}}
+              {{number-input min="0" value=montoCotizacionAjustado class="form-control" placeholder="Cotización" enter='agregarDetalle'}}
+            </div>
+            {{#if mostrarImei}}
+              <div class="col-lg-3">
+                <label class="form-label">IMEI</label>
+                {{input type="text" value=detNuevo.imei class="form-control" placeholder="IMEI" enter='agregarDetalle'}}
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    {{#if productoSeleccionado}}
+      <img class="well form-control image-preview-form float-right" {{bind-attr src=productoSeleccionado.urlFoto}} />
+    {{else}}
+      <img class="well form-control image-preview-form float-right" {{bind-attr src=imgMissing}} />
+    {{/if}}
+  </div>
+</div>

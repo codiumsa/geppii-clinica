@@ -1,0 +1,9 @@
+sucursal_1:
+  id: 1
+  codigo: operacion_1
+  descripcion: Matriz - Operacion Sonrisa
+  usuarios: administrador, vendedor
+  activo: true
+  empresa_id: 1
+  deposito_id: 1
+  color: '#507EAC'

@@ -1,0 +1,27 @@
+<div class="form-panel" style="margin-left: 0">
+  {{!-- <div class="form-horizontal"> --}}
+    <div class="form-group">
+      <div class="col-lg-6">
+        <label>Fecha de la consulta inicial: </label>
+          {{view Bodega.views.DatePickerView value=fechaConsultaInicial nullable=true}}
+      </div>
+      <div class="col-lg-6">
+        <label class="form-label">Cirujano</label>
+        <div class="search-input-width">
+        {{search-input type="text"
+        value=colaboradorLabel
+        selectedItem=colaborador
+        class="form-control"
+        placeholder="Nombre del cirujano"
+        property="razonSocial"
+        session=session service="colaboradores"
+        modelType="colaborador"
+        ignoredProperties="persona,tipoColaborador,especialidad,campanhasColaboradores"
+        jsonRoot="colaboradores"
+        store=store
+        queryScope="by_cirujano"}}
+        </div>
+      </div>
+    </div>
+{{!-- </div> --}}
+</div>

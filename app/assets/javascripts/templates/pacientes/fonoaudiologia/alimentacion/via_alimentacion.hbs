@@ -1,0 +1,232 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h5><i class="fa fa-angle-right"></i>Via Alimentacion</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-group" >
+      <div class="col-lg-3">
+	{{! <label class="form-label" for="lengua">Lengua</label> }}
+	<label class="form-label" for="tipoViaAlimentacion">Via</label>
+	{{view Ember.Select 
+	  content=viasDeAlimentacion
+	  selection=alimentacion.viaDeAlimentacion.noDigestiva.tipo
+	  prompt="Seleccione un valor..."
+	  value=alimentacion.viaDeAlimentacion.noDigestiva.tipo
+	  classNames="form-control"}}	
+	<span class="help-block">{{error feedback.condicionesClinicas}}</span>
+      </div>
+
+      <div class="col-lg-12">
+	<label class="form-label" for="razonSocial">Desde cuando se alimenta con sonda</label>
+	{{input type="text" value=alimentacion.viaDeAlimentacion.noDigestiva.fechaDeAlimentcionConSonda
+	  class="form-control" placeholder="Desde cuando se alimenta con sonda"}}
+      </div>
+      <div class="col-lg-6">
+	<label class="form-label" for="SOG">SOG</label>
+	{{input type="text" value=alimentacion.viaDeAlimentacion.noDigestiva.SOG
+	  class="form-control" placeholder="SOG"}}
+      </div>
+      <div class="col-lg-6">
+	<label class="form-label" for="">SNG</label>
+	{{input type="text" value=alimentacion.viaDeAlimentacion.noDigestiva.SNG
+	  class="form-control" placeholder="SNG"}}
+      </div>
+      <div class="col-lg-6">
+	<label class="form-label" for="bomba">Bomba</label>
+	{{input type="text" value=alimentacion.viaDeAlimentacion.noDigestiva.bomba
+	  class="form-control" placeholder="bomba"}}
+      </div>
+      <div class="col-lg-6">
+	<label class="form-label" for="gavages">Gavages</label>
+	{{input type="text" value=alimentacion.viaDeAlimentacion.noDigestiva.gavages
+	  class="form-control" placeholder="gavages"}}
+      </div>
+      <div class="col-lg-6">
+	<label class="form-label" for="goteoOjeringa">Goteo O Jeringa</label>
+	{{input type="text" value=alimentacion.viaDeAlimentacion.noDigestiva.goteoOjeringa
+	  class="form-control" placeholder="goteoOjeringa"}}
+      </div>
+      <div class="col-lg-6">
+	<label class="form-label" for="frecuenciaYcantidad">Frecuencia y Cantidad</label>
+	{{input type="text" value=alimentacion.viaDeAlimentacion.frecuenciaYcantidad
+	  class="form-control" placeholder="frecuenciaYcantidad"}}
+      </div>
+      <div class="col-lg-6">
+	<label class="form-label" for="posturaDeAlimentacion">Postura de alimentacion</label>
+	{{input type="text" value=alimentacion.viaDeAlimentacion.noDigestiva.posturaDeAlimentacion
+	  class="form-control" placeholder="postura de alimentacion"}}
+      </div>
+    </div>
+  </div>
+</div>
+{{! via oral}}
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Via Oral</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="panel panel-default" style="margin-top: 15px;">
+	<div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Lactancia Materna</h5>
+	</div>
+	<div class="panel-body">
+	  <div class="form-group" >
+	    <div class="col-lg-12">
+	      <label class="form-label" for="lactanciaMaternaPresente">Lactancia Materna</label>
+	      Si {{view Bodega.views.RadioButton value='si' selectionBinding="lactanciaMaternaPresente"
+		   checked=alimentacion.viaDeAlimentacion.viaOral.lactanciaMaterna.tuvo}}
+	      No {{view Bodega.views.RadioButton value='no' selectionBinding="lactanciaMaternaPresente"
+		   checked=alimentacion.viaDeAlimentacion.viaOral.lactanciaMaterna.tuvo}}
+	    </div>
+	    <div class="col-lg-6">
+	      <label class="form-label" for="lactanciaMaternaExclusivaParcial"></label>
+	      Exlcuisva {{view Bodega.views.RadioButton value='exclusiva'
+			  selectionBinding="lactanciaMaternaExclusivaParcial"
+			  checked=alimentacion.viaDeAlimentacion.viaOral.lactanciaMaterna.exclusiva}}
+	      Parcial {{view Bodega.views.RadioButton value='parcial'
+			selectionBinding="lactanciaMaternaExclusivaParcial"
+			checked=alimentacion.viaDeAlimentacion.viaOral.lactanciaMaterna.exclusiva}}
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+    <div class="panel panel-default" style="margin-top: 15px;">
+      <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Mamadera</h5>
+      </div>
+      <div class="panel-body">
+	<div class="form-group">
+	  <div class="col-lg-6">
+	    <label class="form-label" for="mamadera">Mamadera</label>
+	    Si {{view Bodega.views.RadioButton 
+		 value='si' checked=alimentacion.viaDeAlimentacion.viaOral.mamadera.tuvo}}
+	    No {{view Bodega.views.RadioButton
+		 value='no' checked=alimentacion.viaDeAlimentacion.viaOral.mamadera.tuvo}}
+	  </div>
+	  <div class="col-lg-6">
+	    <label class="form-label" for="mamaderaCantidad">Cantidad</label>
+	    {{input type="text" value=alimentacion.viaDeAlimentacion.viaOral.mamadera.cantidad
+	      class="form-control" placeholder="cantidad"}}
+	  </div>
+	  <div class="col-lg-6">
+	    <label class="form-label" for="mamaedraFrecuencia">Frecuencia</label>
+	    {{input type="text" value=alimentacion.viaDeAlimentacion.viaOral.mamadera.frecuencia
+	      class="form-control" placeholder="frecuencia"}}
+	  </div>
+	  <div class="col-lg-6">
+	    <label class="form-label" for="viaOralTipoTetina">Tipo de Tetina</label>
+	    {{input type="text" value=alimentacion.viaDeAlimentacion.viaOral.mamadera.tipoTetina
+	      class="form-control" placeholder="tetina"}}
+	  </div>
+	  <div class="col-lg-6">
+	    <label class="form-label" for="mamadera">Incorporó semisólidos?</label>
+	    Si {{view Bodega.views.RadioButton 
+		 value='si'
+		 checked=alimentacion.viaDeAlimentacion.viaOral.mamadera.incorporoSemiSolidos}}
+	    No {{view Bodega.views.RadioButton value='no'
+		 checked=alimentacion.viaDeAlimentacion.viaOral.mamadera.incorporoSemiSolidos}}
+	  </div>
+	  <div class="col-lg-6">
+	    <label class="form-label" for="viaOralTipoTetina">Cuando incorporo semisolidos?</label>
+	    {{input type="text" value=alimentacion.viaDeAlimentacion.viaOral.mamadera.cuandoIncorporoSemisolidos
+	      class="form-control" placeholder="fecha de semi solidos"}}
+	  </div>
+	  <div class="col-lg-6">
+	    <label class="form-label" for="mamadera">Incorporó Sólidos?</label>
+	    Si {{view Bodega.views.RadioButton value='si'
+		 checked=alimentacion.viaDeAlimentacion.viaOral.mamadera.incorporoSolidos}}
+	    No {{view Bodega.views.RadioButton value='no'
+		 checked=alimentacion.viaDeAlimentacion.viaOral.mamadera.incorporoSolidos}}
+	  </div>
+	  <div class="col-lg-6">
+	    <label class="form-label" for="viaOralTipoTetina">Cuando incorporo Sólidos?</label>
+	    {{input type="text"
+	      value=alimentacion.viaDeAlimentacion.viaOral.mamadera.cuandoIncorporoSolidos
+	      class="form-control" placeholder="tetina"}}
+	  </div>
+	  <div class="col-lg-12">
+	    <label class="form-label" for="dificultades">Presento dificultades?</label>
+	    {{input type="text" value=alimentacion.viaDeAlimentacion.viaOral.mamadera.dificultades
+	      class="form-control" placeholder="dificultades"}}
+	  </div>
+	</div>
+      </div>
+    </div>    
+  </div>
+</div>
+
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Coordinación</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="col-lg-6">
+	<label class="form-label" for="respiracionDeglucion">Respiración/Deglución</label>
+	Si {{view Bodega.views.RadioButton value='si' selectionBinding="respiracionDeglucion"
+	     checked=alimentacion.coordinacion.respiracionDeglucion}}
+	No {{view Bodega.views.RadioButton value='no' selectionBinding="respiracionDeglucion"
+	     checked=alimentacion.coordinacion.respiracionDeglucion}}
+      </div>
+      <div class="col-lg-6">
+	<label class="form-label" for="liquidos">Liquidos</label>
+	Si {{view Bodega.views.RadioButton selectionBinding="liquidos" value='si'
+	     checked=alimentacion.coordinacion.liquidos}}
+	No {{view Bodega.views.RadioButton selectionBinding="liquidos" value='no'
+	     checked=alimentacion.coordinacion.liquidos}}
+      </div>
+      <div class="col-lg-6">
+	<label class="form-label" for="semiliquidos">Semiliquidos</label>
+	Si {{view Bodega.views.RadioButton value='si' selectionBinding="semiliquidos"
+	     checked=alimentacion.coordinacion.semiliquidos}}
+	No {{view Bodega.views.RadioButton value='no' selectionBinding="semiliquidos"
+	     checked=alimentacion.coordinacion.semiliquidos}}
+      </div>
+      <div class="col-lg-6">
+	<label class="form-label" for="solidos">Sólidos</label>
+	Si {{view Bodega.views.RadioButton value='si' selectionBinding="solidos"
+	     checked=alimentacion.coordinacion.solidos}}
+	No {{view Bodega.views.RadioButton value='no' selectionBinding="solidos"
+	     checked=alimentacion.coordinacion.solidos}}
+      </div>
+      <div class="col-lg-3">
+	{{! <label class="form-label" for="lengua">Lengua</label> }}
+	<label class="form-label" for="broncoaspiracion">Broncoaspiracion</label>
+	{{view Ember.Select 
+	  content=coordinacionesPresentes
+	  selection=alimentacion.coordinacion.broncoaspiracion
+	  prompt="Seleccione un valor..."
+	  value=alimentacion.coordinacion.broncoaspiracion
+	  classNames="form-control"}}	
+      </div>
+      <div class="col-lg-3">
+	{{! <label class="form-label" for="lengua">Lengua</label> }}
+	<label class="form-label" for="regurgitacion">Regurgitacion</label>
+	{{view Ember.Select 
+	  content=coordinacionesPresentes
+	  selection=alimentacion.coordinacion.regurgitacion
+	  prompt="Seleccione un valor..."
+	  value=alimentacion.coordinacion.regurgitacion
+	  classNames="form-control"}}	
+      </div>
+      <div class="col-lg-3">
+	{{! <label class="form-label" for="lengua">Lengua</label> }}
+	<label class="form-label" for="sialorrea">Sialorrea</label>
+	{{view Ember.Select 
+	  content=coordinacionesPresentes
+	  selection=alimentacion.coordinacion.sialorrea
+	  prompt="Seleccione un valor..."
+	  value=alimentacion.coordinacion.sialorrea
+	  classNames="form-control"}}
+      </div>
+      <div class="col-lg-3">
+	{{! <label class="form-label" for="lengua">Lengua</label> }}
+	<label class="form-label" for="escapeAlimento">Escape de Alimento</label>
+	{{view Ember.Select 
+	  content=coordinacionesPresentes
+	  selection=alimentacion.coordinacion.escapeAlimento
+	  prompt="Seleccione un valor..."
+	  value=alimentacion.coordinacion.escapeAlimento
+	  classNames="form-control"}}	
+      </div>
+    </div>
+  </div>
+</div>

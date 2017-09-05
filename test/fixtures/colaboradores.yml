@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+voluntario:
+  id: 1
+  persona_id: 2
+  tipo_colaborador_id: 1
+  especialidad_id: nil
+  voluntario: false
+
+doctor:
+  id: 2
+  persona_id: 3
+  tipo_colaborador_id: 2
+  especialidad_id: 1
+  voluntario: true

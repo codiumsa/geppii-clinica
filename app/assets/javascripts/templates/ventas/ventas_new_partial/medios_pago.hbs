@@ -1,0 +1,43 @@
+<div class="form-group">
+  <!--Inicio medio de pago -->
+  {{#unless credito}}
+    <div class="col-lg-2">
+      <label for="credito">Unico medio de pago</label>
+      {{#if editando}}
+        {{#unless credito}}
+          {{input type="checkbox" disabled="true" checked=unicoMedioPago class="checkbox"}}
+        {{/unless}}
+      {{else}}
+        {{#unless credito}}
+          {{input type="checkbox" checked=unicoMedioPago class="checkbox"}}
+        {{/unless}}
+      {{/if}}
+    </div>
+    {{#if unicoMedioPago}}
+      <!-- Medio de pago -->
+      <div class="col-lg-4" {{bind-attr class="errors.medioPago:has-error errors.medioPago:has-feedback"}}>
+        <label class="form-label">Medio de Pago</label>
+        {{#if editando}}
+          {{input type="text" value=medioPago.nombre class="form-control" disabled="true"}}
+        {{else}}
+          {{view Ember.Select content=mediosPagos optionLabelPath="content.nombre" selection=medioPagoSeleccionado value=medioPagoSeleccionado classNames="form-control"}}
+          {{#if errors.medioPago}}
+            <span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+          {{/if}}
+        {{/if}}
+      </div>
+      {{#if esMedioPagoTarjetaCredito}}
+        <!-- Tarjeta de Crédito -->
+        <div class="col-lg-4" {{bind-attr class="feedback.tarjeta:has-error feedback.tarjeta:has-feedback"}}>
+          <label class="form-label" for="tarjeta">Tarjeta</label>
+          {{#if editando}}
+            {{input type="text" value=tarjeta.displayName class="form-control" disabled="true"}}
+          {{else}}
+            {{view Ember.Select content=tarjetas optionLabelPath="content.displayName" selection=tarjetaSeleccionada value=tarjetaSeleccionada classNames="form-control"}}
+          {{/if}}
+          <span class="help-block">{{feedback.tarjeta}}</span>
+        </div>
+      {{/if}}
+    {{/if}}
+  {{/unless}}
+</div>

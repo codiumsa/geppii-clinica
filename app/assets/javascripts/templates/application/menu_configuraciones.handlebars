@@ -1,0 +1,70 @@
+{{#if parametros.soportaCajaImpresion}}
+  <li>
+    {{#link-to "cajasImpresion"}}
+    <i class="fa fa-home"></i>
+    <span>Cajas Impresion</span>
+    {{/link-to}}
+  </li>
+{{/if}} 
+
+{{partial "application/menu_personas"}}
+  
+{{#isAuthorized 'FE_menu_configuraciones'}}
+<li class="sub-menu  dcjq-parent-li">
+
+  <a href="javascript:;" class="dcjq-parent">
+    <i class="fa fa-gear"></i>
+    <span>Configuraciones</span>
+  </a>
+  <ul class="sub" style="overflow: hidden; display: block;">
+    {{#isAuthorized 'FE_index_tipo_creditos'}}
+    <li>
+      {{#link-to "tipoCreditos"}}
+      <span>Tipos de Crédito</span>
+      {{/link-to}}
+    </li>
+    {{/isAuthorized}} {{#isAuthorized 'FE_index_categoria_operacion'}}
+    <li>
+      {{#link-to "categoriaOperaciones"}}
+      <span>Categorías de Operaciones</span>
+      {{/link-to}}
+    </li>
+    {{/isAuthorized}} {{#isAuthorized 'FE_index_categoria_clientes'}}
+    <li>
+      {{#link-to "categoriaClientes"}}
+      <span>Categorías de Clientes</span>
+      {{/link-to}}
+    </li>
+    {{/isAuthorized}} {{#isAuthorized 'FE_index_categorias'}}
+    <li>
+      {{#link-to "categorias"}}
+      <span>Categorías de Producto</span>
+      {{/link-to}}
+    </li>
+    {{/isAuthorized}} {{#if permitePromociones}} {{#isAuthorized 'FE_index_promociones'}}
+    <li>
+      {{#link-to "promociones"}}
+      <span>Promociones</span>
+      {{/link-to}}
+    </li>
+    {{/isAuthorized}} {{/if}}
+    <li>
+      {{#link-to "medioPagos"}}
+      <span>Medios de Pago</span>
+      {{/link-to}}
+    </li>
+    <li>
+      {{#link-to "tarjetas"}}
+      <span>Tarjetas</span>
+      {{/link-to}}
+    </li>
+    {{#if parametros.recargoPrecioVenta}} {{#isAuthorized 'FE_index_recargos'}}
+    <li>
+      {{#link-to "recargos"}}
+      <span>Recargos</span>
+      {{/link-to}}
+    </li>
+    {{/isAuthorized}} {{/if}}
+  </ul>
+</li>
+{{/isAuthorized}}

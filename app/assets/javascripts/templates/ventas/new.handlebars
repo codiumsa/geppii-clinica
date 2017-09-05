@@ -1,0 +1,100 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="price-display">Total: {{formatNumber totalFinal}}
+  {{#if soportaMultimoneda}}{{monedaSeleccionada.simbolo}}{{else}}Gs.{{/if}}
+</div>
+<div class="price-display-modal">
+  <div class="price-table">
+    <div class="price-row">
+      <div class="price-cell price-cell-right">
+        <strong>Total</strong>
+        <br/>{{formatNumber totalFinal}}
+        {{#if soportaMultimoneda}}{{monedaSeleccionada.simbolo}}{{else}}Gs.{{/if}}
+      </div>
+      {{#if vuelto}}
+        <div class="price-cell price-cell-left">
+          <strong>Vuelto</strong>
+          <br/>{{formatNumber vuelto}}
+          {{#if soportaMultimoneda}}{{monedaSeleccionada.simbolo}}{{else}}Gs.{{/if}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+<div id="noEnterVenta" class="row mt" onkeydown="Bodega.ignoreEnter();">
+  <div class="col-lg-12">
+    {{#if editando}}
+      <div class="form-panel" {{bind-attr style=sucursal.styleColor}}>
+    {{else}}
+      <div class="form-panel" {{bind-attr style=sucursalSeleccionada.styleColor}}>
+    {{/if}}
+    <div class="form-horizontal">
+      <form class="style-form" role="form">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Datos de la Salida</h5>
+          </div>
+          <div class="panel-body">
+            {{ partial "ventas/ventas_new_partial/datos_empresa" }}
+            {{ partial "ventas/ventas_new_partial/datos_cliente" }}
+            {{#if esDonacion}}
+              {{ partial "ventas/ventas_new_partial/datos_generales_donaciones" }}
+            {{/if}}
+            {{#if esCampanha}}
+              {{ partial "ventas/ventas_new_partial/datos_generales_campanhas" }}
+            {{/if}}
+            {{#if esMision}}
+              {{ partial "ventas/ventas_new_partial/datos_generales_misiones" }}
+            {{/if}}
+            {{#if esConsultorio}}
+              {{ partial "ventas/ventas_new_partial/datos_generales_consultorios" }}
+            {{/if}}
+            {{#if esCliente}}
+              {{ partial "ventas/ventas_new_partial/datos_generales_clientes" }}
+            {{/if}}
+            {{#if esPaciente}}
+              {{ partial "ventas/ventas_new_partial/datos_generales_pacientes" }}
+            {{/if}}
+            {{!-- {{ partial "ventas/ventas_new_partial/medios_pago" }} --}}
+
+            <div class="form-group">
+              {{#unless editando}}
+                {{#if disablePrecio}}
+                  <div class="col-lg-2">
+                    <button class="btn btn-theme" data-toggle="modal" data-target="#preciosUnlock" style="margin-top:22px;" {{action 'showModal' 'ventas.login'}}>Desbloquear Precios</button>
+                  </div>
+                {{/if}}
+              {{/unless}}
+            </div>
+            <div class="form-group">
+              <!-- Sección medios de pagos y tarjetas-->
+              {{!--<div class="col-lg-1">
+                    <label class="form-label">% recargo</label>
+                    {{#if editando}}
+              {{input type="text" value=porcentajeRecargo class="form-control" disabled="true" }}
+              {{else}}
+                {{input type="text" value=recargo.interes class="form-control" disabled="true"}}
+                {{/if}}
+            </div>--}}
+          </div>
+          <!-- Fin Sección medios de pago y tarjetas -->
+        </div>
+        <!-- Fin panel body -->
+    </div>
+    <!-- Fin panel default -->
+    {{#unless editando}}
+      <!-- INICIO-->
+      {{ partial "ventas/ventas_new_partial/detalle" }}
+      <!-- FIN DETALLE-->
+    {{/unless}}
+
+    {{ partial "ventas/ventas_new_partial/detalles_venta" }}
+
+    {{ partial "ventas/ventas_new_partial/totales" }}
+
+    </div>
+    </div>
+  </div>

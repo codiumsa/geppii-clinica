@@ -1,0 +1,55 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Fichas {{especialidad}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView}}
+    <div class="content-panel table-responsive" style="padding: 0px;">
+      <table class="table table-bordered table-striped table-condensed">
+          <thead>
+              <tr>
+                <th>id</th>
+                <th>Nro. Ficha</th>
+                <th>Especialidad</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th style="width: 14%;"></th>
+
+              </tr>
+          </thead>
+          <tbody>
+          {{#each content in model}}
+              {{#if fichaVigente}}
+                <tr class="danger">
+              {{else}}
+                <tr>
+              {{/if}}
+                  <td>{{content.id}}</td>
+                  <td>{{content.nroFicha}}</td>
+                  <td>{{especialidad}}</td>
+                  <td>{{dateformat content.updatedAt}}</td>
+                  <td>{{content.estado}}</td>
+                  <td style="width: 14%;" class="center">
+                    {{!-- {{#link-to {{action 'agregarDiagnostico' this}}  classNames='table-action'}} --}}
+                    {{!-- {{#link-to }  classNames='table-action'}} --}}
+                    {{!-- <button type="button"  class="btn btn-theme float-right"> --}}
+
+                    {{!-- <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil" {{action 'transitionEdit' this especialidad}}></button> --}}
+                      <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil" {{action 'transitionEdit' content}}></button>
+                    {{!-- {{/link-to}} --}}
+                    {{!-- {{#link-to 'ficha.delete' this classNames='table-action'}} --}}
+                      {{!-- {{#isAuthorized 'FE_delete_fichas'}} --}}
+                        {{!-- <button class="btn btn-theme btn-sm glyphicon glyphicon-remove" data-toggle="modal" data-target="#fichaDelete"></button> --}}
+                      {{!-- {{/isAuthorized}} --}}
+                    {{!-- {{/link-to}} --}}
+                  </td>
+              </tr>
+          {{/each}}
+
+          </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

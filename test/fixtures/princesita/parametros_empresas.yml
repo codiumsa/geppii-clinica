@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+princesita:
+   empresa: princesita
+   imei_en_venta_detalle: true
+   soporta_sucursales: false
+   soporta_multiempresa: true
+   vendedor_en_venta: true
+   tarjeta_credito_en_venta: true
+   soporta_caja_impresion: false
+   soporta_ajuste_inventario: true
+   soporta_uso_interno: true
+   retencioniva: 0
+   soporta_multimoneda: true
+   moneda: dolares
+   moneda_base: guaranies
+   ctrl_inventario_set_existencia: true
+   ctrl_inventario_cantidad: 2
+   imprimir_remision: false
+   recargo_precio_venta: false
+   default_empresa: true
+   sequences_por_empresa: false
+   soporta_cajas: false
+   permite_promociones: true   

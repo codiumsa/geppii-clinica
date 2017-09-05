@@ -1,0 +1,184 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div id="noEnterAjusteInventario" class="row mt"  onkeydown="Bodega.ignoreEnter();">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:ajusteInventarios.new', 'save');">
+
+          <div class="form-group">
+
+
+            <div class="col-lg-3 taginputsimple" {{bind-attr class="errors.deposito:has-error errors.deposito:has-feedback"}}>
+              <label class="form-label">Depósito</label>
+              {{#if habilitarEdicionDetalle}}
+                  {{view Ember.Select
+                  content=depositos
+                  optionLabelPath="content.nombre"
+                  selection=depositoSeleccionado
+                  value=depositoDefault
+                  classNames="form-control"}}
+                {{#if errors.deposito}}
+                    <span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+                {{/if}}
+              {{else}}
+                {{input type="text" id="deposito"  disabled='true' value=deposito.nombre class="form-control"}}
+              {{/if}}
+            </div>
+
+
+
+            <div class="col-lg-7" {{bind-attr class="errors.observacion:has-error errors.observacion:has-feedback"}}>
+              <label class="form-label"  for="observacion">Observación</label>
+              {{focus-input type="text" value=observacion class="form-control" placeholder="Observación" autofocus="autofocus"}}
+              <span class="help-block">{{error errors.observacion}}</span>
+              {{#if errors.observacion}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-2" {{bind-attr class="errors.fecha:has-error errors.fecha:has-feedback"}}>
+              <label class="form-label"  for="fecha">Fecha</label>
+              {{view Bodega.views.DatePickerView value=fecha}}
+            </div>
+          </div>
+
+        {{#if habilitarEdicionDetalle}}
+          <div class="panel panel-default">
+            <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Nuevo Detalle</h5></div>
+              <div class="panel-body">
+                  <div class="form-group">
+                      <div class="col-lg-2" >
+                        <label class="form-label">Código</label>
+                        {{input type="text" id="codigoBarra"  enter='loadProducto' value=codigoBarra class="form-control" placeholder="Código de Barras" }}
+                      </div>
+                      <div class="col-lg-4" >
+                        <label class="form-label">Descripción</label>
+                        <div class="search-input-width">
+                        {{search-input
+                          type="text"  value=descripcionSW selectedItem=productoSeleccionadoSW
+                          class="form-control" placeholder="Descripción del producto"
+                          property="descripcion" session=session service="productos"
+                          modelType="producto" jsonRoot="productos" store=store
+                          ignoredProperties="moneda,lotes,categorias,productoDetalles,especialidad,categoria,tipoProducto,promocionProducto,promocion,producto"}}
+                        </div>
+                      </div>
+                      {{#if habilitaLote}}
+                        <div class="col-lg-3" >
+                          <label class="form-label">Lotes</label>
+                            {{view Ember.Select
+                            content=lotesDeposito
+                            optionLabelPath="content.descripcion"
+                            selection=loteSeleccionadoModal
+                            value=loteSeleccionadoModal
+                            classNames="form-control"}}
+                        </div>
+                      {{/if}}
+                      <div {{bind-attr class=":col-lg-2 feedback.existencia:has-error feedback.existencia:has-feedback"}}>
+                        <label for="cantidadDetalle" class="form-label" title="Total de productos disponibles en todos los depositos">Cantidad a ajustar
+                          {{!-- {{#if existencia}} --}}
+                            <span class="obs-label">({{existencia}})</span>
+                          {{!-- {{/if}} --}}
+                        </label>
+                        {{number-input min="-99999999999" value=detNuevo.cantidad class="form-control" placeholder=numeral enter='agregarDetalle'}}
+                        <span class="help-block">{{feedback.existencia}}</span>
+                        {{#if feedback.existencia}}
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        {{/if}}
+                      </div>
+                      <div class="col-lg-1" >
+                        <button  type="button" {{action 'agregarDetalle'}}  class="btn btn-theme btn-sm" {{bind-attr disabled=feedback.existencia}}
+                        onkeydown="Bodega.enterFormHandler('controller:ajusteInventarios.new', 'agregarDetalle');">  <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-3 taginputsimple" {{bind-attr class="errors.deposito:has-error errors.deposito:has-feedback"}}>
+                      <label class="form-label">Motivo de Ajuste</label>
+                          {{view Ember.Select
+                          content=motivos
+                          optionLabelPath="content.descripcion"
+                          selection=motivoSeleccionado
+                          value=motivoSeleccionado
+                          classNames="form-control"}}
+                    </div>
+                  </div>
+             </div>
+           </div>
+         {{/if}}
+
+
+
+        <div class="panel panel-default">
+          <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Detalles de Ajuste de Inventario</h5></div>
+          <div class="panel-body">
+            <div class="form-horizontal form-detalles">
+              {{#unless detalles}}
+              <div class="form-group">
+                <div class="col-lg-12 first-cell" >
+                  <label class="form-label">Debe agregar detalles para guardar el ajuste de inventario</label>
+                </div>
+              </div>
+              {{else}}
+                <div class="form-group">
+                  <div class="col-lg-2 first-cell" >
+                    <label class="form-label">Código de Barras</label>
+                  </div>
+                  <div class="col-lg-3" >
+                    <label class="form-label">Descripción del producto</label>
+                  </div>
+                  <div class="col-lg-3" >
+                    <label class="form-label">Motivo del Ajuste</label>
+                  </div>
+                  <div class="col-lg-1" >
+                    <label class="form-label">Cantidad</label>
+                  </div>
+                  <div class="col-lg-2" >
+                    <label class="form-label">Codigo del Lote</label>
+                  </div>
+                </div>
+              {{/unless}}
+
+              {{#each det in detalles}}
+                <div class="form-group">
+                  <div class="col-lg-2 first-cell" >
+                    {{input type="text" readonly="true" value=det.producto.codigoBarra class="form-control" placeholder="Código de Barras" }}
+                  </div>
+                  <div class="col-lg-3" >
+                    {{input type="text" readonly="true" value=det.producto.descripcion class="form-control" placeholder="Descripción del producto" }}
+                  </div>
+                  <div class="col-lg-3" >
+                    {{input type="text" readonly="true" value=det.motivosInventario.descripcion class="form-control" placeholder="Motivo del Ajuste" }}
+                  </div>
+                  <div class="col-lg-1" >
+                    {{input type="text" readonly="true" value=det.cantidad class="form-control" placeholder=numeral }}
+                  </div>
+                  <div class="col-lg-2" >
+                    {{input type="text" readonly="true" value=det.lote.codigoLote class="form-control" placeholder="Codigo del Lote" }}
+                  </div>
+                  {{#if habilitarEdicionDetalle}}
+                    <div class="col-lg-1 last-cell" >
+                      <button  type="button" {{action borrarDetalle det}}  class="btn btn-theme">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    </div>
+                  {{/if}}
+                </div>
+
+              {{/each}}
+            </div>
+          </div>
+        </div>
+
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme ">Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default ">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

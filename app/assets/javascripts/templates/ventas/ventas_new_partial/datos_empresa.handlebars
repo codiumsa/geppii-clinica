@@ -1,0 +1,70 @@
+<div class="form-group">
+  <!-- Inicio Sección datos de empresa / sucursal -->
+  <!-- Empresa -->
+  <div class="col-lg-2">
+    <label class="form-label">Empresa</label>
+    {{#if editando}}
+      {{input type="text" value=sucursal.empresa.nombre class="form-control" disabled="true"}}
+    {{else}}
+      {{view Ember.Select content=empresas optionValuePath="content.id" optionLabelPath="content.nombre" selection=empresaSeleccionada value=empresaDefault classNames="form-control" }}
+    {{/if}}
+  </div>
+  <!-- Sucursal -->
+  <div class="col-lg-2">
+    <label class="form-label">Sucursal</label>
+    {{#if editando}}
+      {{input type="text" value=sucursal.descripcion class="form-control" disabled="true"}}
+    {{else}}
+      {{#if soportaSucursales}}
+        {{view Ember.Select content=sucursales optionValuePath="content.id" optionLabelPath="content.descripcion" selection=sucursalSeleccionada value=sucursalDefault classNames="form-control" }}
+      {{else}}
+        {{#if sucursalSeleccionada}}
+          {{input type="text" readonly="true" value=sucursalSeleccionada.descripcion class="form-control"}}
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  </div>
+  <!-- Nro. Factura -->
+  <div class="col-lg-2" {{bind-attr class="errors.nroFactura:has-error errors.nroFactura:has-feedback"}}>
+    <label class="form-label" for="nroFactura">Número de Factura</label>
+    {{#if editando}}
+      {{#if usoInterno}}
+        {{input type="text" value=nroFactura class="form-control" placeholder="---" disabled="true"}}
+      {{else}}
+        {{input type="text" value=nroFactura class="form-control" placeholder="---" }}
+      {{/if}}
+    {{else}}
+      {{input type="text" value=nroFactura class="form-control" placeholder="Autogenerado" disabled="true"}}
+    {{/if}}
+    <span class="help-block">{{error errors.nroFactura}}</span>
+    {{#if errors.nroFactura}}
+      <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+    {{/if}}
+  </div>
+  <!-- Fecha -->
+  <div class="col-lg-2">
+    <label class="form-label" for="fechaRegistro">Fecha Venta</label>
+    {{view Bodega.views.DatePickerView value=fechaRegistro}}
+  </div>
+  {{#if soportaMultimoneda}}
+    <!-- Monedas -->
+    <div class="col-lg-2" {{bind-attr class="errors.moneda:has-error errors.moneda:has-feedback"}}>
+      <label class="form-label">Moneda</label>
+      {{#if editando}}
+        {{input type="text" value=moneda.nombre class="form-control" disabled="true"}}
+      {{else}}
+        {{view Ember.Select content=monedas optionLabelPath="content.nombre" selection=monedaSeleccionada value=monedaSeleccionada classNames="form-control"}}
+      {{/if}}
+      {{#if errors.moneda}}
+        <span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+      {{/if}}
+    </div>
+    {{#if esDonacion}}
+    <div class="col-lg-2">
+      <label for="donacion">Donación</label>
+      {{input type="checkbox" checked=donacion class="checkbox" disabled=true}}
+    </div>
+    {{/if}}
+  {{/if}}
+</div>
+<!-- Fin Sección datos de empresa / sucursal -->

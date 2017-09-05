@@ -1,0 +1,49 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Transferencias entre Depósitos
+  {{#link-to 'transferenciasDeposito.new'}}
+    <button class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="margin-top: -5px; margin-left: 5px;"></button>
+  {{/link-to}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView modalId="transferenciaDepositoSearchForm"}}
+    <div class="content-panel table-responsive" style="padding: 0px;">
+      <table class="table table-bordered table-striped table-condensed">
+          <thead>
+              <tr>
+                  <th>Fecha</th>
+                  <th>Nro</th>
+                  <th>Usuario</th>
+                  <th>Origen</th>
+                  <th>Destino</th>
+                  <th>Descripción</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+          {{#each}}
+              <tr>
+                  <td>{{dateformat fechaRegistro}}</td>
+                  <td>{{nroTransferencia}}</td>
+                  <td>{{usuario.nombre}}</td>
+                  <td>{{origen.nombre}}</td>
+                  <td>{{destino.nombre}}</td>
+                  <td>{{descripcion}}</td>
+                  <td class="center">
+                    {{#link-to 'transferenciaDeposito.edit' this classNames='table-action'}}
+                      <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil"></button>
+                    {{/link-to}}
+                    {{#link-to 'transferenciaDeposito.delete' this classNames='table-action'}}
+                      <button class="btn btn-theme btn-sm glyphicon glyphicon-remove" 
+                              data-toggle="modal" data-target="#transferenciaDepositoDelete"></button>
+                    {{/link-to}}
+                  </td>
+              </tr>
+          {{/each}}
+          </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

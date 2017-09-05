@@ -1,0 +1,84 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}}>
+          <div class="form-group">
+            <div class="col-lg-6" {{bind-attr class="errors.razonSocial:has-error errors.razonSocial:has-feedback"}}>
+              <label class="form-label"  for="razonSocial">Razón Social</label>
+              {{focus-input type="text" value=razonSocial class="form-control" placeholder="Razón Social del Proveedor" autofocus="autofocus"}}
+              <span class="help-block">{{error errors.razonSocial}}</span>
+              {{#if errors.razon_social}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-6" {{bind-attr class="errors.ruc:has-error errors.ruc:has-feedback"}}>
+              <label class="form-label" for="ruc">RUC</label>
+              {{input type="text" value=ruc class="form-control" placeholder="RUC"}}
+               <span class="help-block">{{error errors.ruc}}</span>
+              {{#if errors.ruc}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-6" {{bind-attr class="errors.direccion:has-error errors.direccion:has-feedback"}}
+              <label class="form-label"  for="direccion">Dirección</label>
+              {{input type="text" value=direccion class="form-control" placeholder="Dirección del Proveedor"}}
+              <span class="help-block">{{errors.direccion}}</span>
+              {{#if errors.direccion}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-6" {{bind-attr class="errors.telefono:has-error errors.telefono:has-feedback"}}>
+              <label class="form-label"  for="telefono">Teléfono</label>
+              {{input type="text" value=telefono class="form-control" placeholder="Teléfono del Proveedor"}}
+              <span class="help-block">{{error errors.telefono}}</span>
+              {{#if errors.telefono}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-6" {{bind-attr class="errors.email:has-error errors.email:has-feedback"}}>
+              <label class="form-label"  for="email">Email</label>
+              {{input type="text" value=email class="form-control" placeholder="Email del Proveedor"}}
+              <span class="help-block">{{error errors.email}}</span>
+              {{#if errors.email}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-6" {{bind-attr class="errors.personaContacto:has-error errors.personaContacto:has-feedback"}}>
+              <label class="form-label"  for="personaContacto">Contacto</label>
+              {{input type="text" value=personaContacto class="form-control" placeholder="Contacto del Proveedor"}}
+              <span class="help-block">{{errors.personaContacto}}</span>
+              {{#if errors.personaContacto}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-6" {{bind-attr class="errors.telefonoContacto:has-error errors.telefonoContacto:has-feedback"}}>
+              <label class="form-label"  for="telefonoContacto">Teléfono del contacto</label>
+              {{input type="text" value=telefonoContacto class="form-control" placeholder="Teléfono del contacto"}}
+              <span class="help-block">{{error errors.telefonoContacto}}</span>
+              {{#if errors.telefono_contacto}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,153 @@
+ {{#if id}}
+  <div class="form-group">
+    <div class="col-lg-6" {{bind-attr class="errors.paciente:has-error feedback.paciente:has-feedback" }}>
+      <label class="form-label" for="paciente">Paciente</label>
+      {{focus-input type="text" value=pacienteSeleccionado.persona.razonSocial class="form-control" placeholder="Nombre"}}
+      <span class="help-block">{{error feedback.paciente}}</span>
+      {{#if feedback.paciente}}
+      <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+      {{/if}}
+    </div>
+    <div class="col-lg-6">
+      <label>Cualquier cambio que realice en las fichas será guardado con su usuario.</label>
+    </div>
+    <div class="col-lg-6">
+      <button type="button" class="btn btn-round btn-success" {{action "goEditFicha" paciente.id id especialidad.codigo}}>
+        <b>EDITAR FICHA</b>
+      </button>
+      <button type="button" class="btn btn-round btn-warning" {{action "goNewFicha" paciente.id id especialidad.codigo}}>
+        <b>NUEVA FICHA</b>
+      </button>
+    </div>
+  </div>
+{{else}}
+  {{ partial "ventas/ventas_new_partial/datos_generales_pacientes" }}
+{{/if}}
+
+<div class="panel-body">
+
+  <div class="form-group">
+    <div class="col-lg-4" {{bind-attr class="errors.fechaAgenda:has-error feedback.fechaAgenda:has-feedback" }}>
+      <label class="form-label" for="fechaAgenda">Fecha Agendada</label>
+      {{view Bodega.views.DatePickerView value=fechaAgenda}}
+      <span class="help-block">{{error feedback.fecha_agenda}}</span>
+      {{#if feedback.fechaAgenda}}
+        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+      {{/if}}
+    </div>
+    <div class="col-lg-3">
+      <label class="form-label">Especialidad Médica</label>
+      {{view Ember.Select
+      content=especialidades
+      optionLabelPath="content.descripcion"
+      selection=especialidadSeleccionada
+      value=especialidadSeleccionada
+      classNames="form-control" }}
+    </div>
+    <div class="col-lg-3">
+      <label class="form-label">Médico</label>
+      {{view Ember.Select
+      content=medicos
+      prompt="Ninguno"
+      optionLabelPath="content.persona.razonSocial"
+      selection=medicoSeleccionado
+      value=medicoSeleccionado
+      classNames="form-control" }}
+    </div>
+    {{#unless id}}
+      <div class="col-lg-1">
+        <button type="button" {{action 'agregarLista'}} class="btn btn-theme float-right" style="margin-top: 22px;" onkeydown="Bodega.enterFormHandler('controller:consulta.base', 'agregarLista');">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+      </div>
+    {{/unless}}
+
+  </div>
+  {{#unless id}}
+    {{#unless listas}}
+      <div class="form-group">
+          <div class="col-lg-12 first-cell">
+              <label class="form-label">No se agregaron consultas</label>
+          </div>
+      </div>
+    {{else}}
+      <div class="row">
+        <div class="col-md-12">
+          <div class="content-panel">
+            <h4>Consultas a realizar</h4>
+            <hr>
+            <table class="table table-striped table-advance table-hover">
+              <thead>
+                <tr>
+                  <th>Fecha Agendada</th>
+                  <th>Especialidad</th>
+                  <th>Médico</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each item in listas}}
+                  <tr>
+                    <td> {{dateformat item.fechaAgenda}}</td>
+                    <td> {{item.especialidad.descripcion}} </td>
+                    <td> {{item.colaborador.razonSocial}} </td>
+                    <td>
+                      <button type="button" {{action 'borrarDetalleLista' item}} class="btn btn-danger btn-xs">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    {{/unless}}
+  {{/unless}}
+</div>
+{{!-- {{#unless id}}
+    <label class="form-label" style="font-weight: bold;">Consultas a realizar</label>
+    <div class="form-horizontal form-detalles">
+      {{#unless listas}}
+        <div class="form-group">
+            <div class="col-lg-12 first-cell">
+                <label class="form-label">No se agregaron consultas</label>
+            </div>
+        </div>
+      {{else}}
+        <div class="form-group">
+          <div class="col-lg-4 first-cell">
+            <label class="form-label">Especialidad</label>
+          </div>
+          <div class="col-lg-4">
+            <label class="form-label">Médico</label>
+          </div>
+          <div class="col-lg-3">
+            <label class="form-label">Fecha Agendada</label>
+          </div>
+        </div>
+        {{#each item in listas}}
+          <div class="form-group">
+            <div class="col-lg-4 first-cell">
+              {{input type="text" value=item.especialidad.descripcion class="form-control" placeholder="Especialidad" readonly="true"}}
+            </div>
+            <div class="col-lg-4">
+              {{input type="text" value=item.colaborador.razonSocial class="form-control" placeholder="Nombre del Médico" readonly="true"}}
+            </div>
+            <div class="col-lg-3">
+              {{view Bodega.views.DatePickerView value=item.fechaAgenda readonly=true}}
+            </div>
+            <div class="col-lg-1">
+              <button type="button" {{action 'borrarDetalleLista' item}} class="btn btn-theme float-right">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </div>
+          </div>
+        {{/each}}
+      {{/unless}}
+
+    </div>
+{{/unless}} --}}
+
+
+{{#if atendiendo}} {{ partial "consultas/new/atender_consulta" }} {{/if}}

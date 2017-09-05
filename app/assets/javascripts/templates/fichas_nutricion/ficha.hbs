@@ -1,0 +1,48 @@
+<div role="tabpanel" class="tab-pane active" id="evaluacioninicial">
+  <div class="panel panel-default" style="margin-top: 15px;">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#alergias">
+        <i class="fa fa-angle-right"></i>Evaluación Inicial</a>
+    </h4>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <div class="table-responsive content-panel" style="padding: 0px;">
+          <table class="table table-bordered table-striped table-condensed">
+            <tbody>
+              {{#each p in datosDto.preguntas}}
+              <tr>
+                <td style="width:30%;">{{p.key}}</td>
+                <td style="width:70%;">{{input type="text" value=p.value class="form-control" placeholder="Respuesta del Paciente" }}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel-heading">
+      <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#alergias">
+        <i class="fa fa-angle-right"></i>Recordatorios</a>
+    </h4>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <div class="table-responsive content-panel" style="padding: 0px;">
+          <table class="table table-bordered table-striped table-condensed">
+            <tbody>
+              {{#each p in datosDto.recordatorios}}
+              <tr>
+                <td style="width:30%;">{{p.key}}</td>
+                <td style="width:70%;">{{input type="text" value=p.value class="form-control" placeholder="Respuesta del Paciente" }}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

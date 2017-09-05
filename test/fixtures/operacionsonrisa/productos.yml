@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+medicamento:
+  id: 1
+  codigo_barra: 1
+  descripcion: Ibuprofeno Forte
+  unidad: 500 Mg.
+  margen: 0
+  precio_compra: 15000
+  precio: 15000
+  categorias: medicamentos
+  iva: 10
+  stock_minimo: 50
+  precio_promedio: 15000
+  activo: true
+  pack: false
+  moneda: guaranies
+  tipo_producto: medicamento
+  
+descartable:
+  id: 2
+  codigo_barra: 2
+  descripcion: Guantes de Latex
+  unidad: Unidad
+  margen: 0
+  precio_compra: 300
+  precio: 300
+  categorias: descartables
+  iva: 10
+  stock_minimo: 500
+  precio_promedio: 450
+  activo: true
+  pack: false
+  moneda: guaranies
+  tipo_producto: producto
+  

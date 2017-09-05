@@ -1,0 +1,245 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:promociones.new', 'save');">
+
+          <div class="form-group">
+            <div class="col-lg-4" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+              <label class="form-label"  for="descripcion">Descripcion</label>
+              {{focus-input type="text" value=descripcion class="form-control" placeholder="Descripcion" readonly=detalleReadOnly}}
+              <span class="help-block">{{error errors.descripcion}}</span>
+              {{#if errors.descripcion}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}   
+            </div>
+
+            <div class="col-lg-4" {{bind-attr class="feedback.positivo:has-error feedback.positivo:has-feedback"}}>
+              <label class="form-label"  for="cantidadGeneral">Cantidad general</label>
+              {{number-input min="0" value=cantidadGeneral class="form-control" placeholder="Cantidad general" readonly=detalleReadOnly}}
+              <span class="help-block">{{feedback.positivo}}</span>
+              {{#if feedback.positivo}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}  
+            </div>
+
+            <div class="col-lg-4" {{bind-attr class="feedback.positivo:has-error feedback.positivo:has-feedback"}}>
+              <label class="form-label"  for="porcentajeDescuento">Descuento para Todos los Productos (%)</label>
+              {{number-input min="0" value=porcentajeDescuento class="form-control" placeholder="Descuento" readonly=detalleReadOnly}}
+              <span class="help-block">{{feedback.positivo}}</span>
+              {{#if feedback.positivo}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+  
+          </div>
+          <div class="form-group">
+            <div class="col-lg-3" {{bind-attr class="feedback.fecha:has-error feedback.fecha:has-feedback"}}>
+              <label class="form-label"  for="fechaVigenciaDesde">Fecha desde</label>
+              {{view Bodega.views.DatePickerView value=fechaVigenciaDesde readonly=detalleReadOnly}} 
+            </div>
+            <div class="col-lg-1">
+              <label class="form-label"  for="porUnidad">Unidades</label>
+              {{input type="checkbox" checked=porUnidad class="checkbox" disabled=detalleReadOnly}}
+            </div>
+            <div class="col-lg-1">
+              <label class="form-label"  for="aPartirDe">A partir</label>
+              {{input type="checkbox" checked=aPartirDe class="checkbox" disabled=detalleReadOnly}}
+            </div>
+            <div class="col-lg-1">
+              <label class="form-label"  for="permanente">Permanente</label>
+              {{input type="checkbox" checked=permanente class="checkbox" disabled=detalleReadOnly}}
+            </div>
+            <div class="col-lg-1">
+              <label class="form-label"  for="exclusiva">Exclusiva</label>
+              {{input type="checkbox" checked=exclusiva class="checkbox" disabled=detalleReadOnly}}
+            </div>
+            <div class="col-lg-1">
+              <label class="form-label"  for="contarjeta">Tarjeta</label>
+              {{input type="checkbox" checked=conTarjeta class="checkbox" disabled=detalleReadOnly}}
+            </div>
+            {{#if ckTemporal}}
+              <div class="col-lg-3" {{bind-attr class="feedback.fecha:has-error feedback.fecha:has-feedback"}}>
+                <label class="form-label"  for="fechaVigenciaHasta">Fecha hasta</label>
+                {{view Bodega.views.DatePickerView value=fechaVigenciaHasta readonly=detalleReadOnly}} 
+                <span class="help-block">{{feedback.fecha}}</span>
+              </div>
+            {{/if}}
+          </div>
+
+          {{#if ckTarjeta}}
+            <div class="form-group">
+                <div class="col-lg-6" {{bind-attr class="feedback.tarjeta:has-error feedback.tarjeta:has-feedback"}}>
+                  <label class="form-label"  for="tarjeta">Tarjeta</label>
+                  {{view Ember.Select
+                    content=tarjetas
+                    optionLabelPath="content.displayName"
+                    selection=tarjetaSeleccionada
+                    value=tarjetaSeleccionada
+                    prompt="Seleccione un valor..."
+                    classNames="form-control"
+                    readonly=detalleReadOnly}}
+                  <span class="help-block">{{feedback.tarjeta}}</span>
+                </div>
+            </div>
+          {{/if}}
+          {{#unless detalleReadOnly}}
+            <div class="panel panel-default">
+              <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Promociones por Producto</h5></div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <div class="col-lg-2">
+                    <label class="form-label">Código</label>
+                  </div>
+                  <div class="col-lg-4">
+                    <label class="form-label">Descripción</label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label class="form-label">Cantidad</label>
+                  </div>
+                  {{#if parametros.soportaParametroCaliente}}
+                  <div class="col-lg-1">
+                    <label class="form-label">Caliente</label>
+                  </div>
+                  {{/if}}
+                  <div class="col-lg-1">
+                    <label class="form-label">Porcentaje</label>
+                  </div>
+                  <div class="col-lg-2">
+                    <label class="form-label">Precio o Descuento {{#if parametros.soportaMultimoneda}}<span class="obs-label">({{moneda.simbolo}})</span>{{/if}}</label>
+                  </div>
+                  <div class="col-lg-1">
+                  </div>
+                </div>
+                
+
+                <div class="form-group">
+                  <div class="col-lg-2">
+                    {{focus-input type="text" enter='cargarProducto' id="codigoBarra" value=codigoBarra class="form-control" placeholder="Código de Barras" autofocus="true" }}
+                  </div>
+                  <div class="col-lg-4">
+                    {{!-- {{input type="text" readonly="true" value=productoSeleccionado.descripcion class="form-control" placeholder="Descripción del producto" }} --}}
+                    <div class="search-input-width">
+                      {{search-input  
+                      type="text"  value=descripcionSW selectedItem=productoSeleccionadoSW 
+                      class="form-control" placeholder="Descripción del producto"
+                      property="descripcion" session=session service="productos"
+                      modelType="producto" jsonRoot="productos" store=store
+                      ignoredProperties="categorias,promocionProducto,producto,moneda" enter='contarEnters'}}
+                    </div>
+                  </div>
+                  <div class="col-lg-1">
+                    {{number-input min="0" enter="agregarDetalle" value=detNuevo.cantidad class="form-control" placeholder=numeral }}
+                  </div>
+                  {{#if parametros.soportaParametroCaliente}}
+                    <div class="col-lg-1" >
+                      {{input type="checkbox" checked=detNuevo.caliente class="checkbox" disabled=detNuevo.producto.tipoProducto.servicio}}
+                    </div>
+                  {{/if}}
+                  <div class="col-lg-1">
+                    {{input type="checkbox" checked=detNuevo.porcentaje class="checkbox" disabled=detalleReadOnly}}
+                  </div>
+                  <div class="col-lg-2" >
+                    {{number-input min="0" enter="agregarDetalle" value=detNuevo.precioDescuento class="form-control" placeholder="Precio o Descuento" }}
+                  </div>
+                  <div class="col-lg-1" >
+                    <button {{action 'agregarDetalle'}}  class="btn  btn-theme">
+                      <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/unless}}
+
+          <div class="panel panel-default">
+          <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Detalles de la Promoción</h5></div>
+          <div class="panel-body">
+          <div class="form-horizontal form-detalles">
+            {{#if detalles}}
+                <div class="form-group">
+                  <div class="col-lg-2">
+                    <label class="form-label">Código</label>
+                  </div>
+                  <div class="col-lg-4">
+                    <label class="form-label">Descripción</label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label class="form-label">Cantidad</label>
+                  </div>
+                  {{#if parametros.soportaParametroCaliente}}
+                    <div class="col-lg-1">
+                      <label class="form-label">Caliente</label>
+                    </div>
+                  {{/if}}
+                  <div class="col-lg-1">
+                    <label class="form-label">Porcentaje</label>
+                  </div>
+                  {{#if parametros.soportaMultimoneda}}
+                    <div class="col-lg-1">
+                      <label class="form-label">Moneda</label>
+                    </div>
+                  {{/if}}
+                  <div class="col-lg-2">
+                    <label class="form-label">Precio o Descuento</label>
+                  </div>
+                  <div class="col-lg-1">
+                  </div>
+                </div>
+            {{else}}
+              <div class="form-group">
+                <div class="col-lg-12 first-cell" >
+                </div>
+              </div>
+            {{/if}}
+          {{#each det in detalles}}
+            <div class="form-group">
+              <div class="col-lg-2 first-cell" >
+                {{input type="text" disabled="true" value=det.producto.codigoBarra class="form-control" placeholder="Código de Barras" }}
+              </div>
+              <div class="col-lg-4" >
+                {{input type="text" disabled="true" value=det.producto.descripcion class="form-control" placeholder="Descripción del producto" }}
+              </div>
+              <div class="col-lg-1" >
+                {{number-input value=det.cantidad class="form-control" placeholder=numeral disabled=detalleReadOnly}}
+              </div>
+              {{#if parametros.soportaParametroCaliente}}
+                <div class="col-lg-1" >
+                  {{input type="checkbox" checked=det.caliente class="checkbox" disabled=detalleReadOnly}}
+                </div>
+              {{/if}}
+              <div class="col-lg-1" >
+                {{input type="checkbox" checked=det.porcentaje class="checkbox" disabled=detalleReadOnly}}
+              </div>
+              <div class="col-lg-2" >
+                {{number-input value=det.precioDescuento class="form-control" placeholder="Precio" disabled=detalleReadOnly}}
+                {{#if parametros.soportaMultimoneda}}
+                  <span class="help-block help-block-promo"> Moneda: {{det.moneda.simbolo}}</span>
+                {{/if}}
+              </div>
+              <div class="col-lg-1 last-cell" >
+                <button {{action borrarDetalle det}} class="btn btn-theme"  {{bindAttr disabled=detalleNotDelete}}>
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+              </div>
+            </div>
+          
+          {{/each}}
+          </div>
+          </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme"{{bind-attr disabled = feedback.conErrores}}>Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default ">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div role="tabpanel" class="tab-pane active" id="datospersonales">
+  <div class="col-lg-12">
+    <div class="form-horizontal">
+      <form>
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-body">
+            <div class="panel-group" id="accordion">
+              {{partial "pacientes/datos_personales/datos_personales"}}
+              {{partial "pacientes/datos_personales/info_familiar"}}
+              {{partial "pacientes/datos_personales/contacto_emergencia"}}
+              {{partial "pacientes/datos_personales/vinculos_os"}}
+              {{partial "pacientes/datos_personales/otros_datos"}}
+            </div>  
+            {{! end accordion}}
+          </div>
+        </div>
+      </form>
+      {{partial "pacientes/guardar_cancelar"}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "search" on="submit"}}>
+          <div class="form-group">
+            <div class="col-lg-4" >
+              <label class="form-label">Producto</label>
+              <div class="search-input-width">
+              {{search-input  
+                type="text"  value=descripcionSW selectedItem=productoSeleccionadoSW 
+                class="form-control" placeholder="Descripción del producto"
+                property="descripcion" session=session service="productos"
+                modelType="producto" jsonRoot="productos" store=store
+                ignoredProperties="categorias,promocionProducto,producto,moneda" enter='contarEnters'}}
+              </div>
+            </div>    
+            <div class="col-lg-4">
+              <label class="form-label" for="categorias">Medio de Pago</label>
+              {{view Ember.Select
+                      content=mediosPagos
+                      optionLabelPath="content.nombre"
+                      selection=medioPagoSeleccionado
+                      value=medioPagoDefault
+                      classNames="form-control"}}
+            </div>
+            <div class="col-lg-4">
+             <label class="form-label" for="depositos">Tipo de Crédito</label>
+                      {{view Ember.Select 
+                      content=tiposCreditos
+                      optionValuePath="content.id" 
+                      optionLabelPath="content.descripcion" 
+                      selection=tipoCreditoSeleccionado
+                      value=tipoCreditoDefault
+                      classNames="form-control" }}
+            </div>
+          </div>
+          <div class="form-group">  
+            <div class="col-lg-4">
+               <label class="form-label" for="empresas">Empresa</label>
+                {{view Ember.Select content=empresas 
+                optionValuePath="content.id" 
+                selection=selectedEmpresa
+                optionLabelPath="content.nombre"
+                classNames="form-control"
+                prompt="Seleccione una Empresa"}}
+            </div>
+           <div class="col-lg-2">                
+              <label for="changePass">Precio Promedio</label>
+              {{input type="checkbox" checked=listaPrecios class="checkbox"}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Generar Reporte</button>
+            </div>
+          </div>
+        </form>
+      </div>     
+    </div>
+  </div>
+</div>
+

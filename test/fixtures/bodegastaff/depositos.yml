@@ -1,0 +1,5 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+punto_venta_matriz_1:
+  nombre: Punto de Venta Tacumbu
+  descripcion: Punto de Venta Bodega Staff Tacumbu

@@ -1,0 +1,52 @@
+<div class="panel panel-default"  onkeydown="Bodega.ignoreEnter();">
+  <div class="panel-heading">
+    <h5>
+      <i class="fa fa-angle-right"></i>Nuevo Detalle de Tratamiento</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      {{!--<div class="col-lg-2">
+        <label class="form-label">Código</label>
+        {{focus-input type="text" enter='cargarProducto' id="codigoBarra" value=codigoBarra class="form-control" placeholder="Código de Barras" autofocus="true"}}
+      </div> --}}
+      <div class="col-lg-6">
+        <label class="form-label">Descripción</label>
+          <label class="form-label">Descripción</label>
+          {{view Ember.Select
+          content=tratamientos
+          optionLabelPath="content.descripcion"
+          selection=productoSeleccionado
+          value=productoSeleccionado
+          classNames="form-control" }}
+
+
+        {{!-- <div class="search-input-width">
+          {{search-input type="text"
+          value=descripcionSW
+          selectedItem=productoSeleccionadoSW
+          class="form-control"
+          placeholder="Descripción del tratamiento"
+          property="descripcion"
+          session=session
+          service="productos"
+          modelType="producto"
+          jsonRoot="productos"
+          store=store
+          queryScope=queryScopeTratamientos
+          ignoredProperties="producto,productoDetalles,lotes,categorias,promocionProducto,tipoProducto,especialidad,moneda"
+        }}
+        </div> --}}
+      </div>
+      <div class="col-lg-2">
+        <label class="form-label">Cantidad</label>
+        {{number-input min="0" id="cantidad" value=cantidad class="form-control" placeholder=numeral enter='contarEnters'}}
+      </div>
+      <div class="col-lg-1">
+        <label class="form-label">Agregar</label>
+        <button type="button" {{action 'agregarDetalle'}} class="btn btn-theme btn-sm" onkeydown="Bodega.enterFormHandler('controller:inventarios.new', 'agregarDetalle');">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

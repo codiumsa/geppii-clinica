@@ -1,0 +1,117 @@
+<div class="form-group">
+  <!-- Sección RUC / Nombre Cliente-->
+  <!-- RUC Cliente -->
+
+  <!-- Nombre Cliente -->
+  {{!-- {{#if clienteExistente}}
+    <div class="col-lg-2" {{bind-attr class="errors.nombre:has-error errors.nombre:has-feedback"}}>
+      <label class="form-label" for="nombre">Nombre</label>
+      {{input type="text" value=cliente.persona.nombre class="form-control" placeholder="Nombre" readonly=true}}
+      <span class="help-block">{{error errors.cliente}}</span>
+    </div>
+    <!-- Apellido Cliente -->
+    <div class="col-lg-2" {{bind-attr class="errors.apellido:has-error errors.apellido:has-feedback"}}>
+      <label class="form-label" for="apellido">Apellido</label>
+      {{input type="text" value=cliente.apellido class="form-control" placeholder="Apellido" readonly=true}}
+    </div>
+  {{else}}
+    <div class="col-lg-2" {{bind-attr class="errors.nombreCliente:has-error errors.nombreCliente:has-feedback"}}>
+      <label class="form-label" for="nombreCliente">Nombre</label> --}}
+
+
+    {{!-- </div> --}}
+
+
+
+
+    {{!-- {{#if muestraRUC}}
+    <div class="col-lg-2">
+      <label class="form-label">RUC</label>
+      {{input type="text" enter="loadCliente" value=ruc class="form-control" placeholder="RUC"}}
+    </div>
+    {{/if}} --}}
+
+
+  {{!-- {{/if}} --}}
+  <!-- Crédito contado -->
+  {{#if esCliente}}
+    <div class="col-lg-1" {{bind-attr class="errors.credito:has-error errors.credito:has-feedback"}}>
+      <label for="credito">Crédito</label>
+      {{#if editando}}
+        {{input type="checkbox" disabled="true" checked=credito class="checkbox"}}
+      {{else}}
+        {{input id="credito" type="checkbox" checked=credito class="checkbox"}}
+      {{/if}}
+    </div>
+    {{#if credito}}
+      <!-- Cantidad Cuotas-->
+      <div class="col-lg-1" {{bind-attr class="errors.cantidadCuotas:has-error errors.cantidadCuotas:has-feedback"}}>
+        <label for="cantidadCuotas">Cuotas</label>
+        {{#if editando}}
+          {{number-input min="1" readonly="true" value=cantidadCuotas class="form-control" placeholder=numeral }}
+        {{else}}
+          {{number-input min="1" value=cantidadCuotasTmp class="form-control" placeholder=numeral }}
+        {{/if}}
+      </div>
+      <div class="col-lg-2" {{bind-attr class="errors.tipoCredito:has-error errors.tipoCredito:has-feedback feedback.recargoRequerido:has-error feedback.recargoRequerido:has-feedback"}}>
+        <label class="form-label">Tipo Crédito</label>
+        {{#if editando}}
+          {{input type="text" readonly="true" value=tipoCreditoSeleccionado.descripcion class="form-control"}}
+        {{else}}
+          {{view Ember.Select content=tiposCreditos optionLabelPath="content.descripcion" selection=tipoCreditoSeleccionado value=tipoCreditoSeleccionado classNames="form-control" }}
+          <span class="help-block">{{feedback.recargoRequerido}}</span>
+          {{#if feedback.recargoRequerido}}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+        {{/if}}
+      </div>
+      {{#if editando}}
+        <div class="col-lg-2">
+          <label for="deuda">Deuda</label>
+          {{input type="text" readonly="true" value=deuda class="form-control"}}
+        </div>
+      {{/if}}
+      <!-- Ruc Garante -->
+      <div class="col-lg-2" {{bind-attr class="errors.rucGarante:has-error errors.cliente:has-feedback feedback.rucGarante:has-error feedback.rucGarante:has-feedback"}}>
+        <label class="form-label" for="ruc">RUC</label>
+        {{input type="text" enter="loadGarante" value=rucGarante class="form-control" placeholder="RUC"}}
+        <span class="help-block">{{feedback.rucGarante}}</span>
+        {{#if feedback.rucGarante}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        {{/if}}
+      </div>
+      <!-- Nombre Garante -->
+      <div class="col-lg-2" {{bind-attr class="errors.razon_social:has-error errors.razon_social:has-feedback"}}>
+        <label class="form-label" for="garante">Nombre</label>
+        {{input type="text" value=garante.razonSocial class="form-control" placeholder="Nombre Garante" readonly=true}}
+      </div>
+      <div class="col-lg-1" {{bind-attr class="errors.nroContrato:has-error errors.nroContrato:has-feedback feedback.nroContrato:has-error feedback.nroContrato:has-feedback"}}>
+        <label class="form-label" for="rucGarante">Contrato</label>
+        {{input type="text" value=nroContrato class="form-control" placeholder="Nro. Contrato"}}
+        <span class="help-block">{{feedback.nroContrato}}</span>
+        {{#if feedback.nroContrato}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        {{/if}}
+      </div>
+    {{/if}}
+  {{/if}}
+  <!-- Fin si es credito -->
+</div>
+
+{{!-- <div class="form-group"> --}}
+
+
+{{!-- <div class="col-lg-4">
+  <label class="form-label">Campaña</label>
+
+  {{#if editando}}
+    {{input type="text" value=campanha.descripcion class="form-control" placeholder="Nombre" readonly=true}}
+  {{else}}
+    {{view Ember.Select content=campanhas optionLabelPath="content.descripcion" selection=campanhaSeleccionada value=campanhaSeleccionada classNames="form-control"}}
+  {{/if}}
+</div> --}}
+
+{{!-- {{/if}} --}}
+
+{{!-- </div> --}}
+<!-- Fin Sección datos del cliente -->

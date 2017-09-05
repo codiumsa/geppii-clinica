@@ -1,0 +1,43 @@
+<div class="form-group">
+  <!--Inicio Sección Datos Generales de la venta -->
+  <!-- Pagado/No Pagado -->
+
+  <div class="col-lg-4">
+    <label class="form-label">Paciente</label>
+   {{#if editando}}
+     {{input type="text" value=persona.razonSocial class="form-control" placeholder="Nombre" readonly=true}}
+   {{else}}
+
+     {{!--input type="text" readonly="true" value=productoSeleccionado.descripcion class="form-control" placeholder="DescripciÃ³n del producto" enter='agregarDetalle'--}}
+     <div class="search-input-width">
+     {{search-input type="text"
+     value=infoPaciente
+     selectedItem=pacienteSeleccionado
+     class="form-control"
+     placeholder="Nombre, Apellido, RUC o Num de Paciente"
+     property="infoPaciente"
+     session=session service="pacientes"
+     modelType="paciente"
+     jsonRoot="pacientes"
+     store=store
+     ignoredProperties="persona,candidaturas"
+     queryScope="by_persona"}}
+     </div>
+   {{/if}}
+   {{!-- <span class="help-block">{{feedback.clienteRequerido}}</span>
+   {{#if feedback.clienteRequerido}}
+     <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+   {{/if}} --}}
+ </div>
+ <div class="col-lg-2">
+     <label for="anulados">Cirugía</label>
+     {{input type="checkbox" checked=cirugia class="checkbox"}}
+ </div>
+ {{#if cirugia}}
+   <div class="col-lg-2">
+     <label for="anulados">Cantidad de Cirugías</label>
+     {{number-input min="1" value=cantidadCirugias class="form-control" placeholder="Cantidad de Cirugías" }}
+   </div>
+ {{/if}}
+
+</div>

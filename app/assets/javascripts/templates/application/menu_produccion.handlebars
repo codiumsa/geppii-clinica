@@ -1,0 +1,20 @@
+{{#if permisoIndexProducciones}}
+        <li class="sub-menu  dcjq-parent-li">
+            <a href="javascript:;" class="dcjq-parent">
+                <i class="fa fa-wrench"></i>
+                <span>Producción</span>
+            </a>
+            <ul class="sub" style="overflow: hidden; display: block;">
+                <li>
+                    {{#link-to "producciones"}}
+                        <span>Producciones</span>
+                    {{/link-to}}
+                </li>
+                <li>
+                    {{#link-to "registrosProduccion"}}
+                        <span>Registros Producción</span>
+                    {{/link-to}}
+                </li>
+            </ul>
+        </li>
+{{/if}}

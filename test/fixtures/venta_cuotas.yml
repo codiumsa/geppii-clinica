@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   venta: dos
+#   nro_cuota: 1
+#   monto: 15000
+#   fecha_vencimiento: 2014-04-17
+#   fecha_cobro: 2014-04-17
+#   cancelado: false
+#   nro_recibo: 111111
+
+# two:
+#   venta: dos
+#   nro_cuota: 2
+#   monto: 15000
+#   fecha_vencimiento: 2014-05-17
+#   fecha_cobro: 2014-05-17
+#   cancelado: false
+#   nro_recibo: 2222222

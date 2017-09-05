@@ -1,0 +1,62 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:tipoProductos.new', 'save');">
+          <div class="form-group" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+            <div class="col-lg-12">
+              <label class="form-label"  for="descripcion">Descripción</label>
+              {{input type="text" value=descripcion class="form-control" placeholder="Descripción del depósito"}}
+              <span class="help-block">{{error errors.descripcion}}</span>
+              {{#if errors.descripcion}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group" {{bind-attr class="errors.codigo:has-error errors.nombre:has-feedback"}} >
+            <div class="col-lg-12">
+              <label class="form-label"  for="codigo">Código</label>
+              {{focus-input type="text" value=codigo class="form-control" placeholder="Codigo del tipo de producto"}}
+              <span class="help-block">{{error errors.codigo}}</span>
+              {{#if errors.nombre}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+            </div>
+          </div>
+          <div class="form-group" style="padding-bottom: 20px; padding-left: 10px;">
+            <div class="col-lg-2">
+              <label for="credito">Usa Lote</label>
+              {{input type="checkbox" checked=usaLote class="checkbox"}}
+            </div>
+            <div class="col-lg-2">
+              <label for="credito">Procedimiento</label>
+              {{input type="checkbox" checked=procedimiento class="checkbox"}}
+            </div>
+            <div class="col-lg-2">
+              <label for="credito">Especialidad</label>
+              {{input type="checkbox" checked=especialidad class="checkbox"}}
+            </div>
+            <div class="col-lg-2">
+              <label for="credito">Usa stock</label>
+              {{input type="checkbox" checked=stock class="checkbox"}}
+            </div>
+            <div class="col-lg-2">
+              <label for="credito">OSI</label>
+              {{input type="checkbox" checked=productoOsi class="checkbox"}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

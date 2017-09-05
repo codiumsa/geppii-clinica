@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+ preciosbajos:
+   empresa_id: 1
+   imei_en_venta_detalle: false
+   soporta_sucursales: true
+   soporta_multiempresa: false
+   vendedor_en_venta: true
+   tarjeta_credito_en_venta: true
+   soporta_caja_impresion: false
+   soporta_uso_interno: true
+   retencioniva: 0
+   soporta_ajuste_inventario: true
+   soporta_multimoneda: false
+   moneda: guaranies
+   moneda_base: guaranies
+   default_empresa: true
+   recargo_precio_venta: true
+   ctrl_inventario_set_existencia: false
+   ctrl_inventario_cantidad: 2
+   sequences_por_empresa: true
+   imprimir_remision: true
+   permite_promociones: true   

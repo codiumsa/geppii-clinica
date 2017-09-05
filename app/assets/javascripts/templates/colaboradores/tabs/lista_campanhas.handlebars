@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h5>
+      <i class="fa fa-angle-right"></i>Campañas</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-horizontal form-detalles">
+      <div class="form-group">
+        <div class="col-lg-3 first-cell">
+          <label class="form-label">Nombre</label>
+        </div>
+        <div class="col-lg-2">
+          <label class="form-label">Fecha Inicio</label>
+        </div>
+        <div class="col-lg-2">
+          <label class="form-label">Fecha Fin</label>
+        </div>
+        <div class="col-lg-4">
+          <label class="form-label">Observaciones</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-horizontal form-detalles">
+      {{#each det in campanhas}}
+      <div class="form-group">
+        <div class="col-lg-3 first-cell">
+          {{input type="text" readonly="true" value=det.campanha.nombre class="form-control"}}
+        </div>
+        <div class="col-lg-2">
+          {{view Bodega.views.DatePickerView value=det.campanha.fechaIncio readonly=true}}
+        </div>
+        <div class="col-lg-2">
+          {{view Bodega.views.DatePickerView value=det.campanha.fechaFin readonly=true}}
+        </div>
+        <div class="col-lg-4">
+          {{input type="text" readonly="true" value=det.observaciones class="form-control"}}
+        </div>
+        <div class="col-lg-1 last-cell">
+          <button type="button" {{action borrarDetalle det}} class="btn btn-theme">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

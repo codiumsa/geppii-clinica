@@ -1,0 +1,24 @@
+
+sinNombre:
+  id: 1
+  tipo_persona: Física
+  ci_ruc: 0
+  razon_social: Sin Nombre
+
+#doctor_test:
+#  id: 2
+#  tipo_persona: Física
+#  ci_ruc: 123456
+#  razon_social: Dr. Sandro Strubing
+
+#voluntario_test:
+#  id: 3
+#  tipo_persona: Física
+#  ci_ruc: 3803180
+#  razon_social: Vanessa Cuevas
+
+operacionSonrisa:
+  id: 4
+  tipo_persona: Jurídica
+  ci_ruc: 800456123
+  razon_social: Operación Sonrisa Paraguay

@@ -1,0 +1,109 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "search" on="submit"}}>
+          <div class="form-group">
+              <div class="col-lg-12">
+                  <div>Tipo de reporte</div>
+                  <div class="col-lg-2">
+                    {{view Bodega.views.RadioButton value='listado' checked=tipoReporte}} Listado de pacientes
+                  </div>
+                  <div class="col-lg-2">
+                    {{view Bodega.views.RadioButton value='legajo' checked=tipoReporte}} Legajo de paciente
+                  </div>
+              </div>
+          </div>
+          {{#if esLegajo}}
+          <div class="form-group">
+            <div class="col-lg-4">
+              <label class="form-label">Paciente</label>
+              <div class="search-input-width">
+              {{search-input type="text"
+              value=infoPaciente
+              selectedItem=pacienteSeleccionado
+              class="form-control"
+              placeholder="Nombre, Apellido, RUC o Num de Paciente"
+              property="infoPaciente"
+              session=session service="pacientes"
+              modelType="paciente"
+              jsonRoot="pacientes"
+              store=store
+              ignoredProperties="persona,candidaturas"
+              queryScope="by_persona"}}
+              </div>
+            </div>
+          </div>
+          {{else}}
+            <div class="form-group">
+                <div class="col-lg-4">
+                    <label class="form-label"  for="nombre">Nombre</label>
+                    {{focus-input type="text" value=nombre class="form-control" placeholder="Nombre"}}
+                </div>
+                <div class="col-lg-4">
+                    <label class="form-label"  for="apellido">Apellido</label>
+                    {{input type="text" value=apellido class="form-control" placeholder="Apellido"}}
+                </div>
+            </div>
+            <label class="form-label" for="fecha">Registrados</label>
+            <div class="form-group">
+                <div class="col-md-4">
+                    {{view Bodega.views.DatePickerView value=registrados_despues nullable=true placeholder="Después de"}}
+                </div>
+                <div class="col-md-4">
+                    {{view Bodega.views.DatePickerView value=registrados_dia nullable=true placeholder="Día"}}
+                </div>
+                <div class="col-md-4"}>
+                    {{view Bodega.views.DatePickerView value=registrados_antes nullable=true placeholder="Antes de" }}
+                </div>
+            </div>
+            <label class="form-label" for="fecha">Modificados</label>
+            <div class="form-group">
+                <div class="col-md-4">
+                    {{view Bodega.views.DatePickerView value=modificados_despues nullable=true placeholder="Después de"}}
+                </div>
+                <div class="col-md-4">
+                    {{view Bodega.views.DatePickerView value=modificados_dia nullable=true placeholder="Día"}}
+                </div>
+                <div class="col-md-4"}>
+                    {{view Bodega.views.DatePickerView value=modificados_antes nullable=true placeholder="Antes de" }}
+                </div>
+            </div>
+            <label class="form-label" for="fecha">Consultaron</label>
+            <div class="form-group">
+                <div class="col-md-4">
+                    {{view Bodega.views.DatePickerView value=consultaron_despues nullable=true placeholder="Después de"}}
+                </div>
+                <div class="col-md-4">
+                    {{view Bodega.views.DatePickerView value=consultaron_dia nullable=true placeholder="Día"}}
+                </div>
+                <div class="col-md-4"}>
+                    {{view Bodega.views.DatePickerView value=consultaron_antes nullable=true placeholder="Antes de" }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label class="form-label">Tratamiento</label>
+                    {{view Ember.Select content=tratamientos optionLabelPath="content.nombre" selection=tratamientoSeleccionado value=tratamientoSeleccionado classNames="form-control" prompt="Seleccione un tratamiento"}}
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Medicamento</label>
+                    <div class="search-input-width">{{search-input type="text" value=descripcionSW selectedItem=productoSeleccionadoSW class="form-control" placeholder="Descripción del producto" property="descripcion" session=session service="productos" modelType="producto" jsonRoot="productos" queryScope="by_tipo_producto=M&by_descripcion" store=store ignoredProperties="categorias,productoDetalles,promocionProducto,producto,moneda,tipoProducto,lotes,loteDeposito,especialidad"}}</div>
+                </div>
+            </div>
+          {{/if}}
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Generar Reporte</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

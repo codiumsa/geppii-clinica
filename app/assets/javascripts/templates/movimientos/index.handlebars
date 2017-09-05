@@ -1,0 +1,74 @@
+<h3>
+<i class="fa fa-angle-right"></i>
+Movimientos
+{{#link-to 'operaciones.new'}}
+<button class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="margin-top: -5px; margin-left: 5px;" ></button>
+{{/link-to}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView}}
+    <div class="table-responsive content-panel" style="padding: 0px;">
+      <table class="table table-bordered table-striped table-condensed">
+        <thead>
+          <tr>
+            <th>Caja</th>
+            <th>Operación ID</th>
+            <th>Tipo de operación</th>
+            <th>Movimiento</th>
+            <th>Debe</th>
+            <th>Haber</th>
+            {{#if muestraSaldo}}
+              <th>Saldo</th> 
+            {{/if}}     
+            <th>Referencia</th>    
+            <th style="width:5%;">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each}}
+            <tr>
+              <td>{{caja.descripcion}}</td>
+              <td>{{operacion.id}}</td>
+              <td>{{operacion.tipoOperacion.descripcion}}</td>
+              <td>{{descripcion}}</td>
+              <td>
+                {{#if tipoOperacionDetalle.tipoMovimiento.debito}}
+                  {{formatNumber monto}}
+                {{/if}}
+              </td>
+              <td>
+                {{#if tipoOperacionDetalle.tipoMovimiento.credito}}
+                  {{formatNumber monto}}
+                {{/if}}
+              </td>
+              {{#if controller.muestraSaldo}}
+                <td>{{formatNumber saldo}}</td>
+              {{/if}}
+
+              {{#if operacion.tipoOperacion.categorizable}}
+                <td>{{operacion.categoriaOperacion.nombre}}</td> 
+              {{else}}
+                <td>{{referencia}}</td> 
+              {{/if}} 
+                          
+              <td>
+                {{#if operacion.tipoOperacion.manual}}
+                  {{#if operacion.reversado}}
+                  {{else}}
+                    {{#isAuthorized 'FE_delete_movimientos'}}
+                      {{#link-to 'movimiento.delete' this classNames='table-action'}}
+                        <button class="btn btn-theme btn-sm glyphicon glyphicon-remove" data-toggle="modal" data-target="#movimientoDelete" {{bind-attr disabled=controller.cajaCerrada}}> </button>
+                      {{/link-to}}
+                    {{/isAuthorized}}
+                  {{/if}}
+                {{/if}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

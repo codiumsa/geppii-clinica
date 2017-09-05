@@ -1,0 +1,135 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div id="noEntersInventarios" class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:controlInventarios.new', 'save');">
+
+          <div class="form-group">
+
+            
+            <div class="col-lg-3 taginputsimple" {{bind-attr class="errors.deposito:has-error errors.deposito:has-feedback"}}>
+              <label class="form-label">Depósito</label>
+              {{#if habilitarEdicionDetalle}}
+                  {{view Ember.Select
+                  content=depositos
+                  optionLabelPath="content.nombre"
+                  selection=depositoDefault
+                  value=depositoDefault
+                  classNames="form-control"}}
+                {{#if errors.deposito}}
+                    <span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+                {{/if}}
+              {{else}}
+                {{input type="text" id="deposito"  disabled='true' value=deposito.nombre class="form-control"}}
+              {{/if}}
+            </div>
+
+
+
+            <div class="col-lg-5" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+              <label class="form-label"  for="descripcion">Descripción</label>
+              {{focus-input type="text" value=descripcion class="form-control" placeholder="Descripción" autofocus="autofocus"}}
+              <span class="help-block">{{error errors.descripcion}}</span>
+              {{#if errors.descripcion}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-2" {{bind-attr class="errors.fechaInicio:has-error errors.fechaInicio:has-feedback"}}>
+              <label class="form-label"  for="fechaInicio">Fecha Inicio</label>
+              {{view Bodega.views.DatePickerView value=fechaInicio}}
+            </div>
+
+            <div class="col-lg-2">
+              <label class="form-label"  for="fechaFin">Fecha Fin</label>
+              {{view Bodega.views.DatePickerView value=fechaFin}}
+            </div>
+          </div>
+        
+        <div class="panel panel-default">
+          <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Detalles de Inventario</h5></div>
+          <div class="panel-body">
+            <div class="form-horizontal form-detalles">
+              {{#unless detalles}}
+              <div class="form-group">
+                <div class="col-lg-12 first-cell" >
+                  <label class="form-label">Debe agregar detalles para guardar el control de inventario</label>
+                </div>
+              </div>
+              {{/unless}}
+              <div class="form-group">
+                  <div class="col-lg-3 first-cell" >
+                    <label>Código de Barras</label>
+                  </div>
+                  {{#if edit}}
+                    <div class="col-lg-5" >
+                      <label>Descripción</label>
+                    </div>
+                    <div class="col-lg-2" >
+                      <label>Existencia Inventario</label>
+                    </div>
+                    <div class="col-lg-2" >
+                      <label>Existencia en Depósito</label>
+                    </div>
+                  {{else}}
+                    <div class="col-lg-7" >
+                      <label>Descripción</label>
+                    </div>
+                    <div class="col-lg-2" >
+                      <label>Existencia</label>
+                    </div>
+                  {{/if}}
+                </div>
+              {{#each det in detalles}}
+                <div class="form-group">
+                  <div class="col-lg-3 first-cell" >
+                    {{input type="text" readonly="true" value=det.producto.codigoBarra class="form-control" placeholder="Código de Barras" }}
+                  </div>
+                  {{#if edit}}
+                    <div class="col-lg-5" >
+                      {{input type="text" readonly="true" value=det.producto.descripcion class="form-control" placeholder="Descripción del producto" }}
+                    </div>
+                    <div class="col-lg-2" >
+                      {{input type="text" disabled=edit value=det.existencia class="form-control" placeholder=numeral }}
+                    </div>
+                    <div class="col-lg-2" >
+                      {{input type="text" disabled=edit value=det.existenciaPrevia class="form-control" placeholder=numeral }}
+                    </div>
+                  {{else}}
+                    <div class="col-lg-7" >
+                      {{input type="text" readonly="true" value=det.producto.descripcion class="form-control" placeholder="Descripción del producto" }}
+                    </div>
+                    <div class="col-lg-2" >
+                      {{input type="text" disabled=edit value=det.existencia class="form-control" placeholder=numeral }}
+                    </div>
+                  {{/if}}
+                </div>
+              
+              {{/each}}
+            </div>
+          </div>
+        </div>
+
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme ">Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default ">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('#noEntersInventarios').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+</script>

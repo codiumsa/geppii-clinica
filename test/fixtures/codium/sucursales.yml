@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+sucursal_codium:
+  id: 1
+  codigo: 01_codium_1
+  descripcion: Matriz - Codium
+  activo: true
+  empresa_id: 1
+  deposito_id: 1
+  color: '#00bf8f'

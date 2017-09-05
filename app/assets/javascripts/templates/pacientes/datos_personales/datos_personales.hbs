@@ -1,0 +1,105 @@
+<div role="tabpanel" class="tab-pane active">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#datosPersonales">
+        <i class="fa fa-angle-right">
+        </i>Datos Personales del Paciente </a>
+    </h4>
+  </div>
+  <div id="datosPersonales" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <div class="form-group">
+        <div {{bind-attr class="id:col-lg-2:col-lg-2 feedback.numeroPaciente:has-error feedback.numeroPaciente:has-feedback" }}>
+          <label class="form-label" for="ruc">Nro. Paciente</label>
+          {{focus-input type="text" value=numeroPaciente class="form-control" placeholder="Nro. de Paciente" placeholder="Numero Paciente" autofocus="autofocus" focus-out='loadPaciente'}}
+          <span class="help-block">{{error feedback.numeroPaciente}}</span>
+          {{#if feedback.ci_ruc}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+        </div>
+        <div {{bind-attr class="id:col-lg-2:col-lg-2 feedback.personaCiRuc:has-error feedback.personaCiRuc:has-feedback" }}>
+          <label class="form-label" for="ruc">Nro. de Cédula</label>
+          {{focus-input type="text" value=persona.ciRuc class="form-control" placeholder="Nro. de C&eacute;la" placeholder="RUC/CI" autofocus="autofocus" focus-out='loadPersona'}}
+          <span class="help-block">{{error feedback.personaCiRuc}}</span>
+          {{#if feedback.ci_ruc}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+        </div>
+        {{#if mostrarRazonSocial}}
+        <div class="col-lg-6" {{bind-attr class="feedback.personaRazonSocial:has-error
+         feedback.personaRazonSocial:has-feedback" }}>
+          <label class="form-label" for="razonSocial">Raz&oacute;n Social</label>
+          {{input type="text" value=persona.razonSocial class="form-control" placeholder="Razón Social"}}
+          <span class="help-block">{{error feedback.personaRazonSocial}}</span>
+          {{#if feedback.personaRazonSocial}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+        </div>
+        {{else}}
+        <div class="col-lg-3" {{bind-attr class="feedback.personaNombre:has-error feedback.personaNombre:has-feedback" }}>
+          <label class="form-label" for="nombre">Nombre</label>
+          {{input type="text" value=persona.nombre class="form-control" placeholder="Nombre"}}
+          <span class="help-block">{{error feedback.personaNombre}}</span>
+          {{#if feedback.personaNombre}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+        </div>
+        <div class="col-lg-3" {{bind-attr class="feedback.personaApellido:has-error feedback.personaApellido:has-feedback" }}>
+          <label class="form-label" for="apellido">Apellido</label>
+          {{input type="text" value=persona.apellido class="form-control" placeholder="Apellido"}}
+          <span class="help-block">{{error feedback.personaApellido}}</span>
+          {{#if feedback.personaApellido}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+        </div>
+        {{/if}}
+        <div class="col-lg-2" {{bind-attr class="feedback.personaSexo:has-error feedback.personaSexo:has-feedback" }}>
+          <label class="form-label" for="sexo">Sexo</label>
+          {{view Ember.Select content=sexos selection=persona.sexo prompt="Seleccione un valor..." value=persona.sexo classNames="form-control"}}
+          <span class="help-block">{{error feedback.personaSexo}}</span>
+          {{#if feedback.personaSexo}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+        </div>
+      </div>
+      <div class="form-group">
+          <div class="col-lg-4" {{bind-attr class="feedback.personaFechaNacimiento:has-error
+          feedback.personaFechaNacimiento:has-feedback" }}>
+            <label class="form-label" for="fechaNacimiento">Fecha Nacimiento</label>
+            {{view Bodega.views.DatePickerView value=persona.fechaNacimiento}}
+            <span class="help-block">{{error feedback.personaFechaNacimiento}}</span>
+            {{#if feedback.personaFechaNacimiento}}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+          </div>
+        <div class="col-lg-2" {{bind-attr class="errors.personaEdad:has-error errors.personaEdad:has-feedback" }}>
+          <label class="form-label" for="edad">Edad</label>
+          {{number-input value=persona.edad class="form-control" placeholder="Edad"}}
+          <span class="help-block">{{error errors.personaEdad}}</span>
+          {{#if errors.personaEdad}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+        </div>
+        <div class="col-lg-4" {{bind-attr class="feedback.personaLugarNacimiento:has-error feedback.personaLugarNacimiento:has-feedback" }}>
+          <label class="form-label" for="lugarNacimiento">Lugar de Nacimiento</label>
+          {{input type="text" value=lugarNacimiento class="form-control" placeholder="Lugar de Nacimiento"}}
+          <span class="help-block">{{error feedback.personaLugarNacimiento}}</span>
+          {{#if feedback.personaLugarNacimiento}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-6" {{bind-attr class="errors.personaNumeroSeguro:has-error errors.personaNumeroSeguro:has-feedback" }}>
+          <label class="form-label" for="numeroSeguro">Seguro Médico (Editable en Otros Datos)</label>
+          {{input value=otrosDatos.empresaDeSeguro class="form-control" placeholder="Nro de Seguro" disabled="true"}}
+          <span class="help-block">{{error errors.personaNumeroSeguro}}</span>
+          {{#if errors.personaNumeroSeguro}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+        </div>
+      </div>
+      {{ partial "pacientes/datos_personales/direccion" }}
+    </div>
+  </div>
+</div>

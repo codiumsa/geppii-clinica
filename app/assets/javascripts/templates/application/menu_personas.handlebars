@@ -1,0 +1,23 @@
+{{#if permisoIndexPersonas}}
+<li class="sub-menu  dcjq-parent-li">
+  <a href="javascript:;" class="dcjq-parent">
+    <i class="fa fa-female fa-male"></i>
+    <span>Personas</span>
+  </a>
+  <ul class="sub" style="overflow: hidden; display: block;">
+    {{#isAuthorized 'FE_index_usuarios'}}
+    <li>
+      {{#link-to "usuarios"}}
+      <span>Usuarios</span>
+      {{/link-to}}
+    </li>
+    {{/isAuthorized}} {{#if habilitaVendedores}}
+    <li>
+      {{#link-to "vendedores"}}
+      <span>Vendedores</span>
+      {{/link-to}}
+    </li>
+    {{/if}}
+  </ul>
+</li>
+{{/if}}

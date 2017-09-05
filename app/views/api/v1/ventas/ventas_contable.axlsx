@@ -1,0 +1,91 @@
+ventas = @ventas
+params = @params
+
+# fecha_before = params[:by_fecha_registro_before]
+# fecha_after = params[:by_fecha_registro_after]
+# fecha_on = params[:by_fecha_registro_on]
+
+
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  ventaTitle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  ventaContent = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  wb.add_worksheet(name: "ventas_contable") do |sheet|
+    # time = Time.now.strftime("%d/%m/%Y")
+    # if fecha_after and fecha_before
+    #   antes = fecha_after.to_date + 1
+    #   despues = fecha_before.to_date - 1
+    #   if antes != despues
+    #     fecha_str = "Ventas entre #{despues}" + " y " + "#{antes}"
+    #   else
+    #     fecha_str =  "Ventas del día: #{despues}"
+    #   end
+    # elsif fecha_after
+    #   fecha_str = "Ventas después de: #{fecha_after.to_date}"
+    # elsif fecha_before
+    #   fecha_str = "Ventas antes de:" + "#{fecha_before.to_date}"
+    # elsif fecha_on
+    #   fecha_str =  "Ventas del día: #{fecha_on.to_date}"
+    # else
+    #   fecha_str =  "Ventas hasta #{Time.now.to_date}"
+    # end
+    #
+    # sheet.add_row ["Geppii","Reporte de Ventas Contable","#{fecha_str}"," Fecha: #{time}"], style: [wrap_text,wrap_text,wrap_text,wrap_text]
+    # sheet.add_row []
+    sheet.add_row ["ven_tipimp","ven_gra05","ven_iva05","ven_disg05","cta_iva05","ven_rubgra","ven_rubg05","ven_disexe","ven_numero","ven_imputa","ven_sucurs","generar","form_pag","ven_centro","ven_provee","ven_cuenta","ven_prvnom","ven_tipofa","ven_fecha","ven_totfac","ven_exenta","ven_gravad","ven_iva","ven_retenc","ven_aux","ven_ctrl","ven_con","ven_cuota","ven_fecven","cant_dias","origen","cambio","valor","moneda","exen_dolar","concepto","cta_iva","cta_caja","tkdesde","tkhasta","caja","ven_disgra","forma_devo","ven_cuense","anular","reproceso","cuenta_exe","usu_ide"], style: [ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle,ventaTitle]
+
+    ventas.map do |venta|
+      gravado5 = 0
+      gravado10 = 0
+      exento = 0
+      venta.venta_detalles.map do |ventaDetalle|
+        producto = Producto.unscoped.find(ventaDetalle.producto_id)
+          if producto.iva == 10
+            gravado10 += ventaDetalle.subtotal / 1.10
+          elsif producto.iva == 5
+            gravado5 += ventaDetalle.subtotal / 1.05
+          elsif producto.iva == 0
+            exento += ventaDetalle.producto.precio
+          end
+      end
+      if venta.credito.eql? true
+        primera_fecha = venta.venta_cuotas.order(:fecha_vencimiento).first.fecha_vencimiento
+        dif_dias = ""
+        if venta.cantidad_cuotas > 1
+          segunda_fecha = venta.venta_cuotas.order(:fecha_vencimiento).second.fecha_vencimiento
+          dif_dias = (segunda_fecha - primera_fecha).to_i
+        end
+      else
+        primera_fecha = ""
+        dif_dias = ""
+      end
+      sheet.add_row ["i","#{gravado5.round(0)}","#{venta.iva5}","","","","","","#{venta.sucursal.id}-#{venta.sucursal.id}-#{venta.nro_factura}","","#{venta.sucursal.codigo}","0","#{venta.credito == false ? "Contado" : "Crédito"}","","","","","#{venta.uso_interno == false ? "Factura" : "Boleta"}","#{venta.fecha_registro.strftime("%d/%m/%y")}","#{venta.total}","#{exento}","#{gravado10.round(0)}","#{venta.iva10}","0","0","0","","#{venta.cantidad_cuotas}","#{primera_fecha}","#{dif_dias}","","","","",0,"","","","","","","","","","#{venta.anulado == true ? "Sí" : "No"}","","","0"],style: [ventaContent,ventaContent,ventaContent,ventaTitle,ventaTitle,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent,ventaContent]
+    end
+  end
+end

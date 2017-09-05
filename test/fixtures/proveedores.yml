@@ -1,0 +1,15 @@
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# Baratote:
+#   razon_social: Baratote
+#   ruc: 12345-6
+#   direccion: abc c/cds
+#   telefono: 123-456
+#   email: baratote@baratote
+#   persona_contacto: --
+#   telefono_contacto: 123-456
+
+Sin_nombre:
+  razon_social: Sin Nombre
+  ruc: 0
+  

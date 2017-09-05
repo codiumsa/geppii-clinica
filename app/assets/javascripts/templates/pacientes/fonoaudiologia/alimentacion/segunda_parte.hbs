@@ -1,0 +1,138 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h5><i class="fa fa-angle-right"></i>Sector Orofacial</h5>
+  </div>
+  Reflejos    
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="col-lg-8">
+	<label class="form-label" for="refeljos">Busqueda:</label>
+	Presente {{view Bodega.views.RadioButton 
+		   value='si' checked=alimentacion.sectorOrofacial.reflejos.busqueda}}
+	Ausente {{view Bodega.views.RadioButton 
+		  value='no' checked=alimentacion.sectorOrofacial.reflejos.busqueda}}
+      </div>
+      <div class="col-lg-8">
+	<label class="form-label" for="refeljos">Succion:</label>
+	Presente {{view Bodega.views.RadioButton 
+		   value='si' checked=alimentacion.sectorOrofacial.reflejos.succion}}
+	Ausente {{view Bodega.views.RadioButton
+		  value='no' checked=alimentacion.sectorOrofacial.reflejos.succion}}
+      </div>
+      <div class="col-lg-8">
+	<label class="form-label" for="refeljos">Deglucion:</label>
+	Presente {{view Bodega.views.RadioButton 
+		   value='si' checked=alimentacion.sectorOrofacial.reflejos.deglucion}}
+	Ausente {{view Bodega.views.RadioButton
+		  value='no' checked=alimentacion.sectorOrofacial.reflejos.deglucion}}
+      </div>
+      <div class="col-lg-8">
+	<label class="control-label" for="observaciones">Observaciones:</label>
+	{{ textarea name="observaciones" cols="50" rows="5"
+	  value=alimentacion.sectorOrofacial.observaciones}}
+      </div>
+    </div>
+  </div>
+</div>
+{{! morfologia osea}}
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h5><i class="fa fa-angle-right"></i>Morfologia Osea</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="col-lg-8">
+	{{ textarea  name="observaciones" cols="100" rows="5"
+	  value=alimentacion.morfologiaOsea}}
+      </div>
+    </div>
+  </div>
+</div>
+{{! fin morfologia osea}}
+{{! morfologia muscular}}
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h5><i class="fa fa-angle-right"></i>Morfologia Muscular</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="col-lg-3">
+    	<label class="form-label" for="labio">Labio</label>
+	{{view Ember.Select 
+	  content=labios
+	  selection=alimentacion.morfologiaMuscular.labio
+	  prompt="Seleccione un valor..."
+	  value=alimentacion.morfologiaMuscular.labio
+	  classNames="form-control"}}	
+	<span class="help-block">{{error feedback.morfologiaMuscular.labio}}</span>
+      </div>
+      <div class="col-lg-8">
+	<label class="control-label" for="observaciones">Observaciones:</label>
+	{{ textarea  name="observaciones" cols="50"
+	  rows="5" value=alimentacion.morfologiaMuscular.observaciones}}
+      </div>
+    </div>
+  </div>
+</div>
+{{! fin morfologia muscular}}
+{{! Lengua}}
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h5><i class="fa fa-angle-right"></i>Lengua</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="col-lg-3">
+	<label class="form-label" for="lengua">Tipo</label>
+	{{view Ember.Select 
+	  content=lenguaTipos
+	  selection=alimentacion.morfologiaMuscular.lengua.tipo
+	  prompt="Seleccione un valor..."
+	  value=alimentacion.morfologiaMuscular.lengua.tipo
+	  classNames="form-control"}}	
+      </div>
+      <div class="col-lg-3">
+	<label class="form-label" for="lenguaForma">Forma</label>
+	{{view Ember.Select 
+	  content=lenguaFormas
+	  selection=alimentacion.morfologiaMuscular.lengua.forma
+	  prompt="Seleccione un valor..."
+	  value=morfologiaMuscular.lengua.forma
+	  classNames="form-control"}}
+      </div>
+      <div class="col-lg-3">
+	<label class="form-label" for="lenguaTamanho">Tamaño</label>
+	{{view Ember.Select 
+	  content=lenguaTamanhos
+	  selection=alimentacion.morfologiaMuscular.lengua.tamaho
+	  prompt="Seleccione un valor..."
+	  value=alimentacion.morfologiaMuscular.lengua.tamaho
+	  classNames="form-control"}}
+      </div>
+    </div>
+  </div>
+</div>
+{{! fin lengua}}
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h5><i class="fa fa-angle-right"></i>Frenillo Lingual</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="col-lg-3">
+	{{! <label class="form-label" for="lengua">Lengua</label> }}
+	{{view Ember.Select 
+	  content=frenillosLinguales
+	  selection=alimentacion.frenilloLingual.frenillo
+	  prompt="Seleccione un valor..."
+	  value=alimentacion.frenilloLingual.frenillo
+	  classNames="form-control"}}	
+      </div>
+      <div class="col-lg-8">
+	<label class="control-label" for="observaciones">Observaciones:</label>
+	{{ textarea  name="observaciones" cols="50" rows="5"
+	  value=alimentacion.frenilloLingual.observaciones}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<div role="tabpanel" class="tab-pane" id="seguimiento">
+  <div class="col-lg-12">
+    <div class="form-horizontal">
+      <form class="style-form" role="form" {{action "save" on="submit" }} onkeydown="Bodega.keydownFormHandler('controller:sponsors.new', 'save');">
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Contactos</b>
+              {{#link-to 'sponsors.new'}}
+                <button class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="float: right;"></button>
+              {{/link-to}}
+            </h5>
+          </div>
+          <div class="panel-body">
+            <div class="row mt">
+              <div class="col-lg-12">
+                {{!-- {{view Bodega.views.FilterView}} --}}
+                <div class="content-panel table-responsive" style="padding: 0px;">
+                  <table class="table table-bordered table-striped table-condensed">
+                      <thead>
+                          <tr>
+                              <th>RUC</th>
+                              <th>Razon Social</th>
+                              <th>Donado Año</th>
+                              <th>Proyeccion</th>
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                      {{!-- {{#each}}
+                          <tr>
+                              <td>{{persona.ciRuc}}</td>
+                              <td>{{persona.razonSocial}}</td>
+                              <td>2015</td>
+                              <td>2016</td>
+                              <td class="center">
+                                {{#link-to 'sponsor.edit' this classNames='table-action'}}
+                                  <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil"></button>
+                                {{/link-to}}
+                                {{#link-to 'sponsor.delete' this classNames='table-action'}}
+                                  <button class="btn btn-theme btn-sm glyphicon glyphicon-remove"
+                                          data-toggle="modal" data-target="#sponsorDelete"></button>
+                                {{/link-to}}
+                              </td>
+                          </tr>
+                      {{/each}} --}}
+                      </tbody>
+                  </table>
+                </div>
+                {{!-- {{view Bodega.views.PaginationView}} --}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-12">
+            {{#isAuthorized 'FE_post_sponsors, FE_put_sponsors'}}
+              <button type="submit" class="btn btn-theme">Guardar</button>
+            {{/isAuthorized}}
+            <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            {{#if id}}
+              <div style="float: right;">
+                <button class="btn btn-theme" {{action generarLegajo}}>Imprimir Legajo
+                  <span class="glyphicon glyphicon-file"></span>
+                </button>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

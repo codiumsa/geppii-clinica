@@ -1,0 +1,18 @@
+version: '2'
+services:
+  db:
+    env_file: ../docker.env
+    image: postgres:9.4.5
+    volumes:
+      - geppii-db:/var/lib/postgresql/data
+  geppii:
+    image: geppii-dev
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  geppii-db:
+    external: true

@@ -1,0 +1,44 @@
+<div role="tabpanel" class="tab-pane" id="fonoaudiologia">
+  <div class="col-lg-12">
+    <div class="form-horizontal">
+      <form class="style-form" role="form" {{ action "save" on="submit"}}
+	    onkeydown="Bodega.keydownFormHandler('controller:clientes.new', 'save');">
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h3><i class="fa fa-angle-right"></i>
+              {{#link-to 'paciente.edit' pacienteActual}}
+                <span>{{pacienteActual.persona.nombre}} {{pacienteActual.persona.apellido}}</span>
+              {{/link-to}}
+              <span class="label label-default">Fonoaudiología</span>
+            </h3>
+          </div>
+        </div>
+        <div role="tabpanel" >
+
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <a href="#ficha" aria-controls="ficha" role="tab" data-toggle="tab">Ficha</a>
+            </li>
+            {{#if consultas}}
+              <li role="presentation">
+                 <a href="#consultas" aria-controls="consultas" role="tab" data-toggle="tab">Consultas</a>
+              </li>
+            {{/if}}
+          </ul>
+          <!-- Tab panes -->
+          <!-- Tab panes -->
+          <div class="tab-content">
+            {{partial "pacientes/fonoaudiologia/ficha" }}
+            {{partial "pacientes/fonoaudiologia/consultas" }}
+          </div>
+
+
+        </div>
+
+  	    <div style="float: left;">
+          <button class="btn btn-theme" {{action 'save'}}>Guardar <span class="glyphicon glyphicon-file"></span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

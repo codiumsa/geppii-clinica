@@ -1,0 +1,48 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Lotes por Depósito
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView}}
+    <div class="content-panel table-responsive" style="padding: 0px;">
+      <table class="table table-bordered table-striped table-condensed">
+          <thead>
+              <tr>
+                  <th>Descripcion</th>
+                  <th>Deposito</th>
+                  {{!-- <th>Código de Barra</th> --}}
+                  <th>Codigo OSI</th>
+                  <th>Codigo OSP</th>
+                  {{!-- <th>Descripcion</th> --}}
+                  <th>Columna</th>
+                  <th>N° de Referencia</th>
+                  <th>Lote</th>
+                  <th>Vencimiento</th>
+                  <th>Existencia</th>
+                  <th>Presentación</th>
+              </tr>
+          </thead>
+          <tbody>
+          {{#each}}
+              <tr>
+                  <td>{{lote.producto.descripcion}}</td>
+                  <td>{{deposito.nombre}}</td>
+                  {{!-- <td>{{lote.producto.codigoBarra}}</td> --}}
+                  <td>{{lote.producto.codigoLocal}}</td>
+                  <td>{{lote.producto.codigoExterno}}</td>
+                  {{!-- <td>{{descripcion}}</td> --}}
+                  <td>{{contenedor.codigo}}</td>
+                  <td>{{lote.producto.nroReferencia}}</td>
+                  <td>{{lote.codigoLote}}</td>
+                  <td>{{dateformat lote.fechaVencimiento}}</td>
+                  <td>{{cantidad}}</td>
+                  <td>{{lote.producto.presentacion}}</td>
+              </tr>
+          {{/each}}
+          </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

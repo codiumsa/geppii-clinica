@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  proceso: proceso_1
+  deposito: punto_venta_matriz_2
+  cantidad: 1
+  estado: REGISTRADO
+  fecha: 2014-09-21
+
+two:
+  id: 2
+  proceso: proceso_2
+  deposito: punto_venta_matriz_1
+  cantidad: REGISTRADO
+  estado: MyString
+  fecha: 2014-09-21

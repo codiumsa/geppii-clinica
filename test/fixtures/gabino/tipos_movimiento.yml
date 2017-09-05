@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+credito:
+  id: 1
+  codigo: C
+  descripcion: Crédito
+
+debito:
+  id: 2
+  codigo: D
+  descripcion: Débito

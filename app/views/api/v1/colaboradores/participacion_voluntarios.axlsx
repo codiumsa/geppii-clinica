@@ -1,0 +1,199 @@
+colaboradores = @colaboradores
+viaje_id = @viaje_id
+curso_id = @curso_id
+campanha_id = @campanha_id
+
+by_fecha_posible_on = @by_fecha_posible_on
+by_fecha_posible_before = @by_fecha_posible_before
+by_fecha_posible_after = @by_fecha_posible_after
+
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  
+  h1Style = style.add_style :fg_color=> "FFFFFF",
+           :b => true,
+           :sz => 12,
+           :bg_color => "4298CD",
+           :border => { :style => :thin, :color => "00" },
+           :alignment => { :horizontal => :center,
+                           :vertical => :center ,
+                               :wrap_text => true}
+
+  h2Style = style.add_style :fg_color=> "FFFFFF",
+                            :bg_color=>"5F707A",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  contentStyle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  wb.add_worksheet(name: "participacion_voluntarios") do |sheet|
+    time = Time.now.strftime("%d/%m/%Y")
+    if by_fecha_posible_after and by_fecha_posible_before
+      fecha_str = "Participación de Voluntarios en Cursos, viajes, y/o campañas entre #{by_fecha_posible_after.to_date}" + " y " + "#{by_fecha_posible_before.to_date}"
+    elsif by_fecha_posible_after
+      fecha_str = "Participación de Voluntarios en Cursos, viajes, y/o campañas después de: #{by_fecha_posible_after.to_date}"
+    elsif by_fecha_posible_before
+      fecha_str = "Participación de Voluntarios en Cursos, viajes, y/o campañas antes de:" + "#{by_fecha_posible_before.to_date}"
+    elsif by_fecha_posible_on
+      fecha_str =  "Participación de Voluntarios en Cursos, viajes, y/o campañas del día: #{by_fecha_posible_on.to_date}"
+    else
+      fecha_str =  "Participación de Voluntarios en Cursos, viajes, y/o campañas hasta #{Time.now.to_date}"
+    end
+    existeRegistros = false
+    sheet.add_row ["Geppii"], style:  [wrap_text]
+    sheet.add_row ["#{fecha_str}"], style:  [wrap_text]
+    sheet.merge_cells "A1:E1"
+    sheet.merge_cells "A2:E2"
+    sheet.add_row []
+
+          if (by_fecha_posible_after and by_fecha_posible_before)
+            if viaje_id == "-1"
+              viajes = Viaje.all().where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_posible_after.to_date}','#{by_fecha_posible_before.to_date}', '[]')")
+            elsif curso_id == "-1"
+              cursos = Curso.all().where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_posible_after.to_date}','#{by_fecha_posible_before.to_date}', '[]')")
+            elsif campanha_id == "-1"
+              campanhas = Campanha.all().where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_posible_after.to_date}','#{by_fecha_posible_before.to_date}', '[]')")
+            else
+              viajes = Viaje.all().where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_posible_after.to_date}','#{by_fecha_posible_before.to_date}', '[]')")
+              cursos = Curso.all().where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_posible_after.to_date}','#{by_fecha_posible_before.to_date}', '[]')")
+              campanhas = Campanha.all().where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_posible_after.to_date}','#{by_fecha_posible_before.to_date}', '[]')")
+            end
+          elsif by_fecha_posible_after
+            if viaje_id == "-1"
+              viajes = Viaje.all().where("fecha_inicio > '#{by_fecha_posible_after.to_date}'")
+            elsif curso_id == "-1"
+              cursos = Curso.all().where("fecha_inicio > '#{by_fecha_posible_after.to_date}'")
+            elsif campanha_id == "-1"
+              campanhas = Campanha.all().where("fecha_inicio > '#{by_fecha_posible_after.to_date}'")
+            else
+              viajes = Viaje.all().where("fecha_inicio > '#{by_fecha_posible_after.to_date}'")
+              cursos = Curso.all().where("fecha_inicio > '#{by_fecha_posible_after.to_date}'")
+              campanhas = Campanha.all().where("fecha_inicio > '#{by_fecha_posible_after.to_date}'")
+            end
+          elsif by_fecha_posible_before
+            if viaje_id == "-1"
+              viajes = Viaje.all().where("fecha_fin > '#{by_fecha_posible_before.to_date}'")
+            elsif curso_id == "-1"
+              viajes = Viaje.all().where("fecha_fin > '#{by_fecha_posible_before.to_date}'")
+            elsif campanha_id == "-1"
+              campanhas = Campanha.all().where("fecha_fin > '#{by_fecha_posible_before.to_date}'")
+            else
+              viajes = Viaje.all().where("fecha_fin > '#{by_fecha_posible_before.to_date}'")
+              cursos = Curso.all().where("fecha_fin > '#{by_fecha_posible_before.to_date}'")
+              campanhas = Campanha.all().where("fecha_fin > '#{by_fecha_posible_before.to_date}'")
+            end
+          elsif by_fecha_posible_on
+            if viaje_id == "-1"
+              viajes = Viaje.all().where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_on.to_date}','#{by_fecha_on.to_date}', '[]')")
+            elsif curso_id == "-1"
+              cursos = Curso.all().where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_on.to_date}','#{by_fecha_on.to_date}', '[]')")
+            elsif campanha_id == "-1"
+              campanhas = Campanha.all.where("tsrange(fecha_incio, fecha_fin, '[]') && tsrange('#{by_fecha_on.to_date}','#{by_fecha_on.to_date}', '[]')")
+            else
+              viajes = Viaje.all().where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_on.to_date}','#{by_fecha_on.to_date}', '[]')")
+              cursos = Curso.all().where("tsrange(fecha_inicio, fecha_fin, '[]') && tsrange('#{by_fecha_on.to_date}','#{by_fecha_on.to_date}', '[]')")
+              campanhas = Campanha.all.where("tsrange(fecha_incio, fecha_fin, '[]') && tsrange('#{by_fecha_on.to_date}','#{by_fecha_on.to_date}', '[]')")
+            end
+          else
+            if viaje_id == "-1"
+              viajes = Viaje.all()
+            elsif curso_id == "-1"
+              cursos = Curso.all()
+            elsif campanha_id == "-1"
+              campanhas = Campanha.all()
+            else
+              if !viaje_id.nil? && viaje_id != "-1"
+                viajes = Viaje.by_id(viaje_id.to_i)
+              elsif !curso_id.nil? && curso_id != "-1"
+                cursos = Curso.by_id(curso_id.to_i)
+              elsif !campanha_id.nil? && campanha_id != "-1"
+                campanhas = Campanha.by_id(campanha_id.to_i)
+              else
+                viajes = Viaje.all()
+                cursos = Curso.all()
+                campanhas = Campanha.all()
+              end
+            end
+          end
+
+        if ((!viajes.nil? && !viajes.empty?) || (!cursos.nil? && !cursos.empty?) || (!campanhas.nil? && !campanhas.empty?))
+          if  (!viajes.nil? && !viajes.empty?)
+            sheet.add_row ["Viajes","Cantidad: #{viajes.length}"], style: [wrap_text,wrap_text]
+            viajes.map do |viaje|
+              #TITULO CABECERA
+              sheet.add_row ["Descripción","Origen", "Destino", "Inicio", "Fin"], style: [h1Style,h1Style,h1Style,h1Style,h1Style]
+              #CONTENIDO CABECERA
+              sheet.add_row ["#{viaje.descripcion}","#{viaje.origen}", "#{viaje.destino}", "#{viaje.fecha_inicio.to_date}", "#{viaje.fecha_fin.to_date}"], style: [contentStyle,contentStyle,contentStyle,contentStyle,contentStyle]
+              #TITULO DETALLE
+              if (viaje.viaje_colaboradores.size>0)
+                sheet.add_row ["Voluntario","Especialidad", "Costo Ticket", "Costo Estadía", "Compañía", "Observación"], style: [h2Style,h2Style,h2Style,h2Style,h2Style,h2Style]
+              end
+              viaje.viaje_colaboradores.map do |viajeColaborador|
+                #CONTENIDO DETALLE
+                sheet.add_row ["#{viajeColaborador.colaborador.persona.razon_social}","#{viajeColaborador.colaborador.nombre_especialidad}", "#{viajeColaborador.costo_ticket}", "#{viajeColaborador.costo_estadia}", "#{viajeColaborador.companhia}", "#{viajeColaborador.observacion}"], style: [contentStyle,contentStyle, contentStyle, contentStyle, contentStyle, contentStyle]
+              end
+              sheet.add_row []
+            end
+          end
+          if (!cursos.nil? && !cursos.empty?)
+            sheet.add_row ["Cursos","Cantidad: #{cursos.length}"], style: [wrap_text,wrap_text]
+
+            cursos.map do |curso|
+              #TITULO CABECERA
+              sheet.add_row ["Curso","Asistentes", "Observación", "Lugar", "Inicio", "Fin"], style: [h1Style,h1Style,h1Style,h1Style,h1Style,h1Style]
+              
+              #CONTENIDO CABECERA
+              sheet.add_row ["#{curso.descripcion}","#{curso.curso_colaboradores.length}", "#{curso.observaciones}", "#{curso.lugar}", "#{curso.fecha_inicio.to_date}", "#{curso.fecha_fin.to_date}"], style: [contentStyle,contentStyle,contentStyle,contentStyle,contentStyle,contentStyle]
+              
+              #TITULO DETALLE
+              if (curso.curso_colaboradores.size>0)
+                sheet.add_row ["Voluntario","Especialidad", "Observación"], style: [h2Style,h2Style,h2Style]
+              end
+              curso.curso_colaboradores.map do |cursoColaborador|
+                sheet.add_row ["#{cursoColaborador.colaborador.persona.razon_social}", "#{cursoColaborador.colaborador.nombre_especialidad}", "#{cursoColaborador.observacion}"], style: [contentStyle, contentStyle, contentStyle]
+              end
+              sheet.add_row []
+            end
+          end
+          if (!campanhas.nil? && !campanhas.empty?)
+            sheet.add_row ["Campañas","Cantidad: #{campanhas.length}"], style: [wrap_text,wrap_text]
+            campanhas.map do |campanha|
+              sheet.add_row ["#{campanha.nombre}","Cantidad de Voluntarios: #{campanha.campanhas_colaboradores.length}"], style: [h1Style,h1Style]
+
+              #TITULO DETALLE
+              if (campanha.campanhas_colaboradores.size>0)
+                sheet.add_row ["Voluntario","Especialidad", "Observación"], style: [h2Style,h2Style,h2Style]
+              end
+
+              campanha.campanhas_colaboradores.map do |campanhaColaborador|
+                sheet.add_row ["#{campanhaColaborador.colaborador.persona.razon_social}","#{campanhaColaborador.colaborador.nombre_especialidad}","#{campanhaColaborador.observaciones}"], style: [contentStyle, contentStyle,contentStyle]
+              end
+              sheet.add_row []
+            end
+          end
+        else
+          sheet.add_row ["No existen cursos, viajes, y/o campañas con los filtros establecidos"], style: [wrap_text]
+        end
+  end
+end

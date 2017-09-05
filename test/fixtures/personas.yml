@@ -1,0 +1,82 @@
+# == Schema Information
+#
+# Table name: personas
+#
+#  id               :integer          not null, primary key
+#  tipo_persona     :string(255)
+#  ci_ruc           :string(255)
+#  razon_social     :string(255)
+#  direccion        :string(255)
+#  barrio           :string(255)
+#  ciudad_id        :integer
+#  telefono         :string(255)
+#  celular          :string(255)
+#  estado_civil     :string(255)
+#  fecha_nacimiento :date
+#  correo           :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+ # goby:
+ #   tipo_persona: Física
+ #   ci_ruc: 3322869-8
+ #   razon_social: Gabriela Gaona
+ #   direccion: Campo Via 123
+ #   barrio: Pitiantuta
+ #   ciudad: TACUATI
+ #   telefono: 521345
+ #   celular: 0983674866
+ #   estado_civil: Soltero
+ #   fecha_nacimiento: 1990-11-18
+ #   correo: gabriela@codium.com.py
+   #cargo: oficio
+   #antiguedad: 3
+   #salario_mensual: 1500000
+   #matricula_nro: 
+   #ramo: 
+   #otros_ingresos: 
+
+# shire:
+#   tipo_persona: Física
+#   ci_ruc: 3322069-8
+#   razon_social: Jorge Ramírez
+#   direccion: Aka karaja 209
+#   barrio: Pitiantuta
+#   ciudad: TACUATI
+#   telefono: 521005
+#   celular: 09830074866
+#   estado_civil: Soltero
+#   fecha_nacimiento: 1989-11-19
+#   correo: jorge@codium.com.py
+#   #cargo: oficio
+#   #antiguedad: 3
+#   #salario_mensual: 3500000
+#   #matricula_nro: 
+#   #ramo: 
+#   #otros_ingresos: 
+
+# rodri:
+#   tipo_persona: Física
+#   ci_ruc: 3654364-8
+#   razon_social: Rodrigo Parra
+#   direccion: Guaraníes 876
+#   barrio: Lambaré
+#   ciudad: TACUATI
+#   telefono: 521345
+#   celular: 0983674866
+#   estado_civil: Soltero
+#   fecha_nacimiento: 1990-11-18
+#   correo: rodrigo@codium.com.py
+#   #cargo: oficio
+#   #antiguedad: 3
+#   #salario_mensual: 9500000
+#   #matricula_nro: 
+#   #ramo: 
+#   #otros_ingresos: 
+sinNombre:
+  tipo_persona: Física
+  ci_ruc: 0
+  razon_social: Sin Nombre

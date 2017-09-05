@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: referencias
+#
+#  id              :integer          not null, primary key
+#  nombre          :string(255)
+#  telefono        :string(255)
+#  tipo_referencia :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  cliente_id      :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: Francisco Javier
+  telefono: 0981676364
+  tipo_referencia: PERSONAL
+  cliente: cgoby
+
+two:
+  nombre: Gabriela Gaona
+  telefono: 0981931249
+  tipo_referencia: COMERCIAL
+  cliente: cgoby

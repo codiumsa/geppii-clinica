@@ -1,0 +1,67 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+heineken:
+  codigo_barra: 111111
+  descripcion: Heineken Lata Larga
+  unidad: cc
+  margen: 50
+  precio_compra: 7500
+  precio: 8000
+  categorias: cervezas
+  iva: 10
+  stock_minimo: 50
+  precio_promedio: 7500
+  activo: true
+  pack: false
+  moneda: guaranies
+  
+miller:
+  codigo_barra: 222222
+  descripcion: Miller Lite
+  unidad: cc
+  margen: 30
+  precio_compra: 8000
+  precio: 10000
+  categorias: cervezas
+  iva: 5
+  stock_minimo: 100
+  precio_promedio: 8000
+  activo: true
+  pack: false
+  moneda: guaranies
+  
+
+
+ourofino:
+  codigo_barra: 333
+  descripcion: Ouro Fino
+  unidad: cc
+  margen: 30
+  precio_compra: 1500
+  precio: 2000
+  categorias: cervezas
+  iva: 10
+  stock_minimo: 50
+  precio_promedio: 1500
+  activo: true
+  pack: false
+  moneda: guaranies
+  
+
+
+ballentines:
+  codigo_barra: 44444
+  descripcion: Ballantine's
+  unidad: cc
+  margen: 30
+  precio_compra: 45000
+  precio: 90000
+  categorias: whiskies
+  iva: 10
+  stock_minimo: 50
+  precio_promedio: 75000
+  activo: true
+  pack: false
+  moneda: guaranies
+  
+

@@ -1,0 +1,130 @@
+<div role="tabpanel" class="tab-pane" id="fichas">
+  <div class="form-horizontal">
+    <form class="style-form" role="form" {{action "save" on="submit" }} onkeydown="Bodega.keydownFormHandler('controller:clientes.new', 'save');">
+      <div class="col-lg-12">
+        <div class="col-lg-4">
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="col-lg-4">
+          <div class="weather-3 pn centered">
+            <i class="fa fa-folder-open"></i>
+            <button type="button" class="btn btn-warning btn-lg btn-block"
+            {{action "goEditFicha" id 0 'fonoaudiologia'}}>
+              <b>Ficha</b>
+            </button>
+            <div class="info">
+              <div class="row">
+                <h3 class="centered">Fonoaudiología</h3>
+                <div class="col-sm-6 col-xs-6 pull-left">
+                  {{#link-to 'fichas' (query-params paciente_id=id especialidad="Fonoaudiologia")}}
+                    <p class="goleft"><i class="fa fa-sort-amount-desc"></i>Fichas Históricas</p>
+                  {{/link-to}}
+                </div>
+                <div class="col-sm-6 col-xs-6 pull-right">
+                  <p class="goright"><i class="fa fa-info-circle"></i>Tratamientos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="weather-3 pn centered">
+            <i class="fa fa-folder-open"></i>
+            <button type="button" class="btn btn-warning btn-lg btn-block"
+            {{action "goEditFicha" id 0 'odontologia'}}>
+              <b>Ficha</b>
+            </button>
+            <div class="info">
+              <div class="row">
+                <h3 class="centered">Odontología</h3>
+                <div class="col-sm-6 col-xs-6 pull-left">
+                  {{#link-to 'fichas' (query-params paciente_id=id especialidad="Odontologia")}}
+                    <p class="goleft"><i class="fa fa-sort-amount-desc"></i>Fichas Históricas</p>
+                  {{/link-to}}
+                </div>
+                <div class="col-sm-6 col-xs-6 pull-right">
+                  <p class="goright"><i class="fa fa-info-circle"></i>Tratamientos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="weather-3 pn centered">
+            <i class="fa fa-folder-open"></i>
+            <button type="button" class="btn btn-warning btn-lg btn-block"
+            {{action "goEditFicha" id 0 'nutricion'}}>
+              <b>Ficha</b>
+            </button>
+            <div class="info">
+              <div class="row">
+                <h3 class="centered">Nutrición</h3>
+                <div class="col-sm-6 col-xs-6 pull-left">
+                  {{#link-to 'fichas' (query-params paciente_id=id especialidad="Nutricion")}}
+                    <p class="goleft"><i class="fa fa-sort-amount-desc"></i>Fichas Históricas</p>
+                  {{/link-to}}
+                </div>
+                <div class="col-sm-6 col-xs-6 pull-right">
+                  <p class="goright"><i class="fa fa-info-circle"></i>Tratamientos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="col-lg-4">
+          </br>
+          </br>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="col-lg-4">
+          <div class="weather-3 pn centered">
+            <i class="fa fa-folder-open"></i>
+            <button type="button" class="btn btn-warning btn-lg btn-block"
+            {{action "goEditFicha" id 0 'cirugia'}}>
+              <b>Ficha</b>
+            </button>
+            <div class="info">
+              <div class="row">
+                <h3 class="centered">Cirugía</h3>
+                <div class="col-sm-6 col-xs-6 pull-left">
+                  {{#link-to 'fichas' (query-params paciente_id=id especialidad="Cirugia")}}
+                    <p class="goleft"><i class="fa fa-sort-amount-desc"></i>Fichas Históricas</p>
+                  {{/link-to}}
+                </div>
+                <div class="col-sm-6 col-xs-6 pull-right">
+                  <p class="goright"><i class="fa fa-info-circle"></i>Tratamientos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="weather-3 pn centered">
+            <i class="fa fa-folder-open"></i>
+            <button type="button" class="btn btn-warning btn-lg btn-block"
+            {{action "goEditFicha" id 0 'psicologia'}}>
+              <b>Ficha</b>
+            </button>
+            <div class="info">
+              <div class="row">
+                <h3 class="centered">Psicología</h3>
+                <div class="col-sm-6 col-xs-6 pull-left">
+                  {{#link-to 'fichas' (query-params paciente_id=id especialidad="Psicologia")}}
+                    <p class="goleft"><i class="fa fa-sort-amount-desc"></i>Fichas Históricas</p>
+                  {{/link-to}}
+                </div>
+                <div class="col-sm-6 col-xs-6 pull-right">
+                  <p class="goright"><i class="fa fa-info-circle"></i>Tratamientos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

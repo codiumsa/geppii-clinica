@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+efectivo:
+  nombre: Efectivo
+  codigo: EF
+
+debito:
+  nombre: Tarjeta de Débito
+  codigo: TD
+
+credito:
+  nombre: Tarjeta de Crédito
+  codigo: TC

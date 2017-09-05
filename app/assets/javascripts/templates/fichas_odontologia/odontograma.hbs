@@ -1,0 +1,165 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion"
+	 href="#odontograma"><i class="fa fa-angle-right">
+	 </i>Odontograma</a>
+    </h4>
+  </div>
+  <div id="odontograma" class="panel-collapse collapse">
+    <div class="unselectable" id=odontograma>
+      {{! -- }}
+      <div class="panel-body">
+	<div class="form-group">
+	  <div class="col-lg-4">
+	    <fieldset>
+	      <label>Codigos</label>
+	      <ul>
+		<li>Azul: tratamientos realizados</li>
+		<li>Rojo: tratamiento a realizar</li>
+		<li>Verde: realizado en OSP.</li>
+	      </ul>
+	    </fieldset>
+	  </div>
+	</div>
+      </div>
+      <div class="panel-body">
+	<div class="form-group">
+	  {{! superior izquierdo }}
+	  <div class="col-lg-6">
+	    <div class="panel panel-default" style="margin-top: 15px;">
+	      <div class="panel-heading">
+		<h5 class="panel-title">
+		  Superior Izquierdo
+		</h5>
+	      </div>		
+	      {{#each diente in odontograma.superiorIzquierdo }}
+		{{view Bodega.views.OdontogramaSVGView
+		  id=diente.id name=diente.id
+		  diente=diente cuadrante="superiorIzquierdo"}}
+	      {{/each}}
+	    </div>
+	  </div>
+	  {{! fin superior izquierdo }}
+	  <div class="col-lg-6">
+	    <div class="panel panel-default" style="margin-top: 15px;">
+	      <div class="panel-heading">
+		<h5 class="panel-title">
+		  Superior Derecho
+		</h5>
+	      </div>	    
+	      {{#each diente in odontograma.superiorDerecho }}
+		{{view Bodega.views.OdontogramaSVGView
+		  id=diente.id name=diente.id
+		  diente=diente cuadrante="superiorDerecho"}}
+	      {{/each}}
+	    </div>
+	  </div>
+	  {{! inferior }}
+	  <div class="col-lg-6">
+	    <div class="panel panel-default" style="margin-top: 15px;">
+	      <div class="panel-heading">
+		<h5 class="panel-title">
+		  Inferior Izquierdo
+		</h5>
+	      </div>
+	      {{#each diente in odontograma.inferiorIzquierdo }}
+		{{view Bodega.views.OdontogramaSVGView
+		  id=diente.id name=diente.id
+		  diente=diente cuadrante="inferiorIzquierdo"}}
+	      {{/each}}
+	    </div>
+	  </div>
+	  <div class="col-lg-6">
+	    <div class="panel panel-default" style="margin-top: 15px;">
+	      <div class="panel-heading">
+		<h5 class="panel-title">
+		  Inferior Derecho
+		</h5>
+	      </div>
+	      {{#each diente in odontograma.inferiorDerecho }}
+		{{view Bodega.views.OdontogramaSVGView
+		  id=diente.id name=diente.id
+		  diente=diente cuadrante="inferiorDerecho"}}
+	      {{/each}}
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+    {{! dientes de leche }}
+    <div class="panel panel-default" style="margin-top: 15px;">
+      <div class="panel-heading">
+	<h4 class="panel-title">
+	  Dientes de Leche
+	</h4>
+      </div>
+      <div class="unselectable" id=odontograma>
+	<div class="panel-body">
+	  <div class="form-group">
+	    {{! superior izquierdo }}
+	    <div class="col-lg-6">
+	      <div class="panel panel-default" style="margin-top: 15px;">
+		<div class="panel-heading">
+		  <h5 class="panel-title">
+		    Superior Izquierdo
+		  </h5>
+		</div>		
+		{{#each diente in odontograma.lecheSuperiorIzquierdo }}
+		  {{view Bodega.views.OdontogramaSVGView
+		    id=diente.id name=diente.id
+		    diente=diente cuadrante="superiorIzquierdo"}}
+		{{/each}}
+	      </div>
+	    </div>
+	    {{! fin superior izquierdo }}
+	    <div class="col-lg-6">
+	      <div class="panel panel-default" style="margin-top: 15px;">
+		<div class="panel-heading">
+		  <h5 class="panel-title">
+		    Superior Derecho
+		  </h5>
+		</div>	    
+		{{#each diente in odontograma.lecheSuperiorDerecho }}
+		  {{view Bodega.views.OdontogramaSVGView
+		    id=diente.id name=diente.id
+		    diente=diente cuadrante="superiorDerecho"}}
+		{{/each}}
+	      </div>
+	    </div>
+	    {{! inferior }}
+	    <div class="col-lg-6">
+	      <div class="panel panel-default" style="margin-top: 15px;">
+		<div class="panel-heading">
+		  <h5 class="panel-title">
+		    Inferior Izquierdo
+		  </h5>
+		</div>
+		{{#each diente in odontograma.lecheInferiorIzquierdo }}
+		  {{view Bodega.views.OdontogramaSVGView
+		    id=diente.id name=diente.id
+		    diente=diente cuadrante="inferiorIzquierdo"}}
+		{{/each}}
+	      </div>
+	    </div>
+	    <div class="col-lg-6">
+	      <div class="panel panel-default" style="margin-top: 15px;">
+		<div class="panel-heading">
+		  <h5 class="panel-title">
+		    Inferior Derecho
+		  </h5>
+		</div>
+		{{#each diente in odontograma.lecheInferiorDerecho }}
+		  {{view Bodega.views.OdontogramaSVGView
+		    id=diente.id name=diente.id
+		    diente=diente cuadrante="inferiorDerecho"}}
+		{{/each}}
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+    {{ partial "fichas_odontologia/plan_tratamiento" }}
+  </div>
+</div>

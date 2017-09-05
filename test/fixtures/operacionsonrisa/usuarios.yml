@@ -1,0 +1,48 @@
+administrador:
+  id: 1
+  nombre: Administrador User
+  username: administrador
+  email: administrador@example.com
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: administrador
+  sucursales: sucursal_1
+depositero:
+  id: 2
+  nombre: depositero
+  username: depositero
+  email: depositero@example.com
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: depositero
+  sucursales: sucursal_1
+doctor:
+  id: 3
+  nombre: doctor
+  username: doctor
+  email: doctor@example.com
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: doctor
+  sucursales: sucursal_1
+asistente_administrativa:
+  id: 4
+  nombre: asistente_administrativa
+  username: asistente_administrativa
+  email: asistente_administrativa@example.com
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: asistente_administrativa
+  sucursales: sucursal_1
+coordinador_campanhas:
+  id: 5
+  nombre: coordinador_campanhas
+  username: coordinador_campanhas
+  email: coordinador_campanhas@example.com
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: coordinador_campanhas
+  sucursales: sucursal_1
+doctor:
+  id: 3
+  nombre: psicologo
+  username: psicologo
+  email: doctor@example.com
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: psicologo
+  sucursales: sucursal_1

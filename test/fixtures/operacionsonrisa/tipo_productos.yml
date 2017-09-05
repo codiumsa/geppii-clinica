@@ -1,0 +1,101 @@
+medicamento:
+    descripcion: Medicamento
+    codigo: M
+    usa_lote: true
+    procedimiento: false
+    especialidad: false
+    stock: true
+    producto_osi: true
+
+descartables:
+    descripcion: Descartables
+    codigo: D
+    usa_lote: true
+    procedimiento: false
+    especialidad: false
+    stock: true
+    producto_osi: true
+
+
+
+alimentos:
+    descripcion: Alimentos
+    codigo: ALI
+    usa_lote: true
+    procedimiento: false
+    especialidad: false
+    stock: true
+    producto_osi: false
+
+insumos:
+    descripcion: Insumos Varios
+    codigo: INS
+    usa_lote: true
+    procedimiento: false
+    especialidad: false
+    stock: true
+    producto_osi: false
+
+equipos:
+    descripcion: Equipos
+    codigo: EQ
+    usa_lote: false
+    procedimiento: false
+    especialidad: false
+    stock: true
+    producto_osi: false
+
+muebles:
+    descripcion: Muebles
+    codigo: MUE
+    usa_lote: false
+    procedimiento: false
+    especialidad: false
+    stock: true
+    producto_osi: false
+
+
+merchandising:
+    descripcion: Merchandising
+    codigo: MKT
+    usa_lote: false
+    procedimiento: false
+    especialidad: false
+    stock: true
+    producto_osi: false
+
+consulta:
+    especialidad: true
+    procedimiento: false
+    stock: false
+    usa_lote: false
+    codigo: C
+    descripcion: Consulta
+    producto_osi: false
+
+tratamiento:
+    especialidad: true
+    procedimiento: true
+    stock: false
+    usa_lote: false
+    codigo: T
+    descripcion: Tratamiento
+    producto_osi: false
+
+set:
+    especialidad: false
+    procedimiento: false
+    stock: true
+    usa_lote: false
+    codigo: SET
+    descripcion: Set
+    producto_osi: false
+
+diagnostico:
+    especialidad: true
+    procedimiento: false
+    stock: false
+    usa_lote: false
+    codigo: DIAG
+    descripcion: Diagnóstico
+    producto_osi: false

@@ -1,0 +1,423 @@
+BE_index_sesion_cajas:
+  codigo: BE_index_sesion_cajas
+  descripcion: BE_index_sesion_cajas
+BE_show_sesion_cajas:
+  codigo: BE_show_sesion_cajas
+  descripcion: BE_show_sesion_cajas
+BE_post_sesion_cajas:
+  codigo: BE_post_sesion_cajas
+  descripcion: BE_post_sesion_cajas
+BE_put_sesion_cajas:
+  codigo: BE_put_sesion_cajas
+  descripcion: BE_put_sesion_cajas
+BE_delete_sesion_cajas:
+  codigo: BE_delete_sesion_cajas
+  descripcion: BE_delete_sesion_cajas
+FE_index_sesion_cajas:
+  codigo: FE_index_sesion_cajas
+  descripcion: FE_index_sesion_cajas
+FE_show_sesion_cajas:
+  codigo: FE_show_sesion_cajas
+  descripcion: FE_show_sesion_cajas
+FE_post_sesion_cajas:
+  codigo: FE_post_sesion_cajas
+  descripcion: FE_post_sesion_cajas
+FE_put_sesion_cajas:
+  codigo: FE_put_sesion_cajas
+  descripcion: FE_put_sesion_cajas
+FE_delete_sesion_cajas:
+  codigo: FE_delete_sesion_cajas
+  descripcion: FE_delete_sesion_cajas
+BE_index_cajas:
+  codigo: BE_index_cajas
+  descripcion: BE_index_cajas
+BE_show_cajas:
+  codigo: BE_show_cajas
+  descripcion: BE_show_cajas
+BE_post_cajas:
+  codigo: BE_post_cajas
+  descripcion: BE_post_cajas
+BE_put_cajas:
+  codigo: BE_put_cajas
+  descripcion: BE_put_cajas
+BE_delete_cajas:
+  codigo: BE_delete_cajas
+  descripcion: BE_delete_cajas
+FE_index_cajas:
+  codigo: FE_index_cajas
+  descripcion: FE_index_cajas
+FE_show_cajas:
+  codigo: FE_show_cajas
+  descripcion: FE_show_cajas
+FE_post_cajas:
+  codigo: FE_post_cajas
+  descripcion: FE_post_cajas
+FE_put_cajas:
+  codigo: FE_put_cajas
+  descripcion: FE_put_cajas
+FE_delete_cajas:
+  codigo: FE_delete_cajas
+  descripcion: FE_delete_cajas
+BE_index_categorias:
+  codigo: BE_index_categorias
+  descripcion: BE_index_categorias
+BE_show_categorias:
+  codigo: BE_show_categorias
+  descripcion: BE_show_categorias
+BE_post_categorias:
+  codigo: BE_post_categorias
+  descripcion: BE_post_categorias
+BE_put_categorias:
+  codigo: BE_put_categorias
+  descripcion: BE_put_categorias
+BE_delete_categorias:
+  codigo: BE_delete_categorias
+  descripcion: BE_delete_categorias
+FE_index_categorias:
+  codigo: FE_index_categorias
+  descripcion: FE_index_categorias
+FE_show_categorias:
+  codigo: FE_show_categorias
+  descripcion: FE_show_categorias
+FE_post_categorias:
+  codigo: FE_post_categorias
+  descripcion: FE_post_categorias
+FE_put_categorias:
+  codigo: FE_put_categorias
+  descripcion: FE_put_categorias
+FE_delete_categorias:
+  codigo: FE_delete_categorias
+  descripcion: FE_delete_categorias
+BE_index_clientes:
+  codigo: BE_index_clientes
+  descripcion: BE_index_clientes
+BE_show_clientes:
+  codigo: BE_show_clientes
+  descripcion: BE_show_clientes
+BE_post_clientes:
+  codigo: BE_post_clientes
+  descripcion: BE_post_clientes
+BE_put_clientes:
+  codigo: BE_put_clientes
+  descripcion: BE_put_clientes
+BE_delete_clientes:
+  codigo: BE_delete_clientes
+  descripcion: BE_delete_clientes
+FE_index_clientes:
+  codigo: FE_index_clientes
+  descripcion: FE_index_clientes
+FE_show_clientes:
+  codigo: FE_show_clientes
+  descripcion: FE_show_clientes
+FE_post_clientes:
+  codigo: FE_post_clientes
+  descripcion: FE_post_clientes
+FE_put_clientes:
+  codigo: FE_put_clientes
+  descripcion: FE_put_clientes
+FE_delete_clientes:
+  codigo: FE_delete_clientes
+  descripcion: FE_delete_clientes
+BE_index_compras:
+  codigo: BE_index_compras
+  descripcion: BE_index_compras
+BE_show_compras:
+  codigo: BE_show_compras
+  descripcion: BE_show_compras
+BE_post_compras:
+  codigo: BE_post_compras
+  descripcion: BE_post_compras
+BE_put_compras:
+  codigo: BE_put_compras
+  descripcion: BE_put_compras
+BE_delete_compras:
+  codigo: BE_delete_compras
+  descripcion: BE_delete_compras
+FE_index_compras:
+  codigo: FE_index_compras
+  descripcion: FE_index_compras
+FE_show_compras:
+  codigo: FE_show_compras
+  descripcion: FE_show_compras
+FE_post_compras:
+  codigo: FE_post_compras
+  descripcion: FE_post_compras
+FE_put_compras:
+  codigo: FE_put_compras
+  descripcion: FE_put_compras
+FE_delete_compras:
+  codigo: FE_delete_compras
+  descripcion: FE_delete_compras
+BE_index_precios:
+  codigo: BE_index_precios
+  descripcion: BE_index_precios
+BE_show_precios:
+  codigo: BE_show_precios
+  descripcion: BE_show_precios
+BE_post_precios:
+  codigo: BE_post_precios
+  descripcion: BE_post_precios
+BE_put_precios:
+  codigo: BE_put_precios
+  descripcion: BE_put_precios
+BE_delete_precios:
+  codigo: BE_delete_precios
+  descripcion: BE_delete_precios
+FE_index_precios:
+  codigo: FE_index_precios
+  descripcion: FE_index_precios
+FE_show_precios:
+  codigo: FE_show_precios
+  descripcion: FE_show_precios
+FE_post_precios:
+  codigo: FE_post_precios
+  descripcion: FE_post_precios
+FE_put_precios:
+  codigo: FE_put_precios
+  descripcion: FE_put_precios
+FE_delete_precios:
+  codigo: FE_delete_precios
+  descripcion: FE_delete_precios
+BE_index_productos:
+  codigo: BE_index_productos
+  descripcion: BE_index_productos
+BE_show_productos:
+  codigo: BE_show_productos
+  descripcion: BE_show_productos
+BE_post_productos:
+  codigo: BE_post_productos
+  descripcion: BE_post_productos
+BE_put_productos:
+  codigo: BE_put_productos
+  descripcion: BE_put_productos
+BE_delete_productos:
+  codigo: BE_delete_productos
+  descripcion: BE_delete_productos
+FE_index_productos:
+  codigo: FE_index_productos
+  descripcion: FE_index_productos
+FE_show_productos:
+  codigo: FE_show_productos
+  descripcion: FE_show_productos
+FE_post_productos:
+  codigo: FE_post_productos
+  descripcion: FE_post_productos
+FE_put_productos:
+  codigo: FE_put_productos
+  descripcion: FE_put_productos
+FE_delete_productos:
+  codigo: FE_delete_productos
+  descripcion: FE_delete_productos
+BE_index_promocion_productos:
+  codigo: BE_index_promocion_productos
+  descripcion: BE_index_promocion_productos
+BE_show_promocion_productos:
+  codigo: BE_show_promocion_productos
+  descripcion: BE_show_promocion_productos
+BE_post_promocion_productos:
+  codigo: BE_post_promocion_productos
+  descripcion: BE_post_promocion_productos
+BE_put_promocion_productos:
+  codigo: BE_put_promocion_productos
+  descripcion: BE_put_promocion_productos
+BE_delete_promocion_productos:
+  codigo: BE_delete_promocion_productos
+  descripcion: BE_delete_promocion_productos
+FE_index_promocion_productos:
+  codigo: FE_index_promocion_productos
+  descripcion: FE_index_promocion_productos
+FE_show_promocion_productos:
+  codigo: FE_show_promocion_productos
+  descripcion: FE_show_promocion_productos
+FE_post_promocion_productos:
+  codigo: FE_post_promocion_productos
+  descripcion: FE_post_promocion_productos
+FE_put_promocion_productos:
+  codigo: FE_put_promocion_productos
+  descripcion: FE_put_promocion_productos
+FE_delete_promocion_productos:
+  codigo: FE_delete_promocion_productos
+  descripcion: FE_delete_promocion_productos
+BE_index_promociones:
+  codigo: BE_index_promociones
+  descripcion: BE_index_promociones
+BE_show_promociones:
+  codigo: BE_show_promociones
+  descripcion: BE_show_promociones
+BE_post_promociones:
+  codigo: BE_post_promociones
+  descripcion: BE_post_promociones
+BE_put_promociones:
+  codigo: BE_put_promociones
+  descripcion: BE_put_promociones
+BE_delete_promociones:
+  codigo: BE_delete_promociones
+  descripcion: BE_delete_promociones
+FE_index_promociones:
+  codigo: FE_index_promociones
+  descripcion: FE_index_promociones
+FE_show_promociones:
+  codigo: FE_show_promociones
+  descripcion: FE_show_promociones
+FE_post_promociones:
+  codigo: FE_post_promociones
+  descripcion: FE_post_promociones
+FE_put_promociones:
+  codigo: FE_put_promociones
+  descripcion: FE_put_promociones
+FE_delete_promociones:
+  codigo: FE_delete_promociones
+  descripcion: FE_delete_promociones
+BE_index_proveedores:
+  codigo: BE_index_proveedores
+  descripcion: BE_index_proveedores
+BE_show_proveedores:
+  codigo: BE_show_proveedores
+  descripcion: BE_show_proveedores
+BE_post_proveedores:
+  codigo: BE_post_proveedores
+  descripcion: BE_post_proveedores
+BE_put_proveedores:
+  codigo: BE_put_proveedores
+  descripcion: BE_put_proveedores
+BE_delete_proveedores:
+  codigo: BE_delete_proveedores
+  descripcion: BE_delete_proveedores
+FE_index_proveedores:
+  codigo: FE_index_proveedores
+  descripcion: FE_index_proveedores
+FE_show_proveedores:
+  codigo: FE_show_proveedores
+  descripcion: FE_show_proveedores
+FE_post_proveedores:
+  codigo: FE_post_proveedores
+  descripcion: FE_post_proveedores
+FE_put_proveedores:
+  codigo: FE_put_proveedores
+  descripcion: FE_put_proveedores
+FE_delete_proveedores:
+  codigo: FE_delete_proveedores
+  descripcion: FE_delete_proveedores
+BE_index_sucursales:
+  codigo: BE_index_sucursales
+  descripcion: BE_index_sucursales
+BE_show_sucursales:
+  codigo: BE_show_sucursales
+  descripcion: BE_show_sucursales
+BE_post_sucursales:
+  codigo: BE_post_sucursales
+  descripcion: BE_post_sucursales
+BE_put_sucursales:
+  codigo: BE_put_sucursales
+  descripcion: BE_put_sucursales
+BE_delete_sucursales:
+  codigo: BE_delete_sucursales
+  descripcion: BE_delete_sucursales
+FE_index_sucursales:
+  codigo: FE_index_sucursales
+  descripcion: FE_index_sucursales
+FE_show_sucursales:
+  codigo: FE_show_sucursales
+  descripcion: FE_show_sucursales
+FE_post_sucursales:
+  codigo: FE_post_sucursales
+  descripcion: FE_post_sucursales
+FE_put_sucursales:
+  codigo: FE_put_sucursales
+  descripcion: FE_put_sucursales
+FE_delete_sucursales:
+  codigo: FE_delete_sucursales
+  descripcion: FE_delete_sucursales
+BE_index_tipo_creditos:
+  codigo: BE_index_tipo_creditos
+  descripcion: BE_index_tipo_creditos
+BE_show_tipo_creditos:
+  codigo: BE_show_tipo_creditos
+  descripcion: BE_show_tipo_creditos
+BE_post_tipo_creditos:
+  codigo: BE_post_tipo_creditos
+  descripcion: BE_post_tipo_creditos
+BE_put_tipo_creditos:
+  codigo: BE_put_tipo_creditos
+  descripcion: BE_put_tipo_creditos
+BE_delete_tipo_creditos:
+  codigo: BE_delete_tipo_creditos
+  descripcion: BE_delete_tipo_creditos
+FE_index_tipo_creditos:
+  codigo: FE_index_tipo_creditos
+  descripcion: FE_index_tipo_creditos
+FE_show_tipo_creditos:
+  codigo: FE_show_tipo_creditos
+  descripcion: FE_show_tipo_creditos
+FE_post_tipo_creditos:
+  codigo: FE_post_tipo_creditos
+  descripcion: FE_post_tipo_creditos
+FE_put_tipo_creditos:
+  codigo: FE_put_tipo_creditos
+  descripcion: FE_put_tipo_creditos
+FE_delete_tipo_creditos:
+  codigo: FE_delete_tipo_creditos
+  descripcion: FE_delete_tipo_creditos
+BE_index_usuarios:
+  codigo: BE_index_usuarios
+  descripcion: BE_index_usuarios
+BE_show_usuarios:
+  codigo: BE_show_usuarios
+  descripcion: BE_show_usuarios
+BE_post_usuarios:
+  codigo: BE_post_usuarios
+  descripcion: BE_post_usuarios
+BE_put_usuarios:
+  codigo: BE_put_usuarios
+  descripcion: BE_put_usuarios
+BE_delete_usuarios:
+  codigo: BE_delete_usuarios
+  descripcion: BE_delete_usuarios
+FE_index_usuarios:
+  codigo: FE_index_usuarios
+  descripcion: FE_index_usuarios
+FE_show_usuarios:
+  codigo: FE_show_usuarios
+  descripcion: FE_show_usuarios
+FE_post_usuarios:
+  codigo: FE_post_usuarios
+  descripcion: FE_post_usuarios
+FE_put_usuarios:
+  codigo: FE_put_usuarios
+  descripcion: FE_put_usuarios
+FE_delete_usuarios:
+  codigo: FE_delete_usuarios
+  descripcion: FE_delete_usuarios
+BE_index_ventas:
+  codigo: BE_index_ventas
+  descripcion: BE_index_ventas
+BE_show_ventas:
+  codigo: BE_show_ventas
+  descripcion: BE_show_ventas
+BE_post_ventas:
+  codigo: BE_post_ventas
+  descripcion: BE_post_ventas
+BE_put_ventas:
+  codigo: BE_put_ventas
+  descripcion: BE_put_ventas
+BE_delete_ventas:
+  codigo: BE_delete_ventas
+  descripcion: BE_delete_ventas
+FE_index_ventas:
+  codigo: FE_index_ventas
+  descripcion: FE_index_ventas
+FE_show_ventas:
+  codigo: FE_show_ventas
+  descripcion: FE_show_ventas
+FE_post_ventas:
+  codigo: FE_post_ventas
+  descripcion: FE_post_ventas
+FE_put_ventas:
+  codigo: FE_put_ventas
+  descripcion: FE_put_ventas
+FE_delete_ventas:
+  codigo: FE_delete_ventas
+  descripcion: FE_delete_ventas
+FE_modificar_precio:
+  codigo: FE_modificar_precio
+  descripcion: FE_modificar_precio

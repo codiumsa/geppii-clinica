@@ -1,0 +1,25 @@
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# promo_one:
+#   descripcion: Promo uno
+#   fecha_vigencia_desde: 2014-04-01
+#   fecha_vigencia_hasta: 2014-05-01
+#   porcentaje_descuento: 90
+
+# promo_two_hk:
+#   descripcion: Promo 2
+#   fecha_vigencia_desde: 2014-04-01
+#   fecha_vigencia_hasta: 2014-06-02
+#   porcentaje_descuento: 0
+
+# promo_tres_kchiai:
+#   descripcion: Descuento kchiai
+#   fecha_vigencia_desde: 2014-04-01
+#   fecha_vigencia_hasta: 2014-06-02
+#   porcentaje_descuento: 1
+
+# promo_cuatro_ouro:
+#   descripcion: Ouro Fino Loco
+#   fecha_vigencia_desde: 2014-04-01
+#   fecha_vigencia_hasta: 2014-06-02
+#   porcentaje_descuento: 0

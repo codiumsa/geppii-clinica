@@ -1,0 +1,167 @@
+<li class="sub-menu  dcjq-parent-li">
+  <a href="javascript:;" class="dcjq-parent">
+    <i class="fa fa-bar-chart-o"></i>
+    <span>Reportes</span>
+  </a>
+  <ul class="sub" style="overflow: hidden; display: block;">
+    {{#isAuthorized 'FE_reportes_inventario'}}
+      <li>
+        {{#link-to "reporte_compras"}}
+          <span>Ingresos</span>
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to "reporte_ventas"}}
+          <span>Salidas</span>
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to "reporte_producto_lote"}}
+          <span>Productos por Lote</span>
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to "reporte_inventarios"}}
+          <span>Inventarios</span>
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to "reporte_ajustes_inventario"}}
+          <span>Ajustes de Inventarios</span>
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to "reporte_valoracion_inventario"}}
+          <span>Valoración Inventario</span>
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to "reporte_movimiento_venta"}}
+            <span>Productos Vendidos</span>
+        {{/link-to}}
+      </li>
+
+      <!--li>
+                {{#link-to "reporte_ventas_medio_pago"}}
+                    <span>Ventas por Medio de pago</span>
+                {{/link-to}}
+            </li-->
+      <!--li>
+                {{#link-to "reporte_precios_venta"}}
+                    <span>Precios de Venta</span>
+                {{/link-to}}
+            </li-->
+      <!--li>
+                {{#link-to "reporte_movimiento_venta"}}
+                    <span>Productos Vendidos</span>
+                {{/link-to}}
+            </li-->
+      <!--li>
+                {{#link-to "reporte_descuento"}}
+                    <span>Descuentos</span>
+                {{/link-to}}
+            </li-->
+      <li>
+        {{#link-to 'reporte_salida_campanha' (query-params tipo_salida="Campañas&Misiones")}}
+          <span>Salidas por Campaña</span>
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'reporte_salida_campanha' (query-params tipo_salida="Consultorio&Reposicion")}}
+          <span>Salidas por Consultorio</span>
+        {{/link-to}}
+      </li>
+
+    {{/isAuthorized}}
+    {{!--#isAuthorized 'FE_post_clientes'}}
+    <li>
+      {{#link-to "reporte_extracto_cliente"}}
+        <span>Extracto Clientes</span>
+      {{/link-to}}
+    </li>
+    {{/isAuthorized--}}
+    {{#isAuthorized 'FE_post_ventas'}}
+      <li>
+        {{#link-to "reporte_cuentas_pagar"}}
+          <span>Cuentas por Pagar</span>
+        {{/link-to}}
+      </li>
+    {{/isAuthorized}}
+    {{#isAuthorized 'FE_post_compras'}}
+      <li>
+        {{#link-to "reporte_cuentas_cobrar"}}
+          <span>Cuentas por Cobrar</span>
+        {{/link-to}}
+      </li>
+    {{/isAuthorized}}
+    {{#if parametros.recargoPrecioVenta}}
+      <li>
+        {{#link-to "reporte_producto_recargo"}}
+          <span>Productos por Recargo</span>
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to "reporte_ganancias"}}
+          <span>Ganacias</span>
+        {{/link-to}}
+      </li>
+    {{/if}}
+    {{#if parametros.soportaCajas}}
+      {{#isAuthorized 'FE_reportes_caja'}}
+        <li>
+          {{#link-to "reporte_operacion"}}
+            <span>Operaciones</span>
+          {{/link-to}}
+        </li>
+      {{/isAuthorized}}
+      {{#isAuthorized 'FE_reportes_caja'}}
+        <li>
+          {{#link-to "reporte_movimiento_caja"}}
+            <span>Movimiento de Cajas</span>
+          {{/link-to}}
+        </li>
+      {{/isAuthorized}}
+      {{#isAuthorized 'FE_reportes_caja'}}
+        <li>
+          {{#link-to "reporte_movimiento_caja"}}
+            <span>Movimiento de Cajas</span>
+          {{/link-to}}
+        </li>
+      {{/isAuthorized}}
+      {{#isAuthorized 'FE_reportes_caja'}}
+        <li>
+          {{#link-to "reporte_caja_usuario"}}
+            <span>Movimientos de Cajas por Usuario</span>
+          {{/link-to}}
+        </li>
+        <li>
+          {{#link-to "reporte_final_caja"}}
+            <span>Cierre de Caja</span>
+          {{/link-to}}
+        </li>
+        <li>
+          {{#link-to "reporte_caja_medio_pago"}}
+            <span>Caja por Medio de pago</span>
+          {{/link-to}}
+        </li>
+      {{/isAuthorized}}
+    {{/if}}
+    {{#isAuthorized 'FE_index_evento'}}
+      <li>
+        {{#link-to "reporte_evento"}}
+          <span>Eventos</span>
+        {{/link-to}}
+      </li>
+    {{/isAuthorized}}
+    <li>
+      {{#link-to "reporte_existencia_inventario"}}
+        <span>Existencia Inventario</span>
+      {{/link-to}}
+    </li>
+    {{!-- <li>
+          {{#link-to "reporte_legajo_paciente"}}
+    <span>Legajo de Paciente</span>
+    {{/link-to}}
+</li> --}}
+</ul>
+</li>

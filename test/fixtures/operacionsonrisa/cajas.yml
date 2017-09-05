@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+caja_sucursal:
+  codigo: caja_sucursal
+  descripcion: Caja Operación Sonrisa 
+  sucursal_id: 1
+  tipo_caja: P
+  saldo: 0
+  moneda: guaranies
+caja_usuario:
+  codigo: caja_administrador
+  descripcion: Caja Administrador
+  usuario_id: 1
+  tipo_caja: U
+  sucursal_id: 1
+  saldo: 0
+  moneda: guaranies

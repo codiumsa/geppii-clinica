@@ -1,0 +1,134 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+reversion_credito:
+  id: 1
+  codigo: reversion_credito
+  descripcion: Reversión crédito
+  manual: false
+  referencia: operacion
+  tipo_operacion_reversion: reversion_debito
+  externo: false
+
+reversion_debito:
+  id: 2
+  codigo: reversion_debito
+  descripcion: Reversión débito
+  manual: false
+  referencia: operacion
+  tipo_operacion_reversion: reversion_credito
+  externo: false
+
+reversion_dos_cajas:
+  id: 3
+  codigo: reversion_dos_cajas
+  descripcion: Reversión Transferencia entre Cajas
+  manual: false
+  referencia: operacion
+  tipo_operacion_reversion: reversion_dos_cajas
+  externo: false
+
+compra:
+  id: 4
+  codigo: compra
+  descripcion: Compra
+  manual: false
+  referencia: compras
+  tipo_operacion_reversion: reversion_debito
+  externo: true
+
+venta:
+  id: 5
+  codigo: venta
+  descripcion: Ventas
+  manual: false
+  referencia: ventas
+  tipo_operacion_reversion: reversion_credito
+  externo: true
+
+transferencia:
+  id: 6
+  codigo: transferencia
+  descripcion: Transferencia entre Cajas
+  manual: true
+  referencia: N/A
+  tipo_operacion_reversion: reversion_dos_cajas
+  externo: false
+
+gastos:
+  id: 7
+  codigo: gasto
+  descripcion: Gastos
+  manual: true
+  referencia: N/A
+  tipo_operacion_reversion: reversion_debito
+  externo: true
+
+apertura:
+  id: 8
+  codigo: apertura
+  descripcion: Apertura de Caja
+  manual: true
+  referencia: N/A
+  tipo_operacion_reversion: reversion_dos_cajas
+  muestra_saldo: true
+  caja_default: sucursal
+  operacion_basica: true
+  externo: false
+
+cierre:
+  id: 9
+  codigo: cierre
+  descripcion: Cierre de Caja
+  manual: true
+  referencia: N/A
+  tipo_operacion_reversion: reversion_cierre
+  muestra_saldo: true
+  operacion_basica: true
+  externo: false
+
+cobro_venta:
+  id: 10
+  codigo: cobro_venta
+  descripcion: Cobro de Venta
+  manual: false
+  referencia: pagos
+  tipo_operacion_reversion: reversion_credito
+  externo: true
+
+pago_proveedor:
+  id: 11
+  codigo: pago_proveedor
+  descripcion: Pago a Proveedores
+  manual: false
+  referencia: pagos
+  tipo_operacion_reversion: reversion_debito
+  externo: true
+
+ingreso:
+  id: 12
+  codigo: ingreso
+  descripcion: Ingreso
+  manual: true
+  referencia: N/A
+  tipo_operacion_reversion: reversion_credito
+  externo: true
+
+alivio:
+  id: 14
+  codigo: alivio
+  descripcion: Alivio de Caja
+  manual: true
+  referencia: N/A
+  tipo_operacion_reversion: reversion_dos_cajas
+  muestra_saldo: true
+  operacion_basica: true
+  externo: false
+  
+reversion_cierre:
+  id: 15
+  codigo: reversion_cierre
+  descripcion: Reversión de cierre de caja
+  manual: false
+  referencia: operacion
+  tipo_operacion_reversion: cierre
+  externo: false

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+guaranies:
+   monto: 1
+   fecha_hora: 2015-04-06 00:00:00
+   moneda: guaranies
+   moneda_base: guaranies
+   usuario: administrador
+dolares_dolares:
+   monto: 1
+   fecha_hora: 2015-04-06 00:00:00
+   moneda: dolares
+   moneda_base: dolares
+   usuario: administrador
+guaranies_dolares:
+   monto: 4800
+   fecha_hora: 2015-04-06 00:00:00
+   moneda: dolares
+   moneda_base: guaranies
+   usuario: administrador

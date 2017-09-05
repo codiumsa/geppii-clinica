@@ -1,0 +1,152 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+    <a data-toggle="collapse" data-parent="#accordion" href="tratamientos">
+      <i class="fa fa-angle-right"></i>Tratamientos</a>
+  </h4>
+  </div>
+  <div id="tratamientos" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <label style="font-weight: bold;">Nuevo Tratamiento</label>
+      <div class="form-panel">
+        <div class="form-group">
+          <div class="col-lg-3">
+            <label for="estado">Estado</label>
+            {{view Ember.Select content=estadosTratamiento selection=estadoSeleccionado value=estadoSeleccionado classNames="form-control" }}
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-2">
+            <label for="origenFicha">Origen Ficha</label>
+            {{view Ember.Select content=origenFicha selection=origenSeleccionado value=origenSeleccionado classNames="form-control" }}
+          </div>
+          {{#if habilitaUbicacion}}
+            <div class="col-lg-2">
+              <label for="correspondeA">Corresponde a</label>
+              {{view Ember.Select content=ubicacionFicha selection=ubicacionSeleccionada value=ubicacionSeleccionada classNames="form-control" }}
+            </div>
+            {{#if mostrarCheckMision}}
+              <div class="col-lg-2">
+                <label class="form-label" for="mision">Seleccionar Misión</label>
+                {{input type="checkbox" checked=habilitaMisiones class="checkbox"}}
+              </div>
+              {{#if habilitaMisiones}}
+                <div class="col-lg-3">
+                  <label class="form-label">Misión</label>
+                  <div class="search-input-width">
+                    {{search-input type="text" value=campanhaLabel selectedItem=misionSeleccionada class="form-control" placeholder="Nombre de la misión" property="nombre" session=session service="campanhas" modelType="campanha" ignoredProperties="persona,tipoCampanha,campanhasColaboradores,misionesVinculo" jsonRoot="campanhas" store=store queryScope="by_tipo_mision"}}
+                  </div>
+                </div>
+
+              {{/if}}
+            {{/if}}
+          {{else}}
+            <div class="col-lg-4">
+              <label class="form-label">Hospital</label>
+              {{input type="text" value=hospitalTratamiento class="form-control" placeholder="Nombre del Hospital" }}
+            </div>
+          {{/if}}
+          {{!--{{#unless habilitaMisiones}}--}}
+            <div class="col-lg-2">
+              <label>Fecha: </label>
+                {{view Bodega.views.DatePickerView value=anhoController nullable=true}}
+            </div>
+          {{!--{{/unless}}--}}
+        </div>
+        <div class="form-group">
+          <div class="col-lg-2">
+            <label for="tiposDiagnosticos">Parte</label>
+            {{view Ember.Select content=tiposTratamientos selection=tipoTratamientoSeleccionado value=tipoTratamientoSeleccionado classNames="form-control" }}
+          </div>
+          <div class="col-lg-3">
+            <label for="diagnosticos">Tratamiento</label>
+            {{view Ember.Select content=tratamientos optionLabelPath="content.nombre" selection=tratamientoSeleccionado value=tratamientoSeleccionado classNames="form-control" }}
+          </div>
+          {{#if tieneResultadoSatisfactorioTratamiento}}
+            <div class="col-lg-1">
+              <label class="form-label">Resultado satisfactorio</label>
+              {{input type="checkbox" checked=resultadoSatisfactorioTratamiento class="checkbox"}}
+            </div>
+          {{/if}}
+          {{#if tieneObservacionTratamiento}}
+            <div class="col-lg-3">
+              <label class="form-label">Observación</label>
+              {{input type="text" value=observacionTratamiento class="form-control" placeholder="Observación"}}
+            </div>
+          {{/if}}
+          {{#if tieneLadosTratamiento}}
+            <div class="col-lg-2">
+              <label class="form-label">Lado</label>
+              {{input type="text" value=ladoDiagnosticoTratamiento class="form-control" placeholder="Lado"}}
+            </div>
+          {{/if}}
+          {{#unless agregarAbajoTratamiento}}
+            {{#if tieneLocalizacionTratamiento}}
+              <div class="col-lg-2">
+                <label class="form-label">Localización</label>
+                {{input type="text" value=localizacionTratamiento class="form-control" placeholder="Localización"}}
+              </div>
+            {{/if}}
+            <div class="col-lg-1">
+              <button type="button" {{action 'agregarTratamiento'}} class="btn btn-theme float-right" style="margin-top: 22px;" onkeydown="Bodega.enterFormHandler('controller:fichasCirugia.base', 'agregarTratamiento');">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </div>
+          {{/unless}}
+        </div>
+        {{#if agregarAbajoTratamiento}}
+          {{#if tieneLocalizacionTratamiento}}
+            <div class="col-lg-2">
+              <label class="form-label">Localización</label>
+              {{input type="text" value=localizacionTratamiento class="form-control" placeholder="Localización"}}
+            </div>
+          {{/if}}
+          <div class="col-lg-1">
+            <button type="button" {{action 'agregarTratamiento'}} class="btn btn-theme float-right" style="margin-top: 22px;" onkeydown="Bodega.enterFormHandler('controller:fichasCirugia.base', 'agregarTratamiento');">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </div>
+        {{/if}}
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="content-panel">
+            <h4>Tratamientos realizados</h4>
+            <hr>
+            <table class="table table-striped table-advance table-hover">
+              <thead>
+                <tr>
+                  <th>Parte</th>
+                  <th>Tratamiento</th>
+                  <th>Estado</th>
+                  <th>Observacion</th>
+                  <th>Realizado en</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each item in detallesTratamientos}}
+                  <tr>
+                    <td> {{item.tipo}} </td>
+                    <td> {{item.nombre}} </td>
+                    <td><span {{bind-attr class="item.claseEstado"}}>{{item.estadoTratamiento}} </span></td>
+                    <td> {{item.observacion}} </td>
+                    <td> {{item.lugar}} </td>
+                    <td> {{dateformat item.anhoMision}}</td>
+                    <td style="display:none;"> {{item.realizadoEn}}</td>
+                    <td>
+                      <button type="button" {{action 'borrarDetalleTratamiento' item}} class="btn btn-danger btn-xs">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

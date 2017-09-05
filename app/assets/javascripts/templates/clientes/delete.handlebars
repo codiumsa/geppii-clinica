@@ -1,0 +1,17 @@
+<div class="modal fade" id="clienteDelete">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" {{action "cancel"}} data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Eliminar Cliente</h4>
+      </div>
+      <div class="modal-body">
+        <p>Desea eliminar el cliente?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" {{action "deleteRecord"}} class="btn btn-theme" onkeydown="Bodega.ignoreEscapeDeleteModalWindow('controller:cliente.delete', 'clientes');" data-dismiss="modal" autofocus>Sí</button>
+        <button type="button" {{action "cancel"}} class="btn btn-default" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+# == Schema Information
+#
+# Table name: clientes
+#
+#  id                :integer          not null, primary key
+#  persona_id        :integer
+#  numero_cliente    :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  activo            :boolean          default(TRUE)
+#  calificacion_id   :integer
+#  antiguedad        :float
+#  salario_mensual   :float
+#  matricula_nro     :string(255)
+#  ramo              :string(255)
+#  otros_ingresos    :float
+#  empleador         :string(255)
+#  pariente1         :string(255)
+#  pariente2         :string(255)
+#  ingreso_pariente2 :float
+#  domicilio         :string(255)
+#  cargo             :string(255)
+#  telefono          :string(255)
+#  jubilado          :string(255)
+#  institucion       :string(255)
+#  comerciante       :string(255)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+ default:
+   persona: sinNombre
+   numero_cliente: 0
+   calificacion: A
+ #cgoby:
+ #  persona: goby
+ #  numero_cliente: 1
+ #  calificacion: A
+ # cparra:
+ #   persona: rodri
+ #   numero_cliente: 2
+ #   calificacion: B
+ # cshire:
+ #   persona: shire
+ #   numero_cliente: 3
+ #   calificacion: C

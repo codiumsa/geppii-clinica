@@ -1,0 +1,42 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}}>
+          <div class="form-group">
+            <div class="col-lg-5" {{bind-attr class="errors.nombre:has-error errors.nombre:has-feedback"}}>
+              <label class="form-label"  for="nombre">Nombre</label>
+              {{focus-input type="text" value=nombre class="form-control" placeholder="Nombre de la Moneda" autofocus="autofocus"}}
+              <span class="help-block">{{error errors.nombre}}</span>
+              {{#if errors.nombre}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-5" {{bind-attr class="errors.simbolo:has-error errors.simbolo:has-feedback"}}>
+              <label class="form-label" for="simbolo">Símbolo</label>
+              {{input type="text" value=simbolo class="form-control" placeholder="Símbolo"}}
+               <span class="help-block">{{error errors.simbolo}}</span>
+              {{#if errors.simbolo}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-2" {{bind-attr class="errors.redondeo:has-error errors.redondeo:has-feedback"}}>
+              <label for="redondeo">Moneda Entera?</label>
+              {{input type="checkbox" checked=redondeo class="checkbox"}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

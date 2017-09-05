@@ -1,0 +1,47 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h5><i class="fa fa-angle-right"></i>Alimentacion</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-group" >
+      <div class="col-lg-3"
+	   {{bind-attr class="feedback.condicionesClinicas:has-error 
+	     feedback.condicionesClinicas:has-feedback"}}>
+	<label class="form-label"
+	       for="condicionesClinicas">Condiciones clínicas durante la alimentación</label>
+	{{view Ember.Select 
+	  content=condicionesClinicas
+	  selection=alimentacion.condicionClinica.condicion
+	  prompt="Seleccione un valor..."
+	  value=alimentacion.condicionClinica.condicion
+	  classNames="form-control"}}
+	<span class="help-block">{{error feedback.condicionesClinicas}}</span>
+	{{#if feedback.condicionesClinicas}}
+	  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+	{{/if}}
+	{{! TODO: agregar referencia a los objetos}}
+	<label class="control-label" for="observaciones">Observaciones:</label>
+	{{textarea name="observaciones" cols="50" rows="5"
+	  value=alimentacion.condicionClinica.observaciones}}
+      </div>
+      <div class="col-lg-3" {{bind-attr class="feedback.frecuenciasRespiratorias:has-error 
+			      feedback.frecuenciasRespiratorias:has-feedback"}}>
+	<label class="form-label"
+	       for="frecuenciasRespiratorias">Frecuencia respiratoria</label>
+	{{view Ember.Select 
+	  content=frecuenciasRespiratorias
+	  selection=alimentacion.frecuenciaRespiratoria.frecuencia
+	  prompt="Seleccione un valor..."
+	  value=alimentacion.frecuenciaRespiratoria.frecuencia
+	  classNames="form-control"}}
+	<span class="help-block">{{error feedback.frecuenciasRespiratorias}}</span>
+	{{#if feedback.frecuenciasRespiratorias}}
+	  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+	{{/if}}
+	<label class="control-label" for="observaciones">Observaciones:</label>
+	{{ textarea  name="observaciones" cols="50" rows="5"
+	  value=alimentacion.frecuenciaRespiratoria.observaciones}}
+      </div>
+    </div>
+  </div>
+</div>

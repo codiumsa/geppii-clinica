@@ -1,0 +1,37 @@
+<div class="form-group">
+  <!--Inicio Sección Datos Generales de la venta -->
+  <!-- Pagado/No Pagado -->
+  <div class="col-lg-3" {{bind-attr class="errors.cliente:has-error errors.cliente:has-feedback feedback.clienteRequerido:has-error feedback.clienteRequerido:has-feedback"}}>
+      <label class="form-label">Razon Social</label>
+        {{#if editando}}
+          {{input type="text" value=persona.razonSocial class="form-control" disabled="true"}}
+        {{else}}
+          {{input type="text" value=nombreEmpresa class="form-control" placeholder="Nombre" readonly=true }}
+            <span class="help-block">{{feedback.clienteRequerido}}</span>
+            {{#if feedback.clienteRequerido}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+        {{/if}}
+  </div>
+  <div class="col-lg-3">
+    <label class="form-label">Campañas</label>
+    {{#if editando}}
+      {{input type="text" value=campanha.nombre class="form-control" disabled="true"}}
+    {{else}}
+      <div class="search-input-width">
+      {{search-input type="text"
+      value=campanhaLabel
+      selectedItem=campanhaSeleccionadaSI
+      class="form-control"
+      placeholder="Campañas"
+      property="nombre"
+      session=session service="campanhas"
+      modelType="campanha"
+      jsonRoot="campanhas"
+      store=store
+      ignoredProperties="persona,tipoCampanha,campanhasColaboradores,misionesVinculo"
+      queryScope="by_tipo_mision_especifica"}}
+      </div>
+    {{/if}}
+  </div>
+</div>

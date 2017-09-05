@@ -1,0 +1,25 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#comunicacion_lenguaje" {{action 'scrollToTop' 190}}><i class="fa fa-angle-right">
+	 </i>Comunicacion y Lenguaje</a>
+    </h4>
+  </div>
+  <div id="comunicacion_lenguaje" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <div class="form-group">
+	{{#each etapa in comunicacionEtapas }}
+	  <div class="panel panel-default" style="margin-top: 15px;">
+	    <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>{{etapa.name}}</h5>
+	    </div>
+	    <div class="panel-body">
+	      {{! TODO: poner en un acordeon cada etapa}}
+	      {{ view Bodega.views.ComunicaionEtapasView edades=etapa.value }}
+	    </div>
+	  </div>
+	{{/each}}
+      </div>                
+    </div>
+  </div>
+</div>
+

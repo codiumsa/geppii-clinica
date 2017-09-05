@@ -1,0 +1,48 @@
+# == Schema Information
+#
+# Table name: calificaciones
+#
+#  id          :integer          not null, primary key
+#  codigo      :string(255)
+#  descripcion :string(255)
+#  dias_atraso :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+A:
+  codigo: A
+  descripcion: A
+  dias_atraso: 15
+
+B:
+  codigo: B
+  descripcion: B
+  dias_atraso: 30
+
+C:
+  codigo: C
+  descripcion: C
+  dias_atraso: 40
+
+D:
+  codigo: D
+  descripcion: D
+  dias_atraso: 50
+
+E:
+  codigo: E
+  descripcion: E
+  dias_atraso: 60
+
+F:
+  codigo: F
+  descripcion: F
+  dias_atraso: 70
+
+G:
+  codigo: G
+  descripcion: G
+  dias_atraso: 90

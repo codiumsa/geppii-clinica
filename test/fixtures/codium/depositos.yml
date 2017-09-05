@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+ deposito_codium:
+   id: 1
+   nombre: Deposito Codium
+   descripcion: Deposito principal de Codium

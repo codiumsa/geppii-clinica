@@ -1,0 +1,33 @@
+{{#isAuthorized 'FE_index_productos'}}
+    <li class="sub-menu  dcjq-parent-li">
+        <a href="javascript:;" class="dcjq-parent">
+            <i class="glyphicon glyphicon-barcode"></i>
+            <span>Productos</span>
+        </a>
+        <ul class="sub" style="overflow: hidden; display: block;">
+            <li>
+                {{#link-to "productos" (query-params tratamientos=false )}}
+                    </i>
+                    <span>Productos</span>
+                {{/link-to}}
+            </li>
+            <li>
+                {{#link-to "productos" (query-params tratamientos=true )}}
+                    </i>
+                    <span>Tratamientos</span>
+                {{/link-to}}
+            </li>
+
+            <li>
+                {{#link-to "loteDepositos" (query-params producto="undefined")}}
+                    <span>Productos por depósito</span>
+                {{/link-to}}
+            </li>
+            <li>
+                {{#link-to "tipoProductos"}}
+                    <span>Tipos de Producto</span>
+                {{/link-to}}
+            </li>
+        </ul>
+    </li>
+{{/isAuthorized}}

@@ -1,0 +1,49 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion"
+	 href="#recienNacido"><i class="fa fa-angle-right">
+	 </i>Recien Nacido (Hasta un mes)</a>
+    </h4>
+  </div>
+  <div id="recienNacido" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="col-lg-8">
+	<label>Alimentacion: </label>
+ 	{{input type="checkbox" nameBinding=pechoMaterno
+	  checked=recienNacido.alimentacion.pechoMaterno class="for-checkbox"}}
+	<label {{bind-attr for=pechoMaterno}}>Pecho Materno</label>
+	{{input type="checkbox" nameBinding=biberon
+	  checked=recienNacido.alimentacion.biberon class="for-checkbox"}}
+	<label {{bind-attr for=biberon}}>Biberon</label>
+	{{input type="checkbox" nameBinding=SNG
+	  checked=recienNacido.alimentacion.SNG class="for-checkbox"}}
+	<label {{bind-attr for=SNG}}>SNG</label>
+      </div>
+      <div class="col-lg-8">
+	<label>Reborde Alveolar</label>
+	<label class="form-label" for="separacion">Separacion</label>
+        {{number-input type="text" value=recienNacido.rebordeAlveolar.separacion
+	  class="form-control" placeholder="separacion en cm"}}
+	<div>
+	  <label class="form-label" for="conformado">Conformado:</label>
+	  Si {{view Bodega.views.RadioButton value='si'
+	       checked=recienNacido.rebordeAlveolar.conformado}}
+	  No {{view Bodega.views.RadioButton value='no'
+	       checked=recienNacido.rebordeAlveolar.conformado}}
+	</div>
+      </div>
+      <div class="col-lg-8">
+	<label class="form-label" for="placaOrtopedica">Placa Ortopedica:</label>
+	Si {{view Bodega.views.RadioButton value='si' checked=recienNacido.placaOrtopedica}}
+	No {{view Bodega.views.RadioButton value='no' checked=recienNacido.placaOrtopedica}}
+      </div>
+      <div class="col-lg-8">
+	<label class="control-label" for="otros">Otros:</label>
+	{{textarea name="observaciones" cols="50" rows="5"
+	  value=recienNacido.otros}}
+      </div>
+    </div>
+  </div>
+</div>
+

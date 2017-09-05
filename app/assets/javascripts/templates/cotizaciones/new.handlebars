@@ -1,0 +1,42 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}}>
+          <div class="form-group">
+            <div class="col-lg-4 taginputsimple" {{bind-attr class="errors.moneda:has-error errors.moneda:has-feedback"}}>
+              <label class="form-label">Moneda</label>
+              {{view Ember.Select
+                content=monedas
+                optionLabelPath="content.nombre"
+                selection=monedaSeleccionada
+                value=monedaSeleccionada
+                classNames="form-control"}}
+              {{#if errors.moneda}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-4 taginputsimple" {{bind-attr class="errors.moneda_base:has-error errors.moneda_base:has-feedback"}}>
+              <label class="form-label">Moneda Base</label>
+              {{input type="text" id="monedaBase"  disabled='true' value=monedaBaseSeleccionada.nombre class="form-control"}}
+            </div>
+            <label class="form-label">Monto</label>
+            <div {{bind-attr class=":col-lg-4"}}>
+              {{number-input min="0" value=monto class="form-control" placeholder=numeral }}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,179 @@
+loteDepositos = @lote_depositos
+puts loteDepositos.to_yaml
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  loteTitle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  loteContent = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+
+
+  wb.add_worksheet(name: "valoracion_inventario") do |sheet|
+    time = Time.now.strftime("%d/%m/%Y")
+    sheet.add_row ["Geppii","Reporte Valoracion del Inventario"," Fecha: #{time}"], style: [wrap_text,wrap_text,wrap_text]
+    sheet.add_row []
+
+    cantidadLotes = loteDepositos.count.to_i
+    if(cantidadLotes >1)
+        productoTemp =  loteDepositos.first.producto_id
+        variosProductos = false
+        loteDepositos.map do |loteDeposito|
+            variosProductos = loteDeposito.producto_id == productoTemp ? false : true
+            break if variosProductos == true
+        end
+    elsif(cantidadLotes == 0)
+            sheet.add_row ["No existen lotes deposito asignado"], style: [wrap_text]
+        return
+    end
+
+    if(!variosProductos)
+        lotesArray = []
+        lotesArrayTemp = []
+        lotesUsados = []
+        maxPrecio = 0;
+        cantidadProducto = 0
+        producto = Producto.find(loteDepositos.first.producto_id)
+        loteDepositos.map do |loteDeposito|
+          # if(lotesUsados.empty?) #primer lote chequeado
+          #   maxPrecio = CompraDetalle.by_lote(loteDeposito.lote_id).order(precio_compra: :desc).limit(1).first.precio_compra
+          # end
+          if lotesUsados.include? loteDeposito.lote_id #si ya tenemos registrado el lote, ya sabemos su maximo precio, por lo que solo se suma la cantidad disponible
+            cantidadProducto = cantidadProducto + loteDeposito.cantidad
+          else #si no tenemos registrado el lote, se debe comprobar si el precio es mayor al maximo actual
+              cantidadProducto = cantidadProducto + loteDeposito.cantidad
+              maxPrecioTemp = CompraDetalle.by_lote(loteDeposito.lote_id).order(precio_compra: :desc).limit(1).first.precio_compra
+            if maxPrecio < maxPrecioTemp
+              maxPrecio = maxPrecioTemp
+            end
+          end
+            lotesArrayTemp.push(["#{loteDeposito.lote.codigo_lote}","#{loteDeposito.lote.fecha_vencimiento.strftime("%d/%m/%Y")}","#{loteDeposito.cantidad}"])
+        end
+        lotesArrayTemp.map do |temp|
+          lotesArray.push([temp[0],temp[1],temp[2],"#{maxPrecio}","#{maxPrecio*Integer(temp[2])}"])
+        end
+
+        sheet.add_row [producto.descripcion], style: [loteTitle]
+        sheet.add_row ["Codigo del Lote","Fecha de Vencimiento","Cantidad Disponible","Precio Compra","Total"], style: [loteTitle,loteTitle,loteTitle,loteTitle,loteTitle,loteTitle]
+        totalParcial = 0
+        lotesArray.map do |lote|
+          sheet.add_row [lote[0],lote[1],lote[2],lote[3],lote[4]], style: [loteContent,loteContent,loteContent,loteContent,loteContent]
+          totalParcial = totalParcial + maxPrecio*Integer(lote[2])
+        end
+        totalFinal = totalParcial
+        sheet.add_row []
+    else
+        productos = []
+        lotesArray = []
+        cantidadTemp = 0
+        maxPrecio = 0
+        totalFinal = 0
+        contador = 0
+        loteDepositos.map do |loteDeposito|
+          contador = contador + 1
+          puts contador
+            lote = loteDeposito.lote
+            if(productos.include? lote.producto_id)
+                lotesArray.push(["#{lote.codigo_lote}","#{lote.fecha_vencimiento_str}","#{loteDeposito.cantidad}"])
+                cantidadTemp = cantidadTemp + loteDeposito.cantidad
+                  compra = CompraDetalle.by_lote(loteDeposito.lote_id)
+                    if (compra)
+                      compra = compra.order(precio_compra: :desc).limit(1).first
+                      if (compra)
+                        maxPrecioTemp = CompraDetalle.by_lote(loteDeposito.lote_id).order(precio_compra: :desc).limit(1).first.precio_compra
+                      else
+                        maxPrecioTemp = 0
+                      end
+                    end
+
+                #maxPrecioTemp = CompraDetalle.by_lote(loteDeposito.lote_id).order(precio_compra: :desc).limit(1).first.precio_compra
+                
+
+                if maxPrecio < maxPrecioTemp
+                  maxPrecio = maxPrecioTemp
+                end
+            else
+                if(productos.empty?)
+                    productos.push(lote.producto_id)
+                    lotesArray = [["#{lote.codigo_lote}","#{lote.fecha_vencimiento_str}","#{loteDeposito.cantidad}"]]
+                    compra = CompraDetalle.by_lote(loteDeposito.lote_id)
+                    if (compra)
+                      compra = compra.order(precio_compra: :desc).limit(1).first
+                      if (compra)
+                        maxPrecio = CompraDetalle.by_lote(loteDeposito.lote_id).order(precio_compra: :desc).limit(1).first.precio_compra
+                      else
+                        maxPrecio = 0
+                      end
+                    end
+                    cantidadTemp = cantidadTemp + loteDeposito.cantidad
+                else
+                    productoTemp = Producto.find(productos.last)
+                    sheet.add_row [productoTemp.descripcion], style: [loteTitle]
+                    sheet.add_row ["Codigo del Lote","Fecha de Vencimiento","Cantidad Disponible","Precio Compra","Total"], style: [loteTitle,loteTitle,loteTitle,loteTitle,loteTitle]
+                    totalParcial = 0
+                    lotesArray.map do |lote|
+                      sheet.add_row [lote[0],lote[1],lote[2],"#{maxPrecio}","#{maxPrecio*Integer(lote[2])}"], style: [loteContent,loteContent,loteContent,loteContent,loteContent]
+                      totalParcial = totalParcial + maxPrecio*Integer(lote[2])
+                    end
+                    totalFinal = totalFinal + totalParcial
+                    sheet.add_row []
+                    productos.push(lote.producto_id)
+                    lotesArray = [["#{lote.codigo_lote}","#{lote.fecha_vencimiento_str}","#{loteDeposito.cantidad}"]]
+
+
+                    #maxPrecio = CompraDetalle.by_lote(loteDeposito.lote_id).order(precio_compra: :desc).limit(1).first.precio_compra
+
+                    compra = CompraDetalle.by_lote(loteDeposito.lote_id)
+                    if (compra)
+                      compra = compra.order(precio_compra: :desc).limit(1).first
+                      if (compra)
+                        maxPrecio = CompraDetalle.by_lote(loteDeposito.lote_id).order(precio_compra: :desc).limit(1).first.precio_compra
+                      else
+                        maxPrecio = 0
+                      end
+                    end
+
+                    cantidadTemp = loteDeposito.cantidad
+                end
+            end
+        end
+        productoTemp = Producto.find(productos.last)
+        sheet.add_row [productoTemp.descripcion], style: [loteTitle]
+        sheet.add_row ["Codigo del Lote","Fecha de Vencimiento","Cantidad Disponible","Precio Compra","Total"], style: [loteTitle,loteTitle,loteTitle,loteTitle,loteTitle]
+        totalParcial = 0
+        lotesArray.map do |lote|
+          sheet.add_row [lote[0],lote[1],lote[2],"#{maxPrecio}","#{maxPrecio*Integer(lote[2])}"], style: [loteContent,loteContent,loteContent,loteContent,loteContent]
+          totalParcial = totalParcial + maxPrecio*Integer(lote[2])
+
+        end
+        totalFinal = totalFinal + totalParcial
+
+        sheet.add_row []
+
+    end
+    sheet.add_row ["Total del valor en Inventarios:","#{totalFinal}"], style: [loteTitle,loteTitle,loteTitle,loteTitle,loteTitle]
+  end
+end

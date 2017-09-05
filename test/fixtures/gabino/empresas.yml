@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#Empresas de Gabino comentadas
+one:
+ nombre: Casa Nancy
+ activo: true
+ ruc: 123456-7
+ codigo: nancy
+
+two:
+ nombre: Santa Librada
+ activo: true
+ ruc: 7654321-8
+ codigo: librada

@@ -1,0 +1,19 @@
+version: '2'
+services:
+  db:
+    env_file: ../docker.env
+    image: postgres:9.6.2
+    volumes:
+      - geppii-db-9.6:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  geppii:
+    image: geppii-prod
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  geppii-db-9.6:
+    external: true

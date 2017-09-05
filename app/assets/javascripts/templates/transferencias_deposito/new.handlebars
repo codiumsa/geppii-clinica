@@ -1,0 +1,208 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}</h3>
+<div id="noEntersTransferenciasDeposito" class="row mt" onkeydown="Bodega.ignoreEnter();">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:transferenciaDepositos.new', 'save');">
+          <div class="form-group">
+            <div class="col-lg-3" {{bind-attr class="errors.nroTransferencia:has-error errors.nroTransferencia:has-feedback"}}>
+              <label class="form-label"  for="nroTransferencia">Número de Transferencia</label>
+                {{input type="text" value=nroTransferencia class="form-control" placeholder="Nro."}}
+              <span class="help-block">{{error errors.nroTransferencia}}</span>
+              {{#if errors.nroTransferencia}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-3" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+              <label class="form-label"  for="descripcion">Descripción</label>
+            {{focus-input type="text" value=descripcion class="form-control" placeholder="Descripción" readonly=false autofocus="true"}}
+              <span class="help-block">{{error errors.descripcion}}</span>
+              {{#if errors.descripcion}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-3" {{bind-attr class="errors.fechaInicio:has-error errors.fechaInicio:has-feedback"}}>
+              <label class="form-label"  for="fechaInicio">Fecha de Transferencia</label>
+              {{view Bodega.views.DatePickerView value=fechaRegistro}}
+            </div>
+
+            <div class="col-lg-3" {{bind-attr class="errors.origen:has-error errors.origen:has-feedback"}}>
+              <label class="form-label">Depósito Origen</label>
+              {{#if habilitarEdicionDetalle}}
+              {{search-input
+                type="text"  value=origenSW selectedItem=origenController
+                class="form-control" placeholder="Descripción del deposito"
+                property="descripcion" session=session service="depositos"
+                modelType="deposito" jsonRoot="depositos" store=store
+                ignoredProperties="inventario"}}
+                {{!-- {{view Bodega.views.TagWidgetView
+                   service='depositos'
+                   modelType='deposito'
+                   modelID='id'
+                   itemText='nombre'
+                   itemValue='id'
+                   queryScope='by_nombre'
+                   session=session
+                   datasource=model
+                   single=true
+                   singleKey='origen'
+                   jsonRoot='depositos'}} --}}
+              {{else}}
+                {{input type="text" id="origen"  disabled='true' value=origen.nombre class="form-control"}}
+              {{/if}}
+            </div>
+
+            <div class="col-lg-3" {{bind-attr class="errors.destino:has-error errors.destino:has-feedback"}}>
+              <label class="form-label">Depósito Destino</label>
+              {{#if habilitarEdicionDetalle}}
+                <div id="destino">
+                  {{view Bodega.views.TagWidgetView
+                   service='depositos'
+                   modelType='deposito'
+                   modelID='id'
+                   itemText='nombre'
+                   itemValue='id'
+                   queryScope='by_nombre'
+                   session=session
+                   datasource=model
+                   singleKey='destino'
+                   single=true
+                   jsonRoot='depositos'}}
+                 </div>
+                <span class="help-block">{{error errors.destino}}</span>
+                {{#if errors.destino}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+                {{/if}}
+              {{else}}
+                {{input type="text" id="destino"  disabled='true' value=destino.nombre class="form-control"}}
+              {{/if}}
+            </div>
+          </div>
+
+          {{#if habilitarEdicionDetalle}}
+            {{#if settedOrigen}}
+              <div class="panel panel-default">
+                <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Nuevo Detalle</h5></div>
+                <div class="panel-body">
+                  <div class="form-group">
+                    <div class="col-lg-2" >
+                      <label class="form-label">Código</label>
+                        {{#if habilitarCodigoBarra}}
+                          {{focus-input type="text" enter='cargarProducto' id="codigoBarra" value=codigoBarra class="form-control" placeholder="Código de Barras" autofocus="true" disabled=false}}
+                        {{else}}
+                          {{focus-input type="text" enter='cargarProducto' id="codigoBarra" value=codigoBarra class="form-control" placeholder="Código de Barras" disabled='true'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-lg-3" >
+                      <label class="form-label">Descripción</label>
+                      <div class="search-input-width">
+                      {{search-input
+                        type="text"  value=descripcionSW selectedItem=productoSeleccionadoSW
+                        class="form-control" placeholder="Descripción del producto" queryScope=queryScopeOrigen
+                        property="descripcion" session=session service="productos"
+                        modelType="producto" jsonRoot="productos" store=store
+                        ignoredProperties="moneda,lotes,categorias,productoDetalles,especialidad,categoria,tipoProducto,promocionProducto,promocion,producto" enter='contarEnters'}}
+                      </div>
+                    </div>
+                    {{#if habilitaLote}}
+                      <div class="col-lg-4">
+                        <label class="form-label">Lote</label>
+                        {{view Ember.Select content=lotes optionLabelPath="content.descripcion" selection=loteSeleccionado value=loteDefault classNames="form-control"}}
+                      </div>
+                    {{/if}}
+                    <div class="col-lg-2" >
+                      <label class="form-label">Cantidad</label>
+                      {{number-input min="1" id="existencia" value=detNuevo.cantidad class="form-control" placeholder=numeral enter='agregarDetalle'}}
+                    </div>
+                    {{#if habilitarEdicionDetalle}}
+                      <div class="col-lg-1" >
+                        <label class="form-label">Agregar</label>
+                          <button  type="button" {{action 'agregarDetalle'}}  class="btn btn-theme" {{bind-attr disabled=feedback.existencia}}>  <span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                      </div>
+                    {{/if}}
+                  </div>
+                </div>
+              </div>
+            {{else}}
+            <div class="panel panel-default">
+              <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Nuevo Detalle</h5></div>
+              <div class="panel-body">
+                <div class="form-horizontal form-detalles">
+                  <div class="form-group">
+                    <div class="col-lg-12 first-cell" >
+                      <label class="form-label">Debe agregar el Deposito origen para agregar un nuevo Detalle</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/if}}
+          {{/if}}
+          <div class="panel panel-default">
+            <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Detalles de la Transferencia</h5></div>
+            <div class="panel-body">
+              <div class="form-horizontal form-detalles">
+                {{#unless detalles}}
+                  <div class="form-group">
+                    <div class="col-lg-12 first-cell" >
+                      <label class="form-label">Debe agregar detalles para guardar la transferencia</label>
+                    </div>
+                  </div>
+                {{/unless}}
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="content-panel">
+                      <h4>Detalles</h4>
+                      <hr>
+                      <table class="table table-striped table-advance table-hover">
+                        <thead>
+                          <tr>
+                            <th>Codigo de Barras</th>
+                            <th>Producto</th>
+                            <th>Codigo del Lote</th>
+                            <th>Cantidad</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {{#each item in detalles}}
+                            <tr>
+                              <td> {{item.lote.producto.codigoBarra}} </td>
+                              <td> {{item.lote.producto.descripcion}} </td>
+                              <td> {{item.lote.codigoLote}} </td>
+                              <td> {{item.cantidad}} </td>
+                              {{#if habilitarEdicionDetalle}}
+                                <td>
+                                  <button type="button" {{action 'borrarDetalle' item}} class="btn btn-danger btn-xs"> <span class="glyphicon glyphicon-remove"></span>
+                                  </button>
+                                </td>
+                              {{/if}}
+                            </tr>
+                          {{/each}}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              {{#if soportaImprimirRemision}}
+                <button  {{action 'save'}}  class="btn btn-theme ">Guardar e imprimir</button>
+              {{else}}
+                <button {{action 'save'}} class="btn btn-theme ">Guardar</button>
+              {{/if}}
+              <button {{action 'cancel'}} class="btn btn-default ">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

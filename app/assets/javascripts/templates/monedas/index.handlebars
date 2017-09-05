@@ -1,0 +1,47 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Monedas
+  {{#link-to 'monedas.new'}}
+    <button class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="margin-top: -5px; margin-left: 5px;"></button>
+  {{/link-to}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView}}
+    <div class="table-responsive content-panel" style="padding: 0px;">
+      <table class="table table-bordered table-striped table-condensed">
+          <thead>
+              <tr>
+                  <th>Nombre</th>
+                  <th>Símbolo</th>
+                  <th>Anulada</th>
+                  <th>Entera</th>
+                  <th style="width:11%;"></th>
+              </tr>
+          </thead>
+          <tbody>
+          {{#each}}
+              <tr>
+                  <td>{{nombre}}</td>
+                  <td>{{simbolo}}</td>
+                  <td>{{yesno anulado}}</td>
+                  <td>{{yesno redondeo}}</td>
+                  <td class="center">
+                    {{#link-to 'moneda.edit' this classNames='table-action'}}
+                      <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil"></button>
+                    {{/link-to}}
+                    {{#unless anulado}}
+                      {{#link-to 'moneda.delete' this classNames='table-action'}}
+                        <button class="btn btn-theme btn-sm glyphicon glyphicon-remove" 
+                                data-toggle="modal" data-target="#proveedorDelete"></button>
+                      {{/link-to}}
+                    {{/unless}}
+                  </td>
+              </tr>
+          {{/each}}
+          </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

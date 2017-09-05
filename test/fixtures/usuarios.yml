@@ -1,0 +1,74 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# joe:
+#   nombre: Joe User
+#   username: joe_user
+#   email: joe_user@example.com
+#   password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+# jane:
+#   nombre: Jane User
+#   username: jane_user
+#   email: jane_user@example.com
+#   password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+
+# vendedorTacumbu1:
+#   nombre: Vendedor User de Suc 1
+#   username: vendedor_suc1
+#   email: vendedorsuc1@example.com
+#   password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+#   roles: Vendedor
+#   sucursales: tacumbu_1
+# vendedorTacumbu2:
+#   nombre: Vendedor User de Suc 2
+#   username: vendedor_suc2
+#   email: vendedorsuc2@example.com
+#   password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+#   roles: Vendedor
+#   sucursales: tacumbu_2
+administrador:
+  nombre: Administrador User
+  username: administrador
+  email: administrador@example.com
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: Administrador
+  sucursales: tacumbu_1
+vendedor:
+  nombre: Vendedor User
+  username: vendedor
+  email: vendedor@example.com
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: Vendedor
+depositero:
+  nombre: depositero
+  username: depositero
+  email: deposito@casanancy.com.py
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: Depositero
+
+# contador:
+#   nombre: Contador User
+#   username: contador
+#   email: contador@example.com
+#   password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+#   roles: Contador
+#   sucursales: tacumbu_1
+# compraVenta:
+#   nombre: CompraVenta User
+#   username: compraventa
+#   email: compraventa@example.com
+#   password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+#   roles: Vendedor, Contador
+#   sucursales: tacumbu_1
+# raimundo:
+#   nombre: Raimundo
+#   username: raimundo
+#   email: raimundo@bodegastaff.com
+#   password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+#   roles: Administrador
+#   sucursales: tacumbu_1
+# depositero:
+#   nombre: depositero
+#   username: depositero
+#   email: deposito@casanancy.com.py
+#   password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+#   roles: Depositero

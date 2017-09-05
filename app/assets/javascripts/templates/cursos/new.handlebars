@@ -1,0 +1,101 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:producciones.new', 'save');">
+          <div class="form-group" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+            <div class="col-lg-4"  {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+              <label class="form-label"  for="nombre">Descripcion</label>
+              {{focus-input  type="text" value=descripcion class="form-control" placeholder="Descripcion" autofocus="autofocus"}}
+              <span class="help-block">{{error errors.descripcion}}</span>
+              {{#if errors.descripcion}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-4"  {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+              <label class="form-label"  for="nombre">Observaciones</label>
+              {{focus-input  type="text" value=observaciones class="form-control" placeholder="Observaciones" autofocus="autofocus"}}
+              <span class="help-block">{{error errors.observaciones}}</span>
+              {{#if errors.observaciones}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+             <div class="col-lg-4">
+              <label class="form-label"  for="nombre">Lugar</label>
+              {{focus-input  type="text" value=lugar class="form-control" placeholder="Lugar" autofocus="autofocus"}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-3">
+              <label class="form-label"  for="fechaInicio">Fecha Inicio</label>
+              {{view Bodega.views.DatePickerView value=fechaInicio}}
+            </div>
+            <div class="col-lg-3">
+              <label class="form-label"  for="fechaFin">Fecha Fin</label>
+              {{view Bodega.views.DatePickerView value=fechaFin}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-5">
+              <label class="form-label">Voluntario</label>
+              {{!--input type="text" readonly="true" value=productoSeleccionado.descripcion class="form-control" placeholder="DescripciÃ³n del producto" enter='agregarDetalle'--}}
+              <div class="search-input-width">
+              {{search-input id="colaborador" type="text" value=descripcionSW queryScope="by_persona" selectedItem=colaboradorSeleccionado class="form-control" placeholder="Voluntario" property="razonSocial" session=session service="colaboradores" modelType="colaborador" jsonRoot="colaboradores" store=store ignoredProperties="persona,tipoColaborador,especialidad,campanhasColaboradores"}}
+              </div>
+            </div>
+            <div class="col-lg-5">
+              <label class="form-label">Observación</label>
+              {{focus-input  type="text" value=observacion class="form-control" placeholder="Observación" autofocus="autofocus"}}
+            </div>
+            <div class="col-lg-1">
+              <button type="button" {{action 'agregarDetalle'}} class="btn btn-theme float-right" {{bind-attr disabled=feedback.existencia}} style="margin-top: 22px;" onkeydown="Bodega.enterFormHandler('controller:ventas.new', 'agregarDetalle');">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </div>
+          </div>
+          {{#if colaboradores}}
+            <div class="form-group">
+              <div class="col-lg-5 first-cell">
+                <label class="form-label">Voluntarios</label>
+              </div>
+              <div class="col-lg-5">
+                <label class="form-label">Observación</label>
+              </div>
+            </div>
+          {{else}}
+              <div class="form-group">
+                <div class="col-lg-12 first-cell">
+                  <label class="form-label">Debe agregar voluntarios para guardar el curso</label>
+                </div>
+              </div>
+          {{/if}}
+          {{#each det in colaboradores}}
+          <div {{bind-attr class="det:form-group det.promocion:no-margin-bottom"}}>
+            <div class="col-lg-5 first-cell">
+              {{input type="text" readonly="true" value=det.colaborador.razonSocial class="form-control"}}
+            </div>
+            <div class="col-lg-5">
+              {{input type="text" readonly="true" value=det.observacion class="form-control"}}
+            </div>
+            <div class="col-lg-1">
+              <button type="button" {{action 'borrarColaborador' det}} class="btn btn-theme float-right">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </div>
+          </div>
+          {{/each}}
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

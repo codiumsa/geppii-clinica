@@ -1,0 +1,48 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion"
+	 href="#contactoEmergencia"><i class="fa fa-angle-right">
+	 </i>Contacto de Emergencia</a>
+    </h4>
+  </div>
+  <div id="contactoEmergencia" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="form-group">
+	<div class="col-lg-8"
+	     {{bind-attr class="feedback.personaContactoNombre:has-error 
+	       feedback.personaContactoNombre:has-feedback"}}>
+          <label class="form-label" for="personaContactoNombre">Nombre</label>
+          {{input type="text" value=contactoEmergencia.nombre
+	    class="form-control" placeholder="Nombre"}}
+          <span class="help-block">{{error feedback.personaContactoNombre}}</span>
+          {{#if feedback.personaContactoNombre}}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+	</div>
+      </div>
+      
+      <div class="form-group">
+	<div class="col-lg-6"
+	     {{bind-attr class="feedback.personaContactoRelacion:has-error 
+	       feedback.personaContactoRelacion:has-feedback"}}>
+          <label class="form-label" for="personaContactoRelacion">Relacion con el Paciente</label>
+          {{input type="text" value=contactoEmergencia.relacion
+	    class="form-control" placeholder="Relacion"}}
+          <span class="help-block">{{error feedback.personaContactoRelacion}}</span>
+          {{#if feedback.personaContactoRelacion}}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+	</div>
+	<div class="col-lg-4" {{bind-attr class="feedback.personaContactoTelefono:has-error feedback.personaContactoTelefono:has-feedback"}}>
+          <label class="form-label" for="personaContactoTelefono">Telefono</label>
+          {{input type="text" value=contactoEmergencia.telefono class="form-control" placeholder="Telefono"}}
+          <span class="help-block">{{error feedback.personaContactoTelefono}}</span>
+          {{#if feedback.personaContactoTelefono}}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+	</div>                
+      </div>
+    </div>
+  </div>
+</div>

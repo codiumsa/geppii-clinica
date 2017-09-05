@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+punto_venta_matriz_1:
+  id: 1
+  nombre: Punto de Venta Casa Nancy
+  descripcion: Punto de venta de casa matriz
+
+punto_venta_matriz_2:
+  id: 2
+  nombre: Punto de Venta Santa Librada
+  descripcion: Punto de venta de casa matriz
+
+deposito_casa:
+  id: 3
+  nombre: Deposito Casa
+  descripcion: deposito de la casa de gabino

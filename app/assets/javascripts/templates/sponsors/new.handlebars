@@ -1,0 +1,22 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  <span>{{formTitle}}</span>
+</h3>
+<div class="row mt">
+  <div role="tabpanel">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#datospersonales" aria-controls="datospersonales" role="tab" data-toggle="tab">Datos Patrocinador</a>
+      </li>
+      <li role="presentation">
+        <a href="#contactoSponsor" aria-controls="contactoSponsor" role="tab" data-toggle="tab">Datos Contacto</a>
+      </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      {{ partial "sponsors/tabs/datos_personales" }}
+      {{ partial "sponsors/tabs/contacto" }}
+    </div>
+  </div>
+</div>

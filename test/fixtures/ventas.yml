@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# uno:
+#   cliente: juan
+#   descuento: 10
+#   total: 15000
+#   iva10: 10000
+#   iva5:  5000
+#   credito: false
+#   pagado: false
+#   cantidad_cuotas: 0
+#   fecha_registro: 2014-05-01
+#   nro_factura: 1234
+#   deuda: 0
+#   sucursal: tacumbu_1
+#   ganancia: 3000
+
+# uno:
+#   cliente: juan
+#   descuento: 200
+#   total: 35000
+#   iva10: 10000
+#   iva5:  5000
+#   credito: false
+#   pagado: false
+#   cantidad_cuotas: 0
+#   fecha_registro: 2014-05-15
+#   nro_factura: 12
+#   deuda: 0
+#   sucursal: tacumbu_1
+#   ganancia: 3000
+
+# dos:
+#   cliente: maria
+#   descuento: 20
+#   total: 30000
+#   iva10: 20000
+#   iva5: 10000
+#   credito: true
+#   pagado: true
+#   cantidad_cuotas: 2
+#   fecha_registro: 2014-05-04
+#   tipo_credito: tipo_credito_1
+#   nro_factura: 1234
+#   estado_valido: true
+#   sucursal: tacumbu_2
+#   deuda: 15000
+#   ganancia: 1000
+

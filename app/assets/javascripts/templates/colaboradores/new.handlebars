@@ -1,0 +1,36 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  <span>{{formTitle}}</span>
+</h3>
+<div class="row mt">
+  <div role="tabpanel">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#datospersonales" aria-controls="datospersonales" role="tab" data-toggle="tab">Datos Básicos</a>
+      </li>
+      <li role="presentation">
+        <a href="#datoscolaborador" aria-controls="datoscolaborador" role="tab" data-toggle="tab">Participación</a>
+      </li>
+      {{#if id}}
+        {{#if tieneViaje}}
+          <li role="presentation">
+            <a href="#datosviajes" aria-controls="datosviajes" role="tab" data-toggle="tab">Viajes</a>
+          </li>
+        {{/if}}
+        {{#if tieneCurso}}
+          <li role="presentation">
+            <a href="#datoscursos" aria-controls="datoscursos" role="tab" data-toggle="tab">Cursos</a>
+          </li>
+        {{/if}}
+      {{/if}}
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      {{ partial "colaboradores/tabs/datos_personales" }}
+      {{ partial "colaboradores/tabs/datos_colaborador" }}
+      {{ partial "colaboradores/tabs/datos_viajes" }}
+      {{ partial "colaboradores/tabs/datos_cursos" }}
+    </div>
+  </div>
+</div>

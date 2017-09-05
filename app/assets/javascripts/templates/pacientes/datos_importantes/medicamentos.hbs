@@ -1,0 +1,85 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#medicamentos">
+        <i class="fa fa-angle-right"></i>Medicamentos</a>
+    </h4>
+  </div>
+  <div id="medicamentos" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="form-group">
+        <!-- INICIO LISTA DETALLES -->
+        <div class="panel-body">
+          <div class="form-horizontal form-detalles">
+            {{#if listaMedicamentos}}
+              <div class="form-group">
+                <div class="col-lg-2 first-cell">
+                  <label class="form-label">Fecha</label>
+                </div>
+                <div class="col-lg-5">
+                  <label class="form-label">Observacion</label>
+                </div>
+                <div class="col-lg-4">
+                  <label class="form-label">Lugar</label>
+                </div>
+              </div> 
+            {{else}}
+              <div class="form-group">
+                <div class="col-lg-12 first-cell">
+                  <label class="form-label">No existen medicamentos registrados.</label>
+                </div>
+              </div>
+            {{/if}}
+            {{#each med in listaMedicamentos}}
+              <div class="form-group">
+                <div class="col-lg-2 first-cell">
+                  {{input type="text" readonly="true" value=med.fecha class="form-control" placeholder="Fecha" }}
+                </div>
+                <div class="col-lg-2">
+                  {{input type="text" readonly="true" value=med.medicamento class="form-control" placeholder="Medicamento" }}
+                </div>
+                <div class="col-lg-2">
+                  {{input type="text" readonly="true" value=med.frecuencia class="form-control" placeholder="Frecuencia" }}
+                </div>
+                <div class="col-lg-4">
+                  {{input type="text" readonly="true" value=med.motivo class="form-control" placeholder="Motivo" }}
+                </div>
+                <div class="col-lg-1">
+                  <button type="button" {{action 'borrarDetalle' med 'datosImportantes.medicamentos' 'datosImportantes.medicamentos.@each.eliminado'}} class="btn btn-theme">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </button>
+                </div>
+              </div>
+              {{/each}}
+            <!-- DETALLE NUEVO -->
+            <div class="col-lg-2">
+              <label class="form-label" for="fecha">Fecha</label>
+              {{view Bodega.views.DatePickerView value=medicamentoNuevo.fecha}}
+            </div>
+            <div class="col-lg-2">
+              <label class="form-label">Nombre: </label>
+              {{input type="text" id="nombreMedicamento" value=medicamentoNuevo.medicamento class="form-control" placeholder="Nombre del Medicamento o droga"}}
+            </div>
+            <div class="col-lg-2">
+              <label class="form-label">Frecuencia</label>
+              {{input type="text" id="frecuencia" value=medicamentoNuevo.frecuencia class="form-control" placeholder="Porqué le fue recetado el medicamento"}}
+            </div>
+            <div class="col-lg-4">
+              <label class="form-label">Motivo</label>
+              {{input type="text" id="motivo" value=medicamentoNuevo.motivo class="form-control" placeholder="Porqué le fue recetado el medicamento"}}
+            </div>
+            <div class="col-lg-1">
+              <label class="form-label">Agregar</label>
+              <!--button type="button" {{action 'agregarMedicamento'}} class="btn btn-theme btn-sm" onkeydown="Bodega.enterFormHandler('controller:pacientes.new', 'agregarMedicamento');"-->
+              <button type="button" {{action 'agregarDetalle' 'datosImportantes.medicamentos' 'medicamentoNuevo'}} class="btn btn-theme btn-sm" onkeydown="Bodega.enterFormHandler('controller:pacientes.new', 'agregarDetalle');">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </div>
+            <!-- FIN DETALLE NUEVO-->
+          </div>
+        </div>
+        <!-- FIN LISTA DETALLES -->
+      </div>
+    </div>
+  </div>
+</div>

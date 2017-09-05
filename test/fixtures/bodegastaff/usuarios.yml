@@ -1,0 +1,21 @@
+administrador:
+  nombre: Administrador User
+  username: administrador
+  email: administrador@bodega-staff.com.py
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: Administrador
+  sucursales: sucursal_1
+vendedor:
+  nombre: Vendedor 01
+  username: vendedor
+  email: ventas01@bodega-staff.com.py
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: Vendedor
+  sucursales: sucursal_1
+depositero:
+  nombre: Depositero
+  username: depositero
+  email: deposito@bodega-staff.com.py
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: Depositero
+  sucursales: sucursal_1

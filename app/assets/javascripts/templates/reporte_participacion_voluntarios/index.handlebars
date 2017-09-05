@@ -1,0 +1,91 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "search" on="submit"}}>
+          <div class="form-group">
+            <div class="col-lg-4">
+              <label class="form-label">Evento</label>
+              {{view Ember.Select
+              content=eventos
+              selection=eventoSeleccionado
+              value=eventoSeleccionado
+              classNames="form-control" }}
+            </div>
+            <div class="col-lg-4">
+              {{#if eventoCurso}}
+                <label class="form-label">Curso</label>
+                <div class="search-input-width">
+                  {{search-input type="text"
+                  value=infoCurso
+                  selectedItem=cursoSeleccionado
+                  class="form-control"
+                  placeholder="Curso"
+                  property="descripcion"
+                  session=session service="cursos"
+                  modelType="curso"
+                  jsonRoot="cursos"
+                  store=store
+                  ignoredProperties="cursoColaboradores"
+                  queryScope="by_descripcion"}}
+                </div>
+              {{/if}}
+              {{#if eventoViaje}}
+                <label class="form-label">Viaje</label>
+                <div class="search-input-width">
+                  {{search-input type="text"
+                  value=infoViaje
+                  selectedItem=viajeSeleccionado
+                  class="form-control"
+                  placeholder="Viaje"
+                  property="descripcion"
+                  session=session service="viajes"
+                  modelType="viaje"
+                  jsonRoot="viajes"
+                  store=store
+                  ignoredProperties="viajeColaboradores"
+                  queryScope="by_descripcion"}}
+                </div>
+              {{/if}}
+              {{#if eventoCampanha}}
+                <label class="form-label">Campaña</label>
+                <div class="search-input-width">
+                  {{search-input
+                    type="text"  value=infoCampanha selectedItem=campanhaSeleccionada
+                    class="form-control" placeholder="Campaña"
+                    property="nombre" session=session service="campanhas" queryScope="by_descripcion"
+                    modelType="campanha" jsonRoot="campanhas" store=store
+                    ignoredProperties="persona,tipoCampanha,campanhasColaboradores,misionesVinculo"}}
+                </div>
+              {{/if}}
+            </div>
+          </div>
+            <label class="form-label" for="fecha">Rango de fechas</label>
+              <div class="form-group">
+                <div class="col-md-4">
+                  {{view Bodega.views.DatePickerView value=fecha_inicio_despues nullable=true placeholder="Después de"}}
+                </div>
+                <div class="col-md-4">
+                  {{view Bodega.views.DatePickerView value=fecha_inicio_dia nullable=true placeholder="Día"}}
+                </div>
+                <div class="col-md-4"}>
+                  {{view Bodega.views.DatePickerView value=fecha_inicio_antes nullable=true placeholder="Antes de" }}
+                </div>
+              </div>
+
+
+
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Generar Reporte</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

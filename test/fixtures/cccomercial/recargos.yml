@@ -1,0 +1,38 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+recargo_1:
+  medio_pago: efectivo
+  tipo_credito: contado
+  cantidad_cuotas: 0
+  interes: 0
+
+recargo_2:
+  medio_pago: debito
+  tipo_credito: contado
+  cantidad_cuotas: 0
+  interes: 0
+
+recargo_3:
+  medio_pago: credito
+  tipo_credito: contado
+  cantidad_cuotas: 0
+  interes: 0
+
+recargo_5:
+  medio_pago: debito
+  tipo_credito: mensual
+  cantidad_cuotas: 6
+  interes: 0
+
+recargo_6:
+  medio_pago: debito
+  tipo_credito: mensual
+  cantidad_cuotas: 12
+  interes: 0
+
+recargo_7:
+  medio_pago: debito
+  tipo_credito: mensual
+  cantidad_cuotas: 24
+  interes: 0

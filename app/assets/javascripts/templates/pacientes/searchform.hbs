@@ -1,0 +1,206 @@
+<div class="modal fade" id="pacienteSearchForm">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" {{action "noop"}}  data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Filtros</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-horizontal">
+            <form class="style-form" role="form">
+              <div class="form-group">
+                <div class="col-lg-6">
+                  <label class="form-label"  for="razonSocial">Nombre o Raz&oacute;n Social</label>
+                  {{input type="text" value=by_razon_social class="form-control" placeholder="Nombre o Razón Social"}}
+                </div>
+                <div class="col-lg-6">
+                  <label class="form-label"  for="sexo">Sexo</label>
+                   {{view Ember.Select 
+                     content=sexos
+                     selection=by_sexo
+                     value=by_sexo
+                     prompt="Seleccione un valor..."
+                     classNames="form-control"}}
+                </div>
+              </div> 
+              
+              <div class="form-group">
+                <div class="col-lg-3">
+                  <label class="form-label" for="ruc">RUC/CI</label>
+                  {{input type="text" value=by_ciRuc class="form-control" placeholder="RUC/CI"}}
+                </div>
+                <div class="col-lg-3">
+                  <label class="form-label"  for="tipopersona">Tipo persona</label>
+                   {{view Ember.Select 
+                     content=tipoPersonas
+                     selection=by_tipo_persona
+                     value=by_tipo_persona
+                     prompt="Seleccione un valor..."
+                     classNames="form-control"}}
+                </div>
+                <div class="col-lg-3">
+                  <label class="form-label"  for="numeroPaciente">Numero de Paciente</label>
+                  {{input type="text" value=by_numero_paciente class="form-control" placeholder="Número de Paciente"}}
+                </div>
+                <div class="col-lg-3">
+                  <label class="form-label" for="calificacion">Calificación</label>
+                  {{view Ember.Select 
+                        content=calificaciones
+                        optionValuePath="content.codigo" 
+                        optionLabelPath="content.descripcion" 
+                        selectionBinding=calificacionSeleccionada
+                        valueBinding=by_calificacion
+                        prompt="Seleccione un valor..."
+                        classNames="form-control"}}
+                </div>
+              </div>
+              
+              <label class="form-label">Días de atraso</label>
+              <div class="form-group"> 
+                <div class="col-lg-4"}}>
+                  {{number-input type="text" value=by_dias_atraso_gt class="form-control" placeholder="Desde"}} 
+                </div>
+                <div class="col-lg-4">
+                  {{number-input type="text" value=by_dias_atraso_eq class="form-control" placeholder="Igual a"}} 
+                </div>
+                <div class="col-lg-4">
+                   {{number-input type="text" value=by_dias_atraso_lt class="form-control" placeholder="Hasta"}} 
+                </div>
+              </div>
+
+              <label class="form-label" for="fecha">Fecha de Nacimiento</label>  
+              <div class="form-group">
+								<div class="col-lg-4">
+                  {{view Bodega.views.DatePickerView value=by_fecha_nacimiento_after placeholder="Desde"}}
+                </div>
+                <div class="col-lg-4">
+                  {{view Bodega.views.DatePickerView value=by_fecha_nacimiento_on placeholder="Día"}}
+                </div>
+								<div class="col-lg-4"}>
+                  {{view Bodega.views.DatePickerView value=by_fecha_nacimiento_before placeholder="Hasta" }}
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <div class="col-lg-4">
+                  <label class="form-label"  for="estadoCivil">Estado Civil</label>
+                  {{view Ember.Select 
+                    content=estadoCivilOpts
+                    selection=by_estado_civil
+                    prompt="Seleccione un valor..."
+                    value=by_estado_civil
+                    classNames="form-control"}}
+                </div>
+                <div class="col-lg-4">
+                  <label class="form-label"  for="nacionalidad">Nacionalidad</label>
+                  {{input type="text" value=by_nacionalidad class="form-control" placeholder="Nacionalidad"}}
+                </div>
+                <div class="col-lg-4">
+                  <label class="form-label"  for="numeroHijos">Nro de Hijos</label>
+                  {{number-input value=by_numero_hijos class="form-control" placeholder="Nro de Hijos"}}
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <div class="col-lg-4">
+                  <label class="form-label"  for="estadoCivil">Estudios Realizados</label>
+                  {{view Ember.Select 
+                    content=estudiosRealizados
+                    selection=by_estudios_realizados
+                    value=by_estudios_realizados
+                    prompt="Seleccione un valor..."
+                    classNames="form-control"}}
+                </div>
+                <div class="col-lg-4">
+                  <label class="form-label"  for="ciudad">Ciudad</label>
+                  {{view Ember.Select 
+                        content=ciudades
+                        optionValuePath="content.id" 
+                        optionLabelPath="content.nombre" 
+                        selectionBinding=ciudadSeleccionada
+                        valueBinding=by_ciudad
+                        prompt="Seleccione un valor..."
+                        classNames="form-control"}}
+                </div>
+                <div class="col-lg-4">
+                  <label class="form-label"  for="barrio">Barrio</label>
+                  {{input type="text" value=by_barrio class="form-control" placeholder="Barrio"}}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-lg-4">
+                <label class="form-label"  for="empleado">¿Es empleado?</label>
+                  {{input type="checkbox" checked=by_es_empleado class="checkbox"}}
+                </div>
+                <div class="col-lg-4">
+                  <label class="form-label"  for="antiguedad">Antigüedad (Años)</label>
+                  {{number-input value=by_antiguedad class="form-control" placeholder="Antiguedad"}}
+                </div>
+                <div class="col-lg-4">
+                  <label class="form-label" for="profesion">Profesión</label>
+                  {{input type="text" value=by_profesion class="form-control" placeholder="Profesión"}}
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <div class="col-lg-6">
+                  <label class="form-label" for="cargo">Cargo</label>
+                  {{input type="text" value=by_cargo class="form-control" placeholder="Cargo"}}
+                </div>
+                <div class="col-lg-6">
+                  <label class="form-label"  for="salarioMensual">Salario Mensual (Gs)</label>
+                  {{number-field min="1" number=by_salario_mensual class="form-control" placeholder="Salario Mensual"}}
+                </div>
+              </div>
+              
+              <label class="form-label" for="fecha">Fecha de Pago de Sueldo</label>  
+              <div class="form-group">
+								<div class="col-lg-4">
+                  {{view Bodega.views.DatePickerView value=by_fecha_pago_sueldo_after placeholder="Desde"}}
+                </div>
+                <div class="col-lg-4">
+                  {{view Bodega.views.DatePickerView value=by_fecha_pago_sueldo_on placeholder="Día"}}
+                </div>
+                <div class="col-lg-4"}>
+                  {{view Bodega.views.DatePickerView value=by_fecha_pago_sueldo_before placeholder="Hasta" }}
+                </div>
+              </div>
+              
+              <label class="form-label" for="fecha">Fecha de Ingreso a Informconf</label>  
+              <div class="form-group">
+								<div class="col-lg-4">
+                  {{view Bodega.views.DatePickerView value=by_fecha_ingreso_informconf_after placeholder="Desde"}}
+                </div>
+                <div class="col-lg-4">
+                  {{view Bodega.views.DatePickerView value=by_fecha_ingreso_informconf_on placeholder="Día"}}
+                </div>
+                <div class="col-lg-4"}>
+                  {{view Bodega.views.DatePickerView value=by_fecha_ingreso_informconf_before placeholder="Hasta" }}
+                </div>
+              </div>
+              
+              <label class="form-label" for="fecha">Fecha de Egreso de Informconf</label>  
+              <div class="form-group">
+								<div class="col-lg-4">
+                  {{view Bodega.views.DatePickerView value=by_fecha_egreso_informconf_after placeholder="Desde"}}
+                </div>
+                <div class="col-lg-4">
+                  {{view Bodega.views.DatePickerView value=by_fecha_egreso_informconf_on placeholder="Día"}}
+                </div>
+                <div class="col-lg-4"}>
+                  {{view Bodega.views.DatePickerView value=by_fecha_egreso_informconf_before placeholder="Hasta" }}
+                </div>
+              </div>
+             
+            </form>
+          </div>     
+      </div>
+      <div class="modal-footer">
+        <button type="button" {{action "criteriaSearch"}} class="btn btn-theme codium-search-btn" data-dismiss="modal" autofocus>Buscar</button>
+        <button type="button" {{action "clearFilters"}} class="btn btn-default" data-dismiss="modal">Limpiar Filtros</button>
+        <button type="button" {{action "noop"}} class="btn btn-default codium-cancel-btn" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

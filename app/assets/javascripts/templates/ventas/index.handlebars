@@ -1,0 +1,89 @@
+<h3>
+<i class="fa fa-angle-right"></i>
+{{tituloTipoSalida}}
+{{#link-to 'ventas.new' (query-params tipo_salida=tipo_salida)}}
+<button class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="margin-top: -5px; margin-left: 5px;" ></button>
+{{/link-to}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView}}
+    <div class="table-responsive content-panel" style="padding: 0px;">
+      <table class="table table-bordered table-striped table-condensed">
+        <thead>
+          <tr>
+            <th>N° Factura</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Campaña</th>
+            <th>Crédito</th>
+            <th>Cuotas</th>
+            <th>Pagado</th>
+            <th>Deuda</th>
+            <th>Anulado</th>
+            {{#if soportaUsoInterno}}
+              <th>Uso Interno</th>
+            {{/if}}
+            <th>Sucursal</th>
+            <th style="width:16%;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each}}
+          {{#if anulado}}
+            <tr class="danger">
+          {{else}}
+            <tr>
+          {{/if}}
+            <td>{{nroFactura}}</td>
+            <td>{{cliente.razonSocialCliente}}</td>
+            <td>{{dateformat fechaRegistro}}</td>
+            <td>{{formatNumber total}}</td>
+            <td>{{nombreCampanha}}</td>
+            <td>{{yesno credito}}</td>
+            <td>{{cantidadCuotas}}</td>
+            <td>{{yesno pagado}}</td>
+            <td>{{deuda}}</td>
+            <td>{{yesno anulado}}</td>
+            {{#if controller.soportaUsoInterno}}
+              <td>{{yesno usoInterno}}</td>
+            {{/if}}
+            <td>{{sucursal.descripcion}}</td>
+            <td>
+              {{!--<button {{action 'imprimir' id}} class="btn btn-theme btn-sm glyphicon glyphicon-print" ></button>--}}
+              {{#link-to 'venta.edit' this (query-params tipo_salida=tipoSalida.codigo ) classNames='table-action' }}
+              <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil" ></button>
+              {{/link-to}}
+              {{#link-to 'venta.duplicar' this classNames='table-action'}}
+              <button class="btn btn-theme btn-sm glyphicon glyphicon-share" ></button>
+              {{/link-to}}
+
+              {{#unless anulado}}
+                {{#link-to 'venta.delete' this classNames='table-action'}}
+                {{#isAuthorized 'FE_delete_ventas'}}
+                  <button class="btn btn-theme btn-sm glyphicon glyphicon-remove" data-toggle="modal" data-target="#ventaDelete" {{bind-attr disabled=controller.cajaCerrada}}> </button>
+                  {{/isAuthorized}}
+                {{/link-to}}
+              {{/unless}}
+              {{#if credito}}
+                {{#link-to 'ventaCuotas' this classNames='table-action'}}
+                <button class="btn btn-theme btn-sm glyphicon glyphicon-tasks" ></button>
+                {{/link-to}}
+              {{else}}
+                {{#if medioPago.registraPago}}
+                {{#link-to 'ventaCuotas' this classNames='table-action'}}
+                <button class="btn btn-theme btn-sm glyphicon glyphicon-tasks" ></button>
+                {{/link-to}}
+                {{/if}}
+              {{/if}}
+            </td>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

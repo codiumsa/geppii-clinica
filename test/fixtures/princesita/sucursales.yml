@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+sucursal_princesita:
+  codigo: 01_princesita_1
+  descripcion: Matriz - Princesita
+  usuarios: administrador, vendedor
+  activo: true
+  empresa: princesita
+  deposito: deposito_princesita
+  color: '#96D1CF'

@@ -1,0 +1,134 @@
+by_fecha_agenda_on = @by_fecha_agenda_on
+by_fecha_agenda_before = @by_fecha_agenda_before
+by_fecha_agenda_after = @by_fecha_agenda_after
+
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  loteTitle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  loteContent = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  wb.add_worksheet(name: "pacientes_nuevos") do |sheet|
+    time = Time.now.strftime("%d/%m/%Y")
+    if by_fecha_agenda_after and by_fecha_agenda_before
+      puts "gola"
+      fecha_str = "Pacientes nuevos entre #{by_fecha_agenda_after.to_date}" + " y " + "#{by_fecha_agenda_before.to_date}"
+      fichasCirugia = FichaCirugia.select("min(id) as id",:paciente_id).where("DATE(created_at) > ? and DATE(created_at) < ?", by_fecha_agenda_after.to_date, by_fecha_agenda_before.to_date).group(:paciente_id)
+      fichasFonoaudiologia = FichaFonoaudiologia.select("min(id) as id",:paciente_id).where("DATE(created_at) > ? and DATE(created_at) < ?", by_fecha_agenda_after.to_date, by_fecha_agenda_before.to_date).group(:paciente_id)
+      fichasNutricion = FichaNutricion.select("min(id) as id",:paciente_id).where("DATE(created_at) > ? and DATE(created_at) < ?", by_fecha_agenda_after.to_date, by_fecha_agenda_before.to_date).group(:paciente_id)
+      fichasOdontologia = FichaOdontologia.select("min(id) as id",:paciente_id).where("DATE(created_at) > ? and DATE(created_at) < ?", by_fecha_agenda_after.to_date, by_fecha_agenda_before.to_date).group(:paciente_id)
+      fichasPsicologia = FichaPsicologia.select("min(id) as id",:paciente_id).where("DATE(created_at) > ? and DATE(created_at) < ?", by_fecha_agenda_after.to_date, by_fecha_agenda_before.to_date).group(:paciente_id)
+    elsif by_fecha_agenda_after
+      fecha_str = "Pacientes nuevos después de: #{by_fecha_agenda_after.to_date}"
+      fichasCirugia = FichaCirugia.select("min(id) as id",:paciente_id).where("DATE(created_at) > ?", by_fecha_agenda_after.to_date).group(:paciente_id)
+      fichasFonoaudiologia = FichaFonoaudiologia.select("min(id) as id",:paciente_id).where("DATE(created_at) > ?", by_fecha_agenda_after.to_date).group(:paciente_id)
+      fichasNutricion = FichaNutricion.select("min(id) as id",:paciente_id).where("DATE(created_at) > ?", by_fecha_agenda_after.to_date).group(:paciente_id)
+      fichasOdontologia = FichaOdontologia.select("min(id) as id",:paciente_id).where("DATE(created_at) > ?", by_fecha_agenda_after.to_date).group(:paciente_id)
+      fichasPsicologia = FichaPsicologia.select("min(id) as id",:paciente_id).where("DATE(created_at) > ?", by_fecha_agenda_after.to_date).group(:paciente_id)
+    elsif by_fecha_agenda_before
+      fecha_str = "Pacientes nuevos antes de:" + "#{by_fecha_agenda_before.to_date}"
+      fichasCirugia = FichaCirugia.select("min(id) as id",:paciente_id).where("DATE(created_at) < ?", by_fecha_agenda_before.to_date).group(:paciente_id)
+      fichasFonoaudiologia = FichaFonoaudiologia.select("min(id) as id",:paciente_id).where("DATE(created_at) < ?", by_fecha_agenda_before.to_date).group(:paciente_id)
+      fichasNutricion = FichaNutricion.select("min(id) as id",:paciente_id).where("DATE(created_at) < ?", by_fecha_agenda_before.to_date).group(:paciente_id)
+      fichasOdontologia = FichaOdontologia.select("min(id) as id",:paciente_id).where("DATE(created_at) < ?", by_fecha_agenda_before.to_date).group(:paciente_id)
+      fichasPsicologia = FichaPsicologia.select("min(id) as id",:paciente_id).where("DATE(created_at) < ?", by_fecha_agenda_before.to_date).group(:paciente_id)
+    elsif by_fecha_agenda_on
+      fecha_str =  "Pacientes nuevos del día: #{by_fecha_agenda_on.to_date}"
+      fecha_str = "Pacientes nuevos antes de:" + "#{by_fecha_agenda_before.to_date}"
+      fichasCirugia = FichaCirugia.select(:id,:paciente_id).where("DATE(created_at) = ?", by_fecha_agenda_on.to_date).group(:paciente_id)
+      fichasFonoaudiologia = FichaFonoaudiologia.select("min(id) as id",:paciente_id).where("DATE(created_at) = ?", by_fecha_agenda_on.to_date).group(:paciente_id)
+      fichasNutricion = FichaNutricion.select("min(id) as id",:paciente_id).where("DATE(created_at) = ?", by_fecha_agenda_on.to_date).group(:paciente_id)
+      fichasOdontologia = FichaOdontologia.select("min(id) as id",:paciente_id).where("DATE(created_at) = ?", by_fecha_agenda_on.to_date).group(:paciente_id)
+      fichasPsicologia = FichaPsicologia.select("min(id) as id",:paciente_id).where("DATE(created_at) = ?", by_fecha_agenda_on.to_date).group(:paciente_id)
+    else
+      fecha_str =  "Pacientes nuevos hasta #{time}"
+      fichasCirugia = FichaCirugia.select("min(id) as id",:paciente_id).where("DATE(created_at) <= ?", Date.today).group(:paciente_id)
+      fichasFonoaudiologia = FichaFonoaudiologia.select("min(id) as id",:paciente_id).where("DATE(created_at) <= ?", Date.today).group(:paciente_id)
+      fichasNutricion = FichaNutricion.select("min(id) as id",:paciente_id).where("DATE(created_at) <= ?", Date.today).group(:paciente_id)
+      fichasOdontologia = FichaOdontologia.select("min(id) as id",:paciente_id).where("DATE(created_at) <= ?", Date.today).group(:paciente_id)
+      fichasPsicologia = FichaPsicologia.select("min(id) as id",:paciente_id).where("DATE(created_at) <= ?", Date.today).group(:paciente_id)
+    end
+
+
+    puts "fichasCirugiaids:: #{fichasCirugia.to_yaml}"
+    puts "fichasFonoaudiologia:: #{fichasFonoaudiologia.to_yaml}"
+    puts "fichasNutricion:: #{fichasNutricion.to_yaml}"
+    puts "fichasOdontologia:: #{fichasOdontologia.to_yaml}"
+    puts "fichasPsicologia:: #{fichasPsicologia.to_yaml}"
+
+    pacientesNuevos = []
+    fichasCirugia.map do |fichaCirugia|
+      primeraFichaCirugia = FichaCirugia.where("paciente_id = ?",fichaCirugia.paciente_id).order(:created_at).limit(1)
+      paciente = Paciente.find(fichaCirugia.paciente_id)
+      if (!pacientesNuevos.include? paciente.persona.razon_social and !primeraFichaCirugia.empty? and fichaCirugia.id == primeraFichaCirugia.first.id)
+        pacientesNuevos.push(paciente.persona.razon_social)
+      end
+    end
+    fichasFonoaudiologia.map do |fichaFonoaudiologia|
+      primeraFichaFonoaudiologia = FichaFonoaudiologia.where("paciente_id = ?",fichaFonoaudiologia.paciente_id).order(:created_at).limit(1)
+      paciente = Paciente.find(fichaFonoaudiologia.paciente_id)
+      if (!pacientesNuevos.include? paciente.persona.razon_social and !primeraFichaFonoaudiologia.empty? and fichaFonoaudiologia.id == primeraFichaFonoaudiologia.first.id)
+        pacientesNuevos.push(paciente.persona.razon_social)
+      end
+    end
+    fichasNutricion.map do |fichaNutricion|
+      primeraFichaNutricion = FichaNutricion.where("paciente_id = ?",fichaNutricion.paciente_id).order(:created_at).limit(1)
+      paciente = Paciente.find(fichaNutricion.paciente_id)
+      if (!pacientesNuevos.include? paciente.persona.razon_social and !primeraFichaNutricion.empty? and fichaNutricion.id == primeraFichaNutricion.first.id)
+        pacientesNuevos.push(paciente.persona.razon_social)
+      end
+    end
+    fichasOdontologia.map do |fichaOdontologia|
+      primeraFichaOdontologia = FichaOdontologia.where("paciente_id = ?",fichaOdontologia.paciente_id).order(:created_at).limit(1)
+      paciente = Paciente.find(fichaOdontologia.paciente_id)
+      if (!pacientesNuevos.include? paciente.persona.razon_social and !primeraFichaOdontologia.empty? and fichaOdontologia.id == primeraFichaOdontologia.first.id)
+        pacientesNuevos.push(paciente.persona.razon_social)
+      end
+    end
+    fichasPsicologia.map do |fichaPsicologia|
+      primeraFichaPsicologia = FichaPsicologia.where("paciente_id = ?",fichaPsicologia.paciente_id).order(:created_at).limit(1)
+      paciente = Paciente.find(fichaPsicologia.paciente_id)
+      if (!pacientesNuevos.include? paciente.persona.razon_social and !primeraFichaPsicologia.empty? and fichaPsicologia.id == primeraFichaPsicologia.first.id)
+        pacientesNuevos.push(paciente.persona.razon_social)
+      end
+    end
+
+    sheet.add_row ["Geppii","Reporte de Pacientes nuevos","#{fecha_str}"," Fecha: #{time}"], style: [wrap_text,wrap_text,wrap_text,wrap_text]
+    sheet.add_row []
+    if pacientesNuevos.length > 0
+      sheet.add_row ["Pacientes"], style: [loteTitle]
+      pacientesNuevos.map do |paciente|
+        sheet.add_row ["#{paciente}"], style: [loteContent]
+      end
+    else
+      sheet.add_row ["No existen pacientes nuevos para el rango de fechas seleccionado"], style: [loteTitle]
+    end
+
+
+
+  end
+end

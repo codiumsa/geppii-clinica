@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+itau_mariano:
+  banco: Itaú
+  marca: Visa
+  afinidad: Shopping Mariano
+  medio_pago_id: credito
+
+continental_mariano:
+  banco: Continental
+  marca: Visa
+  afinidad: Shopping Mariano
+  medio_pago_id: credito
+
+continental_shopping_sol:
+  banco: Continental
+  marca: Visa
+  afinidad: Shopping del Sol
+  medio_pago_id: credito
+
+itau_mariscal:
+  banco: Itau
+  marca: Visa
+  afinidad: Mariscal López
+  medio_pago_id: credito  

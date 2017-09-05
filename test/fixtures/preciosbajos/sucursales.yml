@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+sucursal_preciosbajos:
+  id: 1
+  codigo: 01_preciosbajos_1
+  descripcion: Matriz
+  activo: true
+  empresa_id: 1
+  deposito_id: 1
+  color: '#00bf8f'
+  vendedor_id: 1

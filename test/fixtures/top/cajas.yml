@@ -1,0 +1,38 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# #CAJAS DE GABINO
+# caja1:
+#   codigo: caja1_01
+#   descripcion: Caja Chica 
+#   sucursal: sucursal_1
+#   tipo_caja: C
+
+# caja2:
+#   codigo: caja1_02
+#   descripcion: Caja Principal
+#   sucursal: sucursal_1
+#   tipo_caja: P
+
+# caja3:
+#   codigo: caja2_01
+#   descripcion: Caja Chica 
+#   sucursal: sucursal_2
+#   tipo_caja: C
+
+# caja4:
+#   codigo: caja2_02
+#   descripcion: Caja Principal
+#   sucursal: sucursal_2
+#   tipo_caja: P
+
+caja3:
+  codigo: caja1_01
+  descripcion: Caja Chica 
+  sucursal_id: 1
+  tipo_caja: C
+
+caja4:
+  codigo: caja1_02
+  descripcion: Caja Principal
+  sucursal_id: 1
+  tipo_caja: P

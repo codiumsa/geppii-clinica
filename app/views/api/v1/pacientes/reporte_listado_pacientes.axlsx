@@ -1,0 +1,51 @@
+pacientes = @pacientes
+
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  loteTitle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  loteContent = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+
+    wb.add_worksheet(name: "listado_pacientes") do |sheet|
+
+        time = Time.now.strftime("%d/%m/%Y %H:%M:%S")
+        sheet.add_row ["Geppii","Listado de Pacientes"," Fecha: #{time}"], style: [wrap_text,wrap_text,wrap_text]
+        sheet.add_row []
+
+        if pacientes.all.length > 0
+            sheet.add_row ["Nro. Paciente", "Nombre", "Apellido", "Nro. de Cédula", "Fecha de Nacimiento", "Sexo", "Edad", "Teléfono", "Ciudad"], style: [loteTitle]*9
+            pacientes.all.each do |p|
+                sheet.add_row [p.numero_paciente, p.persona.nombre, p.persona.apellido, p.persona.ci_ruc, (Date.parse(p.persona.fecha_nacimiento).strftime("%d/%m/%Y") rescue ''), p.persona.sexo, p.anhos, p.persona.telefono, (p.persona.ciudad.nombre rescue '')]
+            end
+        else
+            sheet.add_row ["No existen pacientes con los filtros designados"], style: [wrap_text]
+        end
+
+    end
+
+end

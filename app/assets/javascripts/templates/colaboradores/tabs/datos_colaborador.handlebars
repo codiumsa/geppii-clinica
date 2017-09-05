@@ -1,0 +1,33 @@
+<div role="tabpanel" class="tab-pane" id="datoscolaborador">
+  <div class="col-lg-12">
+    <div class="form-horizontal">
+      <form class="style-form" role="form" {{action "save" on="submit" }} onkeydown="Bodega.keydownFormHandler('controller:clientes.new', 'save');">
+        {{!-- <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Informaci&oacute;n B&aacute;sica</h5>
+          </div>
+
+        </div> --}}
+        {{partial "colaboradores/tabs/nueva_campanha"}}
+        {{partial "colaboradores/tabs/lista_campanhas"}}
+
+        <div class="form-group">
+          <div class="col-lg-12">
+            {{#isAuthorized 'FE_post_colaboradores, FE_put_colaboradores'}}
+            <button type="submit" class="btn btn-theme">Guardar</button>
+            {{/isAuthorized}}
+            <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            {{#if id}}
+            <!--div style="float: right;">
+              <button class="btn btn-theme" {{action generarLegajo}}>Imprimir Legajo
+                <span class="glyphicon glyphicon-file"></span>
+              </button>
+            </div-->
+            {{/if}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

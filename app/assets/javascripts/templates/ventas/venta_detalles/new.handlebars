@@ -1,0 +1,16 @@
+<div class="form-group" {{bind-attr class="errors.producto:has-error errors.producto:has-feedback"}}>
+    <label class="form-label"  for="codigoBarra">Código de Barras</label>
+    {{input type="text" value=codigoBarra class="form-control" placeholder=""}}
+    <span class="help-block">{{errors.producto}}</span>
+    {{#if errors.producto}}
+    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+    {{/if}}
+</div>
+<div class="form-group" {{bind-attr class="errors.producto:has-error errors.producto:has-feedback"}}>
+    <label class="form-label"  for="descripcion">Descripción</label>
+    {{input type="text" value=descripcion class="form-control" placeholder=""}}
+    <span class="help-block">{{errors.producto}}</span>
+    {{#if errors.producto}}
+    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+    {{/if}}
+</div>

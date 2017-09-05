@@ -1,0 +1,9 @@
+sucursal_1:
+  codigo: 01_matriz
+  descripcion: Matriz - Tacumbu
+  usuarios: administrador, vendedor
+  activo: true
+  empresa: staff
+  deposito: punto_venta_matriz_1
+  vendedor: vendedor_01
+  color: '#507EAC'

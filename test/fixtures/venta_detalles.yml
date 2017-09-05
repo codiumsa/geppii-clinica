@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one_v1:
+#   venta: uno
+#   producto: heineken
+#   cantidad: 2
+#   precio: 15000
+#   promocion: promo_one
+
+# one_v1:
+#   venta: uno
+#   producto: heineken
+#   cantidad: 2
+#   precio: 15000
+
+# two:
+#   venta: dos
+#   producto: heineken
+#   cantidad: 4
+#   precio: 30000
+#   promocion: promo_two
+

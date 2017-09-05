@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+ deposito_preciosbajos:
+   id: 1
+   nombre: Depósito Precios Bajos
+   descripcion: Depósito principal de Precios Bajos

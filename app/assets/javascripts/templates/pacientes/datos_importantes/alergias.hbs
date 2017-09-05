@@ -1,0 +1,68 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#alergias">
+        <i class="fa fa-angle-right"></i>Alergias</a>
+    </h4>
+  </div>
+  <div id="alergias" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="form-group">
+        <!-- INICIO LISTA DETALLES -->
+        <div class="panel-body">
+          <div class="form-horizontal form-detalles">
+            {{#if listaAlergias}}
+              <div class="form-group">
+                <div class="col-lg-4 first-cell">
+                  <label class="form-label">Fecha</label>
+                </div>
+                <div class="col-lg-7">
+                  <label class="form-label">Alergia</label>
+                </div>
+              </div> 
+            {{else}}
+              <div class="form-group">
+                <div class="col-lg-12 first-cell">
+                  <label class="form-label">No existen alergias registrados.</label>
+                </div>
+              </div>
+            {{/if}}
+            {{#each ale in listaAlergias}}
+              <div class="form-group">
+                <div class="col-lg-4 first-cell">
+                  {{input type="text" readonly="true" value=ale.fecha class="form-control" placeholder="Fecha" }}
+                </div>
+                <div class="col-lg-7">
+                  {{input type="text" readonly="true" value=ale.alergia class="form-control" placeholder="Descripción de la alergia" }}
+                </div>
+                <div class="col-lg-1">
+                  <button type="button" {{action 'borrarDetalle' ale 'datosImportantes.alergias' 'datosImportantes.alergias.@each.eliminado'}} class="btn btn-theme">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </button>
+                </div>
+              </div>
+              {{/each}}
+            <!-- DETALLE NUEVO -->
+            <div class="col-lg-4">
+              <label class="form-label" for="fecha">Fecha</label>
+              {{view Bodega.views.DatePickerView value=alergiaNueva.fecha}}
+            </div>
+            <div class="col-lg-7">
+              <label class="form-label">Alergia: </label>
+              {{input type="text" id="nombreAlergia" value=alergiaNueva.alergia class="form-control" placeholder="Nombre del Alergia o droga"}}
+            </div>
+            <div class="col-lg-1">
+              <label class="form-label">Agregar</label>
+              <!--button type="button" {{action 'agregarAlergia'}} class="btn btn-theme btn-sm" onkeydown="Bodega.enterFormHandler('controller:pacientes.new', 'agregarAlergia');"-->
+              <button type="button" {{action 'agregarDetalle' 'datosImportantes.alergias' 'alergiaNueva'}} class="btn btn-theme btn-sm" onkeydown="Bodega.enterFormHandler('controller:pacientes.new', 'agregarDetalle');">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </div>
+            <!-- FIN DETALLE NUEVO-->
+          </div>
+        </div>
+        <!-- FIN LISTA DETALLES -->
+      </div>
+    </div>
+  </div>
+</div>

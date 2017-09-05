@@ -1,0 +1,79 @@
+<!-- datos de direccion del paciente -->
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Direccion</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="col-lg-6" {{bind-attr class="feedback.personaDireccion:has-error feedback.personaDireccion:has-feedback"}}>
+        <label class="form-label"  for="direccion">Calle y Número</label>
+        {{input type="text" value=persona.direccion class="form-control" placeholder="Calle y Número"}}
+        <span class="help-block">{{error feedback.personaDireccion}}</span>
+        {{#if feedback.personaDireccion}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        {{/if}}
+      </div>
+      <div class="col-lg-6" {{bind-attr class="feedback.personaTipoDomicilio:has-error feedback.personaTipoDomicilio:has-feedback"}}>
+        <label class="form-label"  for="tipoDomicilio">Tipo de Domicilio</label>
+        {{view Ember.Select 
+          content=tiposDomicilios
+          selection=persona.tipoDomicilio
+          prompt="Seleccione un valor..."
+          value=persona.tipoDomicilio
+          classNames="form-control"}}
+        <span class="help-block">{{error feedback.personaTipoDomicilio}}</span>
+        {{#if feedback.personaTipoDomicilio}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        {{/if}}
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-4" {{bind-attr class="feedback.personaCiudad:has-error feedback.personaCiudad:has-feedback"}}>
+        <label class="form-label" for="ciudad">Ciudad</label>
+        {{view Ember.Select 
+          content=ciudades
+          optionValuePath="content.codigo" 
+          optionLabelPath="content.nombre" 
+          selectionBinding=ciudadSeleccionada
+          prompt="Seleccione un valor..."
+          valueBinding=ciudadDefault
+          classNames="form-control"}}
+
+        <span class="help-block">{{error feedback.personaCiudad}}</span>
+        {{#if feedback.personaCiudad}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        {{/if}}
+      </div>
+      <div class="col-lg-4" {{bind-attr class="feedback.personaBarrio:has-error feedback.personaBarrio:has-feedback"}}>
+        <label class="form-label"  for="barrio">Barrio</label>
+        {{input type="text" value=persona.barrio class="form-control" placeholder="Barrio"}}
+        <span class="help-block">{{error feedback.personaBarrio}}</span>
+        {{#if feedback.personaBarrio}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        {{/if}}
+      </div>
+      <div class="col-lg-4" {{bind-attr class="feedback.personaDistanciaClinica:has-error feedback.personaDistanciaClinica:has-feedback"}}>
+        <label class="form-label"  for="distanciaClinica">Distancia a la cl&iacute;nica (en KM)</label>
+        {{number-input value=persona.distanciaClinica class="form-control" }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-4" {{bind-attr class="feedback.personaTelefono:has-error feedback.personaTelefono:has-feedback"}}>
+        <label class="form-label"  for="telefono">Tel&eacute;fono</label>
+        {{input type="text" value=persona.telefono class="form-control" placeholder="Teléfono"}}
+        <span class="help-block">{{error feedback.personaTelefono}}</span>
+        {{#if feedback.personaTelefono}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        {{/if}}
+      </div>
+      <div class="col-lg-4" {{bind-attr class="feedback.personaCelular:has-error feedback.personaCelular:has-feedback"}}>
+        <label class="form-label"  for="celular">Celular</label>
+        {{input type="text" value=persona.celular class="form-control" placeholder="Celular"}}
+        <span class="help-block">{{error feedback.personaCelular}}</span>
+        {{#if feedback.personaCelular}}
+          <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        {{/if}}
+      </div>
+    </div>
+  </div>   <!-- fin panel de direccion -->
+</div>

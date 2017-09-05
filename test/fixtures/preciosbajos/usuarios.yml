@@ -1,0 +1,14 @@
+administrador:
+  id: 1
+  nombre: Administrador User
+  username: administrador
+  email: administrador@example.com
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: Administrador
+vendedor:
+  id: 2
+  nombre: Vendedor User
+  username: vendedor
+  email: vendedor@example.com
+  password_digest: "$2a$10$wJTPdvpGgzDvkXChrcPyqOQrFFawzGu89B1rZze/lVIcJKWiNeAqS" # 'secret'
+  roles: Vendedor

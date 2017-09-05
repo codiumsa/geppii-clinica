@@ -1,0 +1,64 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "search" on="submit"}}>
+          <label class="form-label" for="fecha">Rango de fechas</label>        
+              <div class="form-group">
+                <div class="col-md-4">
+                  {{view Bodega.views.DatePickerView value=fecha_inicio_despues nullable=true placeholder="Después de"}}
+                </div>
+                <div class="col-md-4">
+                  {{view Bodega.views.DatePickerView value=fecha_inicio_dia nullable=true placeholder="Día"}}
+                </div>
+                <div class="col-md-4"}>
+                  {{view Bodega.views.DatePickerView value=fecha_inicio_antes nullable=true placeholder="Antes de" }}
+                </div>
+              </div>
+              <div class="form-group">
+                {{#if multiEmpresa }}
+                <div class="col-lg-4">
+                 <label class="form-label" for="empresas">Empresa</label>
+                  {{view Ember.Select content=empresas 
+                  optionValuePath="content.id" 
+                  selection=selectedEmpresa
+                  optionLabelPath="content.nombre"
+                  classNames="form-control"
+                  prompt="Todas"}}
+               </div>
+               {{else}}
+                <div class="col-lg-4">
+                 <label class="form-label" for="empresas">Empresa</label>
+                  {{view Ember.Select content=empresas 
+                  optionValuePath="content.id" 
+                  selection=selectedEmpresa
+                  optionLabelPath="content.nombre"
+                  classNames="form-control"
+                  prompt="Seleccione una Empresa"}}
+               </div>
+               {{/if}}
+              </div>
+{{!--             <div class="col-lg-4">
+              <label class="form-label" for="categorias">Medio de Pago</label>
+              {{view Ember.Select
+                      content=mediosPagos
+                      optionLabelPath="content.nombre"
+                      selection=medioPagoSeleccionado
+                      value=medioPagoDefault
+                      classNames="form-control"}}
+            </div> --}}
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Generar Reporte</button>
+            </div>
+          </div>
+        </form>
+      </div>     
+    </div>
+  </div>
+</div>
+

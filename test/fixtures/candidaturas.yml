@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  paciente_id: 
+  especialidad_id: 
+  colaborador_id: 
+  fecha: 2016-08-28
+  clinica: false
+  campanha_id: 
+  fecha_posible: 2016-08-28
+
+two:
+  paciente_id: 
+  especialidad_id: 
+  colaborador_id: 
+  fecha: 2016-08-28
+  clinica: false
+  campanha_id: 
+  fecha_posible: 2016-08-28

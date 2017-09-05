@@ -1,0 +1,201 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion"
+	 href="#fistula" {{action 'scrollToTop' 350}}><i class="fa fa-angle-right">
+	 </i>Fistula</a>
+    </h4>
+  </div>
+  <div id="fistula" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="form-group">
+      	<div class="col-lg-3">
+      	  {{! TODO: habilitar/deshabilitar si presente chequeado}}
+      	  <label {{bind-attr for=fistula.labio.presente}}>Labio</label>
+      	  {{input nameBinding=fistula.labio.presente type="checkbox"
+      	    checked=fistula.labio.presente class="for-checkbox"}}
+      	</div>
+      	<div class="col-lg-3">
+      	  Completo {{view Bodega.views.RadioButton value='si' checked=fistula.labio.completo}}
+      	  Incompleto {{view Bodega.views.RadioButton value='no' checked=fistula.labio.completo}}
+      	</div>
+      	<div class="col-lg-3">
+      	  Operado {{view Bodega.views.RadioButton value='si' checked=fistula.labio.operado}}
+      	  No Operado {{view Bodega.views.RadioButton value='no' checked=fistula.labio.operado}}
+      	</div>
+      	<div class="col-lg-3">
+      	  Unilateral {{view Bodega.views.RadioButton value='no' checked=fistula.labio.bilateral}}
+      	  Bilateral {{view Bodega.views.RadioButton value='si' checked=fistula.labio.bilateral}}
+      	</div>
+      </div>
+      <div class="form-group">
+	<div class="col-lg-3">
+	  {{! TODO: habilitar/deshabilitar si presente chequeado}}
+	  <label {{bind-attr for=fistula.paladar.presente}}>Paladar</label>
+	  {{input nameBinding=fistula.paladar.presente type="checkbox"
+	    checked=fistula.paladar.presente class="for-checkbox"}}
+	</div>
+	<div class="col-lg-3">
+	  Completo {{view Bodega.views.RadioButton value='si' checked=fistula.paladar.completo}}
+	  Incompleto {{view Bodega.views.RadioButton value='no' checked=fistula.paladar.completo}}
+	</div>
+	<div class="col-lg-3">
+	  Operado {{view Bodega.views.RadioButton value='si' checked=fistula.paladar.operado}}
+	  No Operado {{view Bodega.views.RadioButton value='no' checked=fistual.paladar.operado}}
+	</div>
+      </div>
+      {{!fistula }}
+      <div class="form-group">
+
+      <div class="col-lg-3">
+	       {{ view Bodega.views.FistulaSVGView data=fistula.svg}}
+      </div>
+      <div class="col-lg-3">
+	<label>Dimensión</label>
+	{{view Bodega.views.GeppiiSelect
+	  content=fistulaDimensiones
+	  selection=fistula.dimension
+	  prompt="Seleccione un valor..."
+	  value=fistula.dimension
+	  optionValuePath="content"
+	  classNames="form-control"}}
+      </div>
+      <div class="col-lg-3">
+	<label>Ubicacion</label>
+	{{view Bodega.views.GeppiiSelect
+	  content=fistulaUbicaciones
+	  selection=fistula.ubicacion
+	  prompt="Seleccione un valor..."
+	  value=fistula.ubicacion
+	  optionValuePath="content"
+	  classNames="form-control"}}
+	<label {{bind-attr for=fistula.ubicacionPalatal.anterior}}>Anterior</label>
+	{{input nameBinding=fistula.ubicacionPalatal.anterior type="checkbox"
+	  checked=fistula.ubicacionPalatal.anterior class="for-checkbox"}}
+	<label {{bind-attr for=fistula.ubicacionPalatal.transicion}}>Transicion</label>
+	{{input nameBinding=fistula.ubicacionPalatal.transicion type="checkbox"
+	  checked=fistula.ubicacionPalatal.transicion class="for-checkbox"}}
+	<label {{bind-attr for=fistula.ubicacionPalatal.posterior}}>Posterior</label>
+	{{input nameBinding=fistula.ubicacionPalatal.posterior type="checkbox"
+	  checked=fistula.ubicacionPalatal.posterior class="for-checkbox"}}
+      </div>
+    </div>
+      
+      <div class="col-lg-12">
+	<fieldset>
+	  <legend>Paladar Blando(Grafico anterior)</legend>
+	  <div class="col-lg-3">
+	    {{input nameBinding=uvulaBifida type="checkbox"
+	      checked=fistula.paladarBlando.uvulaBifida class="for-checkbox"}}
+	    <label {{bind-attr for=uvulaBifida}}> úvula bifida</label>
+	  </div>
+	  <div class="col-lg-3">
+	    <label>Longitud</label>
+	    {{view Bodega.views.GeppiiSelect
+	      content=fistulaLongitudes
+	      selection=fistula.paladarBlando.longitud
+	      prompt="Seleccione un valor..."
+	      value=fistula.paladarBlando.longitud
+	      optionValuePath="content"
+	      classNames="form-control"}}
+	  </div>
+	  <div class="col-lg-3">
+	    <label>Motricidad</label>
+	    {{view Bodega.views.GeppiiSelect
+	      content=fistulaMotricidades
+	      selection=fistula.paladarBlando.motricidad
+	      prompt="Seleccione un valor..."
+	      value=fistula.paladarBlando.motricidad
+	      optionValuePath="content"
+	      classNames="form-control"}}
+	  </div>
+	  <div class="col-lg-3">
+	    <label>Inserción músculo elevador</label>
+	    {{view Bodega.views.GeppiiSelect
+	      content=insercionesMusculoElevador
+	      selection=fistula.paladarBlando.insercionMusculoElevador
+	      prompt="Seleccione un valor..."
+	      value=fistula.paladarBlando.insercionMusculoElevador
+	      optionValuePath="content"
+	      classNames="form-control"}}
+	  </div>
+	</fieldset>
+      </div>
+      <div class="col-lg-12">
+	<fieldset>
+	  <legend>Labio</legend>
+	  <div class="col-lg-3">
+	    {{input nameBinding=sellado type="checkbox"
+	      checked=fistula.labio2.sellado class="for-checkbox"}}
+	    <label {{bind-attr for=sellado}}>De sellado</label>
+	  </div>
+	  <div class="col-lg-3">
+	    {{input nameBinding=labioTono type="checkbox"
+	      checked=fistula.labio2.tono class="for-checkbox"}}
+	    <label {{bind-attr for=labioTono}}>Tono</label>
+	  </div>
+	  <div class="col-lg-3">
+	    {{input nameBinding=labioMorfologia type="checkbox"
+	      checked=fistula.labio2.morfologia class="for-checkbox"}}
+	    <label {{bind-attr for=labioMorfologia}}>Morfologia</label>
+	  </div>
+	  <div class="col-lg-3">
+	    {{input nameBinding=labioMotricidad type="checkbox"
+	      checked=fistula.labio2.motricidad class="for-checkbox"}}
+	    <label {{bind-attr for=labioMotricidad}}>Motricidad</label>
+	  </div>
+	</fieldset>
+      </div>
+      <div class="col-lg-12">
+	<fieldset>
+	  <legend>Lengua</legend>
+	  <div class="col-lg-3">
+	    {{input nameBinding=frenillo type="checkbox"
+	      checked=fistula.lengua.frenillo class="for-checkbox"}}
+	    <label {{bind-attr for=frenillo}}>Frenillo</label>
+	  </div>
+	  <div class="col-lg-3">
+	    {{input nameBinding=tono type="checkbox"
+	      checked=fistula.lengua.tono class="for-checkbox"}}
+	    <label {{bind-attr for=tono}}>Tono</label>
+	  </div>
+	  <div class="col-lg-3">
+	    {{input nameBinding=motricidad type="checkbox"
+	      checked=fistula.lengua.motricidad class="for-checkbox"}}
+	    <label {{bind-attr for=motricidad}}>Motricidad</label>
+	  </div>
+	</fieldset>
+      </div>
+      <div class="col-lg-3">
+	<label>Regurgitación Nasal</label>
+	{{view Bodega.views.GeppiiSelect
+	  content=regurgitacionesNasales
+	  selection=fistula.regurgitacionNasal
+	  prompt="Seleccione un valor..."
+	  value=fistula.regurgitacionNasal
+	  optionValuePath="content"
+	  classNames="form-control"}}
+      </div>
+      <div class="col-lg-3">
+	<label {{bind-attr for=fistula.dificultadSocial}}>Dificultad Social</label>
+	{{input nameBinding=fistula.dificultadSocial type="checkbox"
+	  checked=fistula.dificultadSocial class="for-checkbox"}}
+      </div>
+      <div class="col-lg-3">
+	<label {{bind-attr for=fistula.quejaEscolar}}>Queja Escolar</label>
+	{{input nameBinding=fistula.fistula.quejaEscolar type="checkbox"
+	  checked=fistula.quejaEscolar class="for-checkbox"}}
+      </div>
+      <div class="col-lg-3">
+	<label>Fonoterapia</label>
+	{{view Bodega.views.GeppiiSelect
+	  content=fonoterapias
+	  selection=fistula.fonoterapia
+	  prompt="Seleccione un valor..."
+	  value=fistula.fonoterapia
+	  optionValuePath="content"
+	  classNames="form-control"}}
+      </div>
+    </div>
+  </div>
+</div>

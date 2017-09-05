@@ -1,0 +1,423 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div id="noEnterProducto" class="row mt" onkeydown="Bodega.ignoreEnter();">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form"  {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:productos.new', 'save');">
+          <div class="form-group">
+            <div class="col-lg-3" {{bind-attr class="errors.codigoBarra:has-error errors.codigoBarra:has-feedback"}}>
+              <label class="form-label"  for="codigoBarra">Código de Barra</label>
+               {{focus-input type="text" enter='contarEnters' value=codigoBarra class="form-control" placeholder="Código de Barra" autofocus="true"}}
+              <span class="help-block">{{error errors.codigoBarra}}</span>
+              {{#if errors.codigoBarra}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+
+            <div class="col-lg-6" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+              <label class="form-label"  for="descripcion">Descripción</label>
+              {{input type="text" value=descripcion class="form-control" placeholder="Descripción"}}
+              <span class="help-block">{{error errors.descripcion}}</span>
+              {{#if errors.descripcion}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-3" {{bind-attr class="errors.marca:has-error errors.marca:has-feedback"}}>
+              <label class="form-label"  for="descripcion">Marca</label>
+              {{input type="text" value=marca class="form-control" placeholder="Marca"}}
+              <span class="help-block">{{error errors.marca}}</span>
+              {{#if errors.marca}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-lg-4" >
+              <label class="form-label"  for="margen">Nro. Referencia</label>
+              {{input type="text" value=nroReferencia class="form-control" placeholder="Nro. Referencia"}}
+            </div>
+            {{!-- <div class="col-lg-4" {{bind-attr class="errors.unidad:has-error errors.unidad:has-feedback"}}>
+              <label class="form-label"  for="unidad">Unidad</label>
+              {{input type="text" value=unidad class="form-control" placeholder="Unidad"}}
+              <span class="help-block">{{error errors.unidad}}</span>
+              {{#if errors.unidad}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div> --}}
+
+            {{!-- <div class="col-lg-3" {{bind-attr class="errors.margen:has-error errors.margen:has-feedback"}}>
+              <label class="form-label"  for="margen">Margen</label>
+              {{number-input min="0" max="100" value=margen class="form-control" placeholder="%"}}
+               <span class="help-block">{{error errors.margen}}</span>
+              {{#if errors.margen}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div> --}}
+
+            <div class="col-lg-3" >
+              <label class="form-label"  for="margen">Presentación</label>
+              {{input type="text" value=presentacion class="form-control" placeholder="Presentación"}}
+               <span class="help-block">{{error errors.presentacion}}</span>
+            </div>
+
+            <div class="col-lg-2" {{bind-attr class="errors.iva:has-error errors.iva:has-feedback"}}>
+
+                 <label class="form-label" for="iva">IVA</label>
+                  {{view Ember.Select content=ivas
+                  selection=selectedIva
+                  classNames="form-control"}}
+
+                {{#if errors.iva}}
+                   <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+            </div>
+            <div class="col-lg-3">
+              <label for="tipoProducto">Tipo de Producto</label>
+                 {{view Ember.Select
+                    content=tiposProducto
+                    optionValuePath="content.id"
+                    optionLabelPath="content.descripcion"
+                    selection=tiposProductoSeleccionado
+                    value=tiposProductoDefault
+                    classNames="form-control" }}
+            </div>
+          </div>
+
+            {{#if tiposProductoSeleccionado.productoOsi}}
+                <div class="form-group">
+                      <div class="col-lg-3" {{bind-attr class="errors.codigo_externo:has-error errors.descripcion:has-feedback"}}>
+                          <label class="form-label"  for="codigo_externo">Código OSI</label>
+                          {{input type="text" value=codigoExterno class="form-control" placeholder="Código OSI"}}
+                          <span class="help-block">{{error errors.descripcion}}</span>
+                          {{#if errors.codigo_externo}}
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                          {{/if}}
+                     </div>
+                     <div class="col-lg-3" {{bind-attr class="errors.codigo_externo:has-error errors.descripcion_externa:has-feedback"}}>
+                          <label class="form-label"  for="descripcion_externa">Descripción OSI</label>
+                          {{input type="text" value=descripcionExterna class="form-control" placeholder="Descripción OSI"}}
+                          <span class="help-block">{{error errors.descripcion_externa}}</span>
+                          {{#if errors.descripcion_externa}}
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                          {{/if}}
+                     </div>
+                     <div class="col-lg-3" {{bind-attr class="errors.codigo_externo:has-error errors.codigo_local:has-feedback"}}>
+                          <label class="form-label"  for="codigo_local">Código OSP</label>
+                          {{input type="text" value=codigoLocal class="form-control" placeholder="Código OSP"}}
+                          <span class="help-block">{{error errors.codigo_local}}</span>
+                          {{#if errors.codigo_local}}
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                          {{/if}}
+                     </div>
+                     <div class="col-lg-3" {{bind-attr class="errors.codigo_externo:has-error errors.descripcion_local:has-feedback"}}>
+                          <label class="form-label"  for="descripcion_local">Descripción OSP</label>
+                          {{input type="text" value=descripcionLocal class="form-control" placeholder="Descripción OSP"}}
+                          <span class="help-block">{{error errors.descripcion_local}}</span>
+                          {{#if errors.descripcion_local}}
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                          {{/if}}
+                    </div>
+                </div>
+            {{/if}}
+            {{#if tiposProductoSeleccionado.muebleEquipo}}
+              <div class="form-group">
+                <div class="col-lg-3">
+                    <label class="form-label" for="nro_inventario">Número de Inventario</label>
+                    {{input type="text" value=nroInventario class="form-control" placeholder="Número de Inventario"}}
+                </div>
+                <div class="col-lg-3">
+                   <label class="form-label" for="fecha_adquisicion">Fecha de adquisición</label>
+                   {{view Bodega.views.DatePickerView value=fechaAdquisicion nullable=true placeholder="Después de"}}
+                </div>
+                <div class="col-lg-3">
+                  <label class="form-label" for="modelo">Modelo</label>
+                  {{input type="text" value=modelo class="form-control" placeholder="Modelo"}}
+                </div>
+                {{#unless tiposProductoSeleccionado.mueble}}
+                  <div class="col-lg-3">
+                   <label class="form-label" for="nro_serie">Número de Serie</label>
+                   {{input type="text" value=nroSerie class="form-control" placeholder="Número de Serie"}}
+                </div>
+                {{/unless}}
+              </div>
+              <div class="form-group">
+                <div class="col-lg-3">
+                   <label class="form-label" for="area">Asignado a</label>
+                   {{input type="text" value=asignado class="form-control" placeholder="Asignado a"}}
+                </div>
+                <div class="col-lg-3">
+                   <label class="form-label" for="area">Responsable del mantenimiento</label>
+                   {{input type="text" value=responsableMantenimiento class="form-control" placeholder="Responsable del mantenimiento"}}
+                </div>
+                <div class="col-lg-2">
+                   <label class="form-label" for="area">Área</label>
+                   {{input type="text" value=area class="form-control" placeholder="Área"}}
+                </div>
+                <div class="col-lg-2">
+                  <label class="form-label" for="nro_serie">Año de Fabricación</label>
+                  {{input type="text" value=anhoFabricacion class="form-control" placeholder="Año de Fabricación"}}
+                </div>
+                <div class="col-lg-2">
+                   <label class="form-label" for="area">Descontinuado</label>
+                   {{input type="checkbox" checked=descontinuado class="checkbox"}}
+                </div>
+              </div>
+            {{/if}}
+
+            {{#if hablitarEspecialidadProcedimiento}}
+              <div class="form-group">
+                {{#if tiposProductoSeleccionado.procedimiento}}
+                <div class="col-lg-2" >
+                  <label for="tratamiento">Es Procedimiento</label>
+                  {{input type="checkbox" checked=procedimiento class="checkbox"}}
+                </div>
+                {{/if}}
+                {{#if tiposProductoSeleccionado.especialidad}}
+                  <div class="col-lg-3">
+                    <label for="tipoProducto">Especialidad médica</label>
+                       {{view Ember.Select
+                          content=especialidades
+                          optionLabelPath="content.descripcion"
+                          selection=especialidadSeleccionada
+                          value=especialidadSeleccionada
+                          classNames="form-control" }}
+                  </div>
+                {{/if}}
+              </div>
+            {{/if}}
+
+          <div class="form-group">
+            <div class="col-lg-4" {{bind-attr class="errors.precioCompra:has-error errors.precioCompra:has-feedback"}}>
+              <label class="form-label"  for="precioCompra">Precio Compra</label>
+              {{#if soportaMultimoneda}}
+                  {{decimal-field min="0" number=precioCompra class="form-control" placeholder="Precio Compra" disabled=disableModificarPrecio}}
+              {{else}}
+                  {{number-input min="0" value=precioCompra class="form-control" placeholder="Precio Compra" disabled=disableModificarPrecio}}
+              {{/if}}
+              <span class="help-block">{{error errors.precioCompra}}</span>
+              {{#if errors.precioCompra}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-4" {{bind-attr class="errors.precio:has-error errors.precio:has-feedback"}}>
+            <label class="form-label" for="precio">Precio Venta</label>
+              {{#if habilitaEdicionPrecio}}
+                {{#if soportaMultimoneda}}
+                    {{decimal-field min="0" number=precio class="form-control" placeholder="Precio Venta" disabled=disableModificarPrecio}}
+                {{else}}
+                  {{number-input min="0" value=precio class="form-control" placeholder="Precio Venta" disabled=disableModificarPrecio}}
+                {{/if}}
+                 <span class="help-block">{{error errors.precio}}</span>
+                {{#if errors.precio}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              {{else}}
+                {{input type="text" value=precio class="form-control" disabled="true"}}
+              {{/if}}
+            </div>
+            {{#if soportaMultimoneda}}
+              {{#if habilitaEdicionMoneda}}
+              <div class="col-lg-2 taginputsimple" {{bind-attr class="errors.moneda:has-error errors.moneda:has-feedback"}}>
+                <label class="form-label">Moneda</label>
+                {{view Ember.Select
+                  content=monedas
+                  optionLabelPath="content.nombre"
+                  selection=monedaSeleccionada
+                  value=monedaSeleccionada
+                  classNames="form-control"}}
+                {{#if errors.moneda}}
+                    <span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+                {{/if}}
+              </div>
+              {{else}}
+                <div class="col-lg-2" {{bind-attr class="errors.moneda:has-error errors.moneda:has-feedback"}}>
+                  <label class="form-label"  for="moneda">Moneda</label>
+                  {{input type="text" value=moneda.nombre class="form-control" placeholder="Moneda" readonly=true}}
+                  <span class="help-block">{{error errors.moneda}}</span>
+                </div>
+              {{/if}}
+            {{/if}}
+             {{#unless tiposProductoSeleccionado.servicio}}
+              <div class="col-lg-2" {{bind-attr class="errors.stock_minimo:has-error errors.precio:has-feedback"}}>
+                <label class="form-label" for="stockMinimo">Stock Mínimo</label>
+                {{input type="text" value=stockMinimo class="form-control" placeholder="Stock Mínimo"}}
+                 <span class="help-block">{{error errors.stock_minimo}}</span>
+                {{#if errors.stock_minimo}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            {{/unless}}
+          </div>
+          <div class="form-group">
+            <div class="col-lg-6" {{bind-attr class="errors.categorias:has-error errors.categorias:has-feedback"}}>
+                <label class="form-label"  for="categorias">Categor&iacute;as</label>
+
+                    {{view Bodega.views.TagWidgetView
+                       service='categorias'
+                       modelType='categoria'
+                       modelID='id'
+                       itemText='nombre'
+                       itemValue='id'
+                       queryScope='by_nombre'
+                       session=session
+                       datasource=categorias
+                       jsonRoot='categorias'}}
+
+                {{#if errors.categorias}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+            </div>
+            {{#unless tiposProductoSeleccionado.servicioMueble}}
+              <div class="col-lg-1" {{bind-attr class="errors.pack:has-error errors.pack:has-feedback"}} >
+                <label for="pack">Es Caja</label>
+                {{input type="checkbox" checked=pack class="checkbox" disabled=id}}
+              </div>
+               {{#if pack}}
+                  <div class="col-lg-2" {{bind-attr class="errors.cantidad:has-error errors.cantidad:has-feedback" }}>
+                    <label for="cantidad">Cantidad</label>
+                    {{number-input value=cantidad class="form-control" placeholder="Unidades por pack" disabled=id }}
+                    <span class="help-block">{{error errors.cantidad}}</span>
+                    {{#if errors.cantidad}}
+                    <span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+                    {{/if}}
+                  </div>
+
+                  <div {{bind-attr class=":col-lg-3 :taginputsimple errors.producto:has-error errors.producto:has-feedback id:tag-disabled"}}>
+                    <label class="form-label">Producto Padre</label>
+                      {{view Bodega.views.TagWidgetView
+                         service='productos'
+                         itemText='descripcion'
+                         itemValue='id'
+                         queryScope='by_descripcion'
+                         session=session
+                         datasource=model
+                         modelType='producto'
+                         modelID='id'
+                         singleKey='producto'
+                         single=true
+                         jsonRoot='productos'}}
+                       <span class="help-block">{{error errors.producto}}</span>
+                      {{#if errors.producto}}
+                      <span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+                      {{/if}}
+                  </div>
+              {{/if}}
+            {{/unless}}
+          </div>
+          {{#unless tiposProductoSeleccionado.muebleEquipo}}
+            <div class="form-group">
+              <div class="col-lg-2">
+                {{#if tiposProductoSeleccionado.necesitaReceta}}
+                  <label for="pack">Necesita Receta</label>
+                {{else}}
+                  <label for="pack">Necesita Consentimiento firmado</label>
+                {{/if}}
+                {{input type="checkbox" checked=necesitaConsentimientoFirmado class="checkbox"}}
+              </div>
+            </div>
+          {{/unless}}
+
+          {{#if tiposProductoSeleccionado.set}}
+            <div class="form-group">
+              <div class="col-lg-5">
+                <label class="form-label">Descripción o código</label>
+                {{!--input type="text" readonly="true" value=productoSeleccionado.descripcion class="form-control" placeholder="DescripciÃ³n del producto" enter='agregarDetalle'--}}
+                <div class="search-input-width">
+                {{search-input
+                  id="producto"
+                  type="text"
+                  value=descripcionSW
+                  selectedItem=productoSeleccionadoSW
+                  class="form-control"
+                  placeholder="Descripción o código del producto"
+                  property="descripcionCodigo"
+                  session=session service="productos"
+                  modelType="producto"
+                  jsonRoot="productos"
+                  store=store
+                  enter="loadProducto"
+                  ignoredProperties="categorias,productoDetalles,promocionProducto,promocionAplicada,producto,moneda,tipoProducto,lotes,loteDeposito,especialidad"
+                 focus-out='clearProductoTemp'}}
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <label for="cantidadDetalle" class="form-label" title="Total de productos disponibles en todos los depositos">Cantidad</label>
+                {{ number-input id="cantidad" min="1" integer=true value=cantidadDetalle id="cantidadDetalle" class="form-control" placeholder=numeral enter="contarEnters" }}
+                <span class="help-block">{{feedback.existencia}}</span>
+                {{#if feedback.existencia}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-1">
+                <button type="button" {{action 'agregarDetalle'}} class="btn btn-theme float-right" {{bind-attr disabled=feedback.existencia}} style="margin-top: 22px;" onkeydown="Bodega.enterFormHandler('controller:ventas.new', 'agregarDetalle');">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </div>
+            </div>
+            {{#if detalles}}
+              <div class="form-group">
+                <div class="col-lg-5 first-cell">
+                  <label class="form-label">Descripción</label>
+                </div>
+                <div class="col-lg-2">
+                  <label class="form-label">Cantidad</label>
+                </div>
+              </div>
+            {{else}}
+                <div class="form-group">
+                  <div class="col-lg-12 first-cell">
+                    <label class="form-label">Debe agregar detalles para guardar el producto</label>
+                  </div>
+                </div>
+            {{/if}}
+            {{#each det in detalles}}
+            <div {{bind-attr class="det:form-group det.promocion:no-margin-bottom"}}>
+
+              <div class="col-lg-5 first-cell">
+                {{input type="text" readonly="true" value=det.producto.descripcion class="form-control"  }}
+              </div>
+              <div class="col-lg-2">
+                {{input type="text" readonly="true" value=det.cantidad class="form-control" placeholder="Cantidad" }}
+              </div>
+              <div class="col-lg-1">
+                <button type="button" {{action borrarDetalleProducto det}} class="btn btn-theme float-right">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+              </div>
+            </div>
+            {{/each}}
+          {{/if}}
+          <div class="form-group">
+            {{#if id}}
+            <div class="col-lg-4">
+              <img class="well image-preview-form" {{bind-attr src=urlFoto}} />
+            </div>
+            {{/if}}
+            <div {{bind-attr class="id:col-lg-8:col-lg-12" }}>
+              {{file-upload idRecurso=id url=urlFoto model=modelsFileUpload}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--script type="text/javascript">
+  $('#noEnterProducto').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+</script-->

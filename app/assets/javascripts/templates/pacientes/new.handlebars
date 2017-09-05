@@ -1,0 +1,39 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  <span>{{formTitle}}</span>
+</h3>
+<div class="row mt">
+  <form class="style-form" role="form" {{action "save" on="submit" }} onkeydown="Bodega.keydownFormHandler('controller:clientes.new', 'save');">
+    <div role="tabpanel" style="min-height:6150px">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#datospersonales" aria-controls="datospersonales" role="tab" data-toggle="tab">Datos Personales</a>
+        </li>
+        {{#if id}}
+        <li role="presentation">
+          <a href="#datoscandidaturas" aria-controls="datoscandidaturas" role="tab" data-toggle="tab">Candidaturas</a>
+        </li>
+        <li role="presentation">
+          <a href="#informacionimportante" aria-controls="informacionimportante" role="tab" data-toggle="tab">Informacion Importante</a>
+        </li>
+        <li role="presentation">
+          <a href="#fichas" aria-controls="fichas" role="tab" data-toggle="tab">Fichas</a>
+        </li>
+        {{/if}}
+      </ul>
+      <!-- Tab panes -->
+    <!-- Tab panes -->
+    <div class="tab-content">
+      {{partial "pacientes/datos_personales/principal" }}
+      {{#if id}}
+        {{partial "pacientes/candidaturas/list" }}
+        {{partial "pacientes/informacion_importante"}}
+        {{partial "pacientes/fichas"}}
+      {{/if}}
+    </div>
+
+
+    </div>
+  </form>
+</div>

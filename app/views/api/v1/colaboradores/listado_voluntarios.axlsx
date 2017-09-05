@@ -1,0 +1,48 @@
+colaboradores = @colaboradores
+
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  loteTitle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  loteContent = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  wb.add_worksheet(name: "informacion_voluntarios") do |sheet|
+    time = Time.now.strftime("%d/%m/%Y")
+    existeRegistros = false
+    sheet.add_row ["Geppii","Reporte de Información de Voluntarios","Fecha: #{time}"], style: [wrap_text,wrap_text,wrap_text]
+    sheet.add_row []
+
+    if colaboradores.length > 0
+      sheet.add_row ["C.I.", "Nombre", "Apellido", "Sexo", "Fecha de Nacimiento", "Teléfono", "Celular", "Email", "Estado civil", "Nacionalidad", "Tipo de voluntario", "Especialidad", "Nro. Reg. Profesional", "Comisionamiento", "Institución", "Acreditado", "Tipo", "Vencimiento Reg. Profesional", "Título", "Vencimiento BLS", "Vencimiento PALS", "Otros", "Talle de remera", "Lugar de trabajo 1", "Horario de trabajo 1", "Lugar de trabajo 2", "Horario de trabajo 2", "Lugar de trabajo 3", "Horario de trabajo 3"], style: [wrap_text]*29
+      colaboradores.map do |colaborador|
+        sheet.add_row [colaborador.persona.try(:ci_ruc), colaborador.persona.try(:nombre), colaborador.persona.try(:apellido), colaborador.persona.try(:sexo), (Date.parse(colaborador.persona.fecha_nacimiento).strftime("%d/%m/%Y") rescue ''), colaborador.persona.try(:telefono), colaborador.persona.try(:celular), colaborador.persona.try(:correo), colaborador.persona.try(:estado_civil), colaborador.persona.try(:nacionalidad), colaborador.tipo_colaborador.try(:nombre), colaborador.especialidad.try(:descripcion), colaborador.licencia, (colaborador.comisionamiento ? 'Sí' : 'No'), colaborador.institucion, (colaborador.acreditado ? 'Sí' : 'No'), colaborador.tipo, (Date.parse(colaborador.vencimiento_registro_medico).strftime("%d/%m/%Y") rescue ''), (Date.parse(colaborador.vencimiento_bls).strftime("%d/%m/%Y") rescue ''), (Date.parse(colaborador.vencimiento_pals).strftime("%d/%m/%Y") rescue ''), colaborador.otros, colaborador.talle_remera, colaborador.lugar_trabajo_1, colaborador.horario_trabajo_1, colaborador.lugar_trabajo_2, colaborador.horario_trabajo_2, colaborador.lugar_trabajo_3, colaborador.horario_trabajo_3], style: [loteContent]*29
+      end
+    else
+      sheet.add_row ["No existen voluntarios con los filtros designados"], style: [wrap_text]
+    end
+  end
+end

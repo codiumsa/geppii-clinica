@@ -1,0 +1,86 @@
+<section id="container" {{bind-attr class="isNotAuthenticated:sidebar-closed" }}>
+  <!-- **********************************************************************************************************************************************************
+    TOP BAR CONTENT & NOTIFICATIONS
+    *********************************************************************************************************************************************************** -->
+  <!--header start-->
+  <header class="header black-bg" id="header-container">
+    <div class="sidebar-toggle-box">
+      {{#if session.isAuthenticated}}
+      <div {{bind-attr class=":fa :fa-bars :tooltips isNotAuthenticated:hidden" }} data-placement="right" data-original-title=""></div>
+      {{/if}}
+    </div>
+    <!--logo start-->
+    {{#link-to "index" class="logo" }}
+    <!-- class="logo" -->
+    <b>
+      <span style="color: #BCBBC5">Operación </span>
+      <span style="color: #BCBBC5">Sonrisa </span>
+      <span style="color: #e41c24">Paraguay</span>
+    </b>
+    {{/link-to}}
+    <div class="top-menu">
+      <ul class="nav pull-right top-menu">
+        {{#if session.isAuthenticated}}
+        <li>
+          <a class="logout" id="logout" {{action 'invalidateSession'}}>
+            <i class="fa fa-key"></i> Cerrar Sesi&oacute;n</a>
+        </li>
+        {{/if}}
+      </ul>
+    </div>
+  </header>
+  <!--header end-->
+  <!-- **********************************************************************************************************************************************************
+    MAIN SIDEBAR MENU
+    *********************************************************************************************************************************************************** -->
+  {{#if session.isAuthenticated}}
+
+  <!--sidebar start-->
+  <aside>
+    <div id="sidebar" class="nav-collapse" style="z-index: 1; ">
+      <!-- sidebar menu start-->
+      <ul class="sidebar-menu" id="nav-accordion">
+        <li>
+          <div class="centered">
+            <i class="fa fa-user fa-2x"></i>
+            <h5> <a class="centered" id="profile" {{action 'editProfile'}}> {{session.nombre}} </a> </h5>
+            <h5 class="centered"></h5>
+          </div>
+        </li>
+
+        {{partial "application/menu_inventario"}}
+        {{partial "application/menu_misiones"}}
+        {{partial "application/menu_clinica"}}
+        {{partial "application/menu_configuraciones"}}
+      </ul>
+      <!-- sidebar menu end-->
+    </div>
+  </aside>
+  <!--sidebar end-->
+  {{/if}}
+  <!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+  <div id="main-content-container" {{bind-attr style=containerHeightStyle}}>
+    <!--main content start-->
+    <section id="main-content" {{bind-attr class="isNotAuthenticated:ember-view" }}>
+      <section class="wrapper" id="wrapperid">
+        {{outlet}} {{outlet modal}}
+      </section>
+    </section>
+    <!--main content end-->
+  </div>
+  {{#if session.isAuthenticated}}
+  <!--footer start-->
+  <div id="footer-container">
+    <footer class="site-footer" style="position:relative; bottom:0%;">
+      <div class="text-right">
+        <span>&copy; {{year-footer}} - </span>
+        <a id="anc" target="_blank" href="http://www.codium.com.py/">www.codium.com.py</a>
+        <span style="padding-right: 10px;"></span>
+      </div>
+    </footer>
+    <!--footer end-->
+  </div>
+  {{/if}}
+</section>

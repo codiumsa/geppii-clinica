@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+odontologia:
+  id: 1
+  codigo: ODO
+  descripcion: Odontología
+
+cirugia:
+  id: 2
+  codigo: CIR
+  descripcion: Cirugía
+
+fonoaudiologia:
+  id: 3
+  codigo: FON
+  descripcion: Fonoaudiología
+
+clinica:
+  id: 4
+  codigo: CLI
+  descripcion: Clínica Médica
+

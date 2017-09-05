@@ -1,0 +1,73 @@
+<div role="tabpanel" class="tab-pane" id="contactoSponsor">
+  <div class="col-lg-12">
+    <div class="form-horizontal">
+      <form class="style-form" role="form" {{action "save" on="submit" }} onkeydown="Bodega.keydownFormHandler('controller:sponsors.new', 'save');">
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Informaci&oacute;n de <b>Contacto</b></h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-lg-3" {{bind-attr class="feedback.contactoNombre:has-error feedback.contactoNombre:has-feedback" }}>
+                <label class="form-label" for="nombre">Nombre</label>
+                {{input type="text" value=contactoNombre class="form-control" placeholder="Nombre"}}
+                <span class="help-block">{{error feedback.contactoNombre}}</span>
+                {{#if feedback.contactoNombre}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-3" {{bind-attr class="feedback.contactoApellido:has-error feedback.contactoApellido:has-feedback" }}>
+                <label class="form-label" for="apellido">Apellido</label>
+                {{input type="text" value=contactoApellido class="form-control" placeholder="Apellido"}}
+                <span class="help-block">{{error feedback.contactoApellido}}</span>
+                {{#if feedback.contactoApellido}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="feedback.contactoCelular:has-error feedback.contactoCelular:has-feedback" }}>
+                <label class="form-label" for="celular">Celular</label>
+                {{input type="text" value=contactoCelular class="form-control" placeholder="Celular"}}
+                <span class="help-block">{{error feedback.contactoCelular}}</span>
+                {{#if feedback.contactoCelular}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-3" {{bind-attr class="feedback.contactoEmail:has-error feedback.contactoEmail:has-feedback" }}>
+                <label class="form-label" for="email">Email</label>
+                {{input type="text" value=contactoEmail class="form-control" placeholder="Email"}}
+                <span class="help-block">{{error feedback.contactoEmail}}</span>
+                {{#if feedback.contactoEmail}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-3" {{bind-attr class="feedback.contactoCargo:has-error feedback.contactoCargo:has-feedback" }}>
+                <label class="form-label" for="cargo">Cargo</label>
+                {{input type="text" value=contactoCargo class="form-control" placeholder="Cargo"}}
+                <span class="help-block">{{error feedback.contactoCargo}}</span>
+                {{#if feedback.contactoCargo}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-12">
+            {{#isAuthorized 'FE_post_sponsors, FE_put_sponsors'}}
+              <button type="submit" class="btn btn-theme">Guardar</button>
+            {{/isAuthorized}}
+            <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            {{#if id}}
+              <div style="float: right;">
+                <button class="btn btn-theme" {{action generarLegajo}}>Imprimir Legajo
+                  <span class="glyphicon glyphicon-file"></span>
+                </button>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

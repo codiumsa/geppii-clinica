@@ -1,0 +1,132 @@
+consultas = @consultas
+paciente_id = @paciente_id
+especialidad_id = @especialidad_id
+by_fecha_agenda_on = @by_fecha_agenda_on
+by_fecha_agenda_before = @by_fecha_agenda_before
+by_fecha_agenda_after = @by_fecha_agenda_after
+
+puts consultas.to_yaml
+
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  loteTitle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  loteContent = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  wb.add_worksheet(name: "cantidad_tratamientos") do |sheet|
+    time = Time.now.strftime("%d/%m/%Y")
+    if by_fecha_agenda_after and by_fecha_agenda_before
+      fecha_str = "Cantidad de tratamientos entre #{by_fecha_agenda_after.to_date}" + " y " + "#{by_fecha_agenda_before.to_date}"
+    elsif by_fecha_agenda_after
+      fecha_str = "Cantidad de tratamientos después de: #{by_fecha_agenda_after.to_date}"
+    elsif by_fecha_agenda_before
+      fecha_str = "Cantidad de tratamientos antes de:" + "#{by_fecha_agenda_before.to_date}"
+    elsif by_fecha_agenda_on
+      fecha_str =  "Cantidad de tratamientos del día: #{by_fecha_agenda_on.to_date}"
+    else
+      fecha_str =  "Cantidad de tratamientos hasta #{Time.now.to_date}"
+    end
+
+    sheet.add_row ["Geppii","Reporte de Cantidad de tratamientos","#{fecha_str}"," Fecha: #{time}"], style: [wrap_text,wrap_text,wrap_text,wrap_text]
+    sheet.add_row []
+
+    if(especialidad_id.nil? and !paciente_id.nil? and !consultas.empty?)
+      sheet.add_row ["Paciente:","#{consultas.first.paciente.persona.razon_social}"], style: [loteTitle,loteContent]
+      sheet.add_row []
+      consultasEspecialidad = consultas.group_by(&:especialidad_id)
+      existeTratamientoConsulta = false
+      consultasEspecialidad.map do |c,consultasEspecialidadArray|
+        cantidadConsulta = Hash.new
+        tieneTratamiento = false
+        consultasEspecialidadArray.map do |consulta|
+          consulta.consulta_detalles.map do |consultaDetalle|
+            tieneTratamiento = true
+            existeTratamientoConsulta = true
+            if !cantidadConsulta.key?(consultaDetalle.producto.descripcion)
+              cantidadConsulta[consultaDetalle.producto.descripcion] = 0
+              cantidadConsulta[consultaDetalle.producto.descripcion] = cantidadConsulta[consultaDetalle.producto.descripcion] + consultaDetalle.cantidad
+            else
+              cantidadConsulta[consultaDetalle.producto.descripcion] = cantidadConsulta[consultaDetalle.producto.descripcion] + consultaDetalle.cantidad
+            end
+          end
+        end
+        if tieneTratamiento
+          sheet.add_row ["Especialidad:","#{consultasEspecialidadArray.first.especialidad.descripcion}"], style: [loteTitle,loteContent]
+          sheet.add_row ["Descripcion del Tratamiento","Cantidad"], style: [loteTitle,loteTitle]
+          cantidadConsulta.map do |tratamientoTemp,cantidadTemp|
+            sheet.add_row ["#{tratamientoTemp}","#{cantidadTemp}"], style: [loteContent,loteContent]
+          end
+          sheet.add_row []
+        end
+      end
+      if !existeTratamientoConsulta
+        sheet.add_row ["No existen tratamientos para el rango de fechas asignado"], style: [wrap_text]
+      end
+    elsif (!consultas.empty?)
+      if !paciente_id.nil?
+        sheet.add_row ["Paciente:","#{consultas.first.paciente.persona.razon_social}"], style: [loteTitle,loteContent]
+        sheet.add_row []
+      end
+      consultasEspecialidad = consultas.group_by(&:especialidad_id)
+      existeTratamientoConsulta = false
+      consultasEspecialidad.map do |c,consultasEspecialidadArray|
+        cantidadConsulta = Hash.new
+        tieneTratamiento = false
+        consultasEspecialidadArray.map do |consulta|
+          consulta.consulta_detalles.map do |consultaDetalle|
+            existeTratamientoConsulta = true
+            tieneTratamiento = true
+            if !cantidadConsulta.key?(consultaDetalle.producto.descripcion)
+              cantidadConsulta[consultaDetalle.producto.descripcion] = 0
+              cantidadConsulta[consultaDetalle.producto.descripcion] = cantidadConsulta[consultaDetalle.producto.descripcion] + consultaDetalle.cantidad
+            else
+              cantidadConsulta[consultaDetalle.producto.descripcion] = cantidadConsulta[consultaDetalle.producto.descripcion] + consultaDetalle.cantidad
+            end
+          end
+        end
+        if tieneTratamiento
+          sheet.add_row ["Especialidad:","#{consultasEspecialidadArray.first.especialidad.descripcion}"], style: [loteTitle,loteContent]
+          sheet.add_row ["Descripcion del Tratamiento","Cantidad"], style: [loteTitle,loteTitle]
+          cantidadConsulta.map do |tratamientoTemp,cantidadTemp|
+            sheet.add_row ["#{tratamientoTemp}","#{cantidadTemp}"], style: [loteContent,loteContent]
+          end
+          sheet.add_row []
+        end
+      end
+      if !existeTratamientoConsulta
+        sheet.add_row ["No existen tratamientos para el rango de fechas asignado"], style: [wrap_text]
+      end
+    elsif (consultas.empty?)
+      if !paciente_id.empty?
+        paciente = Paciente.find(paciente_id.to_i)
+        sheet.add_row ["Paciente:","#{paciente.persona.razon_social}"], style: [loteTitle,loteContent]
+        sheet.add_row []
+      end
+        sheet.add_row ["No existen tratamientos para el rango de fechas asignado"], style: [wrap_text]
+    end
+  end
+end

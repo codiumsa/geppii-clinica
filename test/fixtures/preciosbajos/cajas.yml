@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+caja3:
+  codigo: caja1_01
+  descripcion: Caja Chica 
+  sucursal_id: 1
+  tipo_caja: C
+
+caja4:
+  codigo: caja1_02
+  descripcion: Caja Principal
+  sucursal_id: 1
+  tipo_caja: P

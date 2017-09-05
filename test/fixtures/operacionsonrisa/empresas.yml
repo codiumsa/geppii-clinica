@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+operacionsonrisa:
+  id: 1
+  nombre: Operacion Sonrisa
+  activo: true
+  ruc: 80029651-6
+  codigo: operacionsonrisa

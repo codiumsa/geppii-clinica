@@ -1,0 +1,94 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:producciones.new', 'save');">
+          <div class="form-group" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+            <div class="col-lg-4">
+              <label class="form-label"  for="descripcion">Deposito</label>
+                {{#if id}}
+                      {{input type="text"  readonly="true"  value=deposito.nombre class="form-control"}}
+                {{else}}
+                  {{view Ember.Select
+                      content=depositos
+                      optionLabelPath="content.nombre"
+                      selection=depositoSeleccionado
+                      value=depositoSeleccionado
+                      classNames="form-control"
+                      disabled=editar }}
+                {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-2">
+              <label class="form-label">Cantidad</label>
+              {{input type="text" readonly=id value=cantidadProduccion class="form-control" placeholder=numeral }}
+            </div>
+            <div class="col-lg-5">
+              {{#if id}}
+                  <label class="form-label" for="codigo">Producto</label>
+                  <div class="search-input-width">
+                    {{input type="text" readonly="true" value=producto.descripcion class="form-control" placeholder="Descripción del producto" }}
+                  </div>
+              {{else}}
+                <div class="search-input-width">
+                    <label class="form-label" for="codigo">Producto</label>
+                      {{search-input type="text" enter='cargaProductos' value=descripcionProductoSet selectedItem=productoSetSeleccionado class="form-control" placeholder="Descripción del producto" property="descripcion" session=session service="productos" modelType="producto" jsonRoot="productos" store=store ignoredProperties="categorias,productoDetalles,promocionProducto,producto,moneda,tipoProducto,lotes,loteDeposito" queryScope='by_set'}}
+                </div>
+              {{/if}}
+            </div>
+          </div>
+          {{#if detalles}}
+            <div class="form-group">
+              <div class="col-lg-2 first-cell">
+                <label class="form-label">Cantidad</label>
+              </div>
+              <div class="col-lg-4">
+                <label class="form-label">Producto - Descripción</label>
+              </div>
+              {{!-- <div class="col-lg-3">
+                <label class="form-label">Lote</label>
+              </div> --}}
+            </div>
+          {{else}}
+            <div class="form-group">
+              <div class="col-lg-12 first-cell">
+                <label class="form-label">Debe seleccionar un Producto SET</label>
+              </div>
+            </div>
+          {{/if}}
+            {{#each det in detalles}}
+              <div class="form-group">
+                <div class="col-lg-2 first-cell">
+                  {{input type="text" readonly="true" value=det.cantidad class="form-control" placeholder="Cantidad" }}
+                </div>
+                <div class="col-lg-4">
+                  {{input type="text" readonly="true" value=det.producto.descripcion class="form-control" placeholder="Cantidad" }}
+                </div>
+                {{!-- <div class="col-lg-4">
+                  {{view Ember.Select
+                  content=det.lotes
+                  optionLabelPath="content.codigoLote"
+                  optionValuePath="content.id"
+                  selection=det.loteSeleccionado
+                  value=det.loteSeleccionado
+                  classNames="form-control"}}
+                </div> --}}
+              </div>
+            {{/each}}
+
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

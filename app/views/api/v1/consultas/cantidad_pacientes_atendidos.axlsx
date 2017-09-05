@@ -1,0 +1,71 @@
+consultas = @consultas
+especialidad_id = @especialidad_id
+by_fecha_agenda_on = @by_fecha_agenda_on
+by_fecha_agenda_before = @by_fecha_agenda_before
+by_fecha_agenda_after = @by_fecha_agenda_after
+
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  loteTitle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  loteContent = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  wb.add_worksheet(name: "cantidad_pacientes_atendidos") do |sheet|
+    time = Time.now.strftime("%d/%m/%Y")
+    if by_fecha_agenda_after and by_fecha_agenda_before
+      fecha_str = "Cantidad de pacientes atendidos entre #{by_fecha_agenda_after.to_date}" + " y " + "#{by_fecha_agenda_before.to_date}"
+    elsif by_fecha_agenda_after
+      fecha_str = "Cantidad de pacientes atendidos después de: #{by_fecha_agenda_after.to_date}"
+    elsif by_fecha_agenda_before
+      fecha_str = "Cantidad de pacientes atendidos antes de:" + "#{by_fecha_agenda_before.to_date}"
+    elsif by_fecha_agenda_on
+      fecha_str =  "Cantidad de pacientes atendidos del día: #{by_fecha_agenda_on.to_date}"
+    else
+      fecha_str =  "Cantidad de pacientes atendidos hasta #{time}"
+    end
+
+    sheet.add_row ["Geppii","Reporte de Cantidad de Pacientes Atendidos","#{fecha_str}"," Fecha: #{time}"], style: [wrap_text,wrap_text,wrap_text,wrap_text]
+    sheet.add_row []
+    if consultas.length > 0
+      sheet.add_row ["Especialidad","Cantidad de Pacientes Atendidos"], style: [loteTitle,loteTitle]
+      if !especialidad_id.nil?
+        especialidad = Especialidad.find(especialidad_id.to_i)
+        sheet.add_row ["#{especialidad.descripcion}","#{consultas.length}"], style: [loteTitle,loteTitle]
+      else
+          consultaEspecialidad = consultas.group_by(&:especialidad_id)
+          consultaPacientes = consultas.group_by(&:paciente_id)
+          consultaEspecialidad.map do |indiceEspecialidad,consultaEspecialidadArray|
+            sheet.add_row ["#{Especialidad.find(indiceEspecialidad.to_i).descripcion}","#{consultaEspecialidadArray.length}"], style: [loteTitle,loteTitle]
+          end
+          sheet.add_row []
+          sheet.add_row ["Cantidad total de pacientes atendidos:","#{consultaPacientes.length}"], style: [loteTitle,loteTitle]
+      end
+    else
+      sheet.add_row ["No existen consultas"], style: [loteTitle,loteTitle]
+    end
+  end
+end

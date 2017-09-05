@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+detalle_1:
+  transferencia: transferencia_1 
+  producto: heineken
+  cantidad: 5
+
+detalle2:
+  transferencia: transferencia_1 
+  producto: miller
+  cantidad: 10

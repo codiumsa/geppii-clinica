@@ -1,0 +1,118 @@
+<li class="sub-menu  dcjq-parent-li">
+  <a href="javascript:;" class="dcjq-parent">
+    <i class="glyphicon glyphicon-star"></i>
+    <span>Administrativo</span>
+  </a>
+
+  <ul class="sub" style="overflow: hidden; display: block;">
+    {{#isAuthorized 'FE_index_colaboradores'}}
+      <li class="sub-menu  dcjq-parent-li">
+        <a href="javascript:;" class="dcjq-parent">
+          <i class="fa fa-female fa-male"></i>
+          <span>Voluntarios</span>
+        </a>
+        <ul class="sub" style="overflow: hidden; display: block;">
+          {{#isAuthorized 'FE_index_tipo_colaboradores'}}
+            <li>
+              {{#link-to "tipo_colaboradores"}}
+              <span>Tipos Voluntario</span>
+              {{/link-to}}
+            </li>
+          {{/isAuthorized}}
+          {{#isAuthorized 'FE_index_colaboradores'}}
+            <li>
+              {{#link-to "colaboradores"}}
+              <span>Voluntarios</span>
+              {{/link-to}}
+            </li>
+          {{/isAuthorized}}
+          {{#isAuthorized 'FE_index_cursos'}}
+            <li>
+              {{#link-to "cursos"}}
+              <span>Cursos</span>
+              {{/link-to}}
+            </li>
+          {{/isAuthorized}}
+          {{#isAuthorized 'FE_index_viajes'}}
+            <li>
+              {{#link-to "viajes"}}
+              <span>Viajes</span>
+              {{/link-to}}
+            </li>
+          {{/isAuthorized}}
+        </ul>
+      </li>
+    {{/isAuthorized}}
+    {{#isAuthorized 'FE_index_campanhas'}}
+      <li>
+        {{#link-to "campanhas"}}
+        <i class="glyphicon glyphicon-globe"></i>
+        <span>Campañas</span>
+        {{/link-to}}
+      </li>
+    {{/isAuthorized}}
+    {{#isAuthorized 'FE_post_sponsors'}}
+      <li class="sub-menu  dcjq-parent-li">
+        <a href="javascript:;" class="dcjq-parent">
+          <i class="fa fa-female fa-male"></i>
+          <span>Patrocinador</span>
+        </a>
+        <ul class="sub" style="overflow: hidden; display: block;">
+            <li>
+              {{#link-to "sponsors"}}
+              <span>Patrocinadores</span>
+              {{/link-to}}
+            </li>
+            <li>
+              {{#link-to "tipoContactos"}}
+              <span>Oportunidades</span>
+              {{/link-to}}
+            </li>
+            <li>
+              {{#link-to "contactos"}}
+              <span>Contactos</span>
+              {{/link-to}}
+            </li>
+        </ul>
+      </li>
+    {{/isAuthorized}}
+    <li class="sub-menu  dcjq-parent-li">
+      <a href="javascript:;" class="dcjq-parent">
+        <i class="fa fa-bar-chart-o"></i>
+        <span>Reportes</span>
+      </a>
+      <ul class="sub" style="overflow: hidden; display: block;">
+        <li>
+            {{#link-to "reporte_informacion_voluntarios"}}
+                <span>Información Voluntarios</span>
+            {{/link-to}}
+        </li>
+        <li>
+            {{#link-to "reporte_participacion_voluntarios"}}
+                <span>Participación Voluntarios</span>
+            {{/link-to}}
+        </li>
+        <li>
+            {{#link-to "reporte_listado_voluntarios"}}
+                <span>Listado Voluntarios</span>
+            {{/link-to}}
+        </li>
+        <li>
+            {{#link-to "reporte_cursos"}}
+                <span>Cursos</span>
+            {{/link-to}}
+        </li>
+        <li>
+            {{#link-to "reporte_viajes"}}
+                <span>Viajes</span>
+            {{/link-to}}
+        </li>
+        <li>
+            {{#link-to "reporte_patrocinadores"}}
+                <span>Patrocinadores</span>
+            {{/link-to}}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>

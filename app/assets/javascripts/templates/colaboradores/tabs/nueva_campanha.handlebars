@@ -1,0 +1,41 @@
+<div class="panel panel-default"  onkeydown="Bodega.ignoreEnter();" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h5>
+      <i class="fa fa-angle-right"></i>Nueva Campanha</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="col-lg-4">
+        <label class="form-label">Descripción</label>
+        <div class="search-input-width">
+          {{search-input
+          type="text"
+          value=descripcionSW
+          selectedItem=campanhaSeleccionadaSW
+          class="form-control"
+          placeholder="Nombre de la Campaña..."
+          property="nombre"
+          session=session
+          service="campanhas"
+          modelType="campanha"
+          jsonRoot="campanhas"
+          store=store
+          ignoredProperties="persona,tipoCampanha,campanhasColaboradores,misionesVinculo"
+          enter="loadCampanha"
+          id="campanha"
+        }}
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <label class="form-label">Observación</label>
+        {{input id="observaciones" value=campanhaNueva.observaciones class="form-control" placeholder=numeral enter='contarEnters'}}
+      </div>
+      <div class="col-lg-1">
+        <label class="form-label">Agregar</label>
+        <button type="button" {{action 'agregarDetalle'}} class="btn btn-theme btn-sm" onkeydown="Bodega.enterFormHandler('controller:colaboradores.new', 'agregarDetalle');">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

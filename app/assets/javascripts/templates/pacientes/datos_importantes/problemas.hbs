@@ -1,0 +1,155 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#problemas">
+        <i class="fa fa-angle-right">
+        </i>Problemas</a>
+    </h4>
+  </div>
+
+  <div id="problemas" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="form-group">
+
+        <fieldset>
+          <legend>Síndromes</legend>
+          <div class="col-lg-12" {{bind-attr class="feedback.problemas.sindrome:has-error feedback.problemas.sindrome:has-feedback" }}>
+            <label class="form-label" for="sindrome">El paciente tiene algún síndrome?</label>
+            {{input type="text" value=datosImportantes.problemas.sindrome class="form-control" placeholder="Nombre del Síndrome"}}
+            <span class="help-block">{{error feedback.problemas.sindrome}}</span>
+            {{#if feedback.problemas.sindrome}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Auditivos</legend>
+          <div class="col-lg-12" {{bind-attr class="feedback.problemas.auditivos:has-error feedback.problemas.auditivos:has-feedback" }}>
+            <label class="form-label" for="auditivos">Cite los problemas auditivos..</label>
+            {{input type="text" value=datosImportantes.problemas.auditivos class="form-control" placeholder="Nombre del Síndrome"}}
+            <span class="help-block">{{error feedback.problemas.auditivos}}</span>
+            {{#if feedback.problemas.auditivos}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Visuales</legend>
+          <div class="col-lg-12" {{bind-attr class="feedback.problemas.visuales:has-error feedback.problemas.visuales:has-feedback" }}>
+            <label class="form-label" for="visuales">Cite los problemas visuales..</label>
+            {{input type="text" value=datosImportantes.problemas.visuales class="form-control" placeholder="Nombre del Síndrome"}}
+            <span class="help-block">{{error feedback.problemas.visuales}}</span>
+            {{#if feedback.problemas.visuales}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Neuromusculares</legend>
+          <div class="col-lg-3">
+            <label for="debilidad">Debilidad</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.neuromusculares.debilidad class="checkbox"}}
+          </div>
+          <div class="col-lg-3">
+            <label for="desarrollo">Desarrollo</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.neuromusculares.desarrollo class="checkbox"}}
+          </div>
+          <div class="col-lg-3">
+            <label for="convulsiones">Convulsiones</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.neuromusculares.convulsiones class="checkbox"}}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Respiratorios</legend>
+          <div class="col-lg-3">
+            <label for="debilidad">Asma</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.respiratorios.debilidad class="checkbox"}}
+          </div>
+          <div class="col-lg-3">
+            <label for="difRespiratoria">Dificultad Respiratoria</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.respiratorios.difRespiratoria class="checkbox"}}
+          </div>
+          <div class="col-lg-3">
+            <label for="neumonia">Neumonía</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.respiratorios.neumonia class="checkbox"}}
+          </div>
+          <div class="col-lg-3">
+            <label for="infRespiratoria">Insuficiencia Respiratoria</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.respiratorios.infRespiratoria class="checkbox"}}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Cardiacos</legend>
+          <div class="col-lg-3">
+            <label for="congenito">Congenito</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.cardiacos.congenito class="checkbox"}}
+          </div>
+          <div class="col-lg-3">
+            <label for="miocarditis">Miocarditis</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.cardiacos.miocarditis class="checkbox"}}
+          </div>
+          <div class="col-lg-3">
+            <label for="soplo">Soplo</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.cardiacos.soplo class="checkbox"}}
+          </div>
+          <div class="col-lg-3">
+            <label for="hipertension">Hipertensión</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.cardiacos.hipertension class="checkbox"}}
+          </div>
+          <div class="col-lg-3">
+            <label for="perturbacion">Perturbación</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.cardiacos.perturbacion class="checkbox"}}
+          </div>
+          <div class="col-lg-3">
+            <label for="cardiopatiaReumatica">Cardiopatía Reumatica</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.cardiacos.cardiopatiaReumatica class="checkbox"}}
+          </div>
+          <div class="col-lg-3">
+            <label for="valvulas">Válvulas</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.cardiacos.valvulas class="checkbox"}}
+          </div>          
+        </fieldset>
+
+        <fieldset>
+          <legend>Infecciones</legend>
+          <div class="col-lg-3">
+            <label for="VIH" style="color:red;">VIH</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.infecciones.VIH class="checkbox"}}
+          </div>
+          <div class="col-lg-3">
+            <label for="hepatitis">Hepatitis</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.infecciones.hepatitis class="checkbox"}}
+          </div>
+          <div class="col-lg-3">
+            <label for="malaria">Malaria</label>
+            {{input type="checkbox" checked=datosImportantes.problemas.infecciones.malaria class="checkbox"}}
+          </div>
+          <div class="col-lg-12" {{bind-attr class="feedback.problemas.infecciones.otros:has-error feedback.problemas.infecciones.otros:has-feedback" }}>
+            <label class="form-label" for="auditivos">Describa la infección</label>
+            {{input type="text" value=datosImportantes.problemas.infecciones.otros class="form-control" placeholder="Nombre de la infección"}}
+            <span class="help-block">{{error feedback.problemas.infecciones.otros}}</span>
+            {{#if feedback.problemas.infecciones.otros}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Otros</legend>
+          <div class="col-lg-12" {{bind-attr class="feedback.problemas.infecciones.otros:has-error feedback.problemas.infecciones.otros:has-feedback" }}>
+            <label class="form-label" for="auditivos">Describa el problema</label>
+            {{input type="text" value=datosImportantes.problemas.otros class="form-control" placeholder="Nombre del problema"}}
+            <span class="help-block">{{error feedback.problemas.otros}}</span>
+            {{#if feedback.problemas.otros}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

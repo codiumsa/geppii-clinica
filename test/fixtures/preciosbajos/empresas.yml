@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+preciosbajos:
+  nombre: Precio Bajos Paraguay S.A.
+  id: 1
+  activo: true
+  ruc: 80066829-7
+  codigo: preciosbajos

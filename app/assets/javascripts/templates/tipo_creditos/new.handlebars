@@ -1,0 +1,51 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}}>
+          <div class="form-group">
+            <div class="col-lg-12" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+              <label class="form-label"  for="descripcion">Descripción</label>
+              {{focus-input type="text" value=descripcion class="form-control" placeholder="Descripción del Tipo de Crédito" autofocus="autofocus"}}
+              <span class="help-block">{{error errors.descripcion}}</span>
+              {{#if errors.descripcion}}
+              <span class="glyphicon glyphicon-form remove-control-feedback"></span>
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-4" {{bind-attr class="errors.plazo:has-error errors.plazo:has-feedback"}}>
+              <label class="form-label"  for="plazo">Plazo</label>
+              {{number-input value=plazo min=0 class="form-control" placeholder="Plazo"}}
+              <span class="help-block">{{error errors.plazo}}</span>
+              {{#if errors.plazo}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-4">
+              <label class="form-label">Unidad de Tiempo</label>
+              {{view Ember.Select
+               content=unidadesTiempo
+               optionValuePath="content.id"
+               optionLabelPath="content.nombre"
+               selection=unidadTiempoSeleccionada
+               value=unidadDefault.id
+               classNames="form-control"}}
+            </div>
+          </div>
+            <div class="form-group">
+              <div class="col-lg-12">
+                <button type="submit" class="btn btn-theme">Guardar</button>
+                <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

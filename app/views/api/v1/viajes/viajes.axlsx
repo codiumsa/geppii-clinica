@@ -1,0 +1,55 @@
+viajes = @viajes
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  loteTitle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  loteContent = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"FFFFFF",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+
+
+  wb.add_worksheet(name: "viajes") do |sheet|
+    time = Time.now.strftime("%d/%m/%Y")
+    sheet.add_row ["Geppii","Reporte de Viajes"," Fecha: #{time}"], style: [wrap_text,wrap_text,wrap_text]
+    sheet.add_row []
+
+    if viajes.empty?
+      sheet.add_row ["No existen viajes"], style: [wrap_text,]
+    else
+      viajes.map do |viaje|
+        sheet.add_row ["Descripción: #{viaje.descripcion}","Observación: #{viaje.origen}","Destino: #{viaje.destino}"], style: [loteTitle,loteTitle,loteTitle]
+        sheet.add_row ["Fecha de inicio: #{viaje.fecha_inicio}","Fecha de fin: #{viaje.fecha_fin}", "Valorización: #{viaje.valorizacion}"], style: [loteTitle,loteTitle,loteTitle]
+        sheet.add_row []
+        sheet.add_row ["Voluntarios","Especialidad","Costo del ticket","Costo de estadía", "Compañía", "Observación"], style: [loteTitle,loteTitle,loteTitle,loteTitle,loteTitle,loteTitle]
+        viaje.viaje_colaboradores.map do |colaborador|
+          sheet.add_row ["#{colaborador.colaborador.persona.nombre} #{colaborador.colaborador.persona.apellido}",colaborador.colaborador.especialidad.try(:descripcion),colaborador.costo_ticket, colaborador.costo_estadia, colaborador.companhia, colaborador.observacion], style: [loteContent,loteContent,loteContent,loteContent,loteContent,loteContent]
+        end
+      end
+      sheet.add_row []
+      sheet.add_row []
+    end
+  end
+end

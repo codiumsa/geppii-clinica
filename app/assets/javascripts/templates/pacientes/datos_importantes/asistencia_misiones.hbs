@@ -1,0 +1,115 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#asistencia">
+        <i class="fa fa-angle-right">
+        </i>Asistencia a misiones</a>
+    </h4>
+  </div>
+  <div id="asistencia" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="form-group">
+        <div class="col-lg-3">
+          <label for="tiposDiagnosticos">Mision</label> {{view Ember.Select content=misionesVinculoSelect optionLabelPath="content.nombre" selection=misionVinculoSeleccionada value=misionVinculoSeleccionada classNames="form-control" }}
+        </div>
+        <div class="col-lg-2">
+          <label for="tieneDiagnostico">Tiene Diagnóstico</label>
+          {{input type="checkbox" checked=tieneDiagnostico class="checkbox"}}
+        </div>
+        {{#if tieneDiagnostico}}
+          <div class="col-lg-2">
+            <label for="tiposDiagnosticos">Parte</label> {{view Ember.Select content=tiposDiagnosticos selection=tipoDiagnosticoSeleccionado value=tipoDiagnosticoSeleccionado classNames="form-control" }}
+          </div>
+          <div class="col-lg-3">
+            <label for="diagnosticos">Diagnóstico</label> {{view Ember.Select content=diagnosticos optionLabelPath="content.nombre" selection=diagnosticoSeleccionado value=diagnosticoSeleccionado classNames="form-control" }}
+          </div>
+        {{/if}}
+      </div>
+      
+      <div class="form-group">
+        <div class="col-lg-2">
+        <label for="tieneTratamiento">Tiene Tratamiento</label>
+        {{input type="checkbox" checked=tieneTratamiento class="checkbox"}}
+        </div>
+      {{#if tieneTratamiento}}        
+        <div class="col-lg-2">
+          <label for="tiposDiagnosticos">Parte</label> {{view Ember.Select content=tiposTratamientos selection=tipoTratamientoSeleccionado value=tipoTratamientoSeleccionado classNames="form-control" }}
+        </div>
+        <div class="col-lg-3">
+          <label for="diagnosticos">Tratamiento Recomendado</label> {{view Ember.Select content=tratamientos optionLabelPath="content.nombre" selection=tratamientoSeleccionado value=tratamientoSeleccionado classNames="form-control" }}
+        </div>
+      {{/if}}
+        
+        {{!--{{#if listaCirugias}}--}}
+        <div class="col-lg-3">
+          <label class="form-label">Motivo por el cuál no se operó</label> {{input type="text" value=motivoNoSeOpero class="form-control" placeholder="Motivo"}}
+        </div>
+        {{!--{{/if}}--}}
+      </div>
+      <div class="form-group">
+        <div class="col-lg-3">
+          <label class="form-label">Recomendación Dental</label> {{input type="text" value=recomendacionDental class="form-control" placeholder="Recomendación Dental"}}
+        </div>
+        <div class="col-lg-3">
+          <label class="form-label">Recomendación Fonoaudiológica</label> {{input type="text" value=recomendacionFonoaudiologica class="form-control" placeholder="Recomendación Fonoaudiológica"}}
+        </div>
+        <div class="col-lg-1">
+          <button type="button" {{action 'agregarMisionVinculo'}} class="btn btn-theme float-right" style="margin-top: 22px;" onkeydown="Bodega.enterFormHandler('controller:paciente.base', 'agregarMisionVinculo');">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="content-panel">
+            <h4>Misiones</h4>
+            <hr>
+            <table class="table table-striped table-advance table-hover">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Tipo de Diagnóstico</th>
+                  <th>Diagnóstico</th>
+                  <th>Tipo de Tratamiento</th>
+                  <th>Tratamiento</th>
+                  <th>Motivo por el cuál no se operó</th>
+                  <th>Recomendación Dental</th>
+                  <th>Recomendación Fonoaudiológica</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each item in misionesVinculo}}
+                  <tr>
+                    <td> {{item.nombre}} </td>
+                    <td> {{item.tipoDiagnostico}} </td>
+                    <td> {{item.diagnostico}} </td>
+                    <td> {{item.tipoTratamiento}} </td>
+                    <td> {{item.tratamiento}} </td>
+                    <td> {{item.motivoNoSeOpero}} </td>
+                    <td> {{item.recomendacionDental}} </td>
+                    <td> {{item.recomendacionFonoaudiologica}} </td>
+                    <td>
+                      <button type="button" {{action 'borrarMisionVinculo' item}} class="btn btn-danger btn-xs"> <span class="glyphicon glyphicon-remove"></span>
+                              </button>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- INICIO LISTA DETALLES -->
+      {{!--<div class="panel-body">
+          <div class="form-horizontal form-detalles">
+
+
+          </div>
+          <!-- FIN DETALLE NUEVO-->
+        </div>--}}
+      <!-- FIN LISTA DETALLES -->
+    </div>
+  </div>
+</div>

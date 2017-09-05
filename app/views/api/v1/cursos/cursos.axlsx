@@ -1,0 +1,52 @@
+cursos = @cursos
+wb = xlsx_package.workbook
+wb.styles do |style|
+    highlight_cell = style.add_style(bg_color: "EFC376")
+    wrap_text = style.add_style :fg_color=> "FFFFFF",
+                            :b => true,
+                            :sz => 12,
+                            :bg_color => "004586",
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+    loteTitle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+    loteContent = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"FFFFFF",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+    wb.add_worksheet(name: "cursos") do |sheet|
+        time = Time.now.strftime("%d/%m/%Y")
+        sheet.add_row ["Geppii","Reporte de Cursos"," Fecha: #{time}"], style: [wrap_text,wrap_text,wrap_text]
+        sheet.add_row []
+
+        if cursos.empty?
+            sheet.add_row ["No existen cursos"], style: [wrap_text]
+        else
+            cursos.map do |curso|
+                sheet.add_row ["Descripción", "Fecha de inicio", "Fecha de fin", "Observaciones", "Lugar"], style: [wrap_text]*5
+                sheet.add_row [curso.descripcion, (curso.fecha_inicio.strftime("%d/%m/%Y") rescue ''), (curso.fecha_fin.strftime("%d/%m/%Y") rescue ''), curso.observaciones, curso.lugar], style: [loteContent]*5
+                sheet.add_row ["Voluntarios", "Especialidad", "Observaciones"], style: [wrap_text]*3;
+                curso.curso_colaboradores.map do |colaborador|
+                    sheet.add_row [colaborador.colaborador.persona.razon_social, colaborador.colaborador.especialidad.try(:descripcion), colaborador.observacion], style: [loteContent]*3
+                end
+            end
+        end
+        sheet.add_row []
+        sheet.add_row []
+    end
+end

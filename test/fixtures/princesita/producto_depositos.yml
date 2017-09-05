@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# existencia_1:
+#   producto: ventas_anteriores
+#   deposito: deposito_princesita
+#   existencia: 999999999

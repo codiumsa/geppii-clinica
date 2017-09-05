@@ -1,0 +1,93 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "search" on="submit"}}>
+          <div class="form-group">
+            <div class="col-lg-4">
+                <label class="form-label"  for="nombre_cliente">Nombre del cliente</label>
+                {{focus-input type="text" value=nombre_cliente class="form-control" placeholder="Nombre del cliente"}}
+            </div>
+            <div class="col-lg-4">
+                <label class="form-label"  for="apellido_cliente">Apellido del cliente</label>
+                {{input type="text" value=apellido_cliente class="form-control" placeholder="Apellido del cliente"}}
+            </div>
+            <div class="col-lg-4">
+                <label class="form-label"  for="ruc_cliente">RUC del cliente</label>
+                {{input type="text" value=ruc_cliente class="form-control" placeholder="RUC del cliente"}}
+            </div>
+          </div>
+          <div class="form-group">
+						<div class="col-lg-6">
+               <label class="form-label" for="empresas">Empresa</label>
+                {{view Ember.Select content=empresas 
+                optionValuePath="content.id" 
+                selection=selectedEmpresa
+                optionLabelPath="content.nombre"
+                classNames="form-control"
+                prompt="Seleccione una Empresa"}}
+           </div>
+            <div class="col-lg-6">
+               <label class="form-label" for="sucursales">Sucursal</label>
+                {{view Ember.Select content=sucursales 
+                optionValuePath="content.id" 
+                selection=selectedSucusal
+                optionLabelPath="content.descripcion"
+                classNames="form-control"
+                prompt="Seleccione una Sucursal"}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+                <label class="form-label"  for="nro_factura">Número de factura</label>
+                {{input type="text" value=nro_factura class="form-control" placeholder="Número de factura"}}
+            </div>
+          </div>
+          <label class="form-label" for="fecha">Fecha de Venta</label>    
+          <div class="form-group">
+            <div class="col-md-4">
+              {{view Bodega.views.DatePickerView value=fecha_venta_despues nullable=true placeholder="Después de"}}
+            </div>
+            <div class="col-md-4">
+              {{view Bodega.views.DatePickerView value=fecha_venta_dia nullable=true placeholder="Día"}}
+            </div>
+            <div class="col-md-4"}>
+              {{view Bodega.views.DatePickerView value=fecha_venta_antes nullable=true placeholder="Antes de" }}
+            </div>
+          </div> 
+
+          <label class="form-label" for="fecha">Fecha de Vencimiento</label>    
+          <div class="form-group">
+            <div class="col-md-4">
+              {{view Bodega.views.DatePickerView value=fecha_vencimiento_despues nullable=true placeholder="Después de"}}
+            </div>
+            <div class="col-md-4">
+              {{view Bodega.views.DatePickerView value=fecha_vencimiento_dia nullable=true placeholder="Día"}}
+            </div>
+            <div class="col-md-4"}>
+              {{view Bodega.views.DatePickerView value=fecha_vencimiento_antes nullable=true placeholder="Antes de" }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-lg-2">                
+                <label for="anulados">Anulados</label>
+                {{input type="checkbox" checked=anulados class="checkbox"}}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Generar Reporte</button>
+            </div>
+          </div>
+        </form>
+      </div>     
+    </div>
+  </div>
+</div>
+

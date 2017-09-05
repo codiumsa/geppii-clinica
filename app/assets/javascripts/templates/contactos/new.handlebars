@@ -1,0 +1,196 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:contactos.base', 'save');">
+          <div class="form-group">
+            <div class="col-lg-4" >
+               <label class="form-label">Nombre o Razon Social</label>
+               {{#if id}}
+                  {{input type="text" value=sponsor.razonSocial class="form-control" placeholder="sponsor" readonly=true}}
+               {{else}}
+                 <div class="search-input-width">
+                 {{search-input
+                   type="text"  value=sponsorSeleccionadoText selectedItem=sponsorSeleccionado
+                   class="form-control" placeholder="Nombre o Razon Social"
+                   property="razonSocial" session=session service="sponsors" queryScope="by_persona"
+                   modelType="sponsor" jsonRoot="sponsors" store=store
+                   ignoredProperties="persona"}}
+                 </div>
+               {{/if}}
+
+             </div>
+            {{!--<div class="col-lg-3">
+              <label class="form-label"  for="ciRuc">CI/RUC</label>
+              {{input type="text" value=ciRuc class="form-control" placeholder="sponsor"}}
+            </div>--}}
+            {{!--<div class="col-lg-5" {{bind-attr class="errors.sponsor:has-error errors.sponsor:has-feedback"}}>
+              <label class="form-label"  for="nombre">Nombre sponsor</label>
+              {{input type="text" value=sponsor.persona.razonSocial class="form-control" placeholder="Razón social" readonly=true}}
+              {{#if errors.sponsor}}
+              <span class="help-block">{{error errors.sponsor}}</span>
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+
+            </div>--}}
+              <div class="col-lg-4">
+                {{#if sponsor}}
+                    <label for="tipoContacto">Oportunidad</label>
+                  {{#if id}}
+                   {{input type="text" value=tipoContacto.codigo class="form-control" placeholder="sponsor" readonly=true}}
+                  {{else}}
+                      {{view Ember.Select
+                        content=tipoContactos
+                        optionValuePath="content.id"
+                        optionLabelPath="content.codigo"
+                        selection=tipoContactoSeleccionado
+                        classNames="form-control" }}
+                  {{/if}}
+                {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-2">
+              <label class="form-label"  for="fechaPago">Fecha Contacto</label>
+              {{view Bodega.views.DatePickerView value=fecha}}
+            </div>
+            <div {{bind-attr class=":col-lg-3 isNotCampanha:hidden"}}>
+              <label for="solicitud">Campaña</label>
+              {{#if id}}
+                  {{input type="text" value=campanha.nombre class="form-control" placeholder="Campaña" readonly=true}}
+               {{else}}
+                 {{view Ember.Select
+                   content=campanhas
+                   optionValuePath="content.id"
+                   optionLabelPath="content.nombre"
+                   selection=campanhaSeleccionada
+                   classNames="form-control"}}
+               {{/if}}
+            </div>
+          </div>
+          <div class="form-group" {{bind-attr class="errors.observacion:has-error errors.observacion:has-feedback"}}>
+            <div class="col-lg-12">
+              <label class="form-label"  for="observacion">Observaciones</label>
+              {{textarea value=observacion class="form-control" placeholder="Observaciones del contacto con el sponsor" rows="4"}}
+              <span class="help-block">{{error errors.observacion}}</span>
+              {{#if errors.observacion}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-panel">
+            <label style="font-weight: bold;">Nuevo Detalle</label>
+            <div class="form-group">
+              <div class="col-lg-2">
+                <label class="form-label">Fecha</label>
+                {{view Bodega.views.DatePickerView value=fechaDetalle nullable=true placeholder="Fecha"}}
+              </div>
+              <div class="col-lg-2">
+                <label class="form-label">Fecha Siguiente</label>
+                {{view Bodega.views.DatePickerView value=fechaSiguienteDetalle nullable=true placeholder="Fecha"}}
+              </div>
+              <div class="col-lg-3">
+                <label class="form-label"  for="nombre">Comentario</label>
+                {{input type="text" value=comentarioDetalle class="form-control" placeholder="Comentario"}}
+              </div>
+              <div class="col-lg-3" {{bind-attr class="errors.precioCompra:has-error errors.precioCompra:has-feedback"}}>
+                <label class="form-label"  for="precioCompra">Compromiso</label>
+                {{#if soportaMultimoneda}}
+                  {{#if monedaSeleccionada.guaranies}}
+                    {{decimal-field min="0" number=compromisoDetalle class="form-control" placeholder="Compromiso" }}
+                  {{else}}
+                    {{decimal-field min="0" number=compromisoDetalle class="form-control" placeholder="Compromiso" }}
+                  {{/if}}
+                {{else}}
+                  {{decimal-field min="0" number=compromisoDetalle class="form-control" placeholder="Compromiso" }}
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+
+              <div class="col-lg-3">
+                <label class="form-label"  for="nombre">Observación</label>
+                {{input type="text" value=observacionDetalle class="form-control" placeholder="Observación"}}
+              </div>
+              <div >
+              <div class="col-lg-3">
+                <label for="solicitud">Estado</label>
+                {{view Ember.Select
+                  content=estados
+                  selection=estadoSeleccionado
+                  classNames="form-control" }}
+              </div>
+              <div class="col-lg-2" {>
+                <label class="form-label">Moneda</label>
+                {{view Ember.Select
+                  content=monedas
+                  optionLabelPath="content.nombre"
+                  selection=monedaSeleccionada
+                  classNames="form-control"}}
+              </div>
+              </div>
+              <div class="col-lg-1">
+                <button type="button" {{action 'agregarDetalle'}} class="btn btn-theme float-right" {{bind-attr disabled=feedback.existencia}} style="margin-top: 22px;" onkeydown="Bodega.enterFormHandler('controller:ventas.new', 'agregarDetalle');">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <div class="col-md-12">
+              <div class="content-panel">
+                <h4>Detalles</h4>
+                <hr>
+                <table class="table table-striped table-advance table-hover">
+                  <thead>
+                    <tr>
+                      <th>Fecha</th>
+                      <th>Fecha siguiente</th>
+                      <th>Comentario</th>
+                      <th>Compromiso</th>
+                      <th>Observación</th>
+                      <th>Estado</th>
+                      <th>Moneda</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each item in detalles}}
+                      <tr>
+                        <td>{{dateformat item.fecha}}</td>
+                        <td>{{dateformat item.fechaSiguiente}}</td>
+                        <td> {{item.comentario}} </td>
+                        <td> {{formatNumber item.compromiso}} </td>
+                        <td> {{item.observacion}} </td>
+                        <td> {{item.estado}} </td>
+                        <td> {{item.moneda.simbolo}} </td>
+                        <td>
+                          <button type="button" {{action 'borrarDetalle' item}} class="btn btn-danger btn-xs"> <span class="glyphicon glyphicon-remove"></span>
+                          </button>
+                        </td>
+                      </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="col-lg-12">
+              {{#isAuthorized 'FE_post_contactos,FE_put_contactos'}}
+                <button type="submit" class="btn btn-theme">Guardar</button>
+              {{/isAuthorized}}
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>

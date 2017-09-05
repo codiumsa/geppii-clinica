@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+transferencia_1:
+  origen: punto_venta_matriz_1
+  destino: deposito_casa
+  usuario: administrador
+  descripcion: Transferencia de Prueba
+  fecha_registro: 2014-05-04 20:42:00
+

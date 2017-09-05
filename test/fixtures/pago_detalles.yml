@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  monto_cuota: 
+  monto_ointeres: 
+  monto_interes_moratorio: 
+  monto_interes_punitorio: 
+  pago_id: 
+  compra_cuota: 
+  venta_cuota_id: 
+
+two:
+  monto_cuota: 
+  monto_ointeres: 
+  monto_interes_moratorio: 
+  monto_interes_punitorio: 
+  pago_id: 
+  compra_cuota: 
+  venta_cuota_id: 

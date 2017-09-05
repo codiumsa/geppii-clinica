@@ -1,0 +1,42 @@
+<h3>
+<i class="fa fa-angle-right"></i>
+Cuotas de Compra N° {{compra.nroFactura}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="content-panel" style="padding: 0px;">
+      <table class="table table-bordered table-striped table-condensed">
+        <thead>
+          <tr>
+            <th>N° de Cuota</th>
+            <th>Monto</th>
+            <th>Fecha de Vencimiento</th>
+            <th>Cancelado</th>
+            <th>Fecha Cobro</th>
+            <th>N° de Recibo</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each}}
+          <tr>
+            <td>{{nroCuota}}</td>
+            <td>{{monto}}</td>
+            <td>{{dateformat fechaVencimiento}}</td>
+            <td>{{yesno cancelado}}</td>
+            <td>{{dateformat fechaCobro}}</td>
+            <td>{{nroRecibo}}</td>
+            <td>
+              {{#link-to 'compraCuota.edit' this classNames='table-action'}}
+              <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil"
+              data-toggle="modal"></button>
+              {{/link-to}}
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

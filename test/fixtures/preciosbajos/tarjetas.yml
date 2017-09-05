@@ -1,0 +1,80 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+generica:
+  banco: 00 - Banco
+  marca: Genérica
+  afinidad: Sin afinidad
+  activo: true
+  medio_pago_id: 3
+  id: 1
+
+dos:
+  banco: Itaú
+  marca: Visa
+  afinidad: Sin afinidad
+  activo: true
+  medio_pago_id: 3
+  id: 2
+
+tres:
+  banco: Itaú
+  marca: MasterCard
+  afinidad: Sin afinidad
+  activo: true
+  medio_pago_id: 3
+  id: 3
+
+cuatro:
+  banco: Itaú
+  marca: Amex
+  afinidad: Sin afinidad
+  activo: true
+  medio_pago_id: 3
+  id: 4
+
+cinco:
+  banco: Continental
+  marca: Visa
+  afinidad: Sin afinidad
+  activo: true
+  medio_pago_id: 3
+  id: 5
+
+seis:
+  banco: Continental
+  marca: MasterCard
+  afinidad: Sin afinidad
+  activo: true
+  medio_pago_id: 3
+  id: 6
+
+siete:
+  banco: Atlas
+  marca: MasterCard
+  afinidad: Sin afinidad
+  activo: true
+  medio_pago_id: 3
+  id: 7
+
+ocho:
+  banco: Atlas
+  marca: Visa
+  afinidad: Sin afinidad
+  activo: true
+  medio_pago_id: 3
+  id: 8
+
+nueve:
+  banco: Visión
+  marca: Visa
+  afinidad: Sin afinidad
+  activo: true
+  medio_pago_id: 3
+  id: 9
+
+diez:
+  banco: Coop. Univ.
+  marca: MasterCard
+  afinidad: Sin afinidad
+  activo: true
+  medio_pago_id: 3
+  id: 10

@@ -1,0 +1,65 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  <span>{{formTitle}}</span>
+</h3>
+<div class="row mt">
+  <div role="tabpanel">
+    
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="tratamientos">
+	<div class="col-lg-12">
+          <div class="form-horizontal">
+            <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:clientes.new', 'save');">
+              <div class="panel panel-default" style="margin-top: 15px;">
+		<div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Tratamientos</h5>
+		</div>
+		<div class="panel-body">
+
+		  <div class="form-group">
+		  </div> 
+		  <div class="form-group">
+		    <div class="col-lg-6"  {{bind-attr class="feedback.nombreTratamiento:has-error feedback.nombreTratamiento:has-feedback"}}>
+		      <label class="form-label"  for="nombre">Nombre Tratamiento</label>
+		      {{input type="text" value=nombre class="form-control" placeholder="nombre del tratamiento"}}
+		      <span class="help-block">{{error feedback.nombreTratamiento}}</span>
+		      {{#if feedback.nombreTratamiento}}
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+		      {{/if}}
+                    </div>
+
+                    <div class="col-lg-6" {{bind-attr class="feedback.tratamientoEspecialidad:has-error feedback.tratamientoEspecialidad:has-feedback"}}>
+                      <label class="form-label" for="especialidadSeleccionada">Especialidad</label>
+                      {{view Ember.Select 
+			content=especialidades
+			selection=especialidadSeleccionada
+			optionLabelPath="content.descripcion"
+			prompt="Seleccione un valor..."
+			value=especialidadSeleccionada
+			classNames="form-control"}}
+                      <span class="help-block">{{error feedback.tratamientoEspecialidad}}</span>
+                      {{#if feedback.tratamientoEspecialidad}}
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      {{/if}}
+                    </div>
+		  </div>
+		</div>   <!-- fin panel de direccion -->
+
+		<div class="form-group">
+		  <div class="col-lg-12">
+		    {{#isAuthorized 'FE_post_clientes, FE_put_clientes'}}
+		      <button type="submit" class="btn btn-theme">Guardar</button>
+		    {{/isAuthorized}}
+		    <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+		  </div>
+		</div>
+		
+            </form>
+	      </div>
+	  </div>
+	</div>
+
+      </div>
+    </div>
+  </div>
+</div>

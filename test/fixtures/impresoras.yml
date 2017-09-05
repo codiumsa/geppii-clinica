@@ -1,0 +1,78 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+caja-uno-nancy:
+  nombre: -192-168-0-200
+  tipo_documento: nancy
+  tamanho_hoja: PageSize=Custom.20.4x27.9cm
+  descripcion: Factura legal de comercial "Casa Nancy"
+  caja_impresion: caja-uno
+
+caja-dos-nancy:
+  nombre: -192-168-0-200
+  tipo_documento: nancy
+  tamanho_hoja: PageSize=Custom.20.4x27.9cm
+  descripcion: Factura legal de comercial "Casa Nancy"
+  caja_impresion: caja-dos
+
+caja-uno-interno:
+  nombre: -192-168-0-202
+  tipo_documento: interno
+  tamanho_hoja: PageSize=Custom.20.4x27.9cm
+  descripcion: Hoja de uso interno
+  caja_impresion: caja-uno
+
+caja-dos-interno:
+  nombre: -192-168-0-202
+  tipo_documento: interno
+  tamanho_hoja: PageSize=Custom.20.4x27.9cm
+  descripcion: Hoja de uso interno
+  caja_impresion: caja-dos
+
+mesa-uno-nancy:
+  nombre: -192-168-0-203
+  tipo_documento: nancy
+  tamanho_hoja: PageSize=Custom.20.4x27.9cm
+  descripcion: Factura legal de comercial "Casa Nancy"
+  caja_impresion: mesa-uno
+
+mesa-dos-nancy:
+  nombre: -192-168-0-203
+  tipo_documento: nancy
+  tamanho_hoja: PageSize=Custom.20.4x27.9cm
+  descripcion: Factura legal de comercial "Casa Nancy"
+  caja_impresion: mesa-dos
+
+mesa-uno-uso-interno:
+  nombre: -192-168-0-201
+  tipo_documento: interno
+  tamanho_hoja: PageSize=Custom.20.4x27.9cm
+  descripcion: Hoja de uso interno
+  caja_impresion: mesa-uno
+
+mesa-dos-uso-interno:
+  nombre: -192-168-0-201
+  tipo_documento: interno
+  tamanho_hoja: PageSize=Custom.20.4x27.9cm
+  descripcion: Hoja de uso interno
+  caja_impresion: mesa-dos
+  
+#uno-interno:
+#  nombre: -192-168-0-202
+#  tipo_documento: interno
+#  tamanho_hoja: PageSize=Custom.20.4x27.9cm
+#  descripcion: Hoja de uso interno
+#  caja_impresion: uno
+
+#uno-retencion:
+#  nombre: -192-168-0-203
+#  tipo_documento: retencion
+#  tamanho_hoja: PageSize=Custom.21.8x22.8cm
+#  descripcion: Hoja de retencion de IVA
+#  caja_impresion: uno
+
+  
+default:
+  nombre: -192-168-0-202
+  tipo_documento: default
+  tamanho_hoja: PageSize=Custom.20.4x27.9cm
+  descripcion: Impresora Default

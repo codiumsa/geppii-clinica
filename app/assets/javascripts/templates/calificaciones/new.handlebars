@@ -1,0 +1,52 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  <span>{{formTitle}}</span>
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:calificaciones.new', 'save');">
+          <div class="form-group">
+            <div class="col-lg-3" {{bind-attr class="errors.codigo:has-error errors.codigo:has-feedback"}}>
+              <label class="form-label"  for="codigo">Nombre</label>
+              {{focus-input type="text" value=codigo class="form-control" placeholder="Código de la Calificación" autofocus="autofocus"}}
+              <span class="help-block">{{error errors.codigo}}</span>
+              {{#if errors.codigo}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+
+            <div class="col-lg-6" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+              <label class="form-label"  for="descripcion">Descripcion</label>
+              {{input type="text" value=descripcion class="form-control" placeholder="Código de la descripción" autofocus="autofocus"}}
+              <span class="help-block">{{error errors.descripcion}}</span>
+              {{#if errors.descripcion}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+
+            <div class="col-lg-3" {{bind-attr class="errors.diasAtraso:has-error errors.diasAtraso:has-feedback"}}>
+              <label class="form-label"  for="diasAtraso">Días Promedio de Atraso</label>
+              {{number-input value=diasAtraso class="form-control" readonly=isTerminado min="1"}}
+              <span class="help-block">{{error errors.diasAtraso}}</span>
+              {{#if errors.diasAtraso}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-lg-12">
+              {{#isAuthorized 'FE_post_calificaciones, FE_edit_calificaciones'}}
+                <button type="submit" class="btn btn-theme">Guardar</button>
+              {{/isAuthorized}}
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

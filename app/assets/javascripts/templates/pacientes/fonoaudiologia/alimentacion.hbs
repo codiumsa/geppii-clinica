@@ -1,0 +1,18 @@
+{{! TODO: bind objects to router/controller }}
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion"
+	 href="#alimentacion" {{action 'scrollToTop' 300}}><i class="fa fa-angle-right">
+	 </i>Alimentacion</a>
+    </h4>
+  </div>
+  <div id="alimentacion" class="panel-collapse collapse">
+    <div class="panel-body">
+      {{partial "pacientes/fonoaudiologia/alimentacion/primera_parte" }}
+      {{partial "pacientes/fonoaudiologia/alimentacion/segunda_parte" }}
+      {{partial "pacientes/fonoaudiologia/alimentacion/via_alimentacion" }}
+    </div>
+  </div>
+</div>
+

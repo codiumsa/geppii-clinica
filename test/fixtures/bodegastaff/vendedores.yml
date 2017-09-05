@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+vendedor_01:
+   nombre: Vendedor
+   apellido: 01
+   direccion: Calle
+   email: ventas01@bodega-staff.com.py
+   activo: true
+   sucursales: sucursal_1

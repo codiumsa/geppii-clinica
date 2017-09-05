@@ -1,0 +1,9 @@
+sucursal_comercial_abasto:
+  id: 1
+  codigo: 01_comercial
+  descripcion: Abasto - CC Comercial
+  usuarios: administrador, vendedor
+  activo: true
+  empresa: comercial
+  deposito: deposito_abasto
+  color: '#96D1CF'

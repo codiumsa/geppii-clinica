@@ -1,0 +1,779 @@
+# == Schema Information
+#
+# Table name: ciudades
+#
+#  id         :integer          not null, primary key
+#  codigo     :string(255)
+#  nombre     :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+ASUNCION:
+  codigo: 1
+  nombre: ASUNCION
+BELEN:
+  codigo: 2
+  nombre: BELEN
+CONCEPCION_(MUNICIPIO):
+  codigo: 3
+  nombre: CONCEPCION (MUNICIPIO)
+HORQUETA:
+  codigo: 4
+  nombre: HORQUETA
+LORETO:
+  codigo: 5
+  nombre: LORETO
+SAN_CARLOS:
+  codigo: 6
+  nombre: SAN CARLOS
+SAN_CARLOS_DEL_APA:
+  codigo: 7
+  nombre: SAN CARLOS DEL APA
+SAN_LAZARO:
+  codigo: 8
+  nombre: SAN LAZARO
+SAN_SALVADOR:
+  codigo: 9
+  nombre: SAN SALVADOR
+SARGENTO_JOSE_FELIX_LOPEZ:
+  codigo: 10
+  nombre: SARGENTO JOSE FELIX LOPEZ
+YBY_YA\\U:
+  codigo: 11
+  nombre: YBY YA\\U
+25_DE_DICIEMBRE:
+  codigo: 12
+  nombre: 25 DE DICIEMBRE
+ANTEQUERA:
+  codigo: 13
+  nombre: ANTEQUERA
+CAPIIBARY:
+  codigo: 14
+  nombre: CAPIIBARY
+CHORE:
+  codigo: 15
+  nombre: CHORE
+GRAL._E.AQUINO:
+  codigo: 16
+  nombre: GRAL. E.AQUINO
+GUAYAIBI:
+  codigo: 17
+  nombre: GUAYAIBI
+ISIDORO_RESQUIN:
+  codigo: 18
+  nombre: ISIDORO RESQUIN
+ITACURUBI_DEL_ROSARIO:
+  codigo: 19
+  nombre: ITACURUBI DEL ROSARIO
+LIBERACIÓN:
+  codigo: 20
+  nombre: LIBERACIÓN
+LIMA:
+  codigo: 21
+  nombre: LIMA
+NUEVA_GERMANIA:
+  codigo: 22
+  nombre: NUEVA GERMANIA
+SAN_ESTANISLAO_(SANTANI):
+  codigo: 23
+  nombre: SAN ESTANISLAO (SANTANI)
+SAN_JOSE_DEL_ROSARIO:
+  codigo: 24
+  nombre: SAN JOSE DEL ROSARIO
+SAN_PABLO:
+  codigo: 25
+  nombre: SAN PABLO
+SAN_PEDRO_DE_YCUAMANDYYU:
+  codigo: 26
+  nombre: SAN PEDRO DE YCUAMANDYYU
+SANTA_ROSA_DEL_AGUARAY:
+  codigo: 27
+  nombre: SANTA ROSA DEL AGUARAY
+TACUATI:
+  codigo: 28
+  nombre: TACUATI
+UNION:
+  codigo: 29
+  nombre: UNION
+VILLA_DEL_ROSARIO:
+  codigo: 30
+  nombre: VILLA DEL ROSARIO
+YATAITY_DEL_NORTE:
+  codigo: 31
+  nombre: YATAITY DEL NORTE
+YRYBUCUA:
+  codigo: 32
+  nombre: YRYBUCUA
+1RO.DE_MARZO:
+  codigo: 33
+  nombre: 1RO.DE MARZO
+ALTOS:
+  codigo: 34
+  nombre: ALTOS
+ARROYOS_Y_ESTEROS:
+  codigo: 35
+  nombre: ARROYOS Y ESTEROS
+ATYRA:
+  codigo: 36
+  nombre: ATYRA
+CAACUPE:
+  codigo: 37
+  nombre: CAACUPE
+CARAGUATAY:
+  codigo: 38
+  nombre: CARAGUATAY
+EMBOSCADA:
+  codigo: 39
+  nombre: EMBOSCADA
+EUSEBIO_AYALA:
+  codigo: 40
+  nombre: EUSEBIO AYALA
+ISLA_PUCU:
+  codigo: 41
+  nombre: ISLA PUCU
+ITACURUBI_DE_LA_CORDILLERA:
+  codigo: 42
+  nombre: ITACURUBI DE LA CORDILLERA
+JUAN_DE_MENA:
+  codigo: 43
+  nombre: JUAN DE MENA
+LOMA_GRANDE:
+  codigo: 44
+  nombre: LOMA GRANDE
+MBOCAYATY_DEL_YHAGUY:
+  codigo: 45
+  nombre: MBOCAYATY DEL YHAGUY
+NUEVA_COLOMBIA:
+  codigo: 46
+  nombre: NUEVA COLOMBIA
+PIRIBEBUY:
+  codigo: 47
+  nombre: PIRIBEBUY
+SAN_BERNARDINO:
+  codigo: 48
+  nombre: SAN BERNARDINO
+SAN_JOSE_OBRERO:
+  codigo: 49
+  nombre: SAN JOSE OBRERO
+SANTA_ELENA:
+  codigo: 50
+  nombre: SANTA ELENA
+TOBATI:
+  codigo: 51
+  nombre: TOBATI
+VALENZUELA:
+  codigo: 52
+  nombre: VALENZUELA
+BORJA:
+  codigo: 53
+  nombre: BORJA
+CNEL._MARTINEZ:
+  codigo: 54
+  nombre: CNEL. MARTINEZ
+DR._BOTREL:
+  codigo: 55
+  nombre: DR. BOTREL
+FELIX_PEREZ_CARDOZO:
+  codigo: 56
+  nombre: FELIX PEREZ CARDOZO
+GRAL.EUGENIO_A._GARAY:
+  codigo: 57
+  nombre: GRAL.EUGENIO A. GARAY
+INDEPENDENCIA_(R.D.MELGAREJO):
+  codigo: 58
+  nombre: INDEPENDENCIA (R.D.MELGAREJO)
+ITAPE:
+  codigo: 59
+  nombre: ITAPE
+ITURBE:
+  codigo: 60
+  nombre: ITURBE
+JOSE_FASSARDI:
+  codigo: 61
+  nombre: JOSE FASSARDI
+MAURICIO_JOSE_TROCHE:
+  codigo: 62
+  nombre: MAURICIO JOSE TROCHE
+MBOCAYATY:
+  codigo: 63
+  nombre: MBOCAYATY
+NATALICIO_TALAVERA:
+  codigo: 64
+  nombre: NATALICIO TALAVERA
+PASO_YOBAY:
+  codigo: 65
+  nombre: PASO YOBAY
+SAN_SALVADOR:
+  codigo: 66
+  nombre: SAN SALVADOR
+SIN_EQUIVALENCIA:
+  codigo: 67
+  nombre: SIN EQUIVALENCIA
+TEBICUARY:
+  codigo: 68
+  nombre: TEBICUARY
+VILLARRICA:
+  codigo: 69
+  nombre: VILLARRICA
+YATAITY:
+  codigo: 70
+  nombre: YATAITY
+ÑUMI:
+  codigo: 71
+  nombre: ÑUMI
+3_DE_FEBRERO:
+  codigo: 72
+  nombre: 3 DE FEBRERO
+CAAGUAZU:
+  codigo: 73
+  nombre: CAAGUAZU
+CARAYAO:
+  codigo: 74
+  nombre: CARAYAO
+CECILIO_BAEZ:
+  codigo: 75
+  nombre: CECILIO BAEZ
+CNEL._OVIEDO:
+  codigo: 76
+  nombre: CNEL. OVIEDO
+ESCULIES:
+  codigo: 77
+  nombre: ESCULIES
+J._EULOGIO_ESTIGARRIBIA:
+  codigo: 78
+  nombre: J. EULOGIO ESTIGARRIBIA
+JOSE_D._OCAMPOS:
+  codigo: 79
+  nombre: JOSE D. OCAMPOS
+JUAN_MANUEL_FRUTOS:
+  codigo: 80
+  nombre: JUAN MANUEL FRUTOS
+LA_PASTORA:
+  codigo: 81
+  nombre: LA PASTORA
+MCAL.F.SOLANO_LOPEZ:
+  codigo: 82
+  nombre: MCAL.F.SOLANO LOPEZ
+NUEVA_LONDRES:
+  codigo: 83
+  nombre: NUEVA LONDRES
+R.I.3_CORRALES:
+  codigo: 84
+  nombre: R.I.3 CORRALES
+RAUL_A._OVIEDO:
+  codigo: 85
+  nombre: RAUL A. OVIEDO
+REPATRIACION:
+  codigo: 86
+  nombre: REPATRIACION
+SAN_JOAQUIN:
+  codigo: 87
+  nombre: SAN JOAQUIN
+SAN_JOSE_DE_LOS_ARROYOS:
+  codigo: 88
+  nombre: SAN JOSE DE LOS ARROYOS
+SANTA_ROSA_DEL_MBUTUY:
+  codigo: 89
+  nombre: SANTA ROSA DEL MBUTUY
+SIMON_BOLIVAR:
+  codigo: 90
+  nombre: SIMON BOLIVAR
+VAQUERIA:
+  codigo: 91
+  nombre: VAQUERIA
+YHU:
+  codigo: 92
+  nombre: YHU
+ABAI:
+  codigo: 93
+  nombre: ABAI
+BUENA_VISTA:
+  codigo: 94
+  nombre: BUENA VISTA
+CAAZAPA:
+  codigo: 95
+  nombre: CAAZAPA
+GRAL._H._MORINIGO:
+  codigo: 96
+  nombre: GRAL. H. MORINIGO
+MACIEL:
+  codigo: 97
+  nombre: MACIEL
+MOISES_BERTONI:
+  codigo: 98
+  nombre: MOISES BERTONI
+SAN_JUAN_NEPOMUCENO:
+  codigo: 99
+  nombre: SAN JUAN NEPOMUCENO
+TAVAI:
+  codigo: 100
+  nombre: TAVAI
+YEGROS:
+  codigo: 101
+  nombre: YEGROS
+YUTY:
+  codigo: 102
+  nombre: YUTY
+ALTO_VERA:
+  codigo: 103
+  nombre: ALTO VERA
+BELLA_VISTA:
+  codigo: 104
+  nombre: BELLA VISTA
+CAMBYRETA:
+  codigo: 105
+  nombre: CAMBYRETA
+CAPITAN_MEZA:
+  codigo: 106
+  nombre: CAPITAN MEZA
+CAPITAN_MIRANDA:
+  codigo: 107
+  nombre: CAPITAN MIRANDA
+CARLOS_A._LOPEZ:
+  codigo: 108
+  nombre: CARLOS A. LOPEZ
+CARMEN_DEL_PARANA:
+  codigo: 109
+  nombre: CARMEN DEL PARANA
+CORONEL_BOGADO:
+  codigo: 110
+  nombre: CORONEL BOGADO
+EDELIRA:
+  codigo: 111
+  nombre: EDELIRA
+ENCARNACION:
+  codigo: 112
+  nombre: ENCARNACION
+FEDERICO_CHAVEZ:
+  codigo: 113
+  nombre: FEDERICO CHAVEZ
+FRAM:
+  codigo: 114
+  nombre: FRAM
+GRAL._ARTIGAS:
+  codigo: 115
+  nombre: GRAL. ARTIGAS
+GRAL._DELGADO:
+  codigo: 116
+  nombre: GRAL. DELGADO
+HERIBERTA_S.DE_IGLESIAS:
+  codigo: 117
+  nombre: HERIBERTA S.DE IGLESIAS
+HOHENAU:
+  codigo: 118
+  nombre: HOHENAU
+ITAPUA_POTY:
+  codigo: 119
+  nombre: ITAPUA POTY
+JESUS:
+  codigo: 120
+  nombre: JESUS
+JOSE_LEANDRO_OVIEDO:
+  codigo: 121
+  nombre: JOSE LEANDRO OVIEDO
+JULIO_D._OTAÑO:
+  codigo: 122
+  nombre: JULIO D. OTAÑO
+LA_PAZ:
+  codigo: 123
+  nombre: LA PAZ
+NATALIO:
+  codigo: 124
+  nombre: NATALIO
+NUEVA_ALBORADA:
+  codigo: 125
+  nombre: NUEVA ALBORADA
+OBLIGADO:
+  codigo: 126
+  nombre: OBLIGADO
+PIRAPO:
+  codigo: 127
+  nombre: PIRAPO
+SAN_COSME_Y_DAMIAN:
+  codigo: 128
+  nombre: SAN COSME Y DAMIAN
+SAN_JUAN_DEL_PARANA:
+  codigo: 129
+  nombre: SAN JUAN DEL PARANA
+SAN_PEDRO_DEL_PARANA:
+  codigo: 130
+  nombre: SAN PEDRO DEL PARANA
+SAN_RAFAEL_DEL_PARANA:
+  codigo: 131
+  nombre: SAN RAFAEL DEL PARANA
+TOMAS_R._PEREIRA:
+  codigo: 132
+  nombre: TOMAS R. PEREIRA
+TRINIDAD:
+  codigo: 133
+  nombre: TRINIDAD
+YATYTAY:
+  codigo: 134
+  nombre: YATYTAY
+AYOLAS:
+  codigo: 135
+  nombre: AYOLAS
+SAN_IGNACIO:
+  codigo: 136
+  nombre: SAN IGNACIO
+SAN_JUAN_BAUTISTA:
+  codigo: 137
+  nombre: SAN JUAN BAUTISTA
+SAN_MIGUEL:
+  codigo: 138
+  nombre: SAN MIGUEL
+SAN_PATRICIO:
+  codigo: 139
+  nombre: SAN PATRICIO
+SANTA_MARIA:
+  codigo: 140
+  nombre: SANTA MARIA
+SANTA_ROSA:
+  codigo: 141
+  nombre: SANTA ROSA
+SANTIAGO:
+  codigo: 142
+  nombre: SANTIAGO
+VILLA_FLORIDA:
+  codigo: 143
+  nombre: VILLA FLORIDA
+YABEBYRY:
+  codigo: 144
+  nombre: YABEBYRY
+ACAHAY:
+  codigo: 145
+  nombre: ACAHAY
+CAAPUCU:
+  codigo: 146
+  nombre: CAAPUCU
+CABALLERO:
+  codigo: 147
+  nombre: CABALLERO
+CARAPEGUA:
+  codigo: 148
+  nombre: CARAPEGUA
+ESCOBAR:
+  codigo: 149
+  nombre: ESCOBAR
+LA_COLMENA:
+  codigo: 150
+  nombre: LA COLMENA
+MBUYAPEY:
+  codigo: 151
+  nombre: MBUYAPEY
+PARAGUARI:
+  codigo: 152
+  nombre: PARAGUARI
+PIRAYU:
+  codigo: 153
+  nombre: PIRAYU
+QUIINDY:
+  codigo: 154
+  nombre: QUIINDY
+QUYQUYHO:
+  codigo: 155
+  nombre: QUYQUYHO
+ROQUE_GONZALEZ:
+  codigo: 156
+  nombre: ROQUE GONZALEZ
+SAPUCAI:
+  codigo: 157
+  nombre: SAPUCAI
+TEBICUARY_MI:
+  codigo: 158
+  nombre: TEBICUARY MI
+YAGUARON:
+  codigo: 159
+  nombre: YAGUARON
+YBYCUI:
+  codigo: 160
+  nombre: YBYCUI
+YBYTYMI:
+  codigo: 161
+  nombre: YBYTYMI
+CIUDAD_DEL_ESTE:
+  codigo: 162
+  nombre: CIUDAD DEL ESTE
+DOMINGO_MARTINEZ_DE_IRALA:
+  codigo: 163
+  nombre: DOMINGO MARTINEZ DE IRALA
+HERNANDARIAS:
+  codigo: 164
+  nombre: HERNANDARIAS
+IRUÑA:
+  codigo: 165
+  nombre: IRUÑA
+ITAKYRY:
+  codigo: 166
+  nombre: ITAKYRY
+JUAN_E.O\\LEARY:
+  codigo: 167
+  nombre: JUAN E.O\\LEARY
+JUAN_LEON_MALLORQUIN:
+  codigo: 168
+  nombre: JUAN LEON MALLORQUIN
+LOS_CEDRALES:
+  codigo: 169
+  nombre: LOS CEDRALES
+MBARACAYU:
+  codigo: 170
+  nombre: MBARACAYU
+MINGA_GUAZU:
+  codigo: 171
+  nombre: MINGA GUAZU
+MINGA_PORA:
+  codigo: 172
+  nombre: MINGA PORA
+NARANJAL:
+  codigo: 173
+  nombre: NARANJAL
+NUEVA_ESPERANZA:
+  codigo: 174
+  nombre: NUEVA ESPERANZA
+PUERTO_PTE.FRANCO:
+  codigo: 175
+  nombre: PUERTO PTE.FRANCO
+SAN_ALBERTO:
+  codigo: 176
+  nombre: SAN ALBERTO
+SAN_CRISTOBAL:
+  codigo: 177
+  nombre: SAN CRISTOBAL
+SANTA_FE_DEL_PARANA:
+  codigo: 178
+  nombre: SANTA FE DEL PARANA
+SANTA_RITA:
+  codigo: 179
+  nombre: SANTA RITA
+SANTA_ROSA_DEL_MONDAY:
+  codigo: 180
+  nombre: SANTA ROSA DEL MONDAY
+TAVAPY:
+  codigo: 181
+  nombre: TAVAPY
+YGUAZU:
+  codigo: 182
+  nombre: YGUAZU
+ÑACUNDAY:
+  codigo: 183
+  nombre: ÑACUNDAY
+AREGUA:
+  codigo: 184
+  nombre: AREGUA
+CAPIATA:
+  codigo: 185
+  nombre: CAPIATA
+FERNANDO_DE_LA_MORA:
+  codigo: 186
+  nombre: FERNANDO DE LA MORA
+GUARAMBARE:
+  codigo: 187
+  nombre: GUARAMBARE
+ITA:
+  codigo: 188
+  nombre: ITA
+ITAUGUA:
+  codigo: 189
+  nombre: ITAUGUA
+J.AUGUSTO_SALDIVAR:
+  codigo: 190
+  nombre: J.AUGUSTO SALDIVAR
+LAMBARE:
+  codigo: 191
+  nombre: LAMBARE
+LIMPIO:
+  codigo: 192
+  nombre: LIMPIO
+LUQUE:
+  codigo: 193
+  nombre: LUQUE
+MARIANO_ROQUE_ALONSO:
+  codigo: 194
+  nombre: MARIANO ROQUE ALONSO
+NUEVA_ITALIA:
+  codigo: 195
+  nombre: NUEVA ITALIA
+SAN_ANTONIO:
+  codigo: 196
+  nombre: SAN ANTONIO
+SAN_LORENZO:
+  codigo: 197
+  nombre: SAN LORENZO
+VILLA_ELISA:
+  codigo: 198
+  nombre: VILLA ELISA
+VILLETA:
+  codigo: 199
+  nombre: VILLETA
+YPACARAI:
+  codigo: 200
+  nombre: YPACARAI
+YPANE:
+  codigo: 201
+  nombre: YPANE
+ÑEMBY:
+  codigo: 202
+  nombre: ÑEMBY
+ALBERDI:
+  codigo: 203
+  nombre: ALBERDI
+CERRITO:
+  codigo: 204
+  nombre: CERRITO
+DESMOCHADOS:
+  codigo: 205
+  nombre: DESMOCHADOS
+GRAL.JOSE_EDUVIGIS_DIAZ:
+  codigo: 206
+  nombre: GRAL.JOSE EDUVIGIS DIAZ
+GUAZU_CUA:
+  codigo: 207
+  nombre: GUAZU CUA
+HUMAITA:
+  codigo: 208
+  nombre: HUMAITA
+ISLA_UMBU:
+  codigo: 209
+  nombre: ISLA UMBU
+LAURELES:
+  codigo: 210
+  nombre: LAURELES
+MAYOR_J.D.MARTINEZ:
+  codigo: 211
+  nombre: MAYOR J.D.MARTINEZ
+PASO_DE_PATRIA:
+  codigo: 212
+  nombre: PASO DE PATRIA
+PILAR:
+  codigo: 213
+  nombre: PILAR
+SAN_JUAN_DE_ÑEEMBUCU:
+  codigo: 214
+  nombre: SAN JUAN DE ÑEEMBUCU
+TACUARAS:
+  codigo: 215
+  nombre: TACUARAS
+VILLA_FRANCA:
+  codigo: 216
+  nombre: VILLA FRANCA
+VILLA_OLIVA:
+  codigo: 217
+  nombre: VILLA OLIVA
+VILLALBIN:
+  codigo: 218
+  nombre: VILLALBIN
+BELLA_VISTA:
+  codigo: 219
+  nombre: BELLA VISTA
+CAPITAN_BADO:
+  codigo: 220
+  nombre: CAPITAN BADO
+PEDRO_JUAN_CABALLERO:
+  codigo: 221
+  nombre: PEDRO JUAN CABALLERO
+CORPUS_CHRISTI:
+  codigo: 222
+  nombre: CORPUS CHRISTI
+FRANCISCO_CABALLERO_ALVAREZ:
+  codigo: 223
+  nombre: FRANCISCO CABALLERO ALVAREZ
+ITANARA:
+  codigo: 224
+  nombre: ITANARA
+KATUETE:
+  codigo: 225
+  nombre: KATUETE
+LA_PALOMA:
+  codigo: 226
+  nombre: LA PALOMA
+NUEVA_ESPERANZA:
+  codigo: 227
+  nombre: NUEVA ESPERANZA
+SALTO_DEL_GUAIRA:
+  codigo: 228
+  nombre: SALTO DEL GUAIRA
+SAN_ISIDRO_DEL_CURUGUATY:
+  codigo: 229
+  nombre: SAN ISIDRO DEL CURUGUATY
+VILLA_YGATIMI:
+  codigo: 230
+  nombre: VILLA YGATIMI
+YASY_KAÑY:
+  codigo: 231
+  nombre: YASY KAÑY
+YPEJHU:
+  codigo: 232
+  nombre: YPEJHU
+BENJAMIN_ACEVAL_(MONTE_SOCIEDAD):
+  codigo: 233
+  nombre: BENJAMIN ACEVAL (MONTE SOCIEDAD)
+JOSE_FALCON:
+  codigo: 234
+  nombre: JOSE FALCON
+NANAWA:
+  codigo: 235
+  nombre: NANAWA
+POZO_COLORADO:
+  codigo: 236
+  nombre: POZO COLORADO
+PTO.PINAZCO:
+  codigo: 237
+  nombre: PTO.PINAZCO
+TENIENTE_ESTEBAN_MARTINEZ:
+  codigo: 238
+  nombre: TENIENTE ESTEBAN MARTINEZ
+TTE._1RO._IRALA_FERNANDEZ:
+  codigo: 239
+  nombre: TTE. 1RO. IRALA FERNANDEZ
+VILLA_HAYES:
+  codigo: 240
+  nombre: VILLA HAYES
+BAHIA_NEGRA:
+  codigo: 241
+  nombre: BAHIA NEGRA
+CARMELO_PERALTA:
+  codigo: 242
+  nombre: CARMELO PERALTA
+FUERTE_OLIMPO:
+  codigo: 243
+  nombre: FUERTE OLIMPO
+LA_VICTORIA:
+  codigo: 244
+  nombre: LA VICTORIA
+MAYOR_PABLO_LAGERENZA:
+  codigo: 245
+  nombre: MAYOR PABLO LAGERENZA
+PUERTO_CASADO:
+  codigo: 246
+  nombre: PUERTO CASADO
+PUERTO_GUARANI:
+  codigo: 247
+  nombre: PUERTO GUARANI
+PUERTO_SASTRE:
+  codigo: 248
+  nombre: PUERTO SASTRE
+BOQUERON:
+  codigo: 249
+  nombre: BOQUERON
+FILADELFIA:
+  codigo: 250
+  nombre: FILADELFIA
+GRAL._EUGENIO_A._GARAY:
+  codigo: 251
+  nombre: GRAL. EUGENIO A. GARAY
+LOMA_PLATA:
+  codigo: 252
+  nombre: LOMA PLATA
+MCAL.ESTIGARRIBIA:
+  codigo: 253
+  nombre: MCAL.ESTIGARRIBIA
+PEDRO_P.PEÑA:
+  codigo: 254
+  nombre: PEDRO P.PEÑA
+VILLA_ELISA:
+  codigo: 255
+  nombre: VILLA ELISA
+SAN_ANTONIO:
+  codigo: 256
+  nombre: SAN ANTONIO

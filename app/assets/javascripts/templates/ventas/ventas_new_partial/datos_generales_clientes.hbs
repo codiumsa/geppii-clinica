@@ -1,0 +1,53 @@
+<div class="form-group">
+  <!--Inicio Sección Datos Generales de la venta -->
+  <!-- Pagado/No Pagado -->
+  {{#if editando}}
+    <div class="col-lg-1">
+      <label for="pagado">Pagado</label>
+      {{input type="checkbox" disabled="true" checked=pagado class="checkbox"}}
+    </div>
+  {{/if}}
+  {{#if mostrarVendedor}}
+    <!-- Vendedores -->
+    <div class="col-lg-3">
+      <label class="form-label">Vendedor</label>
+      {{#if editando}}
+        {{input type="text" value=vendedor.nombreCompleto class="form-control" disabled="true"}}
+      {{else}}
+        {{view Ember.Select content=vendedores optionLabelPath="content.nombreCompleto" selection=vendedorSeleccionado value=vendedorSeleccionado classNames="form-control" }}
+      {{/if}}
+    </div>
+  {{/if}}
+
+  <div class="col-lg-3" {{bind-attr class="errors.cliente:has-error errors.cliente:has-feedback feedback.clienteRequerido:has-error feedback.clienteRequerido:has-feedback"}}>
+   {{#if editando}}
+     <label class="form-label">Razon Social</label>
+
+     {{input type="text" value=cliente.razonSocialCliente class="form-control" placeholder="Nombre" readonly=true}}
+   {{else}}
+     <label class="form-label">Nombre, Apellido o RUC</label>
+     {{!--input type="text" readonly="true" value=productoSeleccionado.descripcion class="form-control" placeholder="DescripciÃ³n del producto" enter='agregarDetalle'--}}
+     <div class="search-input-width">
+     {{search-input type="text"
+     value=clienteLabel
+     selectedItem=clienteSeleccionado
+     class="form-control"
+     placeholder="Nombre, Apellido o RUC"
+     property="infoCliente"
+     session=session service="clientes"
+     modelType="cliente"
+     jsonRoot="clientes"
+     store=store
+     ignoredProperties="persona,referencias,documentos,ingresoFamiliares,calificacion,ciudad"
+     queryScope="by_search_input"}}
+     </div>
+   {{/if}}
+
+
+   <span class="help-block">{{feedback.clienteRequerido}}</span>
+   {{#if feedback.clienteRequerido}}
+     <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+   {{/if}}
+ </div>
+
+</div>

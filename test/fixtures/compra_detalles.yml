@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# detalle_compra_1:
+#   compra: compra_1
+#   producto: heineken
+#   cantidad: 1
+#   precio_compra: 1500
+
+  
+
+# detalle_compra_2:
+#   compra: compra_2
+#   producto: heineken
+#   cantidad: 1
+#   precio_compra: 1000
+  

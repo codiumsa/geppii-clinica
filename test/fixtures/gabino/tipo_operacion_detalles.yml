@@ -1,0 +1,161 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+reversion_credito:
+  descripcion: Reversion Crédito
+  tipo_operacion_id: 1
+  tipo_movimiento_id: 2
+  caja_destino: false
+
+reversion_debito:
+  descripcion: Reversion Débito
+  tipo_operacion_id: 2
+  tipo_movimiento_id: 1
+  caja_destino: false
+
+reversion_dos_cajas_destino:
+  descripcion: Reversion Débito Destino
+  tipo_operacion_id: 3
+  tipo_movimiento_id: 1
+  caja_destino: false
+  secuencia: 1
+  
+reversion_dos_cajas_origen:
+  descripcion: Reversion Crédito Origen
+  tipo_operacion_id: 3
+  tipo_movimiento_id: 2
+  caja_destino: true
+  secuencia: 2
+
+#compra:
+#  descripcion: Débito por Compra Contado
+#  tipo_operacion_id: 4
+#  tipo_movimiento_id: 2
+#  caja_destino: false
+
+venta:
+  descripcion: Crédito por Venta Contado
+  tipo_operacion_id: 5
+  tipo_movimiento_id: 1
+  caja_destino: false
+
+transferencia_debito:
+  descripcion: Débito por transferencia
+  tipo_operacion_id: 6
+  tipo_movimiento_id: 2
+  caja_destino: false
+  secuencia: 1
+
+transferencia_credito:
+  descripcion: Crédito por transferencia
+  tipo_operacion_id: 6
+  tipo_movimiento_id: 1
+  caja_destino: true
+  secuencia: 2
+
+gastos:
+  descripcion: Débito por gastos
+  tipo_operacion_id: 7
+  tipo_movimiento_id: 2
+  caja_destino: false
+
+apertura_debito:
+  descripcion: Débito por apertura
+  tipo_operacion_id: 8
+  tipo_movimiento_id: 2
+  caja_destino: false
+  secuencia: 1
+
+apertura_credito:
+  descripcion: Crédito por apertura
+  tipo_operacion_id: 8
+  tipo_movimiento_id: 1
+  caja_destino: true
+  secuencia: 2
+
+
+#apertura_credito:
+#  descripcion: Crédito por apertura
+#  tipo_operacion_id: 8
+#  tipo_movimiento_id: 1
+#  caja_destino: true
+#  secuencia: 1
+
+
+cobro_venta:
+  descripcion: Crédito por cobranza
+  tipo_operacion_id: 10
+  tipo_movimiento_id: 1
+  caja_destino: false
+
+pago_proveedor:
+  descripcion: Débito Pago a Proveedor
+  tipo_operacion_id: 11
+  tipo_movimiento_id: 2
+  caja_destino: false
+
+ingresos:
+  descripcion: Crédito por Ingresos
+  tipo_operacion_id: 12
+  tipo_movimiento_id: 1
+  caja_destino: false
+
+alivio_caja_debito:
+  descripcion: Alivio de caja Débito
+  tipo_operacion_id: 14
+  tipo_movimiento_id: 2
+  caja_destino: false
+  secuencia: 1
+
+alivio_caja_credito:
+  descripcion: Alivio de caja Crédito
+  tipo_operacion_id: 14
+  tipo_movimiento_id: 1
+  caja_destino: true
+  secuencia: 2
+
+cierre_debito:
+  descripcion: Débito por cierre
+  tipo_operacion_id: 9
+  tipo_movimiento_id: 2
+  caja_destino: false
+  genera_diferencia: false
+  secuencia: 1
+
+cierre_credito:
+  descripcion: Crédito por Cierre
+  tipo_operacion_id: 9
+  tipo_movimiento_id: 1
+  caja_destino: true
+  secuencia: 2
+
+cierre_debito_diferencia:
+  descripcion: Débito por diferencia en cierre
+  tipo_operacion_id: 9
+  tipo_movimiento_id: 2
+  caja_destino: false
+  genera_diferencia: true
+  secuencia: 3
+
+reversion_cierre_debito:
+  descripcion: Rev. Débito
+  tipo_operacion_id: 15
+  tipo_movimiento_id: 1
+  caja_destino: false
+  genera_diferencia: false
+  secuencia: 1
+
+reversion_cierre_credito:
+  descripcion: Rev. Crédito
+  tipo_operacion_id: 15
+  tipo_movimiento_id: 2
+  caja_destino: true
+  secuencia: 2
+
+reversion_cierre_debito_diferencia:
+  descripcion: Rev. Débito por diferencia
+  tipo_operacion_id: 15
+  tipo_movimiento_id: 1
+  caja_destino: false
+  genera_diferencia: false
+  secuencia: 3

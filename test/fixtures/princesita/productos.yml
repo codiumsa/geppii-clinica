@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+ventas_anteriores:
+  codigo_barra: 000000
+  descripcion: Ventas Anteriores
+  unidad: unidad
+  margen: 0
+  precio_compra: 1
+  precio: 1
+  iva: 10
+  stock_minimo: 0
+  precio_promedio: 1
+  activo: true
+  pack: false

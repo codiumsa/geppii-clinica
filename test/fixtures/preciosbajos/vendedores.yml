@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: Nery
+  apellido: Vera
+  direccion: México 742 c/ Herrera
+  telefono: 0984489930
+  email: preciosbajosparaguay@yahoo.com
+  activo: true
+  id: 1

@@ -1,0 +1,12 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+mision:
+  id: 1
+  nombre: Misión
+  descripcion: Misiones de Operación Sonrisa
+
+marketing:
+  id: 2
+  nombre: Campaña
+  descripcion: Campañas de Marketing
+

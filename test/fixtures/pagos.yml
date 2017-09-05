@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha_pago: 2015-04-05
+  estado: MyString
+  fecha_actualizacion_interes: 2015-04-05
+  total: 
+  monto_cotizacion: 
+  venta_id: 
+  compra_id: 
+  moneda_id: 
+  borrado: false
+  descuento: 
+
+two:
+  fecha_pago: 2015-04-05
+  estado: MyString
+  fecha_actualizacion_interes: 2015-04-05
+  total: 
+  monto_cotizacion: 
+  venta_id: 
+  compra_id: 
+  moneda_id: 
+  borrado: false
+  descuento: 

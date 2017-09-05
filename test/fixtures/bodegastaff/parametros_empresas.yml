@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+ param:
+   empresa: staff
+   imei_en_venta_detalle: false
+   soporta_sucursales: true
+   soporta_multiempresa: false
+   vendedor_en_venta: true
+   tarjeta_credito_en_venta: true
+   soporta_caja_impresion: false
+   soporta_ajuste_inventario: true
+   soporta_uso_interno: false
+   retencioniva: 0
+   soporta_multimoneda: false
+   moneda: guaranies
+   moneda_base: guaranies
+   ctrl_inventario_set_existencia: false
+   ctrl_inventario_cantidad: 2
+   imprimir_remision: false
+   recargo_precio_venta: false
+   sucursal_default: sucursal_1
+   soporta_cajas: true
+   default_empresa: true
+   sequences_por_empresa: false
+   imprimir_remision: false
+   soporta_garante_venta: false
+   soporta_parametro_caliente: true
+   soporta_impresion_factura_venta: false
+   soporta_impresion_recibo: false
+   soporta_medicamentos: false
+   cierre_automatico_caja: false
+   permite_promociones: true

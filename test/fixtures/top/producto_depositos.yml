@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# existencia_1:
+#   producto: heineken
+#   deposito: punto_venta_matriz_1
+#   existencia: 0
+
+# existencia_2:
+#   producto: heineken
+#   deposito: punto_venta_matriz_2
+#   existencia: 0
+
+# existencia_3:
+#   producto: ballentines
+#   deposito: punto_venta_matriz_2
+#   existencia: 0

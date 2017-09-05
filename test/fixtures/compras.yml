@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# compra_1:
+#   sucursal: tacumbu_2 
+#   proveedor: Baratote
+#   total: 1500
+#   iva10: 1.5
+#   iva5: 1.5
+#   credito: false
+#   pagado: true
+#   cantidad_cuotas: 1
+#   nro_factura: 1234
+#   deuda: 0
+#   fecha_registro: 2014-05-04 20:42:00
+#   #tipo_credito: tipo_credito_1
+
+# compra_2:
+#   sucursal: tacumbu_1 
+#   proveedor: Baratote 
+#   total: 3000
+#   iva10: 1.5
+#   iva5: 1.5
+#   credito: false
+#   pagado: true
+#   deuda: 0
+#   cantidad_cuotas: 0
+#   nro_factura: 9876
+#   fecha_registro: 2014-06-07 20:52:00
+#   #tipo_credito: tipo_credito_1

@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+ nancy:
+   empresa: one
+   imei_en_venta_detalle: false
+   soporta_sucursales: false
+   soporta_multiempresa: true
+   vendedor_en_venta: false
+   tarjeta_credito_en_venta: false
+   soporta_caja_impresion: true
+   soporta_ajuste_inventario: false
+   soporta_uso_interno: true
+   retencioniva: 30
+   soporta_multimoneda: false
+   moneda: guaranies
+   moneda_base: guaranies
+   ctrl_inventario_set_existencia: true
+   ctrl_inventario_cantidad: 2
+   imprimir_remision: false
+   recargo_precio_venta: false
+   sucursal_default: sucursal_1
+   soporta_cajas: true
+   default_empresa: true
+   soporta_medicamentos: false
+   max_detalles_ventas: 33
+   cierre_automatico_caja: true
+   monto_alivio: 5000000
+   permite_promociones: true
+
+ librada:
+   empresa: two
+   imei_en_venta_detalle: false
+   soporta_sucursales: true
+   soporta_multiempresa: true
+   vendedor_en_venta: false
+   tarjeta_credito_en_venta: false
+   soporta_caja_impresion: true
+   soporta_ajuste_inventario: false
+   soporta_uso_interno: true
+   retencioniva: 0
+   soporta_multimoneda: false
+   moneda: guaranies
+   moneda_base: guaranies
+   ctrl_inventario_set_existencia: true
+   ctrl_inventario_cantidad: 2
+   imprimir_remision: false
+   recargo_precio_venta: false
+   soporta_medicamentos: false
+   max_detalles_ventas: 33
+   cierre_automatico_caja: true
+   monto_alivio: 5000000
+   permite_promociones: true

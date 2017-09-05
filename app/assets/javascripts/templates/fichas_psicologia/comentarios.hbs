@@ -1,0 +1,32 @@
+<div role="tabpanel" class="tab-pane active" id="tratamientos">
+  <div class="panel panel-default" style="margin-top: 15px;">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="comentarios">
+        <i class="fa fa-angle-right"></i>Comentarios</a>
+    </h4>
+    </div>
+    <div id="comentarios" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="form-group">
+          <div class="col-lg-12">
+            <label>Comentarios Adicionales</label>
+            {{textarea type="text" value=comentarios class="form-control" placeholder="Comentarios Adicionales"}}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{#isAuthorized 'FE_psi_info_confidencial'}}
+      <div id="confidencial" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <div class="form-group">
+            <div class="col-lg-12">
+              <label>Información Confidencial</label>
+              {{textarea type="text" value=confidencial class="form-control" placeholder="Datos confidenciales"}}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/isAuthorized}}  
+  </div>
+</div>

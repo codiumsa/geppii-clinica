@@ -1,0 +1,26 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  <span>{{formTitle}}</span>
+</h3>
+<div class="row mt">
+  <div role="tabpanel">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#datoscampanha" aria-controls="datoscampanha" role="tab" data-toggle="tab">Datos de Campaña</a>
+      </li>
+      <li role="presentation">
+        <a href="#datoscolaboradores" aria-controls="datoscolaboradores" role="tab" data-toggle="tab">Voluntarios</a>
+      </li>
+      <li role="presentation">
+        <a href="#contactos" aria-controls="contactos" role="tab" data-toggle="tab">Contactos Patrocinadores</a>
+      </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      {{ partial "campanhas/tabs/datos_campanha" }}
+      {{ partial "campanhas/tabs/datos_colaboradores" }}
+      {{ partial "campanhas/tabs/contactos" }}
+    </div>
+  </div>
+</div>

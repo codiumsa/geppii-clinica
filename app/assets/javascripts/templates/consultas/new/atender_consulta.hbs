@@ -1,0 +1,53 @@
+<div {{bind-attr class=":panel :panel-default edicionCredito:hidden"}}>
+  <div class="panel-heading">
+    <h5><i class="fa fa-angle-right"></i>Revisión del paciente</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="col-lg-6" {{bind-attr class="errors.evaluacion:has-error errors.evaluacion:has-feedback" }}>
+        <label class="form-label" for="evaluacion">Evaluacion</label>
+        {{textarea type="text" value=evaluacion class="form-control" placeholder="Evaluación del paciente" autofocus="autofocus"}}
+        <span class="help-block">{{error errors.evaluacion}}</span>
+        {{#if errors.evaluacion}}
+        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        {{/if}}
+      </div>
+      <div class="col-lg-6" {{bind-attr class="errors.diagnostico:has-error errors.diagnostico:has-feedback" }}>
+        <label class="form-label" for="diagnostico">Diagnóstico</label>
+        {{textarea type="text" value=diagnostico class="form-control" placeholder="Diagnósitico"}}
+        <span class="help-block">{{error errors.diagnostico}}</span>
+        {{#if errors.diagnostico}}
+        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>
+{{ partial "consultas/new/nueva_consulta_detalle" }}
+{{ partial "consultas/new/lista_tratamientos_consulta" }}
+
+<div {{bind-attr class=":panel :panel-default edicionCredito:hidden"}}>
+  <div class="panel-heading">
+    <h5><i class="fa fa-angle-right"></i>Receta e Indicación</h5>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="col-lg-6" {{bind-attr class="errors.receta:has-error errors.receta:has-feedback" }}>
+        <label class="form-label" for="receta">Receta</label>
+        {{textarea type="text" value=receta class="form-control" placeholder="Nombre" autofocus="autofocus"}}
+        <span class="help-block">{{error errors.receta}}</span>
+        {{#if errors.receta}}
+        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        {{/if}}
+      </div>
+      <div class="col-lg-6" {{bind-attr class="errors.indicaciones:has-error errors.indicaciones:has-feedback" }}>
+        <label class="form-label" for="indicaciones">Indicaciones</label>
+        {{textarea type="text" value=indicaciones class="form-control" placeholder="Indicaciones"}}
+        <span class="help-block">{{error errors.indicaciones}}</span>
+        {{#if errors.indicaciones}}
+        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

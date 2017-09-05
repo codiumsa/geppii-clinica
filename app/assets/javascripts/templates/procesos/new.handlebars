@@ -1,0 +1,144 @@
+<h3>
+ <i class="fa fa-angle-right"></i>
+ {{formTitle}}</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:procesos.new', 'save');">
+
+          <div class="panel panel-default">
+            <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Datos del Proceso</h5></div>
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="col-lg-12" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+                  <label class="form-label"  for="descripcion">Descripción</label>
+                  {{focus-input type="text" value=descripcion class="form-control" placeholder="Descripción del proceso" readonly=false autofocus="true"}}
+                  <span class="help-block">{{error errors.descripcion}}</span>
+                  {{#if errors.descripcion}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                  {{/if}}
+                </div>{{!-- col-lg-12 --}}
+              </div>{{!-- form-group --}}
+
+              <div class="form-group">
+                <div class="col-lg-8"{{bind-attr class="errors.producto:has-error errors.producto:has-feedback"}}>
+                  <label class="form-label" for="descripcionProducto">Producir</label>
+                  <div class="search-input-width">
+                    {{search-input  
+                      type="text"  value=descripcionProducto selectedItem=productoSeleccionadoSW 
+                      class="form-control" placeholder="Descripción del producto"
+                      property="descripcion" session=session service="productos"
+                      modelType="producto" jsonRoot="productos" store=store
+                      ignoredProperties="categorias,promocionProducto,producto" enter='contarEnters'}}
+                      {{#if errors.producto}}
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      {{/if}}
+                  </div>{{!-- search-input-width --}}
+                </div>{{!-- col-log-4 --}}
+
+                <div class="col-lg-4" {{bind-attr class="errors.cantidad:has-error errors.cantidad:has-feedback"}}>
+                  <label class="form-label"  for="cantidad">Cantidad Salida</label>
+                    {{number-input value=cantidad class="form-control" placeholder="Cantidad de salida" min="1"}}
+                    <span class="help-block">{{error errors.cantidad}}</span>
+                    {{#if errors.cantidad}}
+                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    {{/if}}
+                </div>{{!-- col-lg-4 --}}
+              </div>{{!-- form-group --}}
+            </div>{{!-- panel-body --}}
+          </div>{{!-- panel panel-default --}}
+
+          <div class="panel panel-default">
+            <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Nuevo Detalle</h5></div>
+            <div class="panel-body">
+
+              <div class="form-group">
+                <div class="col-lg-6" >
+                 <label class="form-label">Descripción</label>
+                </div>
+                <div class="col-lg-3" >
+                 <label class="form-label">Cantidad</label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                
+                <div class="col-lg-6" >
+                  <div class="search-input-width">
+                    {{search-input  
+                     type="text"  value=descripcionDetalleSW selectedItem=detalleSeleccionadoSW 
+                     class="form-control" placeholder="Descripción del producto"
+                     property="descripcion" session=session service="productos"
+                     modelType="producto" jsonRoot="productos" store=store
+                     ignoredProperties="categorias,promocionProducto,producto" enter='contarEnters'}}
+                  </div>{{!-- search-input-width --}}
+                </div>{{!-- col-lg-6 --}}
+                
+                <div class="col-lg-2" >
+                 {{number-input enter='agregarDetalle' value=detNuevo.cantidad class="form-control" placeholder=numeral min="1"}}
+                </div>{{!-- col-lg-2 --}}
+                <div class="col-lg-1" >
+                 <button {{action 'agregarDetalle'}}  class="btn  btn-theme">
+                  <span class="glyphicon glyphicon-plus"></span>
+                 </button>
+                </div> {{!-- col-lg-1 --}}
+              </div>{{!-- form-group --}}
+            </div>{{!-- panel-body --}}
+          </div>{{!-- panel panel-default --}}
+
+          <div class="panel panel-default">
+          <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Materias primas de procesos</h5></div>
+            <div class="panel-body">
+              <div class="form-horizontal form-detalles">
+                {{#unless detalles}}
+                  <div class="form-group">
+                   <div class="col-lg-12 first-cell" >
+                    <label class="form-label">Debe agregar detalles para guardar</label>
+                   </div>{{!-- col-lg-12 first-cell --}}
+                  </div>{{!-- form-group --}}
+                {{/unless}}
+                
+                {{#each det in detalles}}
+                  <div class="form-group">
+                    <div class="col-lg-3 first-cell" >
+                      {{input type="text" readonly="true" value=det.producto.codigoBarra class="form-control" placeholder="Código de Barras" }}
+                    </div>{{!-- col-lg-3 first-cell --}}
+                    <div class="col-lg-6" >
+                      {{input type="text" readonly="true" value=det.producto.descripcion class="form-control" placeholder="Descripción del producto" }}
+                    </div>{{!-- col-lg-6 --}}
+                    <div class="col-lg-2" >
+                      {{input type="text" value=det.cantidad class="form-control" placeholder=numeral }}
+                    </div>{{!-- col-lg-2 --}}
+                    {{#if habilitarEdicionDetalle}}
+                      <div class="col-lg-1 last-cell" >
+                        <button  type="button" {{action borrarDetalle det}}  class="btn btn-theme"> 
+                          <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                      </div>
+                    {{/if}}
+                  </div>{{!-- form-group --}}
+                {{/each}}
+              </div>{{!-- form-horizontal form-detalles --}}
+            </div>{{!-- panel-body --}}
+          </div>{{!-- panel panel-default --}}
+
+          <div class="form-group">
+            <div class="col-lg-12">
+             <button type="submit" class="btn btn-theme ">Guardar</button>
+             <button {{action 'cancel'}} class="btn btn-default ">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>{{!-- form-horizontal --}}
+    </div>{{!-- form-panel --}}
+  </div>{{!-- col-lg-12 --}}
+</div>{{!-- row mt --}}
+<script type="text/javascript">
+ $('#noEntersInventarios').keydown(function (event) {
+  if (event.keyCode == 13) {
+   event.preventDefault();
+   return false;
+  }
+ });
+</script>

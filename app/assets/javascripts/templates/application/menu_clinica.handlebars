@@ -1,0 +1,90 @@
+{{!--{{#isAuthorized 'FE_post_pacientes'}}--}}
+    <li class="sub-menu  dcjq-parent-li">
+    <a href="javascript:;" class="dcjq-parent">
+      <i class="fa fa-stethoscope"></i>
+      <span>Clínica</span>
+    </a>
+    <ul class="sub" style="overflow: hidden; display: block;">
+      {{#isAuthorized 'FE_index_pacientes'}}
+        <li>
+          {{#link-to "pacientes"}}
+          <span>Pacientes</span> {{/link-to}} {{!#link-to "fichas_fonoaudiologia"
+          <span>Fonoaudiología</span> /link-to}}
+        </li>
+      {{/isAuthorized}}
+      {{#isAuthorized 'FE_index_consultorios'}}
+        <li>
+          {{#link-to "consultorios"}}
+          <span>Consultorios</span> {{/link-to}}
+        </li>
+      {{/isAuthorized}}
+      {{#isAuthorized 'FE_index_consultas'}}
+        <li class="sub-menu  dcjq-parent-li">
+          <a href="javascript:;" class="dcjq-parent">
+            <i class="fa fa-calendar"></i>
+            <span>Consultas</span>
+          </a>
+          <ul class="sub" style="overflow: hidden; display: block;">
+            <li>{{#link-to "consultas" (query-params especialidad="all" )}}
+              <span>Todas</span> {{/link-to}}</li>
+            <li>{{#link-to "consultas" (query-params especialidad="ODO" )}}
+              <span>Odontología</span> {{/link-to}}</li>
+            <li>{{#link-to "consultas" (query-params especialidad="NUT" )}}
+              <span>Nutrición</span> {{/link-to}}</li>
+            <li>{{#link-to "consultas" (query-params especialidad="CIR" )}}
+              <span>Cirugía</span> {{/link-to}}</li>
+            <li>{{#link-to "consultas" (query-params especialidad="FON" )}}
+              <span>Fonoaudiología</span>{{/link-to}}</li>
+            <li>{{#link-to "consultas" (query-params especialidad="PSI" )}}
+              <span>Psicología</span>{{/link-to}}</li>
+          </ul>
+        </li>
+      {{/isAuthorized}}
+        <li class="sub-menu  dcjq-parent-li">
+          <a href="javascript:;" class="dcjq-parent">
+            <i class="fa fa-bar-chart-o"></i>
+            <span>Reportes</span>
+          </a>
+          <ul class="sub" style="overflow: hidden; display: block;">
+            <li>
+                {{#link-to "reporte_candidatura_tratamientos"}}
+                    <span>Candidaturas</span>
+                {{/link-to}}
+            </li>
+            <li>
+                {{#link-to "reporte_cantidad_tratamientos"}}
+                    <span>Cantidad tratamientos</span>
+                {{/link-to}}
+            </li>
+            <li>
+                {{#link-to "reporte_cantidad_consultas"}}
+                    <span>Consultas especialidad</span>
+                {{/link-to}}
+            </li>
+            <li>
+                {{#link-to "reporte_cantidad_pacientes_atendidos"}}
+                    <span>Cantidad de pacientes atendidos</span>
+                {{/link-to}}
+            </li>
+            <li>
+                {{#link-to "reporte_asistencia_pacientes_consultas"}}
+                    <span>Asistencia Pacientes</span>
+                {{/link-to}}
+            </li>
+            <li>
+                {{#link-to "reporte_pacientes"}}
+                    <span>Listado de pacientes</span>
+                {{/link-to}}
+            </li>
+            <li>
+                {{#link-to "reporte_pacientes_nuevos"}}
+                    <span>Pacientes nuevos</span>
+                {{/link-to}}
+            </li>
+
+
+          </ul>
+        </li>
+    </ul>
+  </li>
+{{!--{{/isAuthorized}}--}}

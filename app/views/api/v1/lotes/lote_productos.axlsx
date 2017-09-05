@@ -1,0 +1,102 @@
+lotes = @lotes
+
+
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  loteTitle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  loteContent = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+
+
+  wb.add_worksheet(name: "lote_productos") do |sheet|
+    time = Time.now.strftime("%d/%m/%Y")
+    sheet.add_row ["Geppii","Reporte de Lotes por Producto"," Fecha: #{time}"], style: [wrap_text,wrap_text,wrap_text]
+    sheet.add_row []
+
+    cantidadLotes = lotes.count.to_i
+    if(cantidadLotes >1)
+        productoTemp =  lotes.first.producto_id
+        variosProductos = false
+        lotes.map do |lote|
+            variosProductos = lote.producto_id == productoTemp ? false : true
+            break if variosProductos == true
+        end
+    elsif(cantidadLotes == 0)
+            sheet.add_row ["No existen lotes para el rango de fechas asignado"], style: [wrap_text]
+        return
+    end
+
+    if(!variosProductos)
+        lotesArray = []
+        producto = Producto.find(lotes.first.producto_id)
+        lotes.map do |lote|
+            puts lote.to_yaml
+            puts !lote.fecha_vencimiento.nil?
+            lotesArray.push(["#{lote.codigo_lote}","#{lote.fecha_vencimiento.strftime("%d/%m/%Y") if !lote.fecha_vencimiento.nil?}", "#{lote.lote_depositos.sum('cantidad')}"])
+        end
+        sheet.add_row [producto.descripcion], style: [loteTitle]
+        sheet.add_row ["Codigo del Lote","Fecha de Vencimiento"], style: [loteTitle,loteTitle,loteTitle]
+
+        lotesArray.map do |lote|
+          sheet.add_row [lote[0],lote[1],lote[2]], style: [loteContent,loteContent,loteContent]
+        end
+        sheet.add_row []
+    else
+        productos = []
+        lotesArray = []
+        lotes.map do |lote|
+            if(productos.include? lote.producto_id)
+                lotesArray.push(["#{lote.codigo_lote}","#{lote.fecha_vencimiento.strftime("%d/%m/%Y") if !lote.fecha_vencimiento.nil?}","#{lote.lote_depositos.sum('cantidad')}"])
+            else
+                if(productos.empty?)
+                    productos.push(lote.producto_id)
+                    puts lote.id
+                    lotesArray = [["#{lote.codigo_lote}","#{lote.fecha_vencimiento.strftime("%d/%m/%Y") if !lote.fecha_vencimiento.nil?}","#{lote.lote_depositos.sum('cantidad')}"]]
+                else
+                    productoTemp = Producto.find(productos.last)
+                    sheet.add_row [productoTemp.descripcion], style: [loteTitle]
+                    sheet.add_row ["Codigo del Lote","Fecha de Vencimiento","Cantidad"], style: [loteTitle,loteTitle,loteTitle]
+                    lotesArray.map do |lote|
+                      sheet.add_row [lote[0],lote[1],lote[2]], style: [loteContent,loteContent,loteContent]
+                    end
+                    sheet.add_row []
+                    productos.push(lote.producto_id)
+                    lotesArray = [["#{lote.codigo_lote}","#{lote.fecha_vencimiento.strftime("%d/%m/%Y") if !lote.fecha_vencimiento.nil?}","#{lote.lote_depositos.sum('cantidad')}"]]
+                end
+            end
+        end
+        productoTemp = Producto.find(productos.last)
+        sheet.add_row [productoTemp.descripcion], style: [loteTitle]
+        sheet.add_row ["Codigo del Lote","Fecha de Vencimiento","Cantidad"], style: [loteTitle,loteTitle,loteTitle]
+        lotesArray.map do |lote|
+          sheet.add_row [lote[0],lote[1],lote[2]], style: [loteContent,loteContent,loteContent]
+        end
+        sheet.add_row []
+    end
+  end
+end

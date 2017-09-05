@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: ingreso_familiares
+#
+#  id                  :integer          not null, primary key
+#  ingreso_mensual     :float
+#  vinculo_familiar_id :integer
+#  created_at          :datetime
+#  updated_at          :datetime
+#  cliente_id          :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   ingreso_mensual: 1.5
+#   vinculo_familiar_id: 
+
+# two:
+#   ingreso_mensual: 1.5
+#   vinculo_familiar_id: 

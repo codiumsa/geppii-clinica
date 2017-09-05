@@ -1,0 +1,83 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion"
+	 href="#estimulos" {{action 'scrollToTop' 250}}><i class="fa fa-angle-right">
+	 </i>Estímulos</a>
+    </h4>
+  </div>
+  <div id="estimulos" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="form-group">
+	<table class="table table-hover table-bordered table-striped table-condensed">
+	  <tbody>
+	    <tr>
+	      <td>
+ 		<ul>
+		  <div>
+		    <li><label>1. <b>P</b>e<b>p</b>e <b>p</b>ela la <b>p</b>a<b>p</b>a</label></li>
+		    <li><label>2. <b>B</b>i<b>b</b>ive al <b>b</b>e<b>b</b>é</label></li>
+		    <li><label>3. <b>T</b>a<b>t</b>i a<b>t</b>a la <b>t</b>ela</label></li>
+		    <li><label>4. A <b>D</b>arío le <b>d</b>uele el <b>d</b>e<b>d</b>o</label></li>
+		    <li><label>5. <b>K</b>u<b>k</b>iquiere el coco</label></li>
+		    <li><label>6. Ha<b>g</b>o ju<b>g</b>o de <b>g</b>uayaba</label></li>
+		    <li><label>7. El <b>s</b>ol <b>s</b>ale a la<b>s</b> <b>s</b>ei<b>s</b></label></li>
+		    <li><label>8. <b>S</b>u<b>s</b>i <b>s</b>ale <b>s</b>ola</label></li>
+		    <li><label>9. La jira<b>f</b>a <b>f</b>ue <b>f</b>eliz</label></li>
+		    <li><label>10. <b>J</b>ulia de<b>j</b>ó el a<b>j</b>o</label></li>
+		    <li><label>11. <b>Ch</b>u<b>ch</b>o e<b>ch</b>a la le<b>ch</b>e</label></li>
+		    <li><label>12. <b>L</b>u<b>l</b>ú <b>l</b>ee e<b>l</b><b>l</b>ibro</label></li>
+		    <li><label>13. O<b>y</b>e la <b>ll</b>uvia a<b>ll</b>á</label></li>
+		    <li><label>14. <b>R</b>aúl va al a<b>r</b><b>r</b>oyo</label></li>
+		    <li><label>15. <b>M</b>i <b>m</b>a<b>m</b>á <b>m</b>e a<b>m</b>a</label></li>
+		    <li><label>16. La <b>n</b>iña <b>m</b>ueve la <b>m</b>o<b>ñ</b>a</label></li>
+		    <li><label>17. O<b>s</b>car e<b>st</b>rella el e<b>sp</b>ejo</label></li>
+		  </div>
+		</ul>
+	      </td>
+	      <td>
+		<table>
+		  <tbody>
+		    {{#each estimulo in estimulos}}
+		      <tr>
+			<td>
+			  <h5><i class="fa fa-angle-right"></i>{{estimulo.titulo}}</h5>
+			  {{view Bodega.views.GeppiiSelect
+			    content=estimulo.valores
+			    selection=estimulo.valor
+			    prompt="Seleccione un valor..."
+			    value=estimulo.valor
+			    optionValuePath="content"
+			    classNames="form-control"
+			    onChange='mostrarOcultarSubEstimulos'}}
+			  {{#if estimulo.subItems}} {{! TODO: poner un nombre mas significativo}}
+			    {{#if mostraSubestimulos}}
+			      {{#each subEstimulo in estimulo.subEstimulos}}				
+				<fieldset>
+				  <label>{{subEstimulo.nombre}}</label>
+				  {{#each item in subEstimulo.valores}}
+				  <div class="item">
+				    {{input type="checkbox" nameBinding=item.id
+				      checked=item.valor class="for-checkbox"}}
+				    <label {{bind-attr for=item.id}}>
+				      {{item.nombre}}
+				    </label>
+				  </div>
+				  {{/each}}
+				</fieldset>
+			      {{/each}}
+			    {{/if}}
+			  {{/if}}
+			</td>
+		      </tr>
+		    {{/each}}
+		  </tbody>
+		</table>
+	      </td>
+	    </tr>
+	  </tbody>
+	</table>
+      </div>                
+    </div>
+  </div>
+</div>

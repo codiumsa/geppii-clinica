@@ -1,0 +1,25 @@
+<li class="sub-menu  dcjq-parent-li">
+  {{#if habilitaMonedas}}
+  <a href="javascript:;" class="dcjq-parent">
+    <i class="fa fa-dollar"></i>
+    <span>Monedas</span>
+  </a>
+  {{/if}}
+  <ul class="sub" style="overflow: hidden; display: block;">
+    {{#if habilitaSubmenuMonedas}}
+    <li>
+      {{#link-to "monedas"}}
+      <i class="fa fa-money"></i>
+      <span>Monedas</span>
+      {{/link-to}}
+    </li>
+    {{/if}} {{#if habilitaCotizaciones}}
+    <li>
+      {{#link-to "cotizaciones"}}
+      <i class="fa fa-money"></i>
+      <span>Cotizaciones</span>
+      {{/link-to}}
+    </li>
+    {{/if}}
+  </ul>
+</li>

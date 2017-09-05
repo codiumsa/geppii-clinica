@@ -1,0 +1,10 @@
+<h1>Productos que vencen esta semana</h1>
+<% if @lote.length > 0 %>
+<ul>
+    <% @lote.each do |l| %>
+    <li><%= l.producto.descripcion %><small><em>(vence el <strong><%= l.fecha_vencimiento.strftime("%d/%m/%Y") %></strong>)</em></small></li>
+    <% end %>
+</ul>
+<% else %>
+<p>No vencen productos esta semana.</p>
+<% end %>

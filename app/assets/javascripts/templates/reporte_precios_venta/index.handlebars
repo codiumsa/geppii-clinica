@@ -1,0 +1,52 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div id="noEnterPrecioVenta" class="row mt" onkeydown="Bodega.ignoreEnter();">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "search" on="submit"}}>
+          <div class="form-group">
+             <div class="col-lg-4" >
+              <label class="form-label">Código</label>
+              {{focus-input type="text" enter='cargarProducto' id="codigoBarra" value=codigoBarra class="form-control" placeholder="Código de Barras" autofocus="true"}}
+            </div>
+            <div class="col-lg-4">
+              <label class="form-label">Producto</label>
+              <div class="search-input-width">
+              {{search-input  
+                type="text" id="productoDescripcion" value=descripcionSW selectedItem=productoSeleccionadoSW 
+                class="form-control" placeholder="Descripción del producto"
+                property="descripcion" session=session service="productos"
+                modelType="producto" jsonRoot="productos" store=store
+                ignoredProperties="categorias,promocionProducto,producto,moneda" enter='contarEnters'}}
+              </div>
+            </div>    
+           <div class="col-lg-2">                
+              <label for="changePass">Precio Promedio</label>
+              {{input type="checkbox" checked=precioCompra class="checkbox"}}
+            </div>
+          </div>
+          <div class="form-group">
+           <div class="col-lg-4">
+             <label class="form-label" for="empresas">Empresa</label>
+              {{view Ember.Select content=empresas 
+              optionValuePath="content.id" 
+              selection=selectedEmpresa
+              optionLabelPath="content.nombre"
+              classNames="form-control"
+              prompt="Seleccione una Empresa"}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button  {{action 'generarReporte'}}  class="btn btn-theme">Generar Reporte</button>
+            </div>
+          </div>
+        </form>
+      </div>     
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,28 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# juan:
+#   nombre: "Juan"
+#   apellido: "Pérez"
+#   telefono: "123-456"
+#   email: "jperez@gmail.com"
+#   ruc: "243432"
+#   direccion: "Iturbe 234"
+# categoria_cliente: vip
+# maria:
+#   nombre: "María"
+#   apellido: "Benítez"
+#   telefono: "234-765"
+#   email: "mbenitez@hotmail.com"
+#   ruc: "323543"
+#   direccion: "Brasil 343"
+
+default:
+    activo: true
+    persona_id: 1
+    numero_cliente: 0
+    calificacion: A
+op_sonrisa:
+    activo: true
+    persona_id: 4
+    numero_cliente: 1
+    calificacion: A

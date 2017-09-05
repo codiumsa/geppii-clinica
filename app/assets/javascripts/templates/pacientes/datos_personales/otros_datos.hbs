@@ -1,0 +1,48 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion"
+	 href="#otrosDatos"><i class="fa fa-angle-right">
+	 </i>Otros Datos</a>
+    </h4>
+  </div>
+  <div id="otrosDatos" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="form-group">
+	<div class="col-lg-8"
+	     {{bind-attr class="feedback.personaTratamientoPediatrico:has-error 
+	       feedback.personaTratamientoPediatrico:has-feedback"}}>
+          <label class="form-label" for="personaTratamientoPediatrico">Dónde siguió tratamiento Pediatrico?</label>
+          {{input type="text" value=otrosDatos.dondeSiguioTratamientoPediatrico
+	    class="form-control" placeholder="Lugar"}}
+          <span class="help-block">{{error feedback.personaTratamientoPediatrico}}</span>
+          {{#if feedback.personaTratamientoPediatrico}}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+	</div>
+	<div class="col-lg-4"
+	     {{bind-attr class="errors.personaTieneSeguroMedico:has-error
+	       errors.personaTieneSeguroMedico:has-feedback"}}>
+          <label class="form-label" for="personaTratamientoClinica">Tiene seguro M&eacute;dico?</label>
+	  Si {{view Bodega.views.RadioButton value='si' checked=otrosDatos.tieneSeguro}}
+	  No {{view Bodega.views.RadioButton value='no' checked=otrosDatos.tieneSeguro}}
+          <span class="help-block">{{error errors.personaTieneSeguroMedico}}</span>
+          {{#if errors.personaTieneSeguroMedico}}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+	</div>
+	<div class="col-lg-8"
+	     {{bind-attr class="feedback.personaSeguroMedico:has-error 
+	       feedback.personaSeguroMedico:has-feedback"}}>
+          <label class="form-label" for="personaTratamientoPediatrico">Empresa de Seguro Medico</label>
+          {{input type="text" value=otrosDatos.empresaDeSeguro
+	    class="form-control" placeholder="nombre del seguro"}}
+          <span class="help-block">{{error feedback.personaSeguroMedico}}</span>
+          {{#if feedback.personaSeguroMedico}}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          {{/if}}
+	</div>
+      </div>
+    </div>
+  </div>
+</div>

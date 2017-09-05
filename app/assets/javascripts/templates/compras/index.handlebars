@@ -1,0 +1,87 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Ingresos
+  {{#link-to 'compras.new'}}
+    <button class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="margin-top: -5px; margin-left: 5px;" {{bind-attr disabled=cajaCerrada}}></button>
+  {{/link-to}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView modalId="compraSearchForm"}}
+    <div class="content-panel table-responsive" style="padding: 0px;">
+      <table {{bind-attr disabled=cajaCerrada}} class="table table-bordered table-striped table-condensed">
+        <thead>
+            <tr>
+                <th>N° Factura</th>
+                <th>Proveedor</th>
+                <th>IVA (10%)</th>
+                <th>IVA (5%)</th>
+                <th>Crédito</th>
+                <th>Pagado</th>
+                <th>Cuotas</th>
+                <th>Campaña</th>
+                <th>Fecha</th>
+                <th>Sucursal</th>
+                <th>Deposito</th>
+                {{!-- <th>Retención</th> --}}
+                <th>Deuda</th>
+                <th>Total</th>
+                {{#if soportaMultimoneda}}
+                  <th>Moneda</th>
+                {{/if}}
+                <th>Donación</th>
+                <th  style="width:11%;"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {{#each}}
+            {{#unless pagado }}
+              <tr class="danger">
+              {{else}}
+              <tr>
+            {{/unless}}
+
+                <td>{{nroFactura}}</td>
+                <td>{{razonSocialProveedor}}</td>
+                <td>{{formatNumber iva10}}</td>
+                <td>{{formatNumber iva5}}</td>
+                <td>{{yesno credito}}</td>
+                <td>{{yesno pagado}}</td>
+                <td>{{cantidadCuotas}}</td>
+                <td>{{campanha.nombre}}</td>
+                <td>{{dateformat fechaRegistro}}</td>
+                <td>{{sucursal.descripcion}}</td>
+                <td>{{deposito.nombre}}</td>
+                {{!-- <td>{{retencioniva}}</td> --}}
+                <td>{{formatNumber deuda}}</td>
+                <td>{{formatNumber total}}</td>
+                {{#if controller.soportaMultimoneda}}
+                  <td>{{moneda.nombre}}</td>
+                {{/if}}
+                <td>{{yesno donacion}}</td>
+                <td>
+                  {{#link-to 'compra.edit' this classNames='table-action'}}
+                    <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil"
+                    {{bind-attr disabled=controller.cajaCerrada}}></button>
+                  {{/link-to}}
+                  {{#link-to 'compra.delete' this classNames='table-action'}}
+                    <button class="btn btn-theme btn-sm glyphicon glyphicon-remove"
+                            data-toggle="modal" data-target="#compraDelete"
+                            {{bind-attr disabled=controller.cajaCerrada}}></button>
+                  {{/link-to}}
+
+                 {{#if credito}}
+                    {{#link-to 'compraCuotas' this classNames='table-action'}}
+                    <button class="btn btn-theme btn-sm glyphicon glyphicon-tasks" {{bind-attr disabled=controller.cajaCerrada}}></button>
+                    {{/link-to}}
+
+                  {{/if}}
+                </td>
+            </tr>
+        {{/each}}
+         </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

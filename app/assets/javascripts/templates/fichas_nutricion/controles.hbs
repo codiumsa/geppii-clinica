@@ -1,0 +1,97 @@
+<div role="tabpanel" class="tab-pane" id="controles">
+  <div class="panel panel-default" style="margin-top: 15px;">
+    <div class="panel-body">
+      <div class="form-group">
+        <div class="form-horizontal form-detalles">
+          <!-- DETALLE NUEVO -->
+          <hr>
+          <h4>NUEVO CONTROL </h4>
+          <hr>
+          <div class="col-lg-2">
+            {{view Bodega.views.DatePickerView value=controlNuevo.fecha}}
+          </div>
+          <div class="col-lg-1">
+            {{input type="text" value=controlNuevo.edad class="form-control" placeholder="Edad" }}
+          </div>
+          <div class="col-lg-1">
+            {{input type="text" value=controlNuevo.peso class="form-control" placeholder="Peso" }}
+          </div>
+          <div class="col-lg-1">
+            {{input type="text" value=controlNuevo.talla class="form-control" placeholder="Talla" }}
+          </div>
+          <div class="col-lg-1">
+            {{input type="text" value=controlNuevo.pc class="form-control" placeholder="PC" }}
+          </div>
+          <div class="col-lg-1">
+            {{input type="text" value=controlNuevo.pe class="form-control" placeholder="P/E" }}
+          </div>
+          <div class="col-lg-1">
+            {{input type="text" value=controlNuevo.te class="form-control" placeholder="T/E" }}
+          </div>
+          <div class="col-lg-1">
+            {{input type="text" value=controlNuevo.imc class="form-control" placeholder="IMC" }}
+          </div>
+          <div class="col-lg-2">
+            {{input type="text" value=controlNuevo.evolucion class="form-control" placeholder="Evolución/Indicación" }}
+          </div>
+          <div class="col-lg-1">
+            <label class="form-label">Agregar</label>
+            <!--button type="button" {{action 'agregarCirugia'}} class="btn btn-theme btn-sm" onkeydown="Bodega.enterFormHandler('controller:pacientes.new', 'agregarCirugia');"-->
+            <button type="button" {{action 'agregarDetalle' 'datosDto.controles' 'controlNuevo'}} class="btn btn-theme btn-sm" onkeydown="Bodega.enterFormHandler('controller:fichasNutricion.new', 'agregarDetalle');">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FIN DETALLE NUEVO-->
+    <div class="panel-body">
+      <div class="form-group">
+        <div class="form-horizontal form-detalles">
+          <hr>
+          <h4>CONTROLES ANTERIORES</h4>
+          <hr>
+          <!-- INICIO LISTA DETALLES -->
+          <table class="table table-striped table-advance table-hover">
+            <thead>
+              <tr>
+                <th class="col-lg-1">Fecha</th>
+                <th>Edad</th>
+                <th>Peso(Kg)</th>
+                <th>Talla</th>
+                <th>PC</th>
+                <th>P/E</th>
+                <th>T/E</th>
+                <th>IMC</th>
+                <th>Evolución</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each item in listaControles}}
+                <tr>
+                  <td> {{dateformat item.fecha}} </td>
+                  <td> {{item.edad}} </td>
+                  <td> {{item.peso}} </td>
+                  <td> {{item.talla}} </td>
+                  <td> {{item.pc}} </td>
+                  <td> {{item.pe}} </td>
+                  <td> {{item.te}} </td>
+                  <td> {{item.imc}} </td>
+                  <td> {{item.evolucion}} </td>
+                  <td>
+                    <div class="col-lg-1">
+                      <button type="button" {{action 'borrarDetalle' item 'datosDto.controles' 'datosDto.controles.@each.eliminado'}} class="btn btn-theme">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <!-- FIN LISTA DETALLES -->
+      </div>
+    </div>
+  </div>
+</div>

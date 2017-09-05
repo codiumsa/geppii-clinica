@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: Operación Sonrisa Setiembre 2016
+  descripcion: Misión
+  fecha_incio: 2016-06-12
+  fecha_fin: 2016-12-12
+  estado: PENDIENTE
+  persona_id: 4
+  tipo_campanha_id: 1
+
+two:
+  nombre: Campaña MKT Estudiantes
+  descripcion: Estudiantes de colegio venden remera 
+  fecha_incio: 2016-06-12
+  fecha_fin: 2016-12-12
+  estado: PENDIENTE
+  persona_id: 1
+  tipo_campanha_id: 2

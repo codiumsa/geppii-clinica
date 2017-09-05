@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+pro_detalle_one:
+  id: 1
+  proceso: proceso_1
+  producto: ourofino
+  cantidad: 1
+  precio_costo: 1.5
+  precio_venta: 1.5
+
+pro_detalle_two:
+  id: 2
+  proceso: proceso_1
+  producto: ballentines
+  cantidad: 1
+  precio_costo: 1.5
+  precio_venta: 1.5
+
+pro_detalle_three:
+  id: 3
+  proceso: proceso_2
+  producto: ourofino
+  cantidad: 1
+  precio_costo: 1.5
+  precio_venta: 1.5
+
+pro_detalle_four:
+  id: 4
+  proceso: proceso_2
+  producto: ballentines
+  cantidad: 1
+  precio_costo: 1.5
+  precio_venta: 1.5

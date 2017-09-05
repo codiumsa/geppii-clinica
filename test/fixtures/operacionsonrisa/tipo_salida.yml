@@ -1,0 +1,57 @@
+Donaciones:
+  codigo: Donaciones
+  descripcion: Donaciones
+  muestra_medios_pago: false
+
+Recetas:
+   codigo: Recetas
+   descripcion: Entrega de medicamentos/recetas
+   muestra_medios_pago: false
+
+
+Destruccion:
+  codigo: Destruccion
+  descripcion: Destrucción
+  muestra_medios_pago: false
+
+
+Reposicion:
+  codigo: Reposicion
+  descripcion: Reposición Consultorio
+  muestra_medios_pago: false
+
+
+Cirugias:
+  codigo: Cirugias
+  descripcion: Cirugías en Clinica
+  muestra_medios_pago: false
+
+
+Misiones:
+  codigo: Misiones
+  descripcion: Misiones Externas
+  muestra_medios_pago: false
+
+
+Consultorio:
+  codigo: Consultorio
+  descripcion: Consultorio
+  muestra_medios_pago: false
+
+
+Campañas:
+  codigo: Campañas
+  descripcion: Campañas
+  muestra_medios_pago: false
+
+
+Clientes:
+  codigo: Clientes
+  descripcion: Clientes
+  muestra_medios_pago: true
+
+
+Pacientes:
+  codigo: Pacientes
+  descripcion: Pacientes
+  muestra_medios_pago: false

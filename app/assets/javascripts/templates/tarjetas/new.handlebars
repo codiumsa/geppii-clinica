@@ -1,0 +1,63 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:tarjetas.new', 'save');">
+          <div class="form-group">
+            <div class="col-lg-6" {{bind-attr class="errors.banco:has-error errors.banco:has-feedback"}}>
+              <label class="form-label"  for="banco">Banco</label>
+              {{focus-input type="text" value=banco class="form-control" placeholder="Banco" autofocus="autofocus"}}
+              <span class="help-block">{{error errors.banco}}</span>
+              {{#if errors.banco}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+
+             <div class="col-lg-6" {{bind-attr class="errors.marca:has-error errors.marca:has-feedback"}}>
+              <label class="form-label"  for="marca">Marca</label>
+              {{focus-input type="text" value=marca class="form-control" placeholder="VISA, MASTERCARD, ETC."}}
+              <span class="help-block">{{error errors.marca}}</span>
+              {{#if errors.marca}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}   
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-6" {{bind-attr class="errors.afinidad:has-error errors.afinidad:has-feedback"}}>
+              <label class="form-label"  for="afinidad">Afinidad</label>
+              {{focus-input type="text" value=afinidad class="form-control" placeholder="Shopping Mariano, clasipar, etc. "}}
+              <span class="help-block">{{error errors.afinidad}}</span>
+              {{#if errors.afinidad}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}   
+            </div>
+          
+          <div class="col-lg-6 taginputsimple" {{bind-attr class="errors.medio_pago:has-error errors.medio_pago:has-feedback"}}>
+              <label class="form-label">Medio de Pago</label>
+              {{view Ember.Select
+                content=medioPagos
+                optionLabelPath="content.nombre"
+                selection=medioSeleccionado
+                value=medioSeleccionado
+                classNames="form-control"}}
+              {{#if errors.medio_pago}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+              {{/if}}
+          </div>
+        </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

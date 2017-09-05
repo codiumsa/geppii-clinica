@@ -1,0 +1,26 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+mensual:
+  descripcion: Cuota Mensual
+  plazo: 1
+  unidad_tiempo: M
+
+quincenal:
+  descripcion: Cuota Quincenal
+  plazo: 2
+  unidad_tiempo: W
+
+semanal:
+  descripcion: Cuota Semanal
+  plazo: 1
+  unidad_tiempo: W
+
+diario:
+  descripcion: Cuota Diaria
+  plazo: 1
+  unidad_tiempo: D
+
+contado:
+  descripcion: Contado
+  plazo: 0
+  unidad_tiempo: D

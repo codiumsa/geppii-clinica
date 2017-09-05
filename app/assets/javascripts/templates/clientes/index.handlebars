@@ -1,0 +1,57 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Clientes
+  {{#isAuthorized 'FE_post_clientes'}}
+    {{#link-to 'clientes.new'}}
+      <button class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="margin-top: -5px; margin-left: 5px;"></button>
+    {{/link-to}}
+  {{/isAuthorized}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView modealId = "clienteSearchForm"}}
+    <div class="table-responsive content-panel" style="padding: 0px;">
+      <table class="table table-hover table-bordered table-striped table-condensed" data-selectable="true">
+        <thead>
+          <tr>
+            <th>RUC/CI</th>
+            <th>Nro. Cliente</th>
+            <th>Razón Social</th>
+            <th>Tipo Persona</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th style="width:11%;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each}}
+            <tr {{bind-attr data-cliente-id="id"}}>
+              <td>{{persona.ciRuc}}</td>
+              <td>{{numeroCliente}}</td>
+              <td>{{persona.razonSocial}}</td>
+              <td>{{persona.tipoPersona}}</td>
+              <td>{{persona.direccion}}</td>
+              <td>{{persona.telefono}}</td>
+              <td class="center">
+                {{#link-to 'cliente.edit' this classNames='table-action' }}
+                  {{#isAuthorized 'FE_put_clientes'}}
+                    <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil"></button>
+                  {{/isAuthorized}}
+                {{/link-to}}
+                {{#link-to 'referencias' this classNames='table-action' }}
+                  <button class="btn btn-theme btn-sm glyphicon glyphicon-user"></button>
+                {{/link-to}}
+                {{#link-to 'cliente.delete' this classNames='table-action' }}
+                  {{#isAuthorized 'FE_delete_clientes'}}
+                    <button class="btn btn-theme btn-sm glyphicon glyphicon-remove" data-toggle="modal" data-target="#clienteDelete"></button>
+                  {{/isAuthorized}}
+                {{/link-to}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

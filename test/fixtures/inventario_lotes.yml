@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lote_id: 
+  inventario_id: 
+  existencia: 1.5
+  existencia_previa: 1.5
+
+two:
+  lote_id: 
+  inventario_id: 
+  existencia: 1.5
+  existencia_previa: 1.5

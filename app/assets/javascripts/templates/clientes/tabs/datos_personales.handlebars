@@ -1,0 +1,511 @@
+<div role="tabpanel" class="tab-pane active" id="datospersonales">
+  <div class="col-lg-12">
+    <div class="form-horizontal">
+      <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:clientes.new', 'save');">
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Informaci&oacute;n B&aacute;sica</h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div {{bind-attr class="id:col-lg-3:col-lg-6 feedback.personaTipoPersona:has-error feedback.personaTipoPersona:has-feedback"}}>
+                <label class="form-label" for="tipopersona">Tipo persona</label>
+                {{view Ember.Select content=tipoPersonas selection=persona.tipoPersona value=persona.tipoPersona prompt="Seleccione un valor..." classNames="form-control"}}
+                <span class="help-block">{{error feedback.personaTipoPersona}}</span>
+                {{#if feedback.personaTipoPersona}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div {{bind-attr class="id:col-lg-3:col-lg-6 feedback.personaCiRuc:has-error feedback.personaCiRuc:has-feedback"}}>
+                <label class="form-label" for="ruc">RUC/CI</label>
+                {{focus-input type="text" value=persona.ciRuc class="form-control" placeholder="RUC/CI" autofocus="autofocus"}}
+                <span class="help-block">{{error feedback.personaCiRuc}}</span>
+                {{#if feedback.ci_ruc}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              {{#if id}}
+                <div class="col-lg-3" {{bind-attr class="feedback.numeroCliente:has-error feedback.numeroCliente:has-feedback"}}>
+                  <label class="form-label" for="numeroCliente">Numero de Cliente</label>
+                  {{input type="text" value=numeroCliente class="form-control" placeholder="Número de Cliente" disabled="true"}}
+                  <span class="help-block">{{error feedback.numeroCliente}}</span>
+                  {{#if feedback.numeroCliente}}
+                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                  {{/if}}
+                </div>
+                <div class="col-lg-3" {{bind-attr class="feedback.calificacion:has-error feedback.calificacion:has-feedback"}}>
+                  <label class="form-label" for="calificacion">Calificación</label>
+                  {{input type="text" value=calificacion.descripcionAtraso class="form-control" placeholder="Calificación" disabled="true"}}
+                  <span class="help-block">{{error feedback.calificacion}}</span>
+                  {{#if feedback.calificacion}}
+                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                  {{/if}}
+                </div>
+              {{/if}}
+            </div>
+            <div class="form-group">
+              {{#if mostrarRazonSocial}}
+                <div class="col-lg-6" {{bind-attr class="feedback.personaRazonSocial:has-error feedback.personaRazonSocial:has-feedback"}}>
+                  <label class="form-label" for="razonSocial">Raz&oacute;n Social</label>
+                  {{input type="text" value=persona.razonSocial class="form-control" placeholder="Razón Social"}}
+                  <span class="help-block">{{error feedback.personaRazonSocial}}</span>
+                  {{#if feedback.personaRazonSocial}}
+                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                  {{/if}}
+                </div>
+              {{else}}
+                <div class="col-lg-3" {{bind-attr class="feedback.personaNombre:has-error feedback.personaNombre:has-feedback"}}>
+                  <label class="form-label" for="nombre">Nombre</label>
+                  {{input type="text" value=persona.nombre class="form-control" placeholder="Nombre"}}
+                  <span class="help-block">{{error feedback.personaNombre}}</span>
+                  {{#if feedback.personaNombre}}
+                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                  {{/if}}
+                </div>
+                <div class="col-lg-3" {{bind-attr class="feedback.personaApellido:has-error feedback.personaApellido:has-feedback"}}>
+                  <label class="form-label" for="apellido">Apellido</label>
+                  {{input type="text" value=persona.apellido class="form-control" placeholder="Apellido"}}
+                  <span class="help-block">{{error feedback.personaApellido}}</span>
+                  {{#if feedback.personaApellido}}
+                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                  {{/if}}
+                </div>
+              {{/if}}
+              <div class="col-lg-6" {{bind-attr class="feedback.personaSexo:has-error feedback.personaSexo:has-feedback"}}>
+                <label class="form-label" for="sexo">Sexo</label>
+                {{view Ember.Select content=sexos selection=persona.sexo prompt="Seleccione un valor..." value=persona.sexo classNames="form-control"}}
+                <span class="help-block">{{error feedback.personaSexo}}</span>
+                {{#if feedback.personaSexo}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-4" {{bind-attr class="feedback.personaFechaNacimiento:has-error feedback.personaFechaNacimiento:has-feedback"}}>
+                <label class="form-label" for="fechaNacimiento">Fecha Nacimiento</label>
+                {{view Bodega.views.DatePickerView value=persona.fechaNacimiento}}
+                <span class="help-block">{{error feedback.personaFechaNacimiento}}</span>
+                {{#if feedback.personaFechaNacimiento}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="feedback.personaEstadoCivil:has-error feedback.personaEstadoCivil:has-feedback"}}>
+                <label class="form-label" for="estadoCivil">Estado Civil</label>
+                {{view Ember.Select content=estadoCivilOpts selection=persona.estadoCivil prompt="Seleccione un valor..." value=persona.estadoCivil classNames="form-control"}}
+                <span class="help-block">{{error feedback.personaEstadoCivil}}</span>
+                {{#if feedback.personaEstadoCivil}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="feedback.personaNacionalidad:has-error feedback.personaNacionalidad:has-feedback"}}>
+                <label class="form-label" for="nacionalidad">Nacionalidad</label>
+                {{input type="text" value=persona.nacionalidad class="form-control" placeholder="Nacionalidad"}}
+                <span class="help-block">{{error feedback.personaNacionalidad}}</span>
+                {{#if feedback.personaNacionalidad}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-6" {{bind-attr class="errors.personaNumeroHijos:has-error errors.personaNumeroHijos:has-feedback"}}>
+                <label class="form-label" for="numeroHijos">Nro de Hijos</label>
+                {{number-input value=persona.numeroHijos class="form-control" placeholder="Nro de Hijos"}}
+                <span class="help-block">{{error errors.personaNumeroHijos}}</span>
+                {{#if errors.personaNumeroHijos}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-6" {{bind-attr class="feedback.personaEstudiosRealizados:has-error feedback.personaEstudiosRealizados:has-feedback"}}>
+                <label class="form-label" for="estadoCivil">Estudios Realizados</label>
+                {{view Ember.Select content=estudiosRealizados selection=persona.estudiosRealizados value=persona.estudiosRealizados prompt="Seleccione un valor..." classNames="form-control"}}
+                <span class="help-block">{{error feedback.personaEstudiosRealizados}}</span>
+                {{#if feedback.personaEstudiosRealizados}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-6" {{bind-attr class="feedback.fechaIngresoInformconf:has-error feedback.fechaIngresoInformconf:has-feedback"}}>
+                <label class="form-label" for="fechaIngresoInformconf">Fecha de Ingreso a Informconf</label>
+                {{view Bodega.views.DatePickerView value=fechaIngresoInformconf}}
+                <span class="help-block">{{error feedback.fechaIngresoInformconf}}</span>
+                {{#if feedback.fechaIngresoInformconf}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-6" {{bind-attr class="feedback.fechaEgresoInformconf:has-error feedback.fechaEgresoInformconf:has-feedback"}}>
+                <label class="form-label" for="fechaEgresoInformconf">Fecha de Egreso de Informconf</label>
+                {{view Bodega.views.DatePickerView value=fechaEgresoInformconf}}
+                <span class="help-block">{{error feedback.fechaEgresoInformconf}}</span>
+                {{#if feedback.fechaEgresoInformconf}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- fin panel informacion basica -->
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Domicilio Particular</h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-lg-6" {{bind-attr class="feedback.personaDireccion:has-error feedback.personaDireccion:has-feedback"}}>
+                <label class="form-label" for="direccion">Calle y Número</label>
+                {{input type="text" value=persona.direccion class="form-control" placeholder="Calle y Número"}}
+                <span class="help-block">{{error feedback.personaDireccion}}</span>
+                {{#if feedback.personaDireccion}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-6" {{bind-attr class="feedback.personaTipoDomicilio:has-error feedback.personaTipoDomicilio:has-feedback"}}>
+                <label class="form-label" for="tipoDomicilio">Tipo de Domicilio</label>
+                {{view Ember.Select content=tiposDomicilios selection=persona.tipoDomicilio prompt="Seleccione un valor..." value=persona.tipoDomicilio classNames="form-control"}}
+                <span class="help-block">{{error feedback.personaTipoDomicilio}}</span>
+                {{#if feedback.personaTipoDomicilio}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-6" {{bind-attr class="feedback.personaCiudad:has-error feedback.personaCiudad:has-feedback"}}>
+                <label class="form-label" for="ciudad">Ciudad</label>
+                {{view Ember.Select content=ciudades optionValuePath="content.codigo" optionLabelPath="content.nombre" selectionBinding="ciudadSeleccionada" prompt="Seleccione un valor..." valueBinding="ciudadDefault" classNames="form-control"}}
+                <span class="help-block">{{error feedback.personaCiudad}}</span>
+                {{#if feedback.personaCiudad}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-6" {{bind-attr class="feedback.personaBarrio:has-error feedback.personaBarrio:has-feedback"}}>
+                <label class="form-label" for="barrio">Barrio</label>
+                {{input type="text" value=persona.barrio class="form-control" placeholder="Barrio"}}
+                <span class="help-block">{{error feedback.personaBarrio}}</span>
+                {{#if feedback.personaBarrio}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-4" {{bind-attr class="feedback.personaTelefono:has-error feedback.personaTelefono:has-feedback"}}>
+                <label class="form-label" for="telefono">Tel&eacute;fono</label>
+                {{input type="text" value=persona.telefono class="form-control" placeholder="Teléfono"}}
+                <span class="help-block">{{error feedback.personaTelefono}}</span>
+                {{#if feedback.personaTelefono}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="feedback.personaCelular:has-error feedback.personaCelular:has-feedback"}}>
+                <label class="form-label" for="celular">Celular</label>
+                {{input type="text" value=persona.celular class="form-control" placeholder="Celular"}}
+                <span class="help-block">{{error feedback.personaCelular}}</span>
+                {{#if feedback.personaCelular}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="errors.personaAntiguedadDomicilio:has-error errors.personaAntiguedadDomicilio:has-feedback"}}>
+                <label class="form-label" for="antiguedad">Antigüedad del Domicilio (Años)</label>
+                {{number-input value=persona.antiguedadDomicilio class="form-control" placeholder="Antiguedad del Domicilio"}}
+                <span class="help-block">{{error errors.personaAntiguedadDomicilio}}</span>
+                {{#if errors.personaAntiguedadDomicilio}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- fin panel de domicilio -->
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Actividad Laboral</h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-lg-4" {{bind-attr class="feedback.empleado:has-error feedback.empleado:has-feedback"}}>
+                <label class="form-label" for="empleado">¿Es empleado?</label>
+                {{input type="checkbox" checked=empleado class="checkbox"}}
+                <span class="help-block">{{error feedback.empleado}}</span>
+                {{#if feedback.empleado}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="errors.antiguedad:has-error errors.antiguedad:has-feedback"}}>
+                <label class="form-label" for="antiguedad">Antigüedad (Años)</label>
+                {{number-input value=antiguedad class="form-control" placeholder="Antiguedad"}}
+                <span class="help-block">{{error errors.antiguedad}}</span>
+                {{#if errors.antiguedad}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="errors.profesion:has-error errors.profesion:has-feedback"}}>
+                <label class="form-label" for="profesion">Profesión</label>
+                {{input type="text" value=profesion class="form-control" placeholder="Profesión"}}
+                <span class="help-block">{{error errors.profesion}}</span>
+                {{#if errors.profesion}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-8" {{bind-attr class="errors.empleador:has-error errors.empleador:has-feedback"}}>
+                <label class="form-label" for="empleador">Nombre de la Empresa</label>
+                {{input type="text" value=empleador class="form-control" placeholder="Nombre de la Empresa"}}
+                <span class="help-block">{{error errors.empleador}}</span>
+                {{#if errors.empleador}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="errors.actividadEmpleador:has-error errors.actividadEmpleador:has-feedback"}}>
+                <label class="form-label" for="actividadEmpleador">Actividad de la Empresa</label>
+                {{input type="text" value=actividadEmpleador class="form-control" placeholder="Actividad de la Empresa"}}
+                <span class="help-block">{{error errors.actividadEmpleador}}</span>
+                {{#if errors.actividadEmpleador}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-12" {{bind-attr class="feedback.direccionEmpleador:has-error feedback.direccionEmpleador:has-feedback"}}>
+                <label class="form-label" for="direccionEmpleador">Calle y Número</label>
+                {{input type="text" value=direccionEmpleador class="form-control" placeholder="Calle y Número"}}
+                <span class="help-block">{{error feedback.direccionEmpleador}}</span>
+                {{#if feedback.direccionEmpleador}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-4" {{bind-attr class="feedback.ciudad:has-error feedback.ciudad:has-feedback"}}>
+                <label class="form-label" for="ciudad">Ciudad</label>
+                {{view Ember.Select content=ciudades optionValuePath="content.codigo" optionLabelPath="content.nombre" selectionBinding="ciudadEmpleadorSeleccionada" prompt="Seleccione un valor..." valueBinding="ciudadEmpleadorDefault" classNames="form-control"}}
+                <span class="help-block">{{error feedback.ciudad}}</span>
+                {{#if feedback.ciudad}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="feedback.barrioEmpleador:has-error feedback.barrioEmpleador:has-feedback"}}>
+                <label class="form-label" for="barrio">Barrio</label>
+                {{input type="text" value=barrioEmpleador class="form-control" placeholder="Barrio"}}
+                <span class="help-block">{{error feedback.barrioEmpleador}}</span>
+                {{#if feedback.barrioEmpleador}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="feedback.telefono:has-error feedback.telefono:has-feedback"}}>
+                <label class="form-label" for="telefono">Tel&eacute;fono</label>
+                {{input type="text" value=telefono class="form-control" placeholder="Teléfono"}}
+                <span class="help-block">{{error feedback.telefono}}</span>
+                {{#if feedback.telefono}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-6" {{bind-attr class="errors.cargo:has-error errors.cargo:has-feedback"}}>
+                <label class="form-label" for="cargo">Cargo</label>
+                {{input type="text" value=cargo class="form-control" placeholder="Cargo"}}
+                <span class="help-block">{{error errors.cargo}}</span>
+                {{#if errors.cargo}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-6" {{bind-attr class="errors.fechaPagoSueldo:has-error errors.fechaPagoSueldo:has-feedback"}}>
+                <label class="form-label" for="antiguedad">Fecha de Pago de Sueldo</label>
+                {{view Bodega.views.DatePickerView value=fechaPagoSueldo nullable=true placeholder="Fecha de Pago de Sueldo" }}
+                <span class="help-block">{{error errors.fechaPagoSueldo}}</span>
+                {{#if errors.fechaPagoSueldo}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-3" {{bind-attr class="errors.salarioMensual:has-error errors.salarioMensual:has-feedback"}}>
+                <label class="form-label" for="salarioMensual">Salario Mensual (Gs)</label>
+                {{number-field min="1" number=salarioMensual class="form-control" placeholder="Salario Mensual"}}
+                <span class="help-block">{{error errors.salarioMensual}}</span>
+                {{#if errors.salarioMensual}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-3" {{bind-attr class="errors.otrosIngresos:has-error errors.otrosIngresos:has-feedback"}}>
+                <label class="form-label" for="otrosIngresos">Otros Ingresos (Gs)</label>
+                {{number-field min="1" number=otrosIngresos class="form-control" placeholder="Otros Ingresos"}}
+                <span class="help-block">{{error errors.otrosIngresos}}</span>
+                {{#if errors.otrosIngresos}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="errors.conceptoOtrosIngresos:has-error errors.conceptoOtrosIngresos:has-feedback"}}>
+                <label class="form-label" for="conceptoOtrosIngresos">Concepto</label>
+                {{input type="text" value=conceptoOtrosIngresos class="form-control" placeholder="Concepto"}}
+                <span class="help-block">{{error errors.conceptoOtrosIngresos}}</span>
+                {{#if errors.conceptoOtrosIngresos}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-2" {{bind-attr class="feedback.ips:has-error feedback.ips:has-feedback"}}>
+                <label class="form-label" for="ips">¿Aporta IPS?</label>
+                {{input type="checkbox" checked=ips class="checkbox"}}
+                <span class="help-block">{{error feedback.ips}}</span>
+                {{#if feedback.ips}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- fin panel de actividad laboral -->
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Informaci&oacute;n del Cónyugue</h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-lg-6" {{bind-attr class="feedback.personaConyugueNombre:has-error feedback.personaConyugueNombre:has-feedback"}}>
+                <label class="form-label" for="personaConyugueNombre">Nombre(s)</label>
+                {{input type="text" value=persona.conyugue.nombre class="form-control" placeholder="Nombre(s)"}}
+                <span class="help-block">{{error feedback.personaConyugueNombre}}</span>
+                {{#if feedback.personaConyugueNombre}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-6" {{bind-attr class="feedback.personaConyugueApellido:has-error feedback.personaConyugueApellido:has-feedback"}}>
+                <label class="form-label" for="personaConyugueApellido">Apellido(s)</label>
+                {{input type="text" value=persona.conyugue.apellido class="form-control" placeholder="Apellido(s)"}}
+                <span class="help-block">{{error feedback.personaConyugueApellido}}</span>
+                {{#if feedback.personaConyugueApellido}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-3" {{bind-attr class="feedback.personaConyugueNacionalidad:has-error feedback.personaConyugueNacionalidad:has-feedback"}}>
+                <label class="form-label" for="conyugueNacionalidad">Nacionalidad</label>
+                {{input type="text" value=persona.conyugue.nacionalidad class="form-control" placeholder="Nacionalidad"}}
+                <span class="help-block">{{error feedback.personaConyugueNacionalidad}}</span>
+                {{#if feedback.personaConyugueNacionalidad}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-3" {{bind-attr class="feedback.personaConyugueCedula:has-error feedback.personaConyugueCedula:has-feedback"}}>
+                <label class="form-label" for="conyugueCedula">Nro de Cédula</label>
+                {{input type="text" value=persona.conyugue.cedula class="form-control" placeholder="Nro de Cédula"}}
+                <span class="help-block">{{error feedback.personaConyugueCedula}}</span>
+                {{#if feedback.personaConyugueCedula}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-3" {{bind-attr class="feedback.personaConyugueFechaNacimiento:has-error feedback.personaConyugueFechaNacimiento:has-feedback"}}>
+                <label class="form-label" for="conyugueFechaNacimiento">Fecha Nacimiento</label>
+                {{view Bodega.views.DatePickerView value=persona.conyugue.fechaNacimiento nullable=true placeholder="Fecha de Nacimiento" }}
+                <span class="help-block">{{error feedback.personaConyugueFechaNacimiento}}</span>
+                {{#if feedback.personaConyugueFechaNacimiento}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-3" {{bind-attr class="feedback.personaConyugueLugarNacimiento:has-error feedback.personaConyugueLugarNacimiento:has-feedback"}}>
+                <label class="form-label" for="lugarNacimiento">Lugar</label>
+                {{input type="text" value=persona.conyugue.lugarNacimiento class="form-control" placeholder="Lugar"}}
+                <span class="help-block">{{error feedback.personaConyugueLugarNacimiento}}</span>
+                {{#if feedback.personaConyugueLugarNacimiento}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- fin panel informacion del cónyugue -->
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Actividad Laboral del Cónyugue</h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-lg-8" {{bind-attr class="errors.personaConyugueEmpleador:has-error errors.personaConyugueEmpleador:has-feedback"}}>
+                <label class="form-label" for="conyugueempleador">Nombre de la Empresa</label>
+                {{input type="text" value=persona.conyugue.empleador class="form-control" placeholder="Nombre de la Empresa"}}
+                <span class="help-block">{{error errors.personaConyugueEmpleador}}</span>
+                {{#if errors.personaConyugueEmpleador}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="errors.personaConyugueActividadEmpleador:has-error errors.personaConyugueActividadEmpleador:has-feedback"}}>
+                <label class="form-label" for="conyugueactividadEmpleador">Actividad de la Empresa</label>
+                {{input type="text" value=persona.conyugue.actividadEmpleador class="form-control" placeholder="Actividad de la Empresa"}}
+                <span class="help-block">{{error errors.personaConyugueActividadEmpleador}}</span>
+                {{#if errors.personaConyugueActividadEmpleador}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-8" {{bind-attr class="errors.personaConyugueCargo:has-error errors.personaConyugueCargo:has-feedback"}}>
+                <label class="form-label" for="conyuguecargo">Cargo</label>
+                {{input type="text" value=persona.conyugue.cargo class="form-control" placeholder="Cargo"}}
+                <span class="help-block">{{error errors.personaConyugueCargo}}</span>
+                {{#if errors.personaConyugueCargo}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="errors.personaConyugueProfesion:has-error errors.personaConyugueProfesion:has-feedback"}}>
+                <label class="form-label" for="conyugueprofesion">Profesión</label>
+                {{input type="text" value=persona.conyugue.profesion class="form-control" placeholder="Profesión"}}
+                <span class="help-block">{{error errors.personaConyugueProfesion}}</span>
+                {{#if errors.personaConyugueProfesion}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-4" {{bind-attr class="errors.personaConyugueIngresoMensual:has-error errors.personaConyugueIngresoMensual:has-feedback"}}>
+                <label class="form-label" for="conyugueingresoMensual">Ingreso Mensual (Gs)</label>
+                {{number-field min="1" number=persona.conyugue.ingresoMensual class="form-control" placeholder="Ingreso Mensual (Gs)"}}
+                <span class="help-block">{{error errors.personaConyugueIngresoMensual}}</span>
+                {{#if errors.personaConyugueIngresoMensual}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="errors.personaConyugueOtrosIngresos:has-error errors.personaConyugueOtrosIngresos:has-feedback"}}>
+                <label class="form-label" for="conyugueotrosIngresos">Otros Ingresos (Gs)</label>
+                {{number-field min="1" number=persona.conyugue.otrosIngresos class="form-control" placeholder="Otros Ingresos"}}
+                <span class="help-block">{{error errors.personaConyugueOtrosIngresos}}</span>
+                {{#if errors.personaConyugueOtrosIngresos}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-4" {{bind-attr class="errors.personaConyugueConceptoOtrosIngresos:has-error errors.personaConyugueConceptoOtrosIngresos:has-feedback"}}>
+                <label class="form-label" for="conyugueconceptoOtrosIngresos">Concepto</label>
+                {{input type="text" value=persona.conyugue.conceptoOtrosIngresos class="form-control" placeholder="Concepto"}}
+                <span class="help-block">{{error errors.personaConyugueConceptoOtrosIngresos}}</span>
+                {{#if errors.personaConyugueConceptoOtrosIngresos}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- fin panel de actividad laboral conyugue -->
+        <div class="form-group">
+          <div class="col-lg-12">
+            {{#isAuthorized 'FE_post_clientes, FE_put_clientes'}}
+              <button type="submit" class="btn btn-theme">Guardar</button>
+            {{/isAuthorized}}
+            <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            {{#if id}}
+              <div style="float: right;">
+                <button class="btn btn-theme" {{action generarLegajo}}>Imprimir Legajo
+                  <span class="glyphicon glyphicon-file"></span>
+                </button>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

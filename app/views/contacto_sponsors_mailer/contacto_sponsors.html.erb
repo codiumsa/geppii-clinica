@@ -1,0 +1,14 @@
+<% @contactos.each do |contacto| %>
+    <% if contacto.sponsor.persona.tipo_persona == "Física" %>
+    <h3><%= contacto.sponsor.persona.razon_social %></h3>
+    <% else %>
+    <h3><%= contacto.sponsor.contacto_nombre %> <%= contacto.sponsor.contacto_apellido %></h3>
+    <h5><%= contacto.sponsor.persona.razon_social %></h5>
+    <% end %>
+    <p>
+        <strong>Campaña:</strong> <%= contacto.contacto.campanha.nombre %><br>
+        <strong>Comentario:</strong> <%= contacto.comentario %><br>
+        <strong>Compromiso:</strong> <%= contacto.compromiso %>
+    </p>
+    <hr>
+<% end %>

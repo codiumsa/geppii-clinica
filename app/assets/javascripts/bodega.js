@@ -1,0 +1,13 @@
+//= require_tree ./initializers
+//= require ./store
+//= require_tree ./mixins
+//= require_tree ./models
+//= require_tree ./components
+//= require_tree ./controllers
+//= require_tree ./views
+//= require_tree ./helpers
+//= require_tree ./templates
+//= require ./router
+//= require ./routes/authenticated_route.js
+//= require ./routes/requiere_caja_abierta_route.js
+//= require_tree ./routes

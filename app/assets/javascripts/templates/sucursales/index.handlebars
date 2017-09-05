@@ -1,0 +1,49 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Sucursales
+  {{#link-to 'sucursales.new'}}
+    <button class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="margin-top: -5px; margin-left: 5px;"></button>
+  {{/link-to}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView}}
+    <div class="table-responsive content-panel" style="padding: 0px;">
+      <table class="table table-bordered table-striped table-condensed">
+          <thead>
+              <tr>
+                  <th>Código</th>
+                  <th>Descripción</th>
+                  <th>Depósito</th>
+                  <th>Empresa</th>
+                  <th>Responsable</th>
+                  <th>Indicador</th>
+                  <th style="width:11%;"></th>
+              </tr>
+          </thead>
+          <tbody>
+          {{#each}}
+              <tr>
+                  <td>{{codigo}}</td>
+                  <td>{{descripcion}}</td>
+                  <td>{{deposito.descripcion}}</td>
+                  <td>{{empresa.nombre}}</td>
+                  <td>{{vendedor.nombreCompleto}}</td>
+                  <td {{bind-attr style=styleColor}}></td>
+                  <td class="center">
+                    {{#link-to 'sucursal.edit' this classNames='table-action'}}
+                      <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil"></button>
+                    {{/link-to}}
+                    {{#link-to 'sucursal.delete' this classNames='table-action'}}
+                      <button class="btn btn-theme btn-sm glyphicon glyphicon-remove" 
+                              data-toggle="modal" data-target="#sucursalDelete"></button>
+                    {{/link-to}}
+                  </td>
+              </tr>
+          {{/each}}
+          </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

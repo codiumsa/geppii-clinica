@@ -1,0 +1,50 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:tipoColaboradores.new', 'save');">
+          <div class="form-group">
+            <div class="col-lg-6" {{bind-attr class="errors.nombre:has-error errors.nombre:has-feedback"}}>
+              <label class="form-label" for="nombre">Nombre</label>
+              {{focus-input type="text" value=nombre class="form-control" placeholder="Nombre" autofocus="autofocus"}}
+              <span class="help-block">{{error errors.nombre}}</span>
+              {{#if errors.nombre}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-6" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+              <label class="form-label" for="descripcion">Descripcion</label>
+              {{focus-input type="text" value=descripcion class="form-control" placeholder="Descripcion"}}
+              <span class="help-block">{{error errors.descripcion}}</span>
+              {{#if errors.descripcion}}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-2">
+              <label for="tieneViajes">Tiene Viajes</label>
+              {{input type="checkbox" checked=tieneViajes class="checkbox"}}
+            </div>
+            <div class="col-lg-2">
+              <label for="tieneLicencia">Tiene Licencia</label>
+              {{input type="checkbox" checked=tieneLicencia class="checkbox"}}
+            </div>
+            <div class="col-lg-2">
+              <label for="esClub">Es Club</label>
+              {{input type="checkbox" checked=esClub class="checkbox"}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

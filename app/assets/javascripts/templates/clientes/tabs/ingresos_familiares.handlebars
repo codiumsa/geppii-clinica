@@ -1,0 +1,87 @@
+<div role="tabpanel" class="tab-pane" id="ingresosfamiliares">
+  <div class="col-lg-12">
+    <div class="form-horizontal">
+      <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:clientes.new', 'save');">
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Nuevo Ingreso Familiar</h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-lg-4" {{bind-attr class="errors.ingresoMensual:has-error errors.ingresoMensual:has-feedback"}}>
+                <label class="form-label" for="ingresoMensual">Ingreso Mensual</label>
+                {{number-field min="1" number=ingresoFamiliar.ingresoMensual class="form-control" placeholder="Ingreso Mensual"}}
+                <span class="help-block">{{error errors.ingresoMensual}}</span>
+                {{#if errors.ingresoMensual}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-3" {{bind-attr class="errors.vinculoFamiliar:has-error errors.vinculoFamiliar:has-feedback"}}>
+                <label class="form-label" for="vinculoFamiliar">Vínculo Familiar</label>
+                {{view Ember.Select content=vinculosFamiliares optionValuePath="content.tipo" optionLabelPath="content.tipo" selection=vinculoFamiliarSeleccionado value=vinculoFamiliarSeleccionado classNames="form-control"}}
+                <span class="help-block">{{error errors.vinculoFamiliar}}</span>
+                {{#if errors.vinculoFamiliar}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-1">
+                <button type="button" {{action 'agregarIngreso'}} class="btn btn-theme float-right" style="margin-top: 22px;" onkeydown="Bodega.enterFormHandler('controller:clientes.new', 'agregarIngreso');">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Ingresos Familiares</h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-lg-6 first-cell">
+                <label class="form-label">Ingreso Mensual</label>
+              </div>
+              <div class="col-lg-6">
+                <label class="form-label">Vínculo Familiar</label>
+              </div>
+            </div>
+            {{#each ing in ingresosFamiliares}}
+              <div class="form-group">
+                <div class="col-lg-6 first-cell" style="margin-bottom: 5px;">
+                  {{input type="text" readonly="true" value=ing.ingresoMensual class="form-control" placeholder="Ingreso Mensual" style="margin-bottom: 5px;"}}
+                </div>
+                <div class="col-lg-6">
+                  <div class="input-group" style="margin-bottom: 5px;">
+                    {{input type="text" readonly="true" value=ing.vinculoFamiliar.tipo class="form-control" placeholder="Vínculo Familiar" style="margin-bottom: 5px;"}}
+                    <span class="input-group-btn">
+                      <button type="button" {{action borrarIngreso ing}} class="btn btn-theme">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-12">
+            {{#isAuthorized 'FE_post_clientes, FE_put_clientes'}}
+              <button type="submit" class="btn btn-theme">Guardar</button>
+            {{/isAuthorized}}
+            <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            {{#if id}}
+              <div style="float: right;">
+                <button class="btn btn-theme" {{action generarLegajo}}>Imprimir Legajo
+                  <span class="glyphicon glyphicon-file"></span>
+                </button>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> {{! fin tabpanel }}

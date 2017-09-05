@@ -1,0 +1,52 @@
+{{! TODO: arreglar css para que salgan bien sublistas }}
+<div class="form-group" id="templateEtapas">
+  {{#each edad in view.edades}}
+    <label> <b>{{edad.edad}}</b></label>
+    <table class="table table-hover table-bordered table-striped table-condensed">
+      <thead>
+	<tr>
+	  <th>Expresion</th>
+	  <th>Comprension</th>
+	</tr>
+      </thead>
+      <tbody>
+	<tr>
+	  <td>
+	    {{#each expresion in edad.expresiones}}
+ 	      <ul>
+		<div>
+		  <li>
+		    <label for="pregVal">{{expresion.name}}</label>
+		    {{#if expresion.lista}}
+		      <li>
+			{{#each subitem in expresion.value}}
+			  <label {{bind-attr for=subitem.name}}> {{subitem.name}}</label>
+			  {{input nameBinding=subitem.name type="checkbox"
+			    checked=subitem.value class="for-checkbox"}}
+			{{/each}}
+		      </li>
+	    {{else}}
+		      {{input type="checkbox" checked=expresion.value class="for-checkbox"}}
+		    {{/if}}
+		  </li>
+		</div>
+	      </ul>
+	    {{/each}}
+	  </td>
+	  <td>
+	    {{#each comprension in edad.comprensiones}}
+	      <ul>
+		<li>
+		  <div>
+		    <label for="pregVal">{{comprension.name}}</label>				 
+		    {{input type="checkbox" checked=comprension.value class="for-checkbox"}}
+		  </div>
+		</li>
+	      </ul>
+	    {{/each}}
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+  {{/each}}	  
+</div>

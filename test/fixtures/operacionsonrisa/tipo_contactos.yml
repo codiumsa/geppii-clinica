@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+campanha:
+  codigo: Donación Campanha
+  descripcion: Solicitud donación campaña
+  con_campanha: true
+  con_mision: false
+  activo: true
+
+mision:
+  codigo: Donación Misión
+  descripcion: Solicitud donación misión
+  con_campanha: false
+  con_mision: true
+  activo: true

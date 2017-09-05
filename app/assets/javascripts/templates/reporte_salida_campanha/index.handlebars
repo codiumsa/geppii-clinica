@@ -1,0 +1,66 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}} {{tipo_salida}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "search" on="submit"}}>
+          <div class="form-group">
+           <div class="col-lg-4" >
+            {{#if campanhas}}
+              <label class="form-label">Campañas/Misiones</label>
+              <div class="search-input-width">
+              {{search-input
+                type="text"  value=nombre selectedItem=campanhaSeleccionada
+                class="form-control" placeholder="Descripción de la campaña"
+                property="nombre" session=session service="campanhas"
+                modelType="campanha" jsonRoot="campanhas" store=store
+                ignoredProperties="persona,tipoCampanha,campanhasColaboradores,misionesVinculo"}}
+              </div>
+            {{/if}}
+
+            {{#if consultorios}}
+              <label class="form-label">Consultorio/Reposicion</label>
+              <div class="search-input-width">
+              {{search-input
+                type="text"  value=descripcion selectedItem=consultorioSeleccionado
+                class="form-control" placeholder="Descripción del Consultorio"
+                property="descripcion" session=session service="consultorios"
+                modelType="consultorio" jsonRoot="consultorios" store=store
+                ignoredProperties="especialidad"}}
+              </div>
+            {{/if}}
+
+            </div>
+            <div class="col-lg-2">
+              <label for="changePass">Incluir detalles de salida</label>
+              {{input type="checkbox" checked=incluyeDetalle class="checkbox"}}
+            </div>
+            </div>
+            <label class="form-label" for="fecha">Rango de fechas</label>
+              <div class="form-group">
+                <div class="col-md-4">
+                  {{view Bodega.views.DatePickerView value=fecha_inicio_despues nullable=true placeholder="Después de"}}
+                </div>
+                <div class="col-md-4">
+                  {{view Bodega.views.DatePickerView value=fecha_inicio_dia nullable=true placeholder="Día"}}
+                </div>
+                <div class="col-md-4"}>
+                  {{view Bodega.views.DatePickerView value=fecha_inicio_antes nullable=true placeholder="Antes de" }}
+                </div>
+              </div>
+
+
+
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Generar Reporte</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

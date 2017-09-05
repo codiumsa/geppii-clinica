@@ -1,0 +1,43 @@
+{{#isAuthorized 'FE_index_ventas'}}
+<li class="sub-menu  dcjq-parent-li">
+  <a href="javascript:;" class="dcjq-parent">
+    <i class="a fa fa-shopping-cart"></i>
+    <span>Salidas</span>
+  </a>
+  <ul class="sub" style="overflow: hidden; display: block;">
+    {{#isAuthorized 'FE_index_ventas'}}
+    <li>
+      {{#link-to 'ventas' (query-params tipo_salida="clientes" )}}
+      <span>Venta</span> {{/link-to}}
+    </li>
+    <li>
+      {{#link-to 'ventas' (query-params tipo_salida="pacientes" )}}
+      <span>Salida Medicamentos</span> {{/link-to}}
+    </li>
+    <li>
+      {{#link-to 'ventas' (query-params tipo_salida="consultorio" )}}
+      <span>Reposición Consultorio</span> {{/link-to}}
+    </li>
+    <li>
+      {{#link-to 'ventas' (query-params tipo_salida="campañas" )}}
+      <span>Salida Campañas</span> {{/link-to}}
+    </li>
+    <li>
+      {{#link-to 'ventas' (query-params tipo_salida="misiones" )}}
+      <span>Salidas Misiones</span> {{/link-to}}
+    </li>
+    <li>
+      {{#link-to 'ventas' (query-params tipo_salida="donaciones" )}}
+      <span>Salidas Donaciones</span> {{/link-to}}
+    </li>
+    {{/isAuthorized}}
+  </ul>
+  {{/isAuthorized}} {{#isAuthorized 'FE_index_clientes'}}
+  <li>
+    {{#link-to "clientes"}}
+    <i class="fa fa-female fa-male"></i>
+    <span>Clientes</span>
+    {{/link-to}}
+  </li>
+  {{/isAuthorized}}
+</li>

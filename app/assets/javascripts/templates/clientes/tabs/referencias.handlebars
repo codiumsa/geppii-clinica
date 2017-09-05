@@ -1,0 +1,125 @@
+<div role="tabpanel" class="tab-pane" id="referencias">
+  <div class="col-lg-12">
+    <div class="form-horizontal">
+      <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:clientes.new', 'save');">
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Nueva Referencia</h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-lg-6" {{bind-attr class="errors.nombre:has-error errors.nombre:has-feedback"}}>
+                <label class="form-label" for="nombre">Nombre</label>
+                {{input type="text" value=referencia.nombre class="form-control" placeholder="Nombre"}}
+                <span class="help-block">{{error errors.nombre}}</span>
+                {{#if errors.nombre}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-5" {{bind-attr class="errors.telefono:has-error errors.telefono:has-feedback"}}>
+                <label class="form-label" for="telefono">Tel&eacute;fono</label>
+                {{input type="text" value=referencia.telefono class="form-control" placeholder="Teléfono"}}
+                <span class="help-block">{{error errors.telefono}}</span>
+                {{#if errors.telefono}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-1">
+                <button type="button" {{action 'agregarReferencia'}} class="btn btn-theme float-right" style="margin-top: 22px;" onkeydown="Bodega.enterFormHandler('controller:clientes.new', 'agregarReferencia');">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-6" {{bind-attr class="errors.tipoReferencia:has-error errors.tipoReferencia:has-feedback"}}>
+                <label class="form-label" for="celular">Tipo de Referencia</label>
+                {{view Ember.Select content=tiposReferencia selection=referencia.tipoReferencia value=referencia.tipoReferencia classNames="form-control"}}
+                <span class="help-block">{{error errors.tipoReferencia}}</span>
+                {{#if errors.tipoReferencia}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-5" {{bind-attr class="errors.tipoCuenta:has-error errors.tipoCuenta:has-feedback"}}>
+                <label class="form-label" for="tipoCuenta">Tipo de Cuenta</label>
+                {{input type="text" value=referencia.tipoCuenta class="form-control" placeholder="Nombre"}}
+                <span class="help-block">{{error errors.tipoCuenta}}</span>
+                {{#if errors.tipoCuenta}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+              <div class="col-lg-1" {{bind-attr class="feedback.activa:has-error feedback.activa:has-feedback"}}>
+                <label class="form-label" for="ips">¿Activa?</label>
+                {{input type="checkbox" checked=activa class="checkbox"}}
+                <span class="help-block">{{error feedback.activa}}</span>
+                {{#if feedback.activa}}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" style="margin-top: 15px;">
+          <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Referencias</h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="col-lg-4 first-cell">
+                <label class="form-label">Nombre</label>
+              </div>
+              <div class="col-lg-3">
+                <label class="form-label">Teléfono</label>
+              </div>
+              <div class="col-lg-2">
+                <label class="form-label">Tipo de Cuenta</label>
+              </div>
+              <div class="col-lg-3">
+                <label class="form-label">Tipo de Referencia</label>
+              </div>
+            </div>
+            {{#each ref in referencias}}
+              <div class="form-group">
+                <div class="col-lg-4 first-cell">
+                  {{input type="text" readonly="true" value=ref.nombre class="form-control" placeholder="Nombre" style="margin-bottom: 5px;"}}
+                </div>
+                <div class="col-lg-3">
+                  {{input type="text" readonly="true" value=ref.telefono class="form-control" placeholder="Teléfono" style="margin-bottom: 5px;"}}
+                </div>
+                <div class="col-lg-2">
+                  {{input type="text" readonly="true" value=ref.tipoCuenta class="form-control" placeholder="Tipo de Cuenta" style="margin-bottom: 5px;"}}
+                </div>
+                <div class="col-lg-3 last-cell" style="margin-bottom: 5px;">
+                  <div class="input-group">
+                    {{input type="text" readonly="true" value=ref.tipoReferencia class="form-control" placeholder="Tipo de Referencia"}}
+                    <span class="input-group-btn">
+                      <button type="button" {{action borrarReferencia ref}} class="btn btn-theme">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-12">
+            {{#isAuthorized 'FE_post_clientes, FE_put_clientes'}}
+              <button type="submit" class="btn btn-theme">Guardar</button>
+            {{/isAuthorized}}
+            <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            {{#if id}}
+              <div style="float: right;">
+                <button class="btn btn-theme" {{action generarLegajo}}>Imprimir Legajo
+                  <span class="glyphicon glyphicon-file"></span>
+                </button>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

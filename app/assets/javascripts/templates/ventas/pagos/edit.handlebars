@@ -1,0 +1,169 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:pagos.edit', 'save');">
+
+          <div class="form-group">
+            <div class="col-lg-3" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback"}}>
+              <label class="form-label"  for="fechaPago">Fecha Pago</label>
+              {{view Bodega.views.DatePickerView value=fechaPago readonly = "true"}}
+            </div>
+
+            <div class="col-lg-3" {{bind-attr class="feedback.positivo:has-error feedback.positivo:has-feedback"}}>
+              <label class="form-label"  for="total">Total Cuotas</label>
+              {{number-field min="0" readonly="true" number=totalMonedaSeleccionada class="form-control" placeholder="Total" }}
+            </div>
+						
+						<div class="col-lg-3" {{bind-attr class="errors.descuento:has-error errors.descuento:has-feedback"}}>
+								<label for="descuentoGastosCobranza">Descuento</label>
+								{{number-field readonly="true" min="0" number=descuentoMonedaSeleccionada class="form-control" focus-out="controlarDescuento" }}
+						</div>
+
+            
+            <div class="col-lg-3">
+              <label class="form-label"  for="totalAPagar">Total a pagar</label>
+              {{number-field min="0" readonly="true" number=totalAPagar class="form-control" disabled=true}}
+            </div>
+  
+          </div>
+
+					{{!--<div class="table-responsive content-panel" style="padding: 0px;">
+            <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th>Capital</th>
+                        <th>Cuota nro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#each det in detalles}}
+                    <tr>
+                        <td>{{formatNumber det.montoCuota}}</td>
+                        <td>{{det.numeroCuotaAsociado}}</td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+          </div> --}}
+					
+					
+					{{!-- {{#ifEquals 'estado' 'Descuento Solicitado'}}
+						<div class="form-group">
+							<div class="col-lg-3" {{bind-attr class="errors.descuento:has-error errors.descuento:has-feedback"}}>
+								<label for="descuentoGastosCobranza">Descuento Gastos de Cobranza</label>
+								{{number-field readonly="true" min="0" number=descuentoGastosCobranza class="form-control" focus-out="controlarDescuento" }}
+							</div>
+							<div class="col-lg-3" {{bind-attr class="errors.descuento:has-error errors.descuento:has-feedback"}}>
+								<label for="descuentoInteresPunitorio">Descuento Interes Punitorio</label>
+								{{number-field readonly="true" min="0" number=descuentoInteresPunitorio class="form-control" focus-out="controlarDescuento" }}
+							</div>
+							<div class="col-lg-3" {{bind-attr class="errors.descuento:has-error errors.descuento:has-feedback"}}>
+								<label for="descuentoInteresMoratorio">Descuento Interes Moratorio</label>
+								{{number-field readonly="true" min="0" number=descuentoInteresMoratorio class="form-control" focus-out="controlarDescuento" }}
+							</div>
+							<div class="col-lg-3" {{bind-attr class="errors.descuento:has-error errors.descuento:has-feedback"}}>
+								<label for="descuentoInteresCompensatorio">Descuento Interes Compensatorio</label>
+								{{number-field readonly="true" min="0" number=descuentoInteresCompensatorio class="form-control" focus-out="controlarDescuento" }}
+							</div>
+						</div>
+					{{/ifEquals}} --}}
+
+          <div class="panel panel-default">
+            <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Datos de documentos</h5>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="col-lg-3"{{bind-attr class="errors.nroRecibo:has-error errors.nroRecibo:has-feedback"}}>
+                  <label class="form-label"  for="ruc">Nro. de Recibo</label>
+                    {{input type="text" value=nroRecibo class="form-control" placeholder="Nro. de recibo"}}
+                </div>
+                <div class="col-lg-4"{{bind-attr class="errors.interesGenerado:has-error errors.interesGenerado:has-feedback"}}>
+                  <label class="form-label"  for="ruc">Banco</label>
+                    {{input type="text" value=bancoCheque class="form-control" placeholder="Banco"}}
+                </div>
+                <div class="col-lg-3"{{bind-attr class="errors.interesGenerado:has-error errors.interesGenerado:has-feedback"}}>
+                  <label class="form-label"  for="ruc">Nro. Cheque</label>
+                    {{input type="text" value=numeroCheque class="form-control" placeholder="Nro. Cheque"}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Datos para la nota de crédito</h5>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="col-lg-6"{{bind-attr class="errors.interesGenerado:has-error errors.interesGenerado:has-feedback"}}>
+                  <label class="form-label"  for="ruc">Descuento Total</label>
+                    {{number-field type="text" number=descuentoTotal class="form-control" disabled="true"}}   
+                    <span class="help-block">{{error errors.interesGenerado}}</span>       
+                </div>
+
+                <div class="col-lg-6"{{bind-attr class="errors.interesGenerado:has-error errors.interesGenerado:has-feedback"}}>
+                  <label class="form-label"  for="ruc">Impuesto s/Intereses</label>
+                    {{number-field type="text" number=ivaInteres class="form-control" disabled="true"}}   
+                    <span class="help-block">{{error errors.interesGenerado}}</span>       
+                </div> 
+
+              </div>
+            </div>
+          </div>
+
+					{{!--<div class="panel panel-default">
+            <div class="panel-heading"><h5><i class="fa fa-angle-right"></i>Datos de Facturación</h5>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <div class="col-lg-2"{{bind-attr class="errors.totalInteresMoratorio:has-error errors.totalInteresMoratorio:has-feedback"}}>
+                  <label class="form-label"  for="totalInteresMoratorio">Total Interés Moratorio</label>
+                    {{number-field type="text" number=totalInteresMoratorio class="form-control" disabled="true"}}   
+                </div>
+                <div class="col-lg-2"{{bind-attr class="errors.totalInteresPunitorio:has-error errors.totalInteresPunitorio:has-feedback"}}>
+                  <label class="form-label"  for="totalInteresPunitorio">Total Interés Punitorio</label>
+                    {{number-field type="text" number=totalInteresPunitorio class="form-control" disabled="true"}}   
+                </div>
+                <div class="col-lg-2" {{bind-attr class="errors.totalGastosCobranza:has-error errors.totalGastosCobranza:has-feedback"}}>
+                  <label class="form-label"  for="totalGastosCobranza">Gastos de Cobranza</label>
+                    {{number-field type="text" number=totalGastosCobranza class="form-control" disabled="true"}}
+                </div>
+                <div class="col-lg-3" {{bind-attr class="errors.totalFacturacion:has-error errors.totalFacturacion:has-feedback"}}>
+                  <label class="form-label"  for="totalFacturacion">Subtotal</label>
+                    {{number-field type="text" number=totalFacturacion class="form-control" disabled="true"}}
+                  <span class="help-block">{{error errors.totalFacturacion}}</span>
+                </div>
+                 <div class="col-lg-2" {{bind-attr class="errors.ivaFactura:has-error errors.ivaFactura:has-feedback"}}>
+                  <label class="form-label"  for="ivaFactura">Impuesto</label>
+                    {{number-field type="text" number=ivaFactura class="form-control" disabled="true"}}
+                </div>
+              </div>
+            </div>
+          </div>--}}
+
+          <div class="form-group">
+            <div class="col-lg-12">
+							{{#ifEquals 'estado' 'Descuento Solicitado'}}
+								<button {{action 'aprobarDescuento'}} class="btn btn-theme">Aprobar descuento</button>
+								<button {{action 'cancelarDescuento'}} class="btn btn-theme">Rechazar descuento</button>
+							{{else}}
+                {{#ifEquals 'estado' 'Concretado'}}
+                  <button type="submit" class="btn btn-theme" disabled = true>Confirmar Pago</button>
+                  {{#ifEquals 'desde' 'ventas'}}
+                    <button type="submit" class="btn btn-theme">Guardar y reimprimir Recibo</button>
+                  {{/ifEquals}}
+                {{else}}
+                  <button type="submit" class="btn btn-theme">Confirmar Pago</button>
+                {{/ifEquals}}	
+							{{/ifEquals}}
+              <button {{action 'cancel'}} class="btn btn-default ">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

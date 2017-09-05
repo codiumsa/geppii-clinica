@@ -1,0 +1,59 @@
+<div role="tabpanel" class="tab-pane active" id="datoscampanha">
+	<div class="col-lg-12">
+		<div class="form-panel">
+			<div class="form-horizontal">
+				<form class="style-form" role="form" {{action "save" on="submit" }}>
+					<div class="form-group">
+						<div class="col-lg-12" {{bind-attr class="errors.nombre:has-error errors.nombre:has-feedback" }}>
+							<label class="form-label" for="nombre">Nombre</label>
+							{{focus-input type="text" value=nombre class="form-control" placeholder="Nombre de la campaña" autofocus="autofocus"}}
+							<span class="help-block">{{error errors.nombre}}</span> {{#if errors.nombre}}
+							<span class="glyphicon glyphicon-form remove-control-feedback"></span> {{/if}}
+						</div>
+						<div class="col-lg-12" {{bind-attr class="errors.descripcion:has-error errors.descripcion:has-feedback" }}>
+							<label class="form-label" for="descripcion">Descripción</label>
+							{{input type="text" value=descripcion class="form-control" placeholder="Descripción de la campaña" autofocus="autofocus"}}
+							<span class="help-block">{{error errors.descripcion}}</span> {{#if errors.descripcion}}
+							<span class="glyphicon glyphicon-form remove-control-feedback"></span> {{/if}}
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-6" {{bind-attr class="feedback.fechaInicio:has-error feedback.fechaIncio:has-feedback" }}>
+							<label class="form-label" for="fechaIncio">Fecha de Inicio</label>
+							{{view Bodega.views.DatePickerView value=fechaIncio}}
+							<span class="help-block">{{error feedback.fechaIncio}}</span> 
+							{{#if feedback.fechaIncio}}
+								<span class="glyphicon glyphicon-remove form-control-feedback"></span> 
+							{{/if}}
+						</div>
+						<div class="col-lg-6" {{bind-attr class="feedback.fechaFin:has-error feedback.fechaFin:has-feedback" }}>
+							<label class="form-label" for="fechaFin">Fecha de fin</label>
+							{{view Bodega.views.DatePickerView value=fechaFin}}
+							<span class="help-block">{{error feedback.fechaFin}}</span> 
+							{{#if feedback.fechaFin}}
+								<span class="glyphicon glyphicon-remove form-control-feedback"></span> 
+							{{/if}}
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-6">
+							<label class="form-label">Tipo de campaña</label>
+							{{view Ember.Select content=tipoCampanhas optionValuePath="content.id" optionLabelPath="content.nombre" selection=tipoCampanhaSeleccionado value=tipoDefault.id classNames="form-control"}}
+						</div>
+						<div class="col-lg-6">
+							<label class="form-label">Estado</label>
+							{{view Ember.Select content=estados optionValuePath="content.id" optionLabelPath="content.nombre" selection=estadoSeleccionado value=estadoDefault.id classNames="form-control"}}
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-12">
+							<button type="submit" class="btn btn-theme">Guardar</button>
+							<button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+

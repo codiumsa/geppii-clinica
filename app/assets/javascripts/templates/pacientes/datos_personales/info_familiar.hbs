@@ -1,0 +1,175 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion"
+	 href="#infoFamiliar"><i class="fa fa-angle-right">
+	 </i>Informacion Familiar</a>
+    </h4>
+  </div>
+  <div id="infoFamiliar" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="form-group">
+	<fieldset>
+	  <legend>Datos del Padre</legend>
+          <div class="col-lg-4"
+	       {{bind-attr class="feedback.padre:has-error 
+		 feedback.padre:has-feedback"}}>
+            <label class="form-label"  for="padre">Nombre</label>
+            {{input type="text" value=datosFamiliares.padre.nombre
+	      class="form-control" placeholder="Nombre"}}
+            <span class="help-block">{{error feedback.padre}}</span>
+            {{#if feedback.padre}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+          </div>
+	  <div class="col-lg-4"
+	       {{bind-attr class="errors.padreEdad:has-error errors.padreEdad:has-feedback"}}>
+            <label class="form-label"  for="padreEdad">Edad</label>
+            {{number-input value=datosFamiliares.padre.edad
+	      class="form-control" placeholder="Edad"}}
+            <span class="help-block">{{error errors.padreEdad}}</span>
+            {{#if errors.padreEdad}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+	  </div>
+	  <div class="col-lg-4"
+	       {{bind-attr class="feedback.padreEscolaridad:has-error 
+		 feedback.padreEscolaridad:has-feedback"}}>
+            <label class="form-label" for="padreEscolaridad">Escolaridad</label>
+            {{view Ember.Select 
+              content=estudiosRealizados
+	      prompt="Seleccione un valor..."
+              selection=datosFamiliares.padre.escolaridad
+              value=datosFamiliares.padre.escolaridad
+              classNames="form-control"}}
+            <span class="help-block">{{error feedback.padreEscolaridad}}</span>
+            {{#if feedback.padreEscolaridad}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+	  </div>
+	  <!-- TODO: hacer tipo categoria, etiquetas -->
+	  <div class="col-lg-4"
+	       {{bind-attr class="errors.padreOcupacion:has-error 
+		 errors.padreOcupacion:has-feedback"}}>
+            <label class="form-label" for="padreOcupacion">Ocupaci&oacute;n</label>
+            {{input type="text" value=datosFamiliares.padre.ocupacion
+	      class="form-control" placeholder="Ocupaci&oacute;n"}}
+            <span class="help-block">{{error errors.padreOcupacion}}</span>
+            {{#if errors.padreOcupacion}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+          </div>
+	  <div class="col-lg-4" {{bind-attr class="errors.padreTelefono:has-error 
+				  errors.padreTelefono:has-feedback"}}>
+            <label class="form-label" for="padreTelefono">Teléfono</label>
+            {{input type="text" value=datosFamiliares.padre.telefono
+	      class="form-control" placeholder="Telefono"}}
+            <span class="help-block">{{error errors.padreTelefono}}</span>
+            {{#if errors.padreTelefono}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+          </div>
+	</fieldset>	
+	<fieldset>
+	  <legend>Datos de la Madre</legend>		  
+          <div class="col-lg-4"
+	       {{bind-attr class="feedback.madre:has-error 
+		 feedback.madre:has-feedback"}}>
+            <label class="form-label"  for="madre">Nombre</label>
+            {{input type="text" value=datosFamiliares.madre.nombre class="form-control"
+	      placeholder="Nombre"}}
+            <span class="help-block">{{error feedback.madre}}</span>
+            {{#if feedback.madre}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+          </div>
+	  <div class="col-lg-4"
+	       {{bind-attr class="errors.madreEdad:has-error errors.madreEdad:has-feedback"}}>
+            <label class="form-label"  for="madreEdad">Edad</label>
+            {{number-input value=datosFamiliares.madre.edad class="form-control" placeholder="Edad"}}
+            <span class="help-block">{{error errors.madreEdad}}</span>
+            {{#if errors.madreEdad}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+	  </div>
+	  <div class="col-lg-4"
+	       {{bind-attr class="feedback.madreEscolaridad:has-error 
+		 feedback.madreEscolaridad:has-feedback"}}>
+            <label class="form-label" for="madreEscolaridad">Escolaridad</label>
+            {{view Ember.Select 
+              content=estudiosRealizados
+	      prompt="Seleccione un valor..." 
+              selection=datosFamiliares.madre.escolaridad
+              value=datosFamiliares.madre.escolaridad
+              classNames="form-control"}}
+            <span class="help-block">{{error feedback.madreEscolaridad}}</span>
+            {{#if feedback.madreEscolaridad}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+	  </div>
+	  <div class="col-lg-4"
+	       {{bind-attr class="errors.madreOcupacion:has-error 
+		 errors.madreOcupacion:has-feedback"}}>
+            <label class="form-label" for="madreOcupacion">Ocupaci&oacute;n</label>
+            {{input type="text" value=datosFamiliares.madre.ocupacion
+	      class="form-control" placeholder="Ocupaci&oacute;n"}}
+            <span class="help-block">{{error errors.madreOcupacion}}</span>
+            {{#if errors.madreOcupacion}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+          </div>
+	  <div class="col-lg-4"
+	       {{bind-attr class="errors.madreTelefono:has-error 
+		 errors.madreTelefono:has-feedback"}}>
+            <label class="form-label" for="madreTelefono">Teléfono</label>
+            {{input type="text" value=datosFamiliares.madre.telefono
+	      class="form-control" placeholder="Telefono"}}
+            <span class="help-block">{{error errors.madreTelefono}}</span>
+            {{#if errors.madreTelefono}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {{/if}}
+          </div>  
+	</fieldset>
+	<fieldset>
+	  <div class="form-group">
+            <div class="col-lg-6"
+		 {{bind-attr class="feedback.pacienteNumeroHermanos:has-error 
+		   feedback.personaNroHermanos:has-feedback"}}>
+              <label class="form-label"  for="pacienteNumeroHermanos">Nro. de Hermanos</label>
+              {{number-input value=datosFamiliares.numeroHermanos
+		class="form-control" placeholder="n&uacute;mero de hermanos"}}
+              <span class="help-block">{{error feedback.pacienteNumeroHermanos}}</span>
+              {{#if feedback.pacienteNumeroHermanos}}
+		<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+	    <!-- edades separadas por coma o espacio? -->
+            <div class="col-lg-6"
+		 {{bind-attr class="feedback.personaEdadesHnos:has-error 
+		   feedback.personaEdadesHnos:has-feedback"}}>
+              <label class="form-label"  for="personaEdadesHnos">Edades</label>
+              {{input type="text" value=datosFamiliares.edadesHermanos
+		class="form-control" placeholder="Edades"}}
+              <span class="help-block">{{error feedback.personaEdadesHnos}}</span>
+              {{#if feedback.personaEdadesHnos}}
+		<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+	    <!-- TODO: hacer tipo categoria, etiquetas -->
+	    <div class="col-lg-6"
+		 {{bind-attr class="feedback.comparteVivienda:has-error 
+		   feedback.comparteVivienda:has-feedback"}}>
+              <label class="form-label"  for="comparteVivienda">Personas con las que vive</label>
+              {{input type="text" value=datosFamiliares.comparteVivienda
+		class="form-control" placeholder="-"}}
+              <span class="help-block">{{error feedback.comparteVivienda}}</span>
+              {{#if feedback.comparteVivienda}}
+		<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+	  </div>
+	</fieldset>
+      </div>
+    </div>
+  </div>  
+</div>

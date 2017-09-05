@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: vinculo_familiares
+#
+#  id         :integer          not null, primary key
+#  tipo       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+padre:
+  tipo: Padre
+madre:
+  tipo: Madre
+Hijo:
+  tipo: Hijo
+Abuelo:
+  tipo: Abuelo
+Abuela:
+  tipo: Abuela
+Tio:
+  tipo: Tío
+Tia:
+  tipo: Tía
+otro:
+  tipo: Otro

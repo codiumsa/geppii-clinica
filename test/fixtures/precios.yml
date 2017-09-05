@@ -1,0 +1,12 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# precio1:
+#   fecha: 2014-05-18
+#   precio_compra: 1500
+#   compra_detalle: detalle_compra_1
+
+# precio2:
+#   fecha: 2014-05-17
+#   precio_compra: 1000
+#   compra_detalle: detalle_compra_2
+

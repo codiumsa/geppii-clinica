@@ -1,0 +1,69 @@
+candidaturas = @candidaturas
+
+by_fecha_posible_on = @by_fecha_posible_on
+by_fecha_posible_before = @by_fecha_posible_before
+by_fecha_posible_after = @by_fecha_posible_after
+
+by_campanha_id = @by_campanha_id
+
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wrap_text = style.add_style :fg_color=> "FFFFFF",
+                           :b => true,
+                           :sz => 12,
+                           :bg_color => "004586",
+                           :border => { :style => :thin, :color => "00" },
+                           :alignment => { :horizontal => :center,
+                                           :vertical => :center ,
+                                           :wrap_text => true}
+
+  loteTitle = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => true,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  loteContent = style.add_style :fg_color=> "3E4D4A",
+                            :bg_color=>"DDDDDD",
+                            :b => false,
+                            :sz => 10,
+                            :border => { :style => :thin, :color => "00" },
+                            :alignment => { :horizontal => :center,
+                                            :vertical => :center ,
+                                            :wrap_text => true}
+
+  wb.add_worksheet(name: "candidaturas") do |sheet|
+    time = Time.now.strftime("%d/%m/%Y")
+    if by_fecha_posible_after and by_fecha_posible_before
+      fecha_str = "Candidaturas posibles entre #{by_fecha_posible_after.to_date}" + " y " + "#{by_fecha_posible_before.to_date}"
+    elsif by_fecha_posible_after
+      fecha_str = "Candidaturas posibles después de: #{by_fecha_posible_after.to_date}"
+    elsif by_fecha_posible_before
+      fecha_str = "Candidaturas posibles antes de:" + "#{by_fecha_posible_before.to_date}"
+    elsif by_fecha_posible_on
+      fecha_str =  "Candidaturas posibles del día: #{by_fecha_posible_on.to_date}"
+    else
+      fecha_str =  "Candidaturas posibles hasta #{Time.now.to_date}"
+    end
+
+    sheet.add_row ["Geppii","Reporte de Candidaturas","#{fecha_str}"," Fecha: #{time}"], style: [wrap_text,wrap_text,wrap_text,wrap_text]
+    sheet.add_row ["Candidato a:","#{if !by_campanha_id.nil? then "Misión: " + Campanha.find(by_campanha_id.to_i).nombre else "Clínica" end}"], style: [wrap_text,wrap_text]
+
+    candidaturas_pacientes = candidaturas.reorder(:fecha).group_by(&:paciente_id)
+
+    candidaturas_pacientes.map do |k,candidaturasPacienteArray|
+      sheet.add_row []
+      especialidadesCandidaturasPaciente = Hash.new
+      sheet.add_row ["Paciente: ","#{Paciente.find(k.to_i).persona.razon_social}"], style: [loteTitle,loteTitle]
+      sheet.add_row ["Especialidad","Fecha","Doctor/a"], style: [loteTitle,loteTitle,loteTitle]
+
+      candidaturasPacienteArray.map do |candidaturaPaciente|
+        sheet.add_row ["#{candidaturaPaciente.especialidad.descripcion}","#{candidaturaPaciente.fecha_posible}","#{candidaturaPaciente.colaborador.persona.razon_social}"], style: [loteContent,loteContent,loteContent]
+      end
+    end
+  end
+end

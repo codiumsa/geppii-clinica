@@ -1,0 +1,105 @@
+
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:pagos.new', 'save');">
+          <div class="form-group">
+            <div class="col-lg-12">
+              <label class="form-label"  for="cuotas">Cuotas Pendientes de Pago</label>
+              <div class="table-responsive content-panel" style="padding: 0px;">
+                <table class="table table-bordered table-striped table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Nro Cuota</th>
+                            <th>Fecha Vencimiento</th>
+                            <th>Monto</th>
+														<th>Pendiente</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{#each cuotasPendientes}}
+                        <tr>
+                            <td>{{nroCuota}}</td>
+                            <td>{{dateformat fechaVencimiento}}</td>
+                            <td>{{formatNumber monto}}</td>
+														<td>{{formatNumber pendiente}}</td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+					
+					<div class="form-group">
+						{{#if soportaMultimoneda}}
+							<div class="col-lg-3" {{bind-attr class="errors.moneda:has-error errors.moneda:has-feedback"}}>
+								<label class="form-label">Moneda</label>
+									{{view Ember.Select
+										content=monedas
+										optionLabelPath="content.nombre"
+										selection=monedaSeleccionada
+										value=monedaSeleccionada
+										classNames="form-control"}}
+								{{#if errors.moneda}}
+										<span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+								{{/if}}
+							</div>
+						
+							<div class="form-group">
+								<div class="col-lg-3" >
+										<label class="form-label">Cotización ({{modeloPadre.moneda.simbolo}} a {{monedaSeleccionada.simbolo}})</label>
+										<label class="form-label">Cotización</label>
+									{{number-input min="0" value=montoCotizacion class="form-control" placeholder="Cotización" focus-out='cargaTotal'}}
+								</div>
+							</div>
+						{{/if}}
+					</div>
+					
+					
+          <div class="form-group">
+            <div class="col-lg-2">
+              <label class="form-label"  for="fechaPago">Fecha de pago</label>
+              {{view Bodega.views.DatePickerView readonly=bloqueo value=fechaPago action = "controlaFecha"}}
+            </div>
+            <div {{bind-attr class=":col-lg-1"}}>
+              <label for="cuota">Cantidad</label>
+              {{view Ember.Select 
+                content=cantidadCuotas
+                selection=cantidadCuotasSeleccionadas
+                classNames="form-control" 
+                disabled=bloqueo}}
+            </div>
+            <div class="col-lg-3">
+              <label class="form-label"  for="total">Total</label>
+              {{number-field min="0" number=totalMonedaSeleccionada class="form-control"  disabled=bloqueo}}
+            </div>
+            <div class="col-lg-3" {{bind-attr class="errors.descuento:has-error errors.descuento:has-feedback"}}>
+              <label for="descuento">Descuento</label>
+              {{number-field min="0" number=descuentoMonedaSeleccionada class="form-control"}}
+            </div>
+            <div class="col-lg-3" style="color:blue">
+              <label class="form-label"  for="totalAPagar">{{totalTitle}}</label>
+              {{number-field min="0" number=totalAPagar class="form-control" disabled=true}}
+            </div>
+          </div>
+
+
+
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-theme">Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

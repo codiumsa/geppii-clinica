@@ -1,0 +1,47 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Calificaciones de Clientes
+  {{#isAuthorized 'FE_post_calificaciones'}}
+    {{#link-to 'calificaciones.new'}}
+      <button class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="margin-top: -5px; margin-left: 5px;"></button>
+    {{/link-to}}
+  {{/isAuthorized}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView}}
+    <div class="table-responsive content-panel" style="padding: 0px;">
+      <table class="table table-bordered table-striped table-condensed">
+          <thead>
+              <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Dias de Atraso Promedio</th>
+                  <th style="width:11%;"></th>
+              </tr>
+          </thead>
+          <tbody>
+          {{#each}}
+              <tr>
+                  <td>{{codigo}}</td>
+                  <td>{{descripcion}}</td>
+                  <td>{{diasAtraso}}</td>
+                  <td class="center">
+                    {{#link-to 'calificacion.edit' this classNames='table-action'}}
+                      <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil"></button>
+                    {{/link-to}}
+                    {{#link-to 'calificacion.delete' this classNames='table-action'}}
+                      {{#isAuthorized 'FE_delete_calificaciones'}}
+                        <button class="btn btn-theme btn-sm glyphicon glyphicon-remove" 
+                              data-toggle="modal" data-target="#calificacionDelete"></button>
+                      {{/isAuthorized}}
+                    {{/link-to}}
+                  </td>
+              </tr>
+          {{/each}}
+          </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+#proceso_1:
+#  producto: heineken
+#  cantidad: 50
+#  descripcion: Proceso de produccion 1
+#  estado: VIGENTE
+
+#proceso_2:
+#  producto: miller
+#  cantidad: 100
+#  descripcion: Proceso de produccion 2
+#  estado: VIGENTE

@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+tipo_credito_1:
+  id: 1
+  descripcion: Cuota Diaria
+  plazo: 1
+  unidad_tiempo: D
+  # interes: 12
+
+tipo_credito_2:
+  id: 2
+  descripcion: Cuota Semanal
+  plazo: 1
+  unidad_tiempo: W
+  # interes: 13
+
+tipo_credito_3:
+  id: 3
+  descripcion: Cuota Quincenal
+  plazo: 2
+  unidad_tiempo: W
+  # interes: 14
+
+tipo_credito_4:
+  id: 4
+  descripcion: Cuota Mensual
+  plazo: 1
+  unidad_tiempo: M
+  # interes: 15

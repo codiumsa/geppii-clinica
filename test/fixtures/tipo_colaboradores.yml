@@ -1,0 +1,50 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+voluntario:
+  id: 1
+  nombre: Voluntario
+  descripcion: Voluntario Sin Especialidad
+  tiene_viajes: false
+  tiene_licencia: false
+
+doctor:
+  id: 2
+  nombre: Doctor
+  descripcion: Doctor especialista
+  tiene_viajes: true
+  tiene_licencia: true
+
+estudiantil universitario:
+  id: 3
+  nombre: Estudiantil Universitario
+  descripcion: Estudiantil Universitario
+  tiene_viajes: false
+  tiene_licencia: false
+
+EMR:
+  id: 4
+  nombre: EMR
+  descripcion: EMR
+  tiene_viajes: false
+  tiene_licencia: false
+
+Fichas Medicas:
+  id: 5
+  nombre: Fichas Médicas
+  descripcion: Fichas Médicas
+  tiene_viajes: false
+  tiene_licencia: false
+
+Donante Particular:
+  id: 6
+  nombre: Donante Particular
+  descripcion: Donante Particular
+  tiene_viajes: false
+  tiene_licencia: false
+
+Club Estudiantil:
+  id: 7
+  nombre: Club Estudiantil
+  descripcion: Club Estudiantil
+  tiene_viajes: false
+  tiene_licencia: false

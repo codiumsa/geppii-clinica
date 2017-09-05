@@ -1,0 +1,30 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  <span>{{formTitle}}</span>
+</h3>
+<div class="row mt">
+  <div role="tabpanel">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#datospersonales" aria-controls="datospersonales" role="tab" data-toggle="tab">Datos Personales</a>
+      </li>
+      <li role="presentation">
+        <a href="#referencias" aria-controls="referencias" role="tab" data-toggle="tab">Referencias</a>
+      </li>
+      <li role="presentation">
+        <a href="#ingresosfamiliares" aria-controls="ingresosfamiliares" role="tab" data-toggle="tab">Ingresos Familiares</a>
+      </li>
+      <li role="presentation">
+        <a href="#documentos" aria-controls="documentos" role="tab" data-toggle="tab">Documentos</a>
+      </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      {{ partial "clientes/tabs/datos_personales" }}
+      {{ partial "clientes/tabs/referencias" }}
+      {{ partial "clientes/tabs/ingresos_familiares" }}
+      {{ partial "clientes/tabs/documentos" }}
+    </div>
+  </div>
+</div>

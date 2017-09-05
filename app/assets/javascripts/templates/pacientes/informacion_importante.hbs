@@ -1,0 +1,32 @@
+<div role="tabpanel" class="tab-pane" id="informacionimportante">
+  <div class="col-lg-12">
+    <div class="form-horizontal">
+      <form class="style-form" role="form" {{action "save" on="submit"}}
+	    onkeydown="Bodega.keydownFormHandler('controller:clientes.new', 'save');">
+      	<div class="col-lg-12">
+          {{#if datosImportantes.problemas.infecciones.VIH}}
+            <span class="label label-danger">VIH</span>
+          {{/if}}
+          {{#if datosImportantes.cirugias}}
+            <span class="label label-warning">Cirugias Anteriores</span>
+          {{/if}}
+          {{#if datosImportantes.alergias}}
+            <span class="label label-primary">Alergias</span>
+          {{/if}}
+          {{#if datosImportantes.medicamentos}}
+            <span class="label label-info">Medicamentos</span>
+          {{/if}}
+        </div>
+        <div class="col-lg-12">
+          {{partial "pacientes/datos_importantes/migracion"}}
+          {{partial "pacientes/datos_importantes/cirugias_anteriores"}}
+          {{partial "pacientes/datos_importantes/asistencia_misiones"}}
+          {{partial "pacientes/datos_importantes/alergias"}}
+          {{partial "pacientes/datos_importantes/medicamentos"}}
+          {{partial "pacientes/datos_importantes/problemas"}}
+      	</div>
+      </form>
+      {{partial "pacientes/guardar_cancelar"}}
+    </div>
+  </div>
+</div>

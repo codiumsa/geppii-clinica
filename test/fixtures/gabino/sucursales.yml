@@ -1,0 +1,17 @@
+sucursal_1:
+  codigo: 01_casa_1
+  descripcion: Matriz - Casa Nancy
+  usuarios: administrador, vendedor
+  activo: true
+  empresa: one
+  deposito: punto_venta_matriz_1
+  color: '#507EAC'
+
+sucursal_2:
+  codigo: 02_comercial_1
+  descripcion: Matriz - Santa Librada
+  usuarios: administrador, vendedor
+  activo: true
+  empresa: two
+  deposito: punto_venta_matriz_2
+  color: '#96D1CF'

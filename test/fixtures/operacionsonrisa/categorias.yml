@@ -1,0 +1,125 @@
+Agujas: 
+  nombre: Agujas  
+
+Jeringas: 
+  nombre: Jeringas  
+
+Suturas: 
+  nombre: Suturas  
+
+Máscaras: 
+  nombre: Máscaras  
+
+Soluciones: 
+  nombre: Soluciones  
+
+Circuitos_de_Anestesia: 
+  nombre: Circuitos  de  Anestesia  
+
+Tubos_Endotraqueales: 
+  nombre: Tubos  Endotraqueales  
+
+Guantes: 
+  nombre: Guantes  
+
+Catéteres: 
+  nombre: Catéteres  
+
+Analgesia: 
+  nombre: Analgesia  
+
+Anestésico: 
+  nombre: Anestésico  
+
+Antibiótico: 
+  nombre: Antibiótico  
+
+Bebidas: 
+  nombre: Bebidas  
+
+Perecederos: 
+  nombre: Perecederos  
+
+Noperecederos: 
+  nombre: No  perecederos  
+
+Pañales: 
+  nombre: Pañales  
+
+Chalecos: 
+  nombre: Chalecos  
+
+Alcancías: 
+  nombre: Alcancías  
+
+Biberones: 
+  nombre: Biberones  
+
+Tetinas: 
+  nombre: Tetinas  
+
+Recepcion: 
+  nombre: Recepción  
+
+Dirección_Ejecutiva: 
+  nombre: Dirección  Ejecutiva  
+
+Coordinación_de_Programas: 
+  nombre: Coordinación  de  Programas  
+
+Sala_de_Reuniones: 
+  nombre: Sala  de  Reuniones  
+
+Consultorio_Odontologico_N1: 
+  nombre: Consultorio  Odontológico  Nº1  
+
+Consultorio_Odontologico_N2: 
+  nombre: Consultorio  Odontológico  Nº  2  
+
+Consultorio_1: 
+  nombre: Consultorio  Nº  1  
+
+Consultorio_de_Psicologia: 
+  nombre: Consultorio  de  Psicología  
+
+Consultorio_de_Cirugia:
+  nombre: Consultorio  de  Cirugía  
+
+Consultorio_de_Nutricion: 
+  nombre: Consultorio  de  Nutrición  
+
+Consultorio_de_Fonoaudiologia:
+  nombre: Consultorio  de  Fonoaudiología  
+
+Farmacia: 
+  nombre: Farmacia  
+
+Depósito: 
+  nombre: Depósito  
+
+Programas_Estudiantiles: 
+  nombre: Programas  Estudiantiles  
+
+Área_de_Internados: 
+  nombre: Área  de  Internados  
+
+Admisión_de_Pacientes: 
+  nombre: Admisión  de  Pacientes  
+
+Dirección_Médica: 
+  nombre: Dirección  Médica  
+
+Sala_de_Esterilizacion: 
+  nombre: Sala  de  Esterilización  
+
+Recepción_de_Sucios: 
+  nombre: Recepción  de  Sucios  
+
+QuirófanoN1: 
+  nombre: Quirófano  Nº  1  
+
+QuirófanoN2: 
+  nombre: Quirófano  Nº  2  
+
+Sala_de_Espera: 
+  nombre: Sala  de  Espera  

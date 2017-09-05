@@ -1,0 +1,67 @@
+<div role="tabpanel" class="tab-pane" id="datoscursos">
+  <div class="col-lg-12">
+    <div class="form-horizontal">
+      <form class="style-form" role="form" {{action "save" on="submit" }} onkeydown="Bodega.keydownFormHandler('controller:clientes.new', 'save');">
+        <div class="panel panel-default" style="margin-top: 15px;">
+          {{!-- <div class="panel-heading">
+            <h5>
+              <i class="fa fa-angle-right"></i>Informaci&oacute;n B&aacute;sica</h5>
+          </div> --}}
+          <div class="panel-body">
+            {{!-- <div class="form-group"> --}}
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="content-panel">
+                    <h4>Cursos</h4>
+                    <hr>
+                    <table class="table table-striped table-advance table-hover">
+                      <thead>
+                        <tr>
+                          <th>Descripcion</th>
+                          <th>Observaciones</th>
+                          <th>Lugar</th>
+                          <th>Fecha Inicio</th>
+                          <th>Fecha Fin</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each item in cursos}}
+                          <tr>
+                            <td> {{item.descripcion}} </td>
+                            <td> {{item.observaciones}} </td>
+                            <td> {{item.lugar}} </td>
+                            <td>{{dateformat item.fechaInicio}}</td>
+                            <td>{{dateformat item.fechaFin}}</td>
+                          </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+            {{!-- </div> --}}
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="col-lg-12">
+            {{#isAuthorized 'FE_post_clientes, FE_put_clientes'}}
+            <button type="submit" class="btn btn-theme">Guardar</button>
+            {{/isAuthorized}}
+            <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            {{#if id}}
+            <!--div style="float: right;">
+              <button class="btn btn-theme" {{action generarLegajo}}>Imprimir Legajo
+                <span class="glyphicon glyphicon-file"></span>
+              </button>
+            </div-->
+            {{/if}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

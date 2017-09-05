@@ -1,0 +1,51 @@
+          {{#if habilitaSucursales}}
+            {{#isAuthorized 'FE_index_sucursales'}}
+              <li>
+                {{#link-to "sucursales"}}
+                  <i class="glyphicon glyphicon-map-marker"></i>
+                  <span>Sucursales</span>
+                {{/link-to}}
+              </li>
+            {{/isAuthorized}}
+          {{/if}}
+
+          {{#if permisoIndexDepositos}}
+            <li class="sub-menu  dcjq-parent-li">
+              <a href="javascript:;" class="dcjq-parent">
+                <i class="fa fa-key"></i>
+                <span>Depósitos</span>
+              </a>
+              <ul class="sub" style="overflow: hidden; display: block;">
+                <li>
+                  {{#link-to "depositos"}}
+                    <span>Administración</span>
+                  {{/link-to}}
+                </li>
+                <li>
+                  {{#link-to "transferenciasDeposito"}}
+                    <span>Transferencias</span>
+                  {{/link-to}}
+                </li>
+                {{#isAuthorized 'FE_index_inventarios'}}
+                  <li>
+                    {{#link-to "inventarios"}}
+                      <span>Inventarios</span>
+                    {{/link-to}}
+                  </li>
+                  <!--li>{{#link-to "controlInventarios"}}<span>Control de Inventarios</span>{{/link-to}}</li-->
+                {{/isAuthorized}}
+                <li>
+                  {{#link-to "motivosInventarios"}}
+                    <span>Motivos de Ajuste</span>
+                  {{/link-to}}
+                </li>
+                {{#if habilitaAjusteInventario}}
+                <li>
+                  {{#link-to "ajusteInventarios"}}
+                    <span>Ajustes de Inventario</span>
+                  {{/link-to}}
+                </li>
+                {{/if}}
+              </ul>
+            </li>
+          {{/if}}

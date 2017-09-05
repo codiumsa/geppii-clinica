@@ -1,0 +1,205 @@
+<div class="panel panel-default">
+  {{#if soportaMultimoneda}}
+    <div class="panel-heading">
+      <h5>
+        <i class="fa fa-angle-right"></i>Totales ({{monedaSeleccionada.simbolo}})</h5>
+  {{else}}
+    <div class="panel-heading">
+      <h5>
+        <i class="fa fa-angle-right"></i>Totales</h5>
+  {{/if}}
+  </div>
+  <div class="panel-body">
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-lg-2">
+          <label class="form-label" for="iva5Total">IVA 5%</label>
+          {{input type="text" readonly="true" value=iva5Total class="form-control" placeholder="IVA al 5%" }}
+        </div>
+        <div class="col-lg-2">
+          <label class="form-label" for="iva10Total">IVA 10%</label>
+          {{input type="text" readonly="true" value=iva10Total class="form-control" placeholder="IVA al 10%" }}
+        </div>
+        <div class="col-lg-2">
+          <label class="form-label" for="totalSinDescuento">Total sin Descuento</label>
+          {{input type="text" readonly="true" value=totalSinDescuento class="form-control" placeholder="Total Sin Descuento" }}
+        </div>
+        <div class="col-lg-2">
+          <label class="form-label" for="descuentoTotal">Total Descuento</label>
+          {{number-input readonly="true" min="0" value=descuentoTotal class="form-control" placeholder="Descuento Total" }}
+        </div>
+        <div class="col-lg-2">
+          {{#if editando}}
+            <label class="form-label" for="descuentoRedondeo">Descuento Redondeo</label>
+            {{number-input disabled="true" value=descuentoRedondeo class="form-control" placeholder="Redondeo" }}
+          {{else}}
+            <label class="form-label" for="descuentoRedondeo">Descuento Redondeo</label>
+            {{number-input disabled=disablePrecio min="0" max=totalSinDescuento value=campoDescuentoRedondeo class="form-control" placeholder="Redondeo" }}
+          {{/if}}
+        </div>
+        <div class="col-lg-2">
+          <label class="form-label" for="totalFinal">Total Final</label>
+          {{input type="text" readonly="true" value=totalFinal class="form-control" placeholder="total" }}
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-12">
+      {{#if id}}
+        {{#if mostrarPagos}}
+          <button class="btn btn-danger" {{action "irAPagos"}} title='Pagos'> Pagos </button>
+        {{/if}}
+      {{/if}}
+      {{#if anulado}}
+        <button {{action 'cancel'}} class="btn btn-default " onkeydown="Bodega.enterFormHandler('controller:venta.edit', 'cancel');">Volver</button>
+      {{else}}
+        {{#if editando}}
+          {{#if usoInterno}}
+            <button {{action 'saveInterno'}} class="btn btn-warning " onkeydown="Bodega.enterFormHandler('controller:venta.edit', 'saveInterno');">Actualizar {{labelActualizar}} Uso Interno</button>
+          {{else}}
+            <button {{action 'save'}} class="btn btn-theme" onkeydown="Bodega.enterFormHandler('controller:venta.edit', 'save');">Actualizar {{labelActualizar}}</button>
+          {{/if}}
+          <button {{action 'cancel'}} class="btn btn-default" onkeydown="Bodega.enterFormHandler('controller:venta.edit', 'cancel');">Cancelar</button>
+        {{else}}
+          {{#if credito}}
+            <button {{action 'save'}} class="btn btn-theme" onkeydown="Bodega.enterFormHandler('controller:ventas.new', 'save');">{{labelGuardar}} Factura</button>
+          {{else}}
+            {{#unless detalles}}
+              <button {{action 'save'}} class="btn btn-theme" onkeydown="Bodega.enterFormHandler('controller:ventas.new', 'save');">Cargar Medios de Pago</button>
+            {{else}}
+              {{#if muestraMedios}}
+                <button type="button" class="btn btn-theme" data-toggle="modal" data-target="#ventaMedio">Cargar Medios de Pago</button>
+              {{else}}
+                <button {{action 'save'}} class="btn btn-theme" onkeydown="Bodega.enterFormHandler('controller:ventas.new', 'save');">{{labelGuardar}} Factura</button>  
+              {{/if}}
+            {{/unless}}
+          {{/if}}
+          <div class="modal fade" id="ventaMedio" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Medios de Pago</h4>
+                </div>
+                <div class="modal-body">
+                  {{#if unicoMedioPago}}
+                    <div class="form-group">
+                      <div class="col-lg-4">
+                        <label class="form-label">Medio de Pago</label>
+                        {{input type="text" value=medioPagoSeleccionado.nombre class="form-control" disabled="true"}}
+                      </div>
+                      {{#if esMedioPagoTarjetaCredito}}
+                        <div class="col-lg-4">
+                          <label class="form-label">Tarjeta</label>
+                          {{input type="text" value=tarjetaSeleccionada.displayName class="form-control" disabled="true"}}
+                        </div>
+                      {{/if}}
+                      <div class="col-lg-3">
+                        <label class="form-label" for="saldoMedios">Monto Único</label>
+                        {{number-input id="saldoMedios" min=totalFinal value=saldoMediosUnico class="form-control" placeholder=saldoMediosUnico action="cargarMedios"
+                                        autofocus="true"}}
+                      </div>
+                      <div class="col-lg-1">
+                        <button type="button" {{action 'cargarMedios'}} {{bind-attr disabled=permitirAgregarMedios}} class="btn btn-theme float-right" style="margin-top: 22px;">
+                          <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                      </div>
+                    </div>
+                  {{else}}
+                    <div class="form-group">
+                      <div class="col-lg-4" {{bind-attr class="errors.medioPago:has-error errors.medioPago:has-feedback"}}>
+                        <label class="form-label">Medio de Pago</label>
+                        {{view Ember.Select content=mediosPagosModal optionLabelPath="content.nombre" selection=medioPagoSeleccionadoModal value=medioPagoSeleccionadoModal classNames="form-control"}}
+                        {{#if errors.medioPago}}
+                          <span class="glyphicon glyphicon-remove form-control-feedback form-control-feedback-adjusted"></span>
+                        {{/if}}
+                      </div>
+                      {{#if esMedioPagoTarjetaCreditoModal}}
+                        <div class="col-lg-4" {{bind-attr class="feedback.tarjeta:has-error feedback.tarjeta:has-feedback"}}>
+                          <label class="form-label" for="tarjeta">Tarjeta</label>
+                          {{view Ember.Select content=tarjetasModal optionLabelPath="content.displayName" selection=tarjetaSeleccionadaModal value=tarjetaSeleccionadaModal classNames="form-control"}}
+                          <span class="help-block">{{feedback.tarjeta}}</span>
+                        </div>
+                      {{/if}}
+                      <div class="col-lg-3">
+                        <label class="form-label" for="saldoMedios">Montos varios</label>
+                        {{number-input id="saldoMedios" value=saldoMedios class="form-control" placeholder=saldoMedios action="cargarMedios"
+                                      autofocus="true"}}
+                      </div>
+                      <div class="col-lg-1">
+                        <button type="button" {{action 'cargarMedios'}} {{bind-attr disabled=permitirAgregarMedios}} class="btn btn-theme float-right" style="margin-top: 22px;">
+                          <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                        <!--                                            <button type="button" class="btn btn-theme" style="margin-top: 22px;">Agregar</button>-->
+                      </div>
+                    </div>
+                  {{/if}}
+                  <div class="form-horizontal form-detalles">
+                    {{#if detallesMedio}}
+                      <div class="form-group">
+                        <div class="col-lg-3 first-cell">
+                          <label class="form-label">Medio de Pago</label>
+                        </div>
+                        <div class="col-lg-4">
+                          <label class="form-label">Tarjeta</label>
+                        </div>
+                        <div class="col-lg-2">
+                          <label class="form-label">Monto</label>
+                        </div>
+                      </div>
+                    {{else}}
+                      <div class="form-group">
+                        <div class="col-lg-12 first-cell">
+                          <label class="form-label">Debe agregar medio/s de pago</label>
+                        </div>
+                      </div>
+                    {{/if}}
+                    {{#if detallesMedio}}
+                      {{#each det in detallesMedio}}
+                        <div {{bind-attr class="det:form-group det.promocion:no-margin-bottom"}}>
+                          <div class="col-lg-3 first-cell">
+                            {{input type="text" readonly="true" value=det.medioPago.nombre class="form-control" placeholder="Medio de Pago" }}
+                          </div>
+                          {{#if det.tarjeta}}
+                            <div class="col-lg-4">
+                              {{input type="text" readonly="true" value=det.tarjeta.displayName class="form-control" placeholder="-"}}
+                            </div>
+                          {{else}}
+                            <div class="col-lg-4">
+                              {{input type="text" readonly="true" class="form-control" placeholder="-"}}
+                            </div>
+                          {{/if}}
+                          <div class="col-lg-2">
+                            {{input type="text" readonly="true" value=det.monto class="form-control" placeholder="Monto" }}
+                          </div>
+                          <div class="col-lg-1">
+                            <button type="button" {{action borrarDetalleMedio det det.monto}} class="btn btn-theme float-right">
+                              <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                          </div>
+                        </div>
+                      {{/each}}
+                    {{/if}}
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-12">
+                      <button {{action 'save'}} id="facturaButton" class="btn btn-theme" onkeydown="Bodega.enterFormHandler('controller:ventas.new', 'save');">{{labelGuardar}} Factura</button>
+                      {{#if parametros.soportaUsoInterno}}
+                        <button {{action 'saveInterno'}} id="usoInternoButton" class="btn btn-warning " onkeydown="Bodega.enterFormHandler('controller:venta.new', 'saveInterno');">{{labelGuardar}} Uso Interno</button>
+                      {{/if}}
+                      <!--                                            <button {{action 'cancel'}} class="btn btn-default" onkeydown="Bodega.enterFormHandler('controller:ventas.new', 'cerrarModal');">Cancelar</button>-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button {{action 'cancel'}} class="btn btn-default" onkeydown="Bodega.enterFormHandler('controller:ventas.new', 'cancel');">Cancelar</button>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+  </form>
+</div>

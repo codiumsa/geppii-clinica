@@ -1,0 +1,2 @@
+class TipoSponsorsController < ApplicationController
+end

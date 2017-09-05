@@ -1,0 +1,45 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Recargos
+  {{#link-to 'recargos.new'}}
+    <button class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="margin-top: -5px; margin-left: 5px;"></button>
+  {{/link-to}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView}}
+    <div class="table-responsive content-panel" style="padding: 0px;">
+      <table class="table table-bordered table-striped table-condensed">
+          <thead>
+              <tr>
+                  <th>Medio de pago</th>
+                  <th>Tipo de Crédito</th>
+                  <th>Cantidad de Cuotas</th>
+                  <th>Interés</th>
+                  <th style="width:11%;"></th>
+              </tr>
+          </thead>
+          <tbody>
+          {{#each}}
+              <tr>
+                  <td>{{medioPago.nombre}}</td>
+                  <td>{{tipoCredito.descripcion}}</td>
+                  <td>{{cantidadCuotas}}</td>
+                  <td>{{interes}}</td>
+                  <td class="center">
+                    {{#link-to 'recargo.edit' this classNames='table-action'}}
+                      <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil"></button>
+                    {{/link-to}}
+                    {{#link-to 'recargo.delete' this classNames='table-action'}}
+                      <button class="btn btn-theme btn-sm glyphicon glyphicon-remove" 
+                              data-toggle="modal" data-target="#recargoDelete"></button>
+                    {{/link-to}}
+                  </td>
+              </tr>
+          {{/each}}
+          </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

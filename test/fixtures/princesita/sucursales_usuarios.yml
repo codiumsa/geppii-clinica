@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   usuario_id: 
+#   sucursal_id: 
+
+# two:
+#   usuario_id: 
+#   sucursal_id: 
+
+
+# uno:
+#   usuario_id: 1
+#   sucursal_id: 1
+#   id: 1
+
+# dos:
+#   usuario_id: 2
+#   sucursal_id: 1
+#   id: 2
+
+# tres:
+#   usuario_id: 3
+#   sucursal_id: 1
+#   id: 3
+
+# tres:
+#   usuario: administrador
+#   sucursal: san_vicente_1
+
+# cuatro:
+#   usuario: vendedor_suc1
+#   sucursal: tacumbu_1 
+
+# cinco:
+#   usuario: vendedor_suc2
+#   sucursal: tacumbu_2

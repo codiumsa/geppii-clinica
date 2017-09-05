@@ -1,0 +1,25 @@
+{{#isAuthorized 'FE_index_compras'}}
+  <li class="sub-menu  dcjq-parent-li">
+    <a href="javascript:;" class="dcjq-parent">
+      <i class="fa fa-dropbox"></i>
+      <span>Ingresos</span>
+    </a>
+    <ul class="sub" style="overflow: hidden; display: block;">
+      {{#isAuthorized 'FE_index_proveedores'}}
+        <li>
+          {{#link-to "proveedores"}}
+            <span>Proveedores</span>
+          {{/link-to}}
+        </li>
+      {{/isAuthorized}}
+      {{#isAuthorized 'FE_index_compras'}}
+      <li>
+        {{#link-to "compras"}}
+        <span>Ingresos</span>
+        {{/link-to}}
+      </li>
+      {{/isAuthorized}} 
+
+    </ul>
+  </li>
+{{/isAuthorized}}

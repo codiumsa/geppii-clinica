@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: MyString
+  descripcion: MyString
+  con_campanha: false
+  con_mision: false
+  activo: false
+
+two:
+  codigo: MyString
+  descripcion: MyString
+  con_campanha: false
+  con_mision: false
+  activo: false

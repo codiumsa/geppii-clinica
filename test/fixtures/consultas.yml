@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  colaborador_id: 2
+  especialidad_id: 1
+  fecha_agenda: 2016-06-12 22:54:54
+  fecha_inicio:
+  fecha_fin: 
+  estado: AGENDADO
+  cobrar: false
+
+two:
+  id: 2
+  colaborador_id: 2
+  especialidad_id: 1
+  fecha_agenda: 2016-07-12 22:54:54
+  fecha_inicio:
+  fecha_fin:
+  estado: AGENDADO
+  cobrar: true

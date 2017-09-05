@@ -1,0 +1,56 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion"
+	 href="#preescolarAdolescente"><i class="fa fa-angle-right">
+	 </i>Niño, Preescolar, Adolescente</a>
+    </h4>
+  </div>
+  <div id="preescolarAdolescente" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="col-lg-3">
+	<div>
+	  <label class="form-label" for="preescolarAdolescente.placaOrtopedica">Placa Ortopedica</label>
+	  Si {{view Bodega.views.RadioButton value='si'
+	       checked=preescolarAdolescente.placaOrtopedica.presente}}
+	  No {{view Bodega.views.RadioButton value='no'
+	       checked=preescolarAdolescente.placaOrtopedica.presente}}
+	  <label>Tipo: </label>
+          {{input type="text" value=preescolarAdolescente.placaOrtopedica.tipo
+	    class="form-control" placeholder="tipo"}}
+	</div>
+      </div>
+      <div class="col-lg-3">
+	<label class="form-label" for="higieneBucal">Higiene Bucal: </label>
+	Si {{view Bodega.views.RadioButton value='si' checked=preescolarAdolescente.higieneBucal.presente}}
+	No {{view Bodega.views.RadioButton value='no' checked=preescolarAdolescente.higieneBucal.presente}}
+	<label>Cantidad de veces al dia: </label>
+	{{number-input value=preescolarAdolescente.higieneBucal.cantidadDiaria
+	  class="form-control" placeholder="Cantidad de veces al dia"}}
+      </div>
+      <div class="col-lg-8">
+	<label class="form-label" for="odontologoRegular">Va al odontologo regularmente?</label>
+	Si {{view Bodega.views.RadioButton value='si'
+	     checked=preescolarAdolescente.odontologoRegular}}
+	No {{view Bodega.views.RadioButton value='no'
+	     checked=preescolarAdolescente.odontologoRegular}}
+      </div>
+      <div class="col-lg-8">
+	<div class="panel panel-default" style="margin-top: 15px;">
+	  <div class="panel-heading">
+	    <h5 class="panel-title">Estado Bucal</h5>
+	  </div>
+	  <label class="form-label"  for="preescolarAdolescenteEstadoBucalCaries">Caries</label>
+          {{input value=preescolarAdolescente.estadoBucal.caries
+	    class="form-control" placeholder=""}}
+	  <label class="form-label"  for="preescolarAdolescenteEstadoBucalEncias">Encias</label>
+          {{input value=preescolarAdolescente.estadoBucal.encias
+	    class="form-control" placeholder=""}}
+	  <label class="form-label"  for="preescolarAdolescenteEstadoBucalObturaciones">Obturaciones</label>
+          {{input value=preescolarAdolescente.estadoBucal.obturaciones
+	    class="form-control" placeholder=""}}
+	</div>
+      </div>
+    </div>
+  </div>
+</div>

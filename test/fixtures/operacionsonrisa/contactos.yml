@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  observacion: MyString
+  fecha: 2016-07-09 14:07:50
+  sponsor_id: 
+  tipo_contacto_id: 
+  campanha_id: 
+
+two:
+  observacion: MyString
+  fecha: 2016-07-09 14:07:50
+  sponsor_id: 
+  tipo_contacto_id: 
+  campanha_id: 

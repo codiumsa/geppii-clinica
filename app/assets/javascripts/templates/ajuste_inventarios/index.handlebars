@@ -1,0 +1,41 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Ajustes de Inventario
+  {{#link-to 'ajusteInventarios.new'}}
+    <button class="btn btn-theme btn-sm glyphicon glyphicon-plus" style="margin-top: -5px; margin-left: 5px;"></button>
+  {{/link-to}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView}}
+    <div class="content-panel table-responsive" style="padding: 0px;">
+      <table class="table table-bordered table-striped table-condensed">
+          <thead>
+              <tr>
+                  <th>Fecha</th>
+                  <th>Usuario</th>
+                  <th>Depósito</th>
+                  <th>Observación</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+          {{#each}}
+              <tr>
+                  <td>{{dateformat fecha}}</td>
+                  <td>{{usuario.nombre}}</td>
+                  <td>{{deposito.nombre}}</td>
+                  <td>{{observacion}}</td>
+                  <td class="center">
+                    {{#link-to 'ajusteInventario.edit' this classNames='table-action'}}
+                      <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil"></button>
+                    {{/link-to}}
+                  </td>
+              </tr>
+          {{/each}}
+          </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

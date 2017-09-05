@@ -1,0 +1,374 @@
+#empresa:  <%=  ENV["EMPRESA"] %>
+nro_sucursales:
+  gabino: 2
+  top: 1
+  princesita: 1
+  cccomercial: 1
+  codium: 1
+  preciosbajos: 1
+  bodegastaff: 1
+  operacionsonrisa: 1
+
+nro_empresas: 1
+
+valores_por_defecto:
+  cliente:
+    ruc_sin_nombre: '0'
+
+autenticacion:
+  logueo_con_sucursal: false
+
+venta:
+  nro_factura_autogenerado: true
+  cantidad_detalles: 10
+
+cajas:
+  generar_movimientos: true
+  monto_cierre: cero
+  tipos_operaciones:
+    reversion_credito: reversion_credito
+    reversion_debito: reversion_debito
+    reversion_dos_cajas: reversion_dos_cajas
+    compra: compra
+    venta: venta
+    transferencia: transferencia
+    gasto: gasto
+    apertura: apertura
+    cierre: cierre
+    cobro_venta: cobro_venta
+    pago_proveedor: pago_proveedor
+
+
+printers:
+  printers: [[nancy, PageSize=Custom.20.4x27.9cm, -192-168-0-200], [librada, PageSize=Custom.20.4x27.9cm,-192-168-0-201], [interno, PageSize=Custom.20.4x27.9cm, -192-168-0-202], [retencion, PageSize=Custom.21.8x22.8cm, -192-168-0-203]]
+  codigo_interno: interno
+  codigo_retencion: retencion
+
+#control_inventario:
+#  cantidad_productos: 2
+#  setear_existencia: false
+
+estadosCuotas:
+  pendiente: PENDIENTE
+  parcialmente_pagada: PARCIALMENTE_PAGADA
+  pagada: PAGADA
+
+estados_pagos:
+  pendiente: Pendiente
+  descuento_solicitado: Descuento Solicitado
+  descuento_aprobado: Descuento Aprobado
+  descuento_rechazado: Descuento Rechazado
+  concretado: Concretado
+  congelado: Congelado
+
+campanha:
+  tipo_campanha: "Campaña"
+  tipo_mision: "Misión"
+
+diagnosticos:
+  - tipo: Labio
+    nombre: Normal
+    id: 1
+  - tipo: Labio
+    nombre: Izq. Unilateral Incompleto
+    id: 2
+  - tipo: Labio
+    nombre: Der. Unilateral Incompleto
+    id: 3
+  - tipo: Labio
+    nombre: Izq. Unilateral Completo
+    id: 4
+  - tipo: Labio
+    nombre: Der. Unilateral Completo
+    id: 5
+  - tipo: Labio
+    nombre: Bilat. Izq. Completo / Der. Incompleto
+    id: 6
+  - tipo: Labio
+    nombre: Bilat. Der. Completo / Inq. Incompleto
+    id: 7
+  - tipo: Labio
+    nombre: Bilateral Incompleto
+    id: 8
+  - tipo: Labio
+    nombre: Bilateral Completo
+    id: 9
+  - tipo: Labio
+    nombre: Otro
+    id: 10
+  - tipo: Labio
+    nombre: Labio Unilateral Reparado Previamente
+    id: 11
+  - tipo: Labio
+    nombre: Labio Bilateral Reparado Previamente
+    id: 12
+  - tipo: Nariz
+    nombre: Normal
+    id: 13
+  - tipo: Nariz
+    nombre: Deformación Nasal Unilat. Izq.
+    id: 14
+  - tipo: Nariz
+    nombre: Deformación Nasal Unilat. Der.
+    id: 15
+  - tipo: Nariz
+    nombre: Deformación Nasal Bilateral
+    id: 16
+  - tipo: Nariz
+    nombre: Deficiencia Bilateral de Columella
+    id: 17
+  - tipo: Nariz
+    nombre: Desviación Septal
+    id: 18
+  - tipo: Nariz
+    nombre: Otro
+    id: 19
+  - tipo: Paladar
+    nombre: Normal
+    id: 20
+  - tipo: Paladar
+    nombre: Izq. Unilat. Alveolar Incompleto
+    id: 21
+  - tipo: Paladar
+    nombre: Izq. Unilat. Completo con Fisura Alveolar
+    id: 22
+  - tipo: Paladar
+    nombre: Izq. Completo / Der. Incompleto
+    id: 23
+  - tipo: Paladar
+    nombre: Der. Unilat. Alveolar Incompleto
+    id: 24
+  - tipo: Paladar
+    nombre: Der. Unilat. Completo con Fisura Alveolar
+    id: 25
+  - tipo: Paladar
+    nombre: Der. Completo / Inzq. Incompleto
+    id: 26
+  - tipo: Paladar
+    nombre: Bilateral Incompleto
+    id: 27
+  - tipo: Paladar
+    nombre: Bilateral Completo
+    id: 28
+  - tipo: Paladar
+    nombre: Submucoso
+    id: 29
+  - tipo: Paladar
+    nombre: Blando
+    id: 30
+  - tipo: Paladar
+    nombre: Posterior Duro y Blando
+    id: 31
+  - tipo: Paladar
+    nombre: Izq. Unilateral Completo Duro y Blando
+    id: 32
+  - tipo: Paladar
+    nombre: Der. Unilateral Completo Duro y Blando
+    id: 33
+  - tipo: Paladar
+    nombre: Bilateral Completo Duro y Blando
+    id: 34
+  - tipo: Paladar
+    nombre: Otro
+    tiene_observacion: true
+    id: 35
+  - tipo: Paladar
+    nombre: Paladar Unilateral Reparado Previamente
+    si_no: true
+    id: 36
+  - tipo: Paladar
+    nombre: Paladar Bilateral Reparado Previamente
+    si_no: true
+    id: 37
+  - tipo: Paladar
+    nombre: Paladar Reparado con InsufiienciaVelofaríngea
+    si_no: true
+    id: 38
+  - tipo: Fistula
+    nombre: Naso-labial Izq.
+    id: 39
+  - tipo: Fistula
+    nombre: Alveolar Izq.
+    id: 40
+  - tipo: Fistula
+    nombre: Alveolar y Anterior Izq.
+    id: 41
+  - tipo: Fistula
+    nombre: Naso-Labial Der.
+    id: 42
+  - tipo: Fistula
+    nombre: Alveolar Der.
+    id: 43
+  - tipo: Fistula
+    nombre: Alveolar y Anterior Der.
+    id: 44
+  - tipo: Fistula
+    nombre:  Alveolar Der. y Izq.
+    id: 45
+  - tipo: Fistula
+    nombre: Alveolar y Anterior Izq. y Der.
+    id: 46
+  - tipo: Fistula
+    nombre: Alveolar Anterior y Media Izq. y Der.
+    id: 47
+  - tipo: Fistula
+    nombre: Duro
+    id: 48
+  - tipo: Fistula
+    nombre: Unión de Duro y Blando
+    id: 49
+  - tipo: Fistula
+    nombre: Paladar Blando
+    id: 50
+  - tipo: Fistula
+    nombre: Otro
+    tiene_observacion: true
+    id: 51
+  - tipo: Otros
+    nombre: Contractura por Quemadura
+    tiene_localizacion: true
+    id: 52
+  - tipo: Otros
+    nombre: Malformación Craneofacial
+    tiene_observacion: true
+    id: 53
+  - tipo: Otros
+    nombre: Hemangioma
+    tiene_localizacion: true
+    id: 54
+  - tipo: Otros
+    nombre: Microtia / Malformación Lóbulo de la Oreja
+    tiene_lado: true
+    tiene_localizacion: true
+    lados:
+      nevo: Nevo
+      lunar: Lunar
+      tumor: Tumor
+      quiste: Quiste
+    id: 55
+  - tipo: Otros
+    nombre: Ptosis Palpebral
+    tiene_lado: true
+    tiene_localizacion: true
+    tiene_localizacion: true
+    lados:
+      polidactilia: Polidactilia
+      sindactilia: Sindactilia
+    id: 56
+  - tipo: Otros
+    nombre: Cicatriz por Quemadura
+    tiene_localizacion: true
+    id: 57
+  - tipo: Otros
+    nombre: Otro tipo de Cicatriz
+    tiene_localizacion: true
+    id: 58
+  - tipo: Otros
+    nombre: Frenillo Lingual
+    tiene_observacion: true
+    id: 59
+  - tipo: Otros
+    nombre: Otro
+    tiene_observacion: true
+    id: 60
+
+tratamientos:
+  - tipo: Labio
+    nombre: Reparación Unilateral Primaria
+    tiene_observacion: false
+  - tipo: Labio
+    nombre: Reparación Bilateral Primaria
+    tiene_observacion: false
+  - tipo: Labio
+    nombre: Reparación Unilateral Secundaria
+    tiene_observacion: false
+  - tipo: Labio
+    nombre: Reparación  Bilateral Secundaria
+    tiene_observacion: false
+  - tipo: Labio
+    nombre: Revisión de Cicatriz
+    tiene_observacion:  false
+  - tipo: Labio
+    nombre: Otro
+    tiene_observacion: true
+  - tipo: Nariz
+    tiene_observacion: false
+    nombre: Reparación Nasal Unilateral
+  - tipo: Nariz
+    tiene_observacion: false
+    nombre: Reparación Nasal Bilateral
+  - tipo: Nariz
+    tiene_observacion: false
+    nombre: Reparación de Septo Desviado
+  - tipo: Nariz
+    tiene_observacion: false
+    nombre: Rinoplastia (hueso y cartílago)
+  - tipo: Nariz
+    tiene_observacion: false
+    nombre: Injerto de Cartílago
+  - tipo: Nariz
+    tiene_observacion: true
+    nombre: Otro
+  - tipo: Paladar
+    tiene_observacion: false
+    nombre: Reparación Primaria
+  - tipo: Paladar
+    tiene_observacion: false
+    nombre: Revisión
+  - tipo: Paladar
+    tiene_observacion: false
+    nombre: Orticochea
+  - tipo: Paladar
+    tiene_observacion: false
+    nombre: Colgajo Faríngeo
+  - tipo: Paladar
+    tiene_observacion: false
+    nombre: Vomer / Colgajo Nasal
+  - tipo: Paladar
+    tiene_observacion: true
+    nombre: Otro
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Liberación de Contractura e Injerto de Piel de Espesor Completo
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Liberación de Contractura e Injerto de Piel de Espesor Parcial
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Liberación de Contractura con Zetaplastía
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Reparación Craneofacial
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Excisión de Nevo / Lunar / Tumor / Quiste
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Frenilectomía
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Hemangioma
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Otoplastía
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Reparación Ptosis
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Polidactilia / Sindactilia
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Excisión de Cicatriz con Injerto de Piel de Espesor Total
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Excisión de Cicatriz con Injerto de Piel de Espesor Parcial
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Excisión de Cicatriz con Zetaplastía
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Inyección de Cicatriz
+  - tipo: Otros
+    tiene_observacion: true
+    nombre: Otro

@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+deposito_insumos_medicos:
+  id: 1
+  nombre: Depósito Insumos Médicos
+  descripcion: Depósito Insumos Médicos
+deposito_farmacia:
+  id: 2
+  nombre: Farmacia
+  descripcion: Farmacia
+deposito_equipos:
+  id: 3
+  nombre: Depósito Equipos
+  descripcion: Depósito Equipos
+deposito_externo:
+  id: 4
+  nombre: Depósito Externo
+  descripcion: Depósito Externo
+deposito_cocina:
+  id: 5
+  nombre: Cocina
+  descripcion: Cocina

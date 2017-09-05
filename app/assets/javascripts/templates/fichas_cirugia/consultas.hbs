@@ -1,0 +1,90 @@
+<div role="tabpanel" class="tab-pane" id="consultas">
+  <div class="panel panel-default" style="margin-top: 15px;">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#alergias">
+        <i class="fa fa-angle-right"></i>Consultas</a>
+    </h4>
+    </div>
+    <div class="panel-body">
+      <div class="form-horizontal form-detalles">
+        <div class="form-group">
+          {{#if mostrarAnterior}}
+          <div class="col-lg-2 pull-left">
+            <button type="button" {{action 'detalleAnterior'}} class="btn btn-theme btn-sm" onkeydown="Bodega.enterFormHandler('controller:fichasNutricion.base', 'detalleAnterior');">
+              <span class="glyphicon glyphicon-arrow-left first-cell"></span>
+            </button>
+          </div>
+          {{/if}}
+          {{#if mostrarSiguiente}}
+          <div class="col-lg-2 pull-right">
+            <button type="button" {{action 'detalleSiguiente'}} class="btn btn-theme btn-sm" onkeydown="Bodega.enterFormHandler('controller:fichasNutricion.base', 'detalleSiguiente');">
+              <span class="glyphicon glyphicon-arrow-right"></span>
+            </button>
+          </div>
+          {{/if}}
+        </div>
+        <div class="form-group">
+          {{#if consultaActual.colaborador}}
+            <div class="col-lg-6 first-cell">
+              <label class="form-label">Doctor</label>
+              {{input type="text" value=consultaActual.colaborador.persona.razonSocial class="form-control" placeholder="-" readonly="true"}}
+            </div>
+          {{/if}}
+          <div class="col-lg-6">
+            <label class="form-label">Fecha</label>
+            {{view Bodega.views.DatePickerView value=consultaActual.fechaAgenda nullable=true readonly="true" placeholder="Después de"}}
+          </div>
+        </div>
+        <div class="form-group">
+        <div class="col-lg-6 first-cell">
+          <label class="form-label">Evaluación</label>
+          {{textarea type="text" value=consultaActual.evaluacion class="form-control" placeholder="-" readonly="true"}}
+        </div>
+        <div class="col-lg-6">
+          <label class="form-label">Diagnóstico</label>
+          {{textarea type="text" value=consultaActual.diagnostico class="form-control" placeholder="-" readonly="true"}}
+        </div>
+      </div>
+      <br>
+      {{#if consultaDetallesActual}}
+      <div class="form-group">
+          <div class="col-lg-3 first-cell">
+            <label class="form-label">Tratamiento</label>
+          </div>
+          <div class="col-lg-1">
+            <label class="form-label">Cantidad</label>
+          </div>
+        </div>
+        {{#each item in consultaDetallesActual}}
+        <div class="form-group">
+          <div class="col-lg-3 first-cell">
+            {{input type="text" value=item.producto.descripcion class="form-control" placeholder="-" readonly="true"}}
+          </div>
+          <div class="col-lg-1">
+            {{input type="text" value=item.cantidad class="form-control" placeholder="-" readonly="true"}}
+          </div>
+          {{!-- <div class="col-lg-6">
+            {{input type="text" value=item.diagnostico class="form-control" placeholder="-" readonly="true"}}
+          </div> --}}
+        </div>
+        {{/each}}
+      {{/if}}
+      <br>
+      <div class="form-group">
+        <div class="col-lg-6 first-cell">
+          <label class="form-label">Receta</label>
+          {{textarea type="text" value=consultaActual.receta class="form-control" placeholder="-" readonly="true"}}
+
+        </div>
+        <div class="col-lg-6">
+          <label class="form-label">Indicaciones</label>
+          {{textarea type="text" value=consultaActual.indicaciones class="form-control" placeholder="-" readonly="true"}}
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+  </div>
+</div>

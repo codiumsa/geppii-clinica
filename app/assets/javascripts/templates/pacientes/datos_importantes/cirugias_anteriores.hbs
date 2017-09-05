@@ -1,0 +1,120 @@
+<div class="panel panel-default" style="margin-top: 15px;">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#cirugias">
+        <i class="fa fa-angle-right">
+        </i>Cirugías Anteriores</a>
+    </h4>
+  </div>
+  <div id="cirugias" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="form-group">
+        <!-- INICIO LISTA DETALLES -->
+        <div class="panel-body">
+          <div class="form-horizontal form-detalles">
+            {{#if listaCirugias}}
+              <div class="form-group">
+                <div class="col-lg-2 first-cell">
+                  <label class="form-label">Fecha</label>
+                </div>
+                <div class="col-lg-5">
+                  <label class="form-label">Observacion</label>
+                </div>
+                <div class="col-lg-4">
+                  <label class="form-label">Lugar</label>
+                </div>
+              </div>
+            {{else}}
+              <div class="form-group">
+                {{#if listaCirugiasFicha}}
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="content-panel">
+                        <h4>Tratamientos realizados</h4>
+                        <hr>
+                        <table class="table table-striped table-advance table-hover">
+                          <thead>
+                            <tr>
+                              <th>Voluntario</th>
+                              <th>Parte</th>
+                              <th>Tratamiento</th>
+                              <th>Estado</th>
+                              <th>Observacion</th>
+                              <th>Realizado en</th>
+                              <th>Fecha</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {{#each item in listaCirugiasFicha}}
+                              <tr>
+                                <td> {{item.colaborador.razonSocial}} </td>
+                                <td> {{item.tipo}} </td>
+                                <td> {{item.nombre}} </td>
+                                <td><span {{bind-attr class="item.claseEstado"}}>{{item.estadoTratamiento}} </span></td>
+                                <td> {{item.observacion}} </td>
+                                <td> {{item.lugar}} </td>
+                                <td> {{dateformat item.anhoMision}}</td>
+                                <td style="display:none;"> {{item.realizadoEn}}</td>
+                              </tr>
+                            {{/each}}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                {{else}}
+                  <div class="col-lg-12 first-cell">
+                    <label class="form-label">No existen cirugías registradas.</label>
+                  </div>
+                {{/if}}
+              </div>
+
+            {{/if}}
+            {{#if listaCirugias}}
+              {{#each cir in listaCirugias}}
+                <div class="form-group">
+                  <div class="col-lg-2 first-cell">
+                    {{input type="text" readonly="true" value=cir.fecha class="form-control" placeholder="Fecha" }}
+                  </div>
+                  <div class="col-lg-5">
+                    {{input type="text" readonly="true" value=cir.obs class="form-control" placeholder="Observación" }}
+                  </div>
+                  <div class="col-lg-4">
+                    {{input type="text" readonly="true" value=cir.lugar class="form-control" placeholder="Lugar" }}
+                  </div>
+                  <div class="col-lg-1">
+                    <!--button type="button" {{action 'borrarCirugia' cir}} class="btn btn-theme"-->
+                    <button type="button" {{action 'borrarDetalle' cir 'datosImportantes.cirugias' 'datosImportantes.cirugias.@each.eliminado'}}
+                      class="btn btn-theme">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                  </div>
+                </div>
+              {{/each}}
+            {{/if}}
+            <!-- DETALLE NUEVO -->
+            <div class="col-lg-2">
+              <label class="form-label" for="fecha">Fecha</label> {{view Bodega.views.DatePickerView value=cirugiaNueva.fecha}}
+            </div>
+            <div class="col-lg-5">
+              <label class="form-label">Observación</label> {{input type="text" id="obs" value=cirugiaNueva.obs class="form-control" placeholder="Observaciones"}}
+            </div>
+            <div class="col-lg-4">
+              <label class="form-label">Lugar</label> {{input type="text" id="clinica" value=cirugiaNueva.lugar class="form-control" placeholder="Lugar de Cirugía"}}
+            </div>
+            <div class="col-lg-1">
+              <label class="form-label">Agregar</label>
+              <!--button type="button" {{action 'agregarCirugia'}} class="btn btn-theme btn-sm" onkeydown="Bodega.enterFormHandler('controller:pacientes.new', 'agregarCirugia');"-->
+              <button type="button" {{action 'agregarDetalle' 'datosImportantes.cirugias' 'cirugiaNueva'}} class="btn btn-theme btn-sm"
+                onkeydown="Bodega.enterFormHandler('controller:pacientes.new', 'agregarDetalle');">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </div>
+            <!-- FIN DETALLE NUEVO-->
+          </div>
+        </div>
+        <!-- FIN LISTA DETALLES -->
+      </div>
+    </div>
+  </div>
+</div>

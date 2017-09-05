@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   cantidad: 9
+#   precio_descuento: 50
+#   porcentaje: true
+#   producto: heineken
+#   promocion: promo_two_hk
+
+# uno:
+#   cantidad: 1
+#   precio_descuento: 1000
+#   porcentaje: false
+#   producto: heineken
+#   promocion: promo_one
+
+# two:
+#   cantidad: 6
+#   precio_descuento: 9500
+#   porcentaje: false
+#   producto: ourofino
+#   promocion: promo_cuatro_ouro
+
+# tres:
+#   cantidad: 3
+#   precio_descuento: 5500
+#   porcentaje: false
+#   producto: ourofino
+#   promocion: promo_cuatro_ouro
+
+# cuatro:
+#   cantidad: 9
+#   precio_descuento: 16000
+#   porcentaje: false
+#   producto: ourofino
+#   promocion: promo_cuatro_ouro
+
+# cinco:
+#   cantidad: 2
+#   precio_descuento: 3
+#   porcentaje: true
+#   producto: ourofino
+#   promocion: promo_tres_kchiai

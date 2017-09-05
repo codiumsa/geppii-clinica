@@ -1,0 +1,57 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  Pacientes
+  {{#isAuthorized 'FE_post_pacientes'}}
+    {{#link-to 'pacientes.new'}}
+      <button class="btn btn-theme btn-sm glyphicon glyphicon-plus"
+	      style="margin-top: -5px; margin-left: 5px;"></button>
+    {{/link-to}}
+  {{/isAuthorized}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    {{view Bodega.views.FilterView modealId = "pacienteSearchForm"}}
+    <div class="table-responsive content-panel" style="padding: 0px;">
+      <table class="table table-hover table-bordered table-striped table-condensed"
+	     data-selectable="true">
+        <thead>
+          <tr>
+            <th>RUC/CI</th>
+            <th>Nro. Paciente</th>
+            <th>Razón Social</th>
+            <th>Tipo Persona</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th style="width:11%;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each}}
+            <tr {{bind-attr data-paciente-id="id"}}>
+              <td>{{persona.ciRuc}}</td>
+              <td>{{numeroPaciente}}</td>
+              <td>{{persona.razonSocial}}</td>
+              <td>{{persona.tipoPersona}}</td>
+              <td>{{persona.direccion}}</td>
+              <td>{{persona.telefono}}</td>
+              <td class="center">
+                {{#link-to 'paciente.edit' this classNames='table-action' }}
+                  {{#isAuthorized 'FE_put_pacientes'}}
+                    <button class="btn btn-theme btn-sm glyphicon glyphicon-pencil"></button>
+                  {{/isAuthorized}}
+                {{/link-to}}
+                {{#link-to 'paciente.delete' this classNames='table-action' }}
+                  {{#isAuthorized 'FE_delete_pacientes'}}
+                    <button class="btn btn-theme btn-sm glyphicon glyphicon-remove"
+			    data-toggle="modal" data-target="#pacienteDelete"></button>
+                  {{/isAuthorized}}
+                {{/link-to}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{view Bodega.views.PaginationView}}
+  </div>
+</div>

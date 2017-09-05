@@ -1,0 +1,38 @@
+<h3>
+  <i class="fa fa-angle-right"></i>
+  {{formTitle}}
+</h3>
+<div class="row mt">
+  <div class="col-lg-12">
+    <div class="form-panel">
+      <div class="form-horizontal">
+        <form class="style-form" role="form" {{action "save" on="submit"}} onkeydown="Bodega.keydownFormHandler('controller:categorias.new', 'save');">
+          <div class="form-group" {{bind-attr class="errors.nombre:has-error errors.nombre:has-feedback"}}>
+            <div class="col-lg-6">
+              <label class="form-label"  for="nombre">Nombre</label>
+              {{focus-input type="text" value=nombre class="form-control" placeholder="Nombre de la categoria"}}
+              <span class="help-block">{{error errors.nombre}}</span>
+              {{#if errors.nombre}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+            <div class="col-lg-6" {{bind-attr class="errors.comision:has-error errors.comision:has-feedback"}}>
+              <label class="form-label"  for="comision">Comisión</label>
+              {{number-input value=comision class="form-control" min="1" max="100"}}
+              <span class="help-block">{{error errors.comision}}</span>
+              {{#if errors.comision}}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+              {{/if}}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-11">
+              <button type="submit" class="btn btn-theme">Guardar</button>
+              <button {{action 'cancel'}} class="btn btn-default">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
